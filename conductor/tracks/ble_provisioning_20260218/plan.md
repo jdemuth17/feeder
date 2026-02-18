@@ -1,13 +1,13 @@
 # Implementation Plan: BLE Provisioning & Mobile Setup
 
-## Phase 1: ESP32 BLE Service Implementation
-- [ ] Task: BLE Server Scaffolding
+## Phase 1: ESP32 BLE Service Implementation [checkpoint: 703f622]
+- [x] Task: BLE Server Scaffolding dc7bd11
     - [ ] Implement `BleProvisioningService` using `nanoFramework.Device.Bluetooth`.
     - [ ] Define Service and Characteristic UUIDs.
-- [ ] Task: Credential Handling & Storage
+- [x] Task: Credential Handling & Storage 668bff6
     - [ ] Implement logic to receive SSID/Password via GATT Write.
     - [ ] Implement NVS storage logic for Wi-Fi settings.
-- [ ] Task: Conductor - User Manual Verification 'Phase 1: ESP32 BLE Service Implementation' (Protocol in workflow.md)
+- [x] Task: Conductor - User Manual Verification 'Phase 1: ESP32 BLE Service Implementation' (Protocol in workflow.md) 703f622
 
 ## Phase 2: .NET MAUI BLE Client
 - [ ] Task: Mobile Project Scaffolding
