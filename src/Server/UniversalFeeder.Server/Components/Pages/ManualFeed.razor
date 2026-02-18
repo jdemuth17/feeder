@@ -49,6 +49,7 @@ else
                     <td>@f.IpAddress</td>
                     <td>
                         <button class="btn btn-warning" @onclick="() => TriggerFeed(f)">Feed Now (5s)</button>
+                        <a class="btn btn-outline-primary" href="/calibrate/@f.Id">Calibrate</a>
                     </td>
                 </tr>
             }
