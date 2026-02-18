@@ -4,11 +4,17 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:UniversalFeeder.Mobile"
+    xmlns:views="clr-namespace:UniversalFeeder.Mobile.Views"
     Title="UniversalFeeder.Mobile">
 
     <ShellContent
         Title="Home"
         ContentTemplate="{DataTemplate local:MainPage}"
         Route="MainPage" />
+
+    <ShellContent
+        Title="Feeder Setup"
+        ContentTemplate="{DataTemplate views:ProvisioningPage}"
+        Route="ProvisioningPage" />
 
 </Shell>

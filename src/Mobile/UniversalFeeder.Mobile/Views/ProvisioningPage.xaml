@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:UniversalFeeder.Mobile.ViewModels"
+             x:Class="UniversalFeeder.Mobile.Views.ProvisioningPage"
+             Title="Feeder Setup">
+
+    <ContentPage.BindingContext>
+        <vm:ProvisioningViewModel />
+    </ContentPage.BindingContext>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="30" Spacing="25">
+            
+            <Label Text="1. Scan for Feeders" FontSize="Header" />
+            <Button Text="Scan" Command="{Binding ScanCommand}" />
+            
+            <CollectionView ItemsSource="{Binding Devices}" SelectedItem="{Binding SelectedDevice}" SelectionMode="Single">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Label Text="{Binding Name}" Padding="10" />
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <Label Text="2. Wi-Fi Credentials" FontSize="Header" />
+            <Entry Placeholder="Wi-Fi SSID" Text="{Binding Ssid}" />
+            <Entry Placeholder="Password" IsPassword="True" Text="{Binding Password}" />
+
+            <Button Text="Setup Feeder" Command="{Binding ProvisionCommand}" />
+
+            <Label Text="{Binding Status}" HorizontalOptions="Center" TextColor="Gray" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
