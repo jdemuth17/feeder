@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("UniversalFeeder.Firmware.Tests")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8c3b7c1bb9107d6b640bd3f929579626a70f9470")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+96eb35e8856ae6e05f87dc943f5b455b5ff9410e")]
 [assembly: System.Reflection.AssemblyProductAttribute("UniversalFeeder.Firmware.Tests")]
 [assembly: System.Reflection.AssemblyTitleAttribute("UniversalFeeder.Firmware.Tests")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
