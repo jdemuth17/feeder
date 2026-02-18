@@ -6,7 +6,7 @@ namespace UniversalFeeder.Firmware.Tests
     public class FeedingSequenceServiceTests
     {
         [Fact]
-        public void Execute_ShouldPlayChimeThreeTimesThenRotateMotor()
+        public void Execute_ShouldPlayChimeThreeTimesWithPausesThenRotateMotor()
         {
             // Arrange
             var mockMotor = new Mock<IMotorService>();
