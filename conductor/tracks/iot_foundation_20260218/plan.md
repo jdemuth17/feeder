@@ -4,7 +4,7 @@
 - [x] Task: Project Scaffolding (nanoFramework) cdd4748
     - [ ] Create nanoFramework project for ESP32.
     - [ ] Configure GPIO pins for A4988 (Step/Dir/Enable) and Buzzer (PWM).
-- [ ] Task: Hardware Driver Implementation
+- [x] Task: Hardware Driver Implementation 07a2a8b
     - [ ] Write tests for motor step logic.
     - [ ] Implement `MotorService` for rotation.
     - [ ] Implement `BuzzerService` for PWM chime.
