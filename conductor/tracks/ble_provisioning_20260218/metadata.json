@@ -1,0 +1,8 @@
+{
+  "track_id": "ble_provisioning_20260218",
+  "type": "feature",
+  "status": "new",
+  "created_at": "2026-02-18T14:45:00Z",
+  "updated_at": "2026-02-18T14:45:00Z",
+  "description": "BLE Provisioning & Mobile Setup: Implement the Bluetooth handshake and the .NET MAUI setup application for Wi-Fi provisioning."
+}
