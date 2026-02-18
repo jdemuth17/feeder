@@ -15,6 +15,7 @@ builder.Services.AddDbContextFactory<FeederContext>(options =>
 
 // Feeder Client
 builder.Services.AddHttpClient<IFeederClient, FeederClient>();
+builder.Services.AddScoped<IFeedTypeService, FeedTypeService>();
 
 var app = builder.Build();
 
