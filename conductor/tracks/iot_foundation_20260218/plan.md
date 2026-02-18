@@ -8,7 +8,7 @@
     - [ ] Write tests for motor step logic.
     - [ ] Implement `MotorService` for rotation.
     - [ ] Implement `BuzzerService` for PWM chime.
-- [ ] Task: Web Server Endpoints
+- [x] Task: Web Server Endpoints ba59566
     - [ ] Write tests for HTTP request parsing.
     - [ ] Implement `/feed` and `/chime` endpoints.
 - [ ] Task: Conductor - User Manual Verification 'Phase 1: ESP32 Firmware Development' (Protocol in workflow.md)
