@@ -1,0 +1,8 @@
+{
+  "track_id": "iot_foundation_20260218",
+  "type": "feature",
+  "status": "new",
+  "created_at": "2026-02-18T13:58:00Z",
+  "updated_at": "2026-02-18T13:58:00Z",
+  "description": "Build the core IoT foundation: ESP32 Firmware for motor/buzzer control and a basic Blazor Server for manual triggering."
+}
