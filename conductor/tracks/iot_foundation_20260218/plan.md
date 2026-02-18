@@ -20,4 +20,4 @@
 - [x] Task: Manual Trigger Logic 4533e93
     - [ ] Implement `FeederClient` to send HTTP requests to the ESP32.
     - [ ] Create UI with "Manual Feed" button and IP configuration.
-- [ ] Task: Conductor - User Manual Verification 'Phase 2: Blazor Server Manual Control' (Protocol in workflow.md)
+- [~] Task: Conductor - User Manual Verification 'Phase 2: Blazor Server Manual Control' (Protocol in workflow.md)
