@@ -21,6 +21,12 @@ anoFramework\v1.0\</NanoFrameworkProjectSystemPath>
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="HardwareConfig.cs" />
+    <Compile Include="IMotorService.cs" />
+    <Compile Include="MotorService.cs" />
+    <Compile Include="IBuzzerService.cs" />
+    <Compile Include="BuzzerService.cs" />
+    <Compile Include="IFeedingSequenceService.cs" />
+    <Compile Include="FeedingSequenceService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
