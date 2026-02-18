@@ -11,7 +11,7 @@
 - [x] Task: Web Server Endpoints ba59566
     - [ ] Write tests for HTTP request parsing.
     - [ ] Implement `/feed` and `/chime` endpoints.
-- [ ] Task: Conductor - User Manual Verification 'Phase 1: ESP32 Firmware Development' (Protocol in workflow.md)
+- [~] Task: Conductor - User Manual Verification 'Phase 1: ESP32 Firmware Development' (Protocol in workflow.md)
 
 ## Phase 2: Blazor Server Manual Control
 - [ ] Task: Server Project Scaffolding

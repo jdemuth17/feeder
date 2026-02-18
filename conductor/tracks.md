@@ -4,5 +4,5 @@ This file tracks all major tracks for the project. Each track has its own detail
 
 ---
 
-- [ ] **Track: Build the core IoT foundation: ESP32 Firmware for motor/buzzer control and a basic Blazor Server for manual triggering.**
+- [~] **Track: Build the core IoT foundation: ESP32 Firmware for motor/buzzer control and a basic Blazor Server for manual triggering.**
   *Link: [./tracks/iot_foundation_20260218/](./tracks/iot_foundation_20260218/)*
