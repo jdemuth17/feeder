@@ -6,7 +6,7 @@ namespace UniversalFeeder.Firmware.Tests
     public class FeedingSequenceServiceTests
     {
         [Fact]
-        public void Execute_ShouldPlayChimeThenRotateMotor()
+        public void Execute_ShouldPlayChimeThreeTimesThenRotateMotor()
         {
             // Arrange
             var mockMotor = new Mock<IMotorService>();
@@ -24,10 +24,13 @@ namespace UniversalFeeder.Firmware.Tests
             sequence.Execute(duration);
 
             // Assert
-            Assert.Equal(2, callOrder.Count);
+            Assert.Equal(4, callOrder.Count);
             Assert.Equal("Buzzer", callOrder[0]);
-            Assert.Equal("Motor", callOrder[1]);
-            mockBuzzer.Verify(b => b.Play(1.0f, It.IsAny<int>()), Times.Once);
+            Assert.Equal("Buzzer", callOrder[1]);
+            Assert.Equal("Buzzer", callOrder[2]);
+            Assert.Equal("Motor", callOrder[3]);
+            
+            mockBuzzer.Verify(b => b.Play(1.0f, 3000), Times.Exactly(3));
             mockMotor.Verify(m => m.Rotate(duration), Times.Once);
         }
     }
