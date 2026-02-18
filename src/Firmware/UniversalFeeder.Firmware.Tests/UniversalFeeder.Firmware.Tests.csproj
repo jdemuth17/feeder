@@ -14,6 +14,7 @@
     <Compile Include="..\UniversalFeeder.Firmware\BuzzerService.cs" Link="BuzzerService.cs" />
     <Compile Include="..\UniversalFeeder.Firmware\IFeedingSequenceService.cs" Link="IFeedingSequenceService.cs" />
     <Compile Include="..\UniversalFeeder.Firmware\FeedingSequenceService.cs" Link="FeedingSequenceService.cs" />
+    <Compile Include="..\UniversalFeeder.Firmware\RequestProcessor.cs" Link="RequestProcessor.cs" />
   </ItemGroup>
 
   <ItemGroup>
