@@ -1,0 +1,113 @@
+@page "/manual-feed"
+@using UniversalFeeder.Server.Services
+@using UniversalFeeder.Server.Models
+@using UniversalFeeder.Server.Data
+@using Microsoft.EntityFrameworkCore
+@inject IFeederClient FeederClient
+@inject IDbContextFactory<FeederContext> DbFactory
+@rendermode InteractiveServer
+
+<PageTitle>Manual Feed Control</PageTitle>
+
+<h1>Manual Feed Control</h1>
+
+<div class="card mb-4">
+    <div class="card-body">
+        <h5 class="card-title">Add/Update Feeder IP</h5>
+        <div class="row g-3">
+            <div class="col-auto">
+                <input type="text" class="form-control" placeholder="IP Address (e.g. 192.168.1.50)" @bind="feederIp" />
+            </div>
+            <div class="col-auto">
+                <button class="btn btn-primary" @onclick="SaveIp">Save IP</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@if (feeders == null)
+{
+    <p>Loading feeders...</p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nickname</th>
+                <th>IP Address</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var f in feeders)
+            {
+                <tr>
+                    <td>@f.Id</td>
+                    <td>@f.Nickname</td>
+                    <td>@f.IpAddress</td>
+                    <td>
+                        <button class="btn btn-warning" @onclick="() => TriggerFeed(f)">Feed Now (5s)</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@if (!string.IsNullOrEmpty(statusMessage))
+{
+    <div class="alert alert-info mt-3">@statusMessage</div>
+}
+
+@code {
+    private string? feederIp;
+    private List<Feeder>? feeders;
+    private string? statusMessage;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadFeeders();
+    }
+
+    private async Task LoadFeeders()
+    {
+        using var context = DbFactory.CreateDbContext();
+        feeders = await context.Feeders.ToListAsync();
+    }
+
+    private async Task SaveIp()
+    {
+        if (string.IsNullOrWhiteSpace(feederIp)) return;
+
+        using var context = DbFactory.CreateDbContext();
+        var feeder = await context.Feeders.FirstOrDefaultAsync() ?? new Feeder { Nickname = "Main Feeder" };
+        feeder.IpAddress = feederIp;
+
+        if (feeder.Id == 0) context.Feeders.Add(feeder);
+        await context.SaveChangesAsync();
+
+        statusMessage = $"IP updated to {feederIp}";
+        await LoadFeeders();
+    }
+
+    private async Task TriggerFeed(Feeder feeder)
+    {
+        statusMessage = $"Triggering feed for {feeder.IpAddress}...";
+        bool success = await FeederClient.TriggerFeedAsync(feeder.IpAddress, 5000);
+        
+        using var context = DbFactory.CreateDbContext();
+        context.Logs.Add(new FeedingLog 
+        { 
+            FeederId = feeder.Id, 
+            Timestamp = DateTime.UtcNow, 
+            Success = success, 
+            IsManualOverride = true,
+            Status = success ? "Manual feed success" : "Manual feed failed"
+        });
+        await context.SaveChangesAsync();
+
+        statusMessage = success ? "Success! Motor triggered." : "Failed to communicate with device.";
+    }
+}
