@@ -19,7 +19,7 @@
 - [x] Task: Conductor - User Manual Verification 'Phase 2: .NET MAUI BLE Client' (Protocol in workflow.md) d2b52b9
 
 ## Phase 3: Connectivity Transition
-- [ ] Task: Wi-Fi Connection Logic
+- [~] Task: Wi-Fi Connection Logic
     - [ ] Implement ESP32 logic to stop BLE and start Wi-Fi after provisioning.
     - [ ] Implement IP address reporting to the mobile app or server.
 - [ ] Task: Conductor - User Manual Verification 'Phase 3: Connectivity Transition' (Protocol in workflow.md)

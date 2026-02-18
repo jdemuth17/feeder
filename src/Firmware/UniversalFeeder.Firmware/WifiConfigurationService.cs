@@ -46,8 +46,30 @@ namespace UniversalFeeder.Firmware
 #if NANOFRAMEWORK
             Console.WriteLine("Connecting to Wi-Fi...");
             // nanoFramework handles connection automatically if AutoConnect is set
-            // but we can force it or wait for IP
 #endif
+        }
+
+        public static string WaitForIp(int timeoutSeconds = 30)
+        {
+#if NANOFRAMEWORK
+            DateTime end = DateTime.UtcNow.AddSeconds(timeoutSeconds);
+            while (DateTime.UtcNow < end)
+            {
+                var interfaces = NetworkInterface.GetAllNetworkInterfaces();
+                foreach (var ni in interfaces)
+                {
+                    if (ni.NetworkInterfaceType == NetworkInterfaceType.Wireless80211)
+                    {
+                        if (ni.IPv4Address != "0.0.0.0" && !string.IsNullOrEmpty(ni.IPv4Address))
+                        {
+                            return ni.IPv4Address;
+                        }
+                    }
+                }
+                Thread.Sleep(1000);
+            }
+#endif
+            return null;
         }
     }
 }
