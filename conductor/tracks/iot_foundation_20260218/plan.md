@@ -1,7 +1,7 @@
 # Implementation Plan: IoT Foundation
 
 ## Phase 1: ESP32 Firmware Development
-- [ ] Task: Project Scaffolding (nanoFramework)
+- [x] Task: Project Scaffolding (nanoFramework) cdd4748
     - [ ] Create nanoFramework project for ESP32.
     - [ ] Configure GPIO pins for A4988 (Step/Dir/Enable) and Buzzer (PWM).
 - [ ] Task: Hardware Driver Implementation
