@@ -14,5 +14,5 @@ This file tracks all major tracks for the project. Each track has its own detail
 
 ---
 
-- [ ] **Track: Calibration Wizard: Implement a step-by-step wizard to calculate 'Grams Per Second' for different feed types and store them in the database.**
+- [~] **Track: Calibration Wizard: Implement a step-by-step wizard to calculate 'Grams Per Second' for different feed types and store them in the database.**
   *Link: [./tracks/calibration_wizard_20260218/](./tracks/calibration_wizard_20260218/)*

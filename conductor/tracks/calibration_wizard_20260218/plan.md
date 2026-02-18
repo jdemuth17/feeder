@@ -1,13 +1,13 @@
 # Implementation Plan: Calibration Wizard
 
 ## Phase 1: Data Model & Service Updates
-- [ ] Task: Update Feed Models
+- [x] Task: Update Feed Models 0390391
     - [ ] Create `FeedType` model (Id, Name, GramsPerSecond).
     - [ ] Update `Feeder` model to reference a `FeedType`.
-- [ ] Task: Migration & Repository
+- [x] Task: Migration & Repository e2c30b0
     - [ ] Create and apply EF Core migration.
     - [ ] Update `FeederContext` and create `FeedTypeService`.
-- [ ] Task: Conductor - User Manual Verification 'Phase 1: Data Model & Service Updates' (Protocol in workflow.md)
+- [~] Task: Conductor - User Manual Verification 'Phase 1: Data Model & Service Updates' (Protocol in workflow.md)
 
 ## Phase 2: Wizard UI Implementation
 - [ ] Task: Create Calibration Wizard Component
