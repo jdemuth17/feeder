@@ -9,11 +9,11 @@
     - [ ] Update `FeederContext` and create `FeedTypeService`.
 - [x] Task: Conductor - User Manual Verification 'Phase 1: Data Model & Service Updates' (Protocol in workflow.md) 044ac3f
 
-## Phase 2: Wizard UI Implementation
-- [ ] Task: Create Calibration Wizard Component
+## Phase 2: Wizard UI Implementation [checkpoint: d50c0f8]
+- [x] Task: Create Calibration Wizard Component d50c0f8
     - [ ] Step 1: Feed Type Selection/Creation UI.
     - [ ] Step 2: Test Dispense Trigger UI (using `FeederClient`).
     - [ ] Step 3: Weight Input & Calculation Logic.
-- [ ] Task: Navigation & Integration
+- [x] Task: Navigation & Integration d50c0f8
     - [ ] Add Calibration link to sidebar or Feeder details page.
-- [ ] Task: Conductor - User Manual Verification 'Phase 2: Wizard UI Implementation' (Protocol in workflow.md)
+- [x] Task: Conductor - User Manual Verification 'Phase 2: Wizard UI Implementation' (Protocol in workflow.md) d50c0f8
