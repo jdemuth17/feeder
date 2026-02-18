@@ -18,8 +18,8 @@
     - [ ] Create form for Wi-Fi credentials and send to ESP32.
 - [x] Task: Conductor - User Manual Verification 'Phase 2: .NET MAUI BLE Client' (Protocol in workflow.md) d2b52b9
 
-## Phase 3: Connectivity Transition
+## Phase 3: Connectivity Transition [checkpoint: 0372a60]
 - [x] Task: Wi-Fi Connection Logic 46243d2
     - [ ] Implement ESP32 logic to stop BLE and start Wi-Fi after provisioning.
     - [ ] Implement IP address reporting to the mobile app or server.
-- [~] Task: Conductor - User Manual Verification 'Phase 3: Connectivity Transition' (Protocol in workflow.md)
+- [x] Task: Conductor - User Manual Verification 'Phase 3: Connectivity Transition' (Protocol in workflow.md) 0372a60
