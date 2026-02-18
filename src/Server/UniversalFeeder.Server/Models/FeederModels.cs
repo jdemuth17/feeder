@@ -1,14 +1,23 @@
 using System;
+using System.Collections.Generic;
 
 namespace UniversalFeeder.Server.Models
 {
+    public class FeedType
+    {
+        public int Id { get; set; }
+        public string Name { get; set; } = string.Empty;
+        public double GramsPerSecond { get; set; } = 10.0;
+    }
+
     public class Feeder
     {
         public int Id { get; set; }
         public string Nickname { get; set; } = string.Empty;
         public string IpAddress { get; set; } = string.Empty;
-        public string FeedType { get; set; } = "Default";
-        public double GramsPerSecond { get; set; } = 10.0;
+        
+        public int? FeedTypeId { get; set; }
+        public FeedType? FeedType { get; set; }
     }
 
     public class FeedingLog
