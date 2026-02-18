@@ -8,6 +8,7 @@ namespace UniversalFeeder.Server.Data
         public FeederContext(DbContextOptions<FeederContext> options) : base(options) { }
 
         public DbSet<Feeder> Feeders { get; set; }
+        public DbSet<FeedType> FeedTypes { get; set; }
         public DbSet<FeedingLog> Logs { get; set; }
     }
 }
