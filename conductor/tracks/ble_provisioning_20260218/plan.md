@@ -9,14 +9,14 @@
     - [ ] Implement NVS storage logic for Wi-Fi settings.
 - [x] Task: Conductor - User Manual Verification 'Phase 1: ESP32 BLE Service Implementation' (Protocol in workflow.md) 703f622
 
-## Phase 2: .NET MAUI BLE Client
+## Phase 2: .NET MAUI BLE Client [checkpoint: d2b52b9]
 - [x] Task: Mobile Project Scaffolding d31d5d0
     - [ ] Create .NET MAUI project.
     - [ ] Add BLE library (e.g., `Plugin.BLE`).
 - [x] Task: Provisioning UI & Logic 8294987
     - [ ] Implement BLE scanning and device selection.
     - [ ] Create form for Wi-Fi credentials and send to ESP32.
-- [~] Task: Conductor - User Manual Verification 'Phase 2: .NET MAUI BLE Client' (Protocol in workflow.md)
+- [x] Task: Conductor - User Manual Verification 'Phase 2: .NET MAUI BLE Client' (Protocol in workflow.md) d2b52b9
 
 ## Phase 3: Connectivity Transition
 - [ ] Task: Wi-Fi Connection Logic
