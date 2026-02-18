@@ -1,0 +1,8 @@
+{
+  "track_id": "calibration_wizard_20260218",
+  "type": "feature",
+  "status": "new",
+  "created_at": "2026-02-18T15:01:00Z",
+  "updated_at": "2026-02-18T15:01:00Z",
+  "description": "Calibration Wizard: Implement a step-by-step wizard to calculate 'Grams Per Second' for different feed types and store them in the database."
+}
