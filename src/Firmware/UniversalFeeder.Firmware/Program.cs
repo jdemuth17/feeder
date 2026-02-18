@@ -37,11 +37,27 @@ namespace UniversalFeeder.Firmware
             _bleService = new BleProvisioningService();
             _bleService.OnCredentialsReceived += (s, e) =>
             {
+                Console.WriteLine("Credentials received. Attempting connection...");
                 WifiConfigurationService.SaveCredentials(_bleService.Ssid, _bleService.Password);
-                Console.WriteLine("Credentials received. Restarting in normal mode...");
+                
+                string ip = WifiConfigurationService.WaitForIp();
+                if (ip != null)
+                {
+                    Console.WriteLine($"Connected! IP: {ip}");
+                    _bleService.UpdateIpAddress(ip);
+                    
+                    // Give mobile app time to read IP
+                    Thread.Sleep(5000);
+                    
+                    Console.WriteLine("Provisioning complete. Rebooting...");
 #if NANOFRAMEWORK
-                nanoFramework.Runtime.Native.Power.RebootDevice();
+                    nanoFramework.Runtime.Native.Power.RebootDevice();
 #endif
+                }
+                else
+                {
+                    Console.WriteLine("Connection failed. Remaining in provisioning mode.");
+                }
             };
             _bleService.Start("Feeder-Setup");
         }

@@ -46,8 +46,27 @@ namespace UniversalFeeder.Mobile.Services
                 if (ssidChar != null) await ssidChar.WriteAsync(Encoding.UTF8.GetBytes(ssid));
                 if (passChar != null) await passChar.WriteAsync(Encoding.UTF8.GetBytes(password));
 
+                // Wait for IP characteristic to be updated
+                var ipChar = await service.GetCharacteristicAsync(Guid.Parse("e2a00001-8ef4-4594-ba04-0390ea000001"));
+                string ip = null;
+                
+                if (ipChar != null)
+                {
+                    // Poll for IP for up to 30 seconds
+                    for (int i = 0; i < 30; i++)
+                    {
+                        var bytes = await ipChar.ReadAsync();
+                        if (bytes != null && bytes.Length > 0)
+                        {
+                            ip = Encoding.UTF8.GetString(bytes);
+                            if (ip != "0.0.0.0") break;
+                        }
+                        await Task.Delay(1000);
+                    }
+                }
+
                 await _adapter.DisconnectDeviceAsync(device);
-                return true;
+                return !string.IsNullOrEmpty(ip);
             }
             catch
             {

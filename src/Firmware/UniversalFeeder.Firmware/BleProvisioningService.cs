@@ -12,12 +12,14 @@ namespace UniversalFeeder.Firmware
         private readonly string _serviceUuid = "4fafc201-1fb5-459e-8fcc-c5c9c331914b";
         private readonly string _ssidUuid = "beb5483e-36e1-4688-b7f5-ea07361b26a8";
         private readonly string _passUuid = "d6e98ba1-8ef4-4594-ba04-0390ea000001";
+        private readonly string _ipUuid = "e2a00001-8ef4-4594-ba04-0390ea000001";
 
 #if NANOFRAMEWORK
         private BluetoothLEServer _server;
         private GattServiceProvider _serviceProvider;
         private GattLocalCharacteristic _ssidCharacteristic;
         private GattLocalCharacteristic _passCharacteristic;
+        private GattLocalCharacteristic _ipCharacteristic;
 #endif
 
         public string Ssid { get; private set; }
@@ -63,6 +65,16 @@ namespace UniversalFeeder.Firmware
             _passCharacteristic = passResult.Characteristic;
             _passCharacteristic.WriteRequested += OnPassWriteRequested;
 
+            // IP Address Characteristic (Read/Notify)
+            var ipResult = _serviceProvider.Service.CreateCharacteristic(
+                Guid.Parse(_ipUuid),
+                new GattLocalCharacteristicParameters
+                {
+                    CharacteristicProperties = GattCharacteristicProperties.Read | GattCharacteristicProperties.Notify,
+                    UserDescription = "Assigned IP Address"
+                });
+            _ipCharacteristic = ipResult.Characteristic;
+
             _serviceProvider.StartAdvertising(new GattServiceProviderAdvertisingParameters
             {
                 IsDiscoverable = true,
@@ -70,6 +82,16 @@ namespace UniversalFeeder.Firmware
             });
 
             Console.WriteLine($"BLE Provisioning Server Started: {deviceName}");
+#endif
+        }
+
+        public void UpdateIpAddress(string ip)
+        {
+#if NANOFRAMEWORK
+            var buffer = Encoding.UTF8.GetBytes(ip);
+            _ipCharacteristic.StaticValue = buffer;
+            _ipCharacteristic.NotifyValue(buffer);
+            Console.WriteLine($"BLE IP Updated: {ip}");
 #endif
         }
 
