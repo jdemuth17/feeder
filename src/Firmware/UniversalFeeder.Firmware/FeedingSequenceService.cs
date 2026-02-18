@@ -16,12 +16,15 @@ namespace UniversalFeeder.Firmware
 
         public void Execute(int durationMs)
         {
-            // 1. Chime (Buzzer) 3 times for 3 seconds each
+            // 1. Chime (Buzzer) 3 times for 3 seconds each with 1s pause
             for (int i = 0; i < 3; i++)
             {
                 _buzzerService.Play(1.0f, 3000);
-                // Optional: small sleep between chimes if needed, 
-                // but Play() already blocks for 3000ms.
+                
+                if (i < 2) // Pause between chimes (not after the last one)
+                {
+                    Thread.Sleep(1000);
+                }
             }
 
             // 2. Motor Spin
