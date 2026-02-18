@@ -1,6 +1,6 @@
 # Implementation Plan: IoT Foundation
 
-## Phase 1: ESP32 Firmware Development
+## Phase 1: ESP32 Firmware Development [checkpoint: a10e0b7]
 - [x] Task: Project Scaffolding (nanoFramework) cdd4748
     - [ ] Create nanoFramework project for ESP32.
     - [ ] Configure GPIO pins for A4988 (Step/Dir/Enable) and Buzzer (PWM).
@@ -11,7 +11,7 @@
 - [x] Task: Web Server Endpoints ba59566
     - [ ] Write tests for HTTP request parsing.
     - [ ] Implement `/feed` and `/chime` endpoints.
-- [~] Task: Conductor - User Manual Verification 'Phase 1: ESP32 Firmware Development' (Protocol in workflow.md)
+- [x] Task: Conductor - User Manual Verification 'Phase 1: ESP32 Firmware Development' (Protocol in workflow.md) a10e0b7
 
 ## Phase 2: Blazor Server Manual Control
 - [ ] Task: Server Project Scaffolding
