@@ -13,11 +13,11 @@
     - [ ] Implement `/feed` and `/chime` endpoints.
 - [x] Task: Conductor - User Manual Verification 'Phase 1: ESP32 Firmware Development' (Protocol in workflow.md) a10e0b7
 
-## Phase 2: Blazor Server Manual Control
+## Phase 2: Blazor Server Manual Control [checkpoint: b95d15a]
 - [x] Task: Server Project Scaffolding 214e1e0
     - [ ] Create Blazor Server project (.NET 8/9).
     - [ ] Set up SQLite with EF Core for basic configuration storage.
 - [x] Task: Manual Trigger Logic 4533e93
     - [ ] Implement `FeederClient` to send HTTP requests to the ESP32.
     - [ ] Create UI with "Manual Feed" button and IP configuration.
-- [~] Task: Conductor - User Manual Verification 'Phase 2: Blazor Server Manual Control' (Protocol in workflow.md)
+- [x] Task: Conductor - User Manual Verification 'Phase 2: Blazor Server Manual Control' (Protocol in workflow.md) b95d15a
