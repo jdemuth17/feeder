@@ -14,44 +14,70 @@ namespace UniversalFeeder.Server.Services
     public class ScheduleService : IScheduleService
     {
         private readonly IDbContextFactory<FeederContext> _dbFactory;
+        private readonly ILogger<ScheduleService> _logger;
 
-        public ScheduleService(IDbContextFactory<FeederContext> dbFactory)
+        public ScheduleService(IDbContextFactory<FeederContext> dbFactory, ILogger<ScheduleService> logger)
         {
             _dbFactory = dbFactory;
+            _logger = logger;
         }
 
         public async Task<List<FeedingSchedule>> GetSchedulesByFeederIdAsync(int feederId)
         {
-            using var context = _dbFactory.CreateDbContext();
-            return await context.Schedules
-                .Where(s => s.FeederId == feederId)
-                .OrderBy(s => s.TimeOfDay)
-                .ToListAsync();
+            try
+            {
+                using var context = _dbFactory.CreateDbContext();
+                return await context.Schedules
+                    .Where(s => s.FeederId == feederId)
+                    .OrderBy(s => s.TimeOfDay)
+                    .ToListAsync();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error retrieving schedules for feeder {Id}", feederId);
+                return new List<FeedingSchedule>();
+            }
         }
 
         public async Task<FeedingSchedule> SaveScheduleAsync(FeedingSchedule schedule)
         {
-            using var context = _dbFactory.CreateDbContext();
-            if (schedule.Id == 0)
+            try
             {
-                context.Schedules.Add(schedule);
+                using var context = _dbFactory.CreateDbContext();
+                if (schedule.Id == 0)
+                {
+                    context.Schedules.Add(schedule);
+                }
+                else
+                {
+                    context.Schedules.Update(schedule);
+                }
+                await context.SaveChangesAsync();
+                return schedule;
             }
-            else
+            catch (Exception ex)
             {
-                context.Schedules.Update(schedule);
+                _logger.LogError(ex, "Error saving schedule for feeder {Id}", schedule.FeederId);
+                throw;
             }
-            await context.SaveChangesAsync();
-            return schedule;
         }
 
         public async Task DeleteScheduleAsync(int id)
         {
-            using var context = _dbFactory.CreateDbContext();
-            var schedule = await context.Schedules.FindAsync(id);
-            if (schedule != null)
+            try
             {
-                context.Schedules.Remove(schedule);
-                await context.SaveChangesAsync();
+                using var context = _dbFactory.CreateDbContext();
+                var schedule = await context.Schedules.FindAsync(id);
+                if (schedule != null)
+                {
+                    context.Schedules.Remove(schedule);
+                    await context.SaveChangesAsync();
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error deleting schedule with ID {Id}", id);
+                throw;
             }
         }
     }
