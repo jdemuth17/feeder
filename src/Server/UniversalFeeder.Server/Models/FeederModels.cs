@@ -18,6 +18,18 @@ namespace UniversalFeeder.Server.Models
         
         public int? FeedTypeId { get; set; }
         public FeedType? FeedType { get; set; }
+
+        public ICollection<FeedingSchedule> Schedules { get; set; } = new List<FeedingSchedule>();
+    }
+
+    public class FeedingSchedule
+    {
+        public int Id { get; set; }
+        public int FeederId { get; set; }
+        public Feeder? Feeder { get; set; }
+        public TimeSpan TimeOfDay { get; set; }
+        public double AmountInGrams { get; set; }
+        public bool IsEnabled { get; set; } = true;
     }
 
     public class FeedingLog

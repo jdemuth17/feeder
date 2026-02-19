@@ -9,6 +9,7 @@ namespace UniversalFeeder.Server.Data
 
         public DbSet<Feeder> Feeders { get; set; }
         public DbSet<FeedType> FeedTypes { get; set; }
+        public DbSet<FeedingSchedule> Schedules { get; set; }
         public DbSet<FeedingLog> Logs { get; set; }
     }
 }
