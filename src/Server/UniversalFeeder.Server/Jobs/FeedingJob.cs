@@ -46,10 +46,10 @@ namespace UniversalFeeder.Server.Jobs
                 double gramsPerSecond = schedule.Feeder.FeedType?.GramsPerSecond ?? 10.0;
                 int durationMs = (int)((schedule.AmountInGrams / gramsPerSecond) * 1000);
 
-                _logger.LogInformation("Triggering scheduled feed for {Nickname} ({Ip}): {Amount}g -> {Duration}ms", 
-                    schedule.Feeder.Nickname, schedule.Feeder.IpAddress, schedule.AmountInGrams, durationMs);
+                _logger.LogInformation("Triggering scheduled feed for {Nickname} ({UniqueId}): {Amount}g -> {Duration}ms", 
+                    schedule.Feeder.Nickname, schedule.Feeder.UniqueId, schedule.AmountInGrams, durationMs);
 
-                bool success = await _feederClient.TriggerFeedAsync(schedule.Feeder.IpAddress, durationMs);
+                bool success = await _feederClient.TriggerFeedAsync(schedule.Feeder.UniqueId, durationMs);
 
                 dbContext.Logs.Add(new FeedingLog
                 {

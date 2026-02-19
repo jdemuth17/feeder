@@ -2,6 +2,7 @@ using UniversalFeeder.Server.Components;
 using UniversalFeeder.Server.Data;
 using UniversalFeeder.Server.Services;
 using UniversalFeeder.Server.Jobs;
+using UniversalFeeder.Server.Models;
 using Microsoft.EntityFrameworkCore;
 using Quartz;
 
@@ -62,11 +63,12 @@ app.MapStaticAssets();
 app.MapPost("/api/feeders/register", async (Feeder feeder, IDbContextFactory<FeederContext> dbFactory) =>
 {
     using var context = dbFactory.CreateDbContext();
-    var existing = await context.Feeders.FirstOrDefaultAsync(f => f.IpAddress == feeder.IpAddress);
+    var existing = await context.Feeders.FirstOrDefaultAsync(f => f.UniqueId == feeder.UniqueId);
     
     if (existing != null)
     {
         existing.Nickname = feeder.Nickname;
+        existing.IpAddress = feeder.IpAddress; // Keep IP for debug/reference
         context.Feeders.Update(existing);
     }
     else

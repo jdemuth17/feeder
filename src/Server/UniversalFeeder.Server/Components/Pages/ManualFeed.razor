@@ -96,8 +96,8 @@ else
 
     private async Task TriggerFeed(Feeder feeder)
     {
-        statusMessage = $"Triggering feed for {feeder.IpAddress}...";
-        bool success = await FeederClient.TriggerFeedAsync(feeder.IpAddress, 5000);
+        statusMessage = $"Triggering feed for {feeder.Nickname} ({feeder.UniqueId})...";
+        bool success = await FeederClient.TriggerFeedAsync(feeder.UniqueId, 5000);
         
         using var context = DbFactory.CreateDbContext();
         context.Logs.Add(new FeedingLog 

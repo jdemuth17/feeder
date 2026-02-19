@@ -1,5 +1,4 @@
 using MQTTnet;
-using MQTTnet.Client;
 using System.Text;
 using System.Text.Json;
 
@@ -14,7 +13,7 @@ namespace UniversalFeeder.Server.Services
         public MqttFeederClient(IConfiguration config, ILogger<MqttFeederClient> logger)
         {
             _logger = logger;
-            var factory = new MqttFactory();
+            var factory = new MqttClientFactory();
             _mqttClient = factory.CreateMqttClient();
 
             // These would normally come from appsettings.json or User Secrets

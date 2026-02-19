@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("UniversalFeeder.Server")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+94051fd6a0571d7d0a0dc6ea935b4c693f357fb4")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c8dd1b0300b8ac840b7e99a86973e17144152b54")]
 [assembly: System.Reflection.AssemblyProductAttribute("UniversalFeeder.Server")]
 [assembly: System.Reflection.AssemblyTitleAttribute("UniversalFeeder.Server")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

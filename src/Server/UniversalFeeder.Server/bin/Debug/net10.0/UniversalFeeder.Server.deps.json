@@ -8,6 +8,7 @@
     ".NETCoreApp,Version=v10.0": {
       "UniversalFeeder.Server/1.0.0": {
         "dependencies": {
+          "MQTTnet": "5.1.0.1559",
           "Microsoft.EntityFrameworkCore.Design": "10.0.3",
           "Microsoft.EntityFrameworkCore.Sqlite": "10.0.3",
           "Quartz.Extensions.Hosting": "3.15.1"
@@ -413,6 +414,14 @@
           }
         }
       },
+      "MQTTnet/5.1.0.1559": {
+        "runtime": {
+          "lib/net10.0/MQTTnet.dll": {
+            "assemblyVersion": "5.1.0.1559",
+            "fileVersion": "5.1.0.1559"
+          }
+        }
+      },
       "Newtonsoft.Json/13.0.3": {
         "runtime": {
           "lib/net6.0/Newtonsoft.Json.dll": {
@@ -795,6 +804,13 @@
       "sha512": "sha512-YqueG52R/Xej4VVbKuRIodjiAhV0HR/XVbLbNrJhCZnzjnSjgMJ/dCdV0akQQxavX6hp/LC6rqLGLcXeQYU7XA==",
       "path": "mono.texttemplating/3.0.0",
       "hashPath": "mono.texttemplating.3.0.0.nupkg.sha512"
+    },
+    "MQTTnet/5.1.0.1559": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-9mkk0H+76CToIzp9ru5Uj5BuC3P5hQdkhvXM+CLmmTDdZWqajjICCHuUMbDd1yVBt9BWL77Rvzt0A+/PA4WMCA==",
+      "path": "mqttnet/5.1.0.1559",
+      "hashPath": "mqttnet.5.1.0.1559.nupkg.sha512"
     },
     "Newtonsoft.Json/13.0.3": {
       "type": "package",
