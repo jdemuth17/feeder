@@ -1,7 +1,7 @@
 # Implementation Plan: Automated Scheduling
 
 ## Phase 1: Data Model & UI
-- [ ] Task: Create Schedule Model
+- [x] Task: Create Schedule Model 2c860c9
     - [ ] Add `FeedingSchedule` model (Id, FeederId, TimeOfDay, AmountInGrams, IsEnabled).
     - [ ] Update `FeederContext`.
 - [ ] Task: Migration & UI
