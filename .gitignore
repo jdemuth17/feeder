@@ -1,0 +1,13 @@
+# .gitignore for .NET
+[Bb]in/
+[Oo]bj/
+*.user
+*.userosscache
+*.sln.doccache
+*.suo
+*.userprefs
+*.db
+.vs/
+.vscode/
+.DS_Store
+*.nfproj.user
