@@ -4,7 +4,7 @@
 @using UniversalFeeder.Server.Data
 @using Microsoft.EntityFrameworkCore
 @inject IScheduleService ScheduleService
-@inject IDbContextFactory<FeederContext> DbFactory
+@inject IFeederService FeederService
 @inject NavigationManager Navigation
 @rendermode InteractiveServer
 
@@ -81,8 +81,7 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        using var context = DbFactory.CreateDbContext();
-        feeder = await context.Feeders.FindAsync(FeederId);
+        feeder = await FeederService.GetFeederByIdAsync(FeederId);
         await LoadSchedules();
     }
 

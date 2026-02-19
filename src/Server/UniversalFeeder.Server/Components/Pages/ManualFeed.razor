@@ -4,7 +4,7 @@
 @using UniversalFeeder.Server.Data
 @using Microsoft.EntityFrameworkCore
 @inject IFeederClient FeederClient
-@inject IDbContextFactory<FeederContext> DbFactory
+@inject IFeederService FeederService
 @rendermode InteractiveServer
 
 <PageTitle>Manual Feed Control</PageTitle>
@@ -75,20 +75,17 @@ else
 
     private async Task LoadFeeders()
     {
-        using var context = DbFactory.CreateDbContext();
-        feeders = await context.Feeders.ToListAsync();
+        feeders = await FeederService.GetFeedersAsync();
     }
 
     private async Task SaveIp()
     {
         if (string.IsNullOrWhiteSpace(feederIp)) return;
 
-        using var context = DbFactory.CreateDbContext();
-        var feeder = await context.Feeders.FirstOrDefaultAsync() ?? new Feeder { Nickname = "Main Feeder" };
+        var feeder = feeders?.FirstOrDefault() ?? new Feeder { Nickname = "Main Feeder" };
         feeder.IpAddress = feederIp;
 
-        if (feeder.Id == 0) context.Feeders.Add(feeder);
-        await context.SaveChangesAsync();
+        await FeederService.SaveFeederAsync(feeder);
 
         statusMessage = $"IP updated to {feederIp}";
         await LoadFeeders();
@@ -99,8 +96,7 @@ else
         statusMessage = $"Triggering feed for {feeder.Nickname} ({feeder.UniqueId})...";
         bool success = await FeederClient.TriggerFeedAsync(feeder.UniqueId, 5000);
         
-        using var context = DbFactory.CreateDbContext();
-        context.Logs.Add(new FeedingLog 
+        await FeederService.AddFeedingLogAsync(new FeedingLog 
         { 
             FeederId = feeder.Id, 
             Timestamp = DateTime.UtcNow, 
@@ -108,7 +104,6 @@ else
             IsManualOverride = true,
             Status = success ? "Manual feed success" : "Manual feed failed"
         });
-        await context.SaveChangesAsync();
 
         statusMessage = success ? "Success! Motor triggered." : "Failed to communicate with device.";
     }

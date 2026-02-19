@@ -19,6 +19,7 @@ builder.Services.AddDbContextFactory<FeederContext>(options =>
 // Feeder Client & Services
 builder.Services.AddHttpClient(); // Keep for registration API if needed elsewhere
 builder.Services.AddSingleton<IFeederClient, MqttFeederClient>();
+builder.Services.AddScoped<IFeederService, FeederService>();
 builder.Services.AddScoped<IFeedTypeService, FeedTypeService>();
 builder.Services.AddScoped<IScheduleService, ScheduleService>();
 builder.Services.AddScoped<ISettingsService, SettingsService>();

@@ -204,3 +204,5 @@ C:\Users\Demuth_jm\DOTNET Projects\feeder\src\Server\UniversalFeeder.Server\obj\
 C:\Users\Demuth_jm\DOTNET Projects\feeder\src\Server\UniversalFeeder.Server\obj\Debug\net10.0\UniversalFeeder.Server.genruntimeconfig.cache
 C:\Users\Demuth_jm\DOTNET Projects\feeder\src\Server\UniversalFeeder.Server\obj\Debug\net10.0\ref\UniversalFeeder.Server.dll
 C:\Users\Demuth_jm\DOTNET Projects\feeder\src\Server\UniversalFeeder.Server\bin\Debug\net10.0\MQTTnet.dll
+C:\Users\Demuth_jm\DOTNET Projects\feeder\src\Server\UniversalFeeder.Server\bin\Debug\net10.0\Polly.dll
+C:\Users\Demuth_jm\DOTNET Projects\feeder\src\Server\UniversalFeeder.Server\bin\Debug\net10.0\Polly.Core.dll
