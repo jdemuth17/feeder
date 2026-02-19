@@ -18,8 +18,8 @@
 - [x] Task: Conductor - User Manual Verification 'Phase 2: Firmware MQTT Integration' (Protocol in workflow.md) eb2cc5a
 
 ## Phase 3: System Refactoring & Registration Update
-- [ ] Task: Update Registration Logic
+- [x] Task: Update Registration Logic 5de83e0
     - [ ] Change registration to focus on unique hardware IDs rather than IPs.
-- [ ] Task: Final Cleanup
+- [~] Task: Final Cleanup
     - [ ] Remove legacy HTTP code from firmware and server.
 - [ ] Task: Conductor - User Manual Verification 'Phase 3: System Refactoring & Registration Update' (Protocol in workflow.md)

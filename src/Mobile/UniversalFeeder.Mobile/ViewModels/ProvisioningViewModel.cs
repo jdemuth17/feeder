@@ -92,6 +92,7 @@ namespace UniversalFeeder.Mobile.ViewModels
                 // Note: In a real scenario, this URL would be configurable
                 var response = await client.PostAsJsonAsync("http://localhost:5000/api/feeders/register", new
                 {
+                    UniqueId = SelectedDevice.Id.ToString(),
                     Nickname = SelectedDevice.Name ?? "New Feeder",
                     IpAddress = ip
                 });
