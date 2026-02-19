@@ -42,4 +42,10 @@ namespace UniversalFeeder.Server.Models
         public string Status { get; set; } = string.Empty;
         public bool IsManualOverride { get; set; }
     }
+
+    public class SystemSetting
+    {
+        public string Key { get; set; } = string.Empty;
+        public string Value { get; set; } = string.Empty;
+    }
 }
