@@ -8,14 +8,14 @@
     - [ ] Configure connection to HiveMQ Cloud.
 - [x] Task: Conductor - User Manual Verification 'Phase 1: Server-Side MQTT Integration' (Protocol in workflow.md) baa8ccd
 
-## Phase 2: Firmware MQTT Integration
+## Phase 2: Firmware MQTT Integration [checkpoint: eb2cc5a]
 - [x] Task: Firmware Dependency Updates 558050e
     - [ ] Add `nanoFramework.M2Mqtt` and `nanoFramework.System.Net.Security` to project.
 - [x] Task: Implement MqttService 477489c
     - [ ] Create `MqttService` to replace `WebServerService`.
     - [ ] Implement connection and subscription logic.
     - [ ] Implement command parsing and execution.
-- [~] Task: Conductor - User Manual Verification 'Phase 2: Firmware MQTT Integration' (Protocol in workflow.md)
+- [x] Task: Conductor - User Manual Verification 'Phase 2: Firmware MQTT Integration' (Protocol in workflow.md) eb2cc5a
 
 ## Phase 3: System Refactoring & Registration Update
 - [ ] Task: Update Registration Logic
