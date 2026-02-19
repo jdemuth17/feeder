@@ -21,6 +21,7 @@ builder.Services.AddHttpClient(); // Keep for registration API if needed elsewhe
 builder.Services.AddSingleton<IFeederClient, MqttFeederClient>();
 builder.Services.AddScoped<IFeedTypeService, FeedTypeService>();
 builder.Services.AddScoped<IScheduleService, ScheduleService>();
+builder.Services.AddScoped<ISettingsService, SettingsService>();
 
 // Quartz.NET
 builder.Services.AddQuartz(q =>
