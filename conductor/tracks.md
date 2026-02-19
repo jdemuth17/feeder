@@ -29,5 +29,5 @@ This file tracks all major tracks for the project. Each track has its own detail
 
 ---
 
-- [ ] **Track: System Configuration: Implement a settings interface to manage HiveMQ MQTT credentials and other global variables via the dashboard.**
+- [~] **Track: System Configuration: Implement a settings interface to manage HiveMQ MQTT credentials and other global variables via the dashboard.**
   *Link: [./tracks/system_configuration_20260219/](./tracks/system_configuration_20260219/)*
