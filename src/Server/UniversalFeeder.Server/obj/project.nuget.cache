@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "TYHhMQKu2cY=",
+  "dgSpecHash": "g5ilfobATFg=",
   "success": true,
   "projectFilePath": "C:\\Users\\Demuth_jm\\DOTNET Projects\\feeder\\src\\Server\\UniversalFeeder.Server\\UniversalFeeder.Server.csproj",
   "expectedPackageFiles": [
@@ -24,6 +24,7 @@
     "C:\\Users\\Demuth_jm\\.nuget\\packages\\microsoft.extensions.dependencymodel\\10.0.3\\microsoft.extensions.dependencymodel.10.0.3.nupkg.sha512",
     "C:\\Users\\Demuth_jm\\.nuget\\packages\\microsoft.visualstudio.solutionpersistence\\1.0.52\\microsoft.visualstudio.solutionpersistence.1.0.52.nupkg.sha512",
     "C:\\Users\\Demuth_jm\\.nuget\\packages\\mono.texttemplating\\3.0.0\\mono.texttemplating.3.0.0.nupkg.sha512",
+    "C:\\Users\\Demuth_jm\\.nuget\\packages\\mqttnet\\5.1.0.1559\\mqttnet.5.1.0.1559.nupkg.sha512",
     "C:\\Users\\Demuth_jm\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512",
     "C:\\Users\\Demuth_jm\\.nuget\\packages\\quartz\\3.15.1\\quartz.3.15.1.nupkg.sha512",
     "C:\\Users\\Demuth_jm\\.nuget\\packages\\quartz.extensions.dependencyinjection\\3.15.1\\quartz.extensions.dependencyinjection.3.15.1.nupkg.sha512",
