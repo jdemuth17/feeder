@@ -7,7 +7,7 @@ namespace UniversalFeeder.Server.Services
     public interface IFeedTypeService
     {
         Task<List<FeedType>> GetFeedTypesAsync();
-        Task<FeedType> GetFeedTypeByIdAsync(int id);
+        Task<FeedType?> GetFeedTypeByIdAsync(int id);
         Task<FeedType> SaveFeedTypeAsync(FeedType feedType);
         Task DeleteFeedTypeAsync(int id);
     }
@@ -15,47 +15,81 @@ namespace UniversalFeeder.Server.Services
     public class FeedTypeService : IFeedTypeService
     {
         private readonly IDbContextFactory<FeederContext> _dbFactory;
+        private readonly ILogger<FeedTypeService> _logger;
 
-        public FeedTypeService(IDbContextFactory<FeederContext> dbFactory)
+        public FeedTypeService(IDbContextFactory<FeederContext> dbFactory, ILogger<FeedTypeService> logger)
         {
             _dbFactory = dbFactory;
+            _logger = logger;
         }
 
         public async Task<List<FeedType>> GetFeedTypesAsync()
         {
-            using var context = _dbFactory.CreateDbContext();
-            return await context.FeedTypes.ToListAsync();
+            try
+            {
+                using var context = _dbFactory.CreateDbContext();
+                return await context.FeedTypes.ToListAsync();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error retrieving feed types");
+                return new List<FeedType>();
+            }
         }
 
-        public async Task<FeedType> GetFeedTypeByIdAsync(int id)
+        public async Task<FeedType?> GetFeedTypeByIdAsync(int id)
         {
-            using var context = _dbFactory.CreateDbContext();
-            return await context.FeedTypes.FindAsync(id);
+            try
+            {
+                using var context = _dbFactory.CreateDbContext();
+                return await context.FeedTypes.FindAsync(id);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error retrieving feed type with ID {Id}", id);
+                return null;
+            }
         }
 
         public async Task<FeedType> SaveFeedTypeAsync(FeedType feedType)
         {
-            using var context = _dbFactory.CreateDbContext();
-            if (feedType.Id == 0)
+            try
             {
-                context.FeedTypes.Add(feedType);
+                using var context = _dbFactory.CreateDbContext();
+                if (feedType.Id == 0)
+                {
+                    context.FeedTypes.Add(feedType);
+                }
+                else
+                {
+                    context.FeedTypes.Update(feedType);
+                }
+                await context.SaveChangesAsync();
+                return feedType;
             }
-            else
+            catch (Exception ex)
             {
-                context.FeedTypes.Update(feedType);
+                _logger.LogError(ex, "Error saving feed type {Name}", feedType.Name);
+                throw;
             }
-            await context.SaveChangesAsync();
-            return feedType;
         }
 
         public async Task DeleteFeedTypeAsync(int id)
         {
-            using var context = _dbFactory.CreateDbContext();
-            var feedType = await context.FeedTypes.FindAsync(id);
-            if (feedType != null)
+            try
             {
-                context.FeedTypes.Remove(feedType);
-                await context.SaveChangesAsync();
+                using var context = _dbFactory.CreateDbContext();
+                var feedType = await context.FeedTypes.FindAsync(id);
+                if (feedType != null)
+                {
+                    context.FeedTypes.Remove(feedType);
+                    await context.SaveChangesAsync();
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error deleting feed type with ID {Id}", id);
+                throw;
             }
         }
     }

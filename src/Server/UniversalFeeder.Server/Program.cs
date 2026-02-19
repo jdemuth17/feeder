@@ -62,24 +62,10 @@ app.UseAntiforgery();
 app.MapStaticAssets();
 
 // Registration API
-app.MapPost("/api/feeders/register", async (Feeder feeder, IDbContextFactory<FeederContext> dbFactory) =>
+app.MapPost("/api/feeders/register", async (Feeder feeder, IFeederService feederService) =>
 {
-    using var context = dbFactory.CreateDbContext();
-    var existing = await context.Feeders.FirstOrDefaultAsync(f => f.UniqueId == feeder.UniqueId);
-    
-    if (existing != null)
-    {
-        existing.Nickname = feeder.Nickname;
-        existing.IpAddress = feeder.IpAddress; // Keep IP for debug/reference
-        context.Feeders.Update(existing);
-    }
-    else
-    {
-        context.Feeders.Add(feeder);
-    }
-
-    await context.SaveChangesAsync();
-    return Results.Ok(feeder);
+    var savedFeeder = await feederService.SaveFeederAsync(feeder);
+    return Results.Ok(savedFeeder);
 });
 
 app.MapRazorComponents<App>()
