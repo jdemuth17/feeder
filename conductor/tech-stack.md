@@ -5,17 +5,15 @@
 - **Language:** C#
 - **Hardware Platform:** ESP32 (WROOM/WROVER)
 - **Key Libraries:**
-  - `nanoFramework.Networking.Sntp` (Time sync)
-  - `nanoFramework.Device.Bluetooth` (BLE provisioning)
+  - `nanoFramework.M2Mqtt` (MQTT Client)
+  - `nanoFramework.System.Net.Security` (TLS for HiveMQ Cloud)
   - `nanoFramework.Hardware.Esp32` (PWM for Buzzer, GPIO for A4988)
-  - `nanoFramework.WebServer` (HTTP Endpoints)
 
 ## 2. Server Layer (Backend & Dashboard)
 - **Framework:** Blazor Server (.NET 8/9)
 - **Database:** SQLite
 - **Automation:** Quartz.NET (Background scheduling)
-- **ORM:** Entity Framework Core (EF Core)
-- **Communication:** `HttpClient` (for triggering ESP32 actions)
+- **Communication:** [MQTTnet](https://github.com/dotnet/MQTTnet) (for publishing commands to HiveMQ)
 
 ## 3. Mobile Application (Setup)
 - **Framework:** .NET MAUI
@@ -25,9 +23,10 @@
   - REST client for device registration with the Blazor Server.
 
 ## 4. Communication Protocols
+- **Broker:** HiveMQ Cloud (MQTT)
 - **Provisioning:** BLE (Mobile -> ESP32)
-- **Command & Control:** HTTP/REST (Server -> ESP32)
-- **Telemetry:** MQTT (ESP32 -> Server/Broker for status/logs)
+- **Command & Control:** MQTT Pub/Sub (Server -> Broker -> ESP32)
+- **Telemetry:** MQTT (ESP32 -> Broker -> Server)
 
 ## 5. Development & Infrastructure
 - **IDE:** Visual Studio 2022
