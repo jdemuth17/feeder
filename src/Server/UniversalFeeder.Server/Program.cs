@@ -1,7 +1,9 @@
 using UniversalFeeder.Server.Components;
 using UniversalFeeder.Server.Data;
 using UniversalFeeder.Server.Services;
+using UniversalFeeder.Server.Jobs;
 using Microsoft.EntityFrameworkCore;
+using Quartz;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,10 +15,24 @@ builder.Services.AddRazorComponents()
 builder.Services.AddDbContextFactory<FeederContext>(options =>
     options.UseSqlite("Data Source=feeder.db"));
 
-// Feeder Client
+// Feeder Client & Services
 builder.Services.AddHttpClient<IFeederClient, FeederClient>();
 builder.Services.AddScoped<IFeedTypeService, FeedTypeService>();
 builder.Services.AddScoped<IScheduleService, ScheduleService>();
+
+// Quartz.NET
+builder.Services.AddQuartz(q =>
+{
+    var jobKey = new JobKey("FeedingJob");
+    q.AddJob<FeedingJob>(opts => opts.WithIdentity(jobKey));
+
+    q.AddTrigger(opts => opts
+        .ForJob(jobKey)
+        .WithIdentity("FeedingJob-trigger")
+        .WithCronSchedule("0 * * * * ?")); // Run every minute
+});
+
+builder.Services.AddQuartzHostedService(q => q.WaitForJobsToComplete = true);
 
 var app = builder.Build();
 
