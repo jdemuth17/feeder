@@ -13,6 +13,7 @@ namespace UniversalFeeder.Server.Models
     public class Feeder
     {
         public int Id { get; set; }
+        public string UniqueId { get; set; } = string.Empty;
         public string Nickname { get; set; } = string.Empty;
         public string IpAddress { get; set; } = string.Empty;
         

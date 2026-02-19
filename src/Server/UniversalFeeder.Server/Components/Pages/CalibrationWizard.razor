@@ -133,7 +133,7 @@ else
         statusMessage = "Sending command to feeder...";
         StateHasChanged();
 
-        bool success = await FeederClient.TriggerFeedAsync(feeder.IpAddress, 10000);
+        bool success = await FeederClient.TriggerFeedAsync(feeder.UniqueId, 10000);
         
         isDispensing = false;
         if (success)
