@@ -1,0 +1,8 @@
+{
+  "track_id": "mqtt_migration_20260219",
+  "type": "feature",
+  "status": "new",
+  "created_at": "2026-02-19T07:22:00Z",
+  "updated_at": "2026-02-19T07:22:00Z",
+  "description": "MQTT Migration: Transition communication from direct HTTP to HiveMQ Cloud MQTT for better reliability and remote access."
+}

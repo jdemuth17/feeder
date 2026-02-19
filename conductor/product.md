@@ -26,5 +26,7 @@ To provide a versatile, IoT-driven feeding solution that simplifies animal care 
 - **Manual Control:** On-demand manual feeding triggers via the web dashboard.
 
 ## System Reliability & Error Handling
-- **Robust Communication:** Failed HTTP calls to feeders will retry 3 times with logging and immediate user alerts.
-- **Local Fallback:** In the event of prolonged disconnection, feeders will utilize a local fallback schedule to ensure animals are not missed.
+- **Cloud-Based Command Relay:** By using HiveMQ Cloud (MQTT), the system eliminates the need for complex local network configurations or static IPs. Feeders automatically reconnect to the cloud broker after power outages.
+- **Global Reach:** Owners can trigger feedings or check status from anywhere with an internet connection, as commands are relayed through a central "Middleman" broker.
+- **Robust Communication:** Failed MQTT publications will retry with logging and immediate user alerts.
+- **Local Fallback:** In the event of prolonged cloud disconnection, feeders will utilize a local fallback schedule.
