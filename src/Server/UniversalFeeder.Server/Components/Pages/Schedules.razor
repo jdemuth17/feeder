@@ -1,0 +1,119 @@
+@page "/schedules/{FeederId:int}"
+@using UniversalFeeder.Server.Services
+@using UniversalFeeder.Server.Models
+@using UniversalFeeder.Server.Data
+@using Microsoft.EntityFrameworkCore
+@inject IScheduleService ScheduleService
+@inject IDbContextFactory<FeederContext> DbFactory
+@inject NavigationManager Navigation
+@rendermode InteractiveServer
+
+<PageTitle>Feeding Schedules</PageTitle>
+
+<h1>Feeding Schedules for @(feeder?.Nickname ?? "Feeder")</h1>
+
+<div class="card mb-4">
+    <div class="card-body">
+        <h5 class="card-title">Add New Schedule</h5>
+        <div class="row g-3 align-items-end">
+            <div class="col-auto">
+                <label class="form-label">Time</label>
+                <input type="time" class="form-control" @bind="newTime" />
+            </div>
+            <div class="col-auto">
+                <label class="form-label">Amount (Grams)</label>
+                <input type="number" class="form-control" @bind="newAmount" />
+            </div>
+            <div class="col-auto">
+                <button class="btn btn-primary" @onclick="AddSchedule">Add</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@if (schedules == null)
+{
+    <p>Loading schedules...</p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Time</th>
+                <th>Amount (Grams)</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var s in schedules)
+            {
+                <tr>
+                    <td>@s.TimeOfDay.ToString(@"hh\:mm")</td>
+                    <td>@s.AmountInGrams g</td>
+                    <td>
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" checked="@s.IsEnabled" @onchange="() => ToggleSchedule(s)" />
+                            <label class="form-check-label">@(s.IsEnabled ? "Enabled" : "Disabled")</label>
+                        </div>
+                    </td>
+                    <td>
+                        <button class="btn btn-danger btn-sm" @onclick="() => DeleteSchedule(s.Id)">Delete</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+<div class="mt-3">
+    <a class="btn btn-secondary" href="/manual-feed">Back to Feeders</a>
+</div>
+
+@code {
+    [Parameter] public int FeederId { get; set; }
+    private Feeder? feeder;
+    private List<FeedingSchedule>? schedules;
+    
+    private DateTime newTime = DateTime.Today.AddHours(8);
+    private double newAmount = 100;
+
+    protected override async Task OnInitializedAsync()
+    {
+        using var context = DbFactory.CreateDbContext();
+        feeder = await context.Feeders.FindAsync(FeederId);
+        await LoadSchedules();
+    }
+
+    private async Task LoadSchedules()
+    {
+        schedules = await ScheduleService.GetSchedulesByFeederIdAsync(FeederId);
+    }
+
+    private async Task AddSchedule()
+    {
+        var schedule = new FeedingSchedule
+        {
+            FeederId = FeederId,
+            TimeOfDay = newTime.TimeOfDay,
+            AmountInGrams = newAmount,
+            IsEnabled = true
+        };
+
+        await ScheduleService.SaveScheduleAsync(schedule);
+        await LoadSchedules();
+    }
+
+    private async Task ToggleSchedule(FeedingSchedule schedule)
+    {
+        schedule.IsEnabled = !schedule.IsEnabled;
+        await ScheduleService.SaveScheduleAsync(schedule);
+    }
+
+    private async Task DeleteSchedule(int id)
+    {
+        await ScheduleService.DeleteScheduleAsync(id);
+        await LoadSchedules();
+    }
+}
