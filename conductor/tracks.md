@@ -26,3 +26,8 @@ This file tracks all major tracks for the project. Each track has its own detail
 
 - [x] **Track: MQTT Migration: Transition communication from direct HTTP to HiveMQ Cloud MQTT for better reliability and remote access.**
   *Link: [./tracks/mqtt_migration_20260219/](./tracks/mqtt_migration_20260219/)*
+
+---
+
+- [ ] **Track: System Configuration: Implement a settings interface to manage HiveMQ MQTT credentials and other global variables via the dashboard.**
+  *Link: [./tracks/system_configuration_20260219/](./tracks/system_configuration_20260219/)*
