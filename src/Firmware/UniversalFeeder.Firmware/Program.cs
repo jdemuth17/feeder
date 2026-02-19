@@ -1,7 +1,6 @@
 using System;
 using System.Threading;
 #if NANOFRAMEWORK
-using System.Device.Gpio;
 using System.Net.NetworkInformation;
 using nanoFramework.Networking;
 #endif

@@ -27,7 +27,6 @@
     <Compile Include="IFeedingSequenceService.cs" />
     <Compile Include="FeedingSequenceService.cs" />
     <Compile Include="RequestProcessor.cs" />
-    <Compile Include="WebServerService.cs" />
     <Compile Include="BleProvisioningService.cs" />
     <Compile Include="MqttService.cs" />
     <Compile Include="WifiConfigurationService.cs" />
