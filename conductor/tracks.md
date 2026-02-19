@@ -24,5 +24,5 @@ This file tracks all major tracks for the project. Each track has its own detail
 
 ---
 
-- [ ] **Track: MQTT Migration: Transition communication from direct HTTP to HiveMQ Cloud MQTT for better reliability and remote access.**
+- [~] **Track: MQTT Migration: Transition communication from direct HTTP to HiveMQ Cloud MQTT for better reliability and remote access.**
   *Link: [./tracks/mqtt_migration_20260219/](./tracks/mqtt_migration_20260219/)*

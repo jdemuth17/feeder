@@ -17,10 +17,10 @@
     - [ ] Configure Quartz in `Program.cs` to run the check every minute.
 - [x] Task: Conductor - User Manual Verification 'Phase 2: Quartz.NET Integration' (Protocol in workflow.md) 74a2572
 
-## Phase 3: Feeder Registration API
+## Phase 3: Feeder Registration API [checkpoint: 4d8eb18]
 - [x] Task: Create Registration Endpoint 72384d9
     - [ ] Implement Minimal API endpoint in `Program.cs` to POST new feeders.
 - [x] Task: Update Mobile App Registration 55a7077
     - [ ] Update `ProvisioningViewModel` to call the Server API after successful BLE provisioning.
-- [ ] Task: Conductor - User Manual Verification 'Phase 3: Feeder Registration API' (Protocol in workflow.md)
+- [x] Task: Conductor - User Manual Verification 'Phase 3: Feeder Registration API' (Protocol in workflow.md) 4d8eb18
 
