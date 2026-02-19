@@ -1,0 +1,58 @@
+@page "/settings"
+@using UniversalFeeder.Server.Services
+@inject ISettingsService SettingsService
+@rendermode InteractiveServer
+
+<PageTitle>System Settings</PageTitle>
+
+<h1>System Settings</h1>
+
+<div class="card">
+    <div class="card-header">
+        MQTT Configuration (HiveMQ Cloud)
+    </div>
+    <div class="card-body">
+        <div class="mb-3">
+            <label class="form-label">Broker Host</label>
+            <input type="text" class="form-control" @bind="mqttHost" placeholder="e.g. xxxxx.hivemq.cloud" />
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Username</label>
+            <input type="text" class="form-control" @bind="mqttUser" />
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Password</label>
+            <input type="password" class="form-control" @bind="mqttPass" />
+        </div>
+
+        <button class="btn btn-primary" @onclick="SaveSettings">Save Configuration</button>
+
+        @if (!string.IsNullOrEmpty(statusMessage))
+        {
+            <div class="alert alert-success mt-3">@statusMessage</div>
+        }
+    </div>
+</div>
+
+@code {
+    private string? mqttHost;
+    private string? mqttUser;
+    private string? mqttPass;
+    private string? statusMessage;
+
+    protected override async Task OnInitializedAsync()
+    {
+        mqttHost = await SettingsService.GetSettingAsync("MqttHost");
+        mqttUser = await SettingsService.GetSettingAsync("MqttUsername");
+        mqttPass = await SettingsService.GetSettingAsync("MqttPassword");
+    }
+
+    private async Task SaveSettings()
+    {
+        await SettingsService.SaveSettingAsync("MqttHost", mqttHost ?? "");
+        await SettingsService.SaveSettingAsync("MqttUsername", mqttUser ?? "");
+        await SettingsService.SaveSettingAsync("MqttPassword", mqttPass ?? "");
+
+        statusMessage = "Settings saved successfully! You may need to restart the application for some changes to take effect.";
+    }
+}
