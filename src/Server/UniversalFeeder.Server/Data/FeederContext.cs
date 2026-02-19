@@ -11,5 +11,11 @@ namespace UniversalFeeder.Server.Data
         public DbSet<FeedType> FeedTypes { get; set; }
         public DbSet<FeedingSchedule> Schedules { get; set; }
         public DbSet<FeedingLog> Logs { get; set; }
+        public DbSet<SystemSetting> Settings { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<SystemSetting>().HasKey(s => s.Key);
+        }
     }
 }
