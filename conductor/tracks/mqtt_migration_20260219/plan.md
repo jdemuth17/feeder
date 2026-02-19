@@ -1,12 +1,12 @@
 # Implementation Plan: MQTT Migration
 
-## Phase 1: Server-Side MQTT Integration
+## Phase 1: Server-Side MQTT Integration [checkpoint: baa8ccd]
 - [x] Task: Project Dependency Updates ff6bd96
     - [ ] Add `MQTTnet` NuGet package to `UniversalFeeder.Server`.
 - [x] Task: Implement MqttFeederClient 6614eed
     - [ ] Create `MqttFeederClient` implementing `IFeederClient`.
     - [ ] Configure connection to HiveMQ Cloud.
-- [~] Task: Conductor - User Manual Verification 'Phase 1: Server-Side MQTT Integration' (Protocol in workflow.md)
+- [x] Task: Conductor - User Manual Verification 'Phase 1: Server-Side MQTT Integration' (Protocol in workflow.md) baa8ccd
 
 ## Phase 2: Firmware MQTT Integration
 - [ ] Task: Firmware Dependency Updates
