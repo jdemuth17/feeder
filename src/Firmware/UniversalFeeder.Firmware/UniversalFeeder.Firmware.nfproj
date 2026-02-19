@@ -30,6 +30,7 @@
     <Compile Include="BleProvisioningService.cs" />
     <Compile Include="MqttService.cs" />
     <Compile Include="WifiConfigurationService.cs" />
+    <Compile Include="..\..\Shared\MqttCommands.cs" Link="MqttCommands.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

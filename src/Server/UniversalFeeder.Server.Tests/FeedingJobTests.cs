@@ -17,7 +17,7 @@ namespace UniversalFeeder.Server.Tests
         {
             // Arrange
             var options = new DbContextOptionsBuilder<FeederContext>()
-                .UseInMemoryDatabase(databaseName: "FeedingJobTest")
+                .UseInMemoryDatabase(databaseName: Guid.NewGuid().ToString())
                 .Options;
 
             var mockDbFactory = new Mock<IDbContextFactory<FeederContext>>();
@@ -30,7 +30,7 @@ namespace UniversalFeeder.Server.Tests
             using (var context = new FeederContext(options))
             {
                 var feedType = new FeedType { Id = 1, Name = "Test", GramsPerSecond = 10 };
-                var feeder = new Feeder { Id = 1, Nickname = "Feeder1", IpAddress = "1.1.1.1", FeedTypeId = 1 };
+                var feeder = new Feeder { Id = 1, UniqueId = "Feeder01", Nickname = "Feeder1", IpAddress = "1.1.1.1", FeedTypeId = 1 };
                 var now = DateTime.Now.TimeOfDay;
                 var schedule = new FeedingSchedule 
                 { 
@@ -54,7 +54,7 @@ namespace UniversalFeeder.Server.Tests
 
             // Assert
             // 100g / 10g/s = 10s = 10000ms
-            mockFeederClient.Verify(c => c.TriggerFeedAsync("1.1.1.1", 10000), Times.Once);
+            mockFeederClient.Verify(c => c.TriggerFeedAsync("Feeder01", 10000), Times.Once);
             
             using (var context = new FeederContext(options))
             {

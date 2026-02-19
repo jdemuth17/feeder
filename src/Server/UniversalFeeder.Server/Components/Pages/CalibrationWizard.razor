@@ -5,7 +5,7 @@
 @using Microsoft.EntityFrameworkCore
 @inject IFeederClient FeederClient
 @inject IFeedTypeService FeedTypeService
-@inject IDbContextFactory<FeederContext> DbFactory
+@inject IFeederService FeederService
 @inject NavigationManager Navigation
 @rendermode InteractiveServer
 
@@ -117,8 +117,7 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        using var context = DbFactory.CreateDbContext();
-        feeder = await context.Feeders.FindAsync(FeederId);
+        feeder = await FeederService.GetFeederByIdAsync(FeederId);
         availableTypes = await FeedTypeService.GetFeedTypesAsync();
     }
 
@@ -164,13 +163,8 @@ else
         type.GramsPerSecond = measuredWeight / 10.0;
         var savedType = await FeedTypeService.SaveFeedTypeAsync(type);
 
-        using var context = DbFactory.CreateDbContext();
-        var f = await context.Feeders.FindAsync(FeederId);
-        if (f != null)
-        {
-            f.FeedTypeId = savedType.Id;
-            await context.SaveChangesAsync();
-        }
+        feeder.FeedTypeId = savedType.Id;
+        await FeederService.SaveFeederAsync(feeder);
 
         Navigation.NavigateTo("/manual-feed");
     }

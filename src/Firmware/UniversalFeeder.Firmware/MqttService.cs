@@ -1,5 +1,6 @@
 using System;
 using System.Text;
+using UniversalFeeder.Shared;
 #if NANOFRAMEWORK
 using uPLibrary.Networking.M2Mqtt;
 using uPLibrary.Networking.M2Mqtt.Messages;
@@ -36,7 +37,7 @@ namespace UniversalFeeder.Firmware
 
             if (_client.IsConnected)
             {
-                string topic = $"feeders/{_clientId}/commands";
+                string topic = MqttCommands.GetCommandTopic(_clientId);
                 _client.Subscribe(new string[] { topic }, new byte[] { MqttMsgBase.QOS_LEVEL_AT_LEAST_ONCE });
                 Console.WriteLine($"Connected to MQTT! Subscribed to {topic}");
             }
@@ -49,15 +50,15 @@ namespace UniversalFeeder.Firmware
             string message = Encoding.UTF8.GetString(e.Message, 0, e.Message.Length);
             Console.WriteLine($"MQTT Command Received: {message}");
 
-            // Basic parsing (Real app would use a JSON parser)
-            if (message.Contains(""action":"feed""))
+            // Using shared contract constants for parsing
+            if (message.Contains($"\"{MqttCommands.KeyAction}\":\"{MqttCommands.ActionFeed}\""))
             {
-                int ms = ExtractInt(message, ""ms":");
+                int ms = ExtractInt(message, $"\"{MqttCommands.KeyDurationMs}\":");
                 _feedingSequence.Execute(ms > 0 ? ms : 5000);
             }
-            else if (message.Contains(""action":"chime""))
+            else if (message.Contains($"\"{MqttCommands.KeyAction}\":\"{MqttCommands.ActionChime}\""))
             {
-                float vol = ExtractFloat(message, ""vol":");
+                float vol = ExtractFloat(message, $"\"{MqttCommands.KeyVolume}\":");
                 _buzzerService.Play(vol > 0 ? vol : 1.0f, 1000);
             }
         }
@@ -68,7 +69,7 @@ namespace UniversalFeeder.Firmware
                 int start = json.IndexOf(key) + key.Length;
                 int end = json.IndexOf(",", start);
                 if (end == -1) end = json.IndexOf("}", start);
-                string val = json.Substring(start, end - start).Trim();
+                string val = json.Substring(start, end - start).Trim().Trim('"');
                 return int.Parse(val);
             } catch { return 0; }
         }
@@ -79,7 +80,7 @@ namespace UniversalFeeder.Firmware
                 int start = json.IndexOf(key) + key.Length;
                 int end = json.IndexOf(",", start);
                 if (end == -1) end = json.IndexOf("}", start);
-                string val = json.Substring(start, end - start).Trim();
+                string val = json.Substring(start, end - start).Trim().Trim('"');
                 return float.Parse(val);
             } catch { return 0; }
         }

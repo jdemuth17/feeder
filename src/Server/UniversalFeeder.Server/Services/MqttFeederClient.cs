@@ -1,6 +1,9 @@
 using MQTTnet;
+using Polly;
+using Polly.Retry;
 using System.Text;
 using System.Text.Json;
+using UniversalFeeder.Shared;
 
 namespace UniversalFeeder.Server.Services
 {
@@ -9,6 +12,7 @@ namespace UniversalFeeder.Server.Services
         private readonly IMqttClient _mqttClient;
         private readonly IServiceProvider _serviceProvider;
         private readonly ILogger<MqttFeederClient> _logger;
+        private readonly AsyncRetryPolicy<bool> _retryPolicy;
 
         public MqttFeederClient(IServiceProvider serviceProvider, ILogger<MqttFeederClient> logger)
         {
@@ -16,6 +20,16 @@ namespace UniversalFeeder.Server.Services
             _logger = logger;
             var factory = new MqttClientFactory();
             _mqttClient = factory.CreateMqttClient();
+
+            _retryPolicy = Policy<bool>
+                .Handle<Exception>()
+                .OrResult(success => !success)
+                .WaitAndRetryAsync(3, retryAttempt => TimeSpan.FromSeconds(Math.Pow(2, retryAttempt)),
+                    (result, timeSpan, retryCount, context) =>
+                    {
+                        _logger.LogWarning("MQTT publication failed. Retry {Count} after {Time}s. Error: {Error}", 
+                            retryCount, timeSpan.TotalSeconds, result.Exception?.Message ?? "Action returned false");
+                    });
         }
 
         private async Task<MqttClientOptions> GetMqttOptionsAsync()
@@ -37,41 +51,52 @@ namespace UniversalFeeder.Server.Services
 
         private async Task<bool> PublishCommandAsync(string topic, object command)
         {
-            try
+            return await _retryPolicy.ExecuteAsync(async () =>
             {
-                if (!_mqttClient.IsConnected)
+                try
                 {
-                    var options = await GetMqttOptionsAsync();
-                    await _mqttClient.ConnectAsync(options);
+                    if (!_mqttClient.IsConnected)
+                    {
+                        var options = await GetMqttOptionsAsync();
+                        await _mqttClient.ConnectAsync(options);
+                    }
+
+                    var payload = JsonSerializer.Serialize(command);
+                    var message = new MqttApplicationMessageBuilder()
+                        .WithTopic(topic)
+                        .WithPayload(payload)
+                        .WithQualityOfServiceLevel(MQTTnet.Protocol.MqttQualityOfServiceLevel.AtLeastOnce)
+                        .Build();
+
+                    await _mqttClient.PublishAsync(message);
+                    return true;
                 }
-
-                var payload = JsonSerializer.Serialize(command);
-                var message = new MqttApplicationMessageBuilder()
-                    .WithTopic(topic)
-                    .WithPayload(payload)
-                    .WithQualityOfServiceLevel(MQTTnet.Protocol.MqttQualityOfServiceLevel.AtLeastOnce)
-                    .Build();
-
-                await _mqttClient.PublishAsync(message);
-                return true;
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "Failed to publish MQTT command to {Topic}", topic);
-                return false;
-            }
+                catch (Exception ex)
+                {
+                    _logger.LogError(ex, "Transient error publishing MQTT command to {Topic}", topic);
+                    throw; // Let Polly handle it
+                }
+            });
         }
 
         public async Task<bool> TriggerFeedAsync(string identifier, int durationMs)
         {
-            string topic = $"feeders/{identifier}/commands";
-            return await PublishCommandAsync(topic, new { action = "feed", ms = durationMs });
+            string topic = MqttCommands.GetCommandTopic(identifier);
+            return await PublishCommandAsync(topic, new Dictionary<string, object>
+            {
+                [MqttCommands.KeyAction] = MqttCommands.ActionFeed,
+                [MqttCommands.KeyDurationMs] = durationMs
+            });
         }
 
         public async Task<bool> TriggerChimeAsync(string identifier, float volume)
         {
-            string topic = $"feeders/{identifier}/commands";
-            return await PublishCommandAsync(topic, new { action = "chime", vol = volume });
+            string topic = MqttCommands.GetCommandTopic(identifier);
+            return await PublishCommandAsync(topic, new Dictionary<string, object>
+            {
+                [MqttCommands.KeyAction] = MqttCommands.ActionChime,
+                [MqttCommands.KeyVolume] = volume
+            });
         }
     }
 }
