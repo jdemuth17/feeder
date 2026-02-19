@@ -7,21 +7,28 @@ namespace UniversalFeeder.Server.Services
     public class MqttFeederClient : IFeederClient
     {
         private readonly IMqttClient _mqttClient;
-        private readonly MqttClientOptions _mqttOptions;
+        private readonly IServiceProvider _serviceProvider;
         private readonly ILogger<MqttFeederClient> _logger;
 
-        public MqttFeederClient(IConfiguration config, ILogger<MqttFeederClient> logger)
+        public MqttFeederClient(IServiceProvider serviceProvider, ILogger<MqttFeederClient> logger)
         {
+            _serviceProvider = serviceProvider;
             _logger = logger;
             var factory = new MqttClientFactory();
             _mqttClient = factory.CreateMqttClient();
+        }
 
-            // These would normally come from appsettings.json or User Secrets
-            string host = config["Mqtt:Host"] ?? "localhost";
-            string user = config["Mqtt:Username"] ?? "";
-            string pass = config["Mqtt:Password"] ?? "";
+        private async Task<MqttClientOptions> GetMqttOptionsAsync()
+        {
+            using var scope = _serviceProvider.CreateScope();
+            var settings = scope.ServiceProvider.GetRequiredService<ISettingsService>();
+            var config = scope.ServiceProvider.GetRequiredService<IConfiguration>();
 
-            _mqttOptions = new MqttClientOptionsBuilder()
+            string host = await settings.GetSettingAsync("MqttHost", config["Mqtt:Host"] ?? "localhost");
+            string user = await settings.GetSettingAsync("MqttUsername", config["Mqtt:Username"] ?? "");
+            string pass = await settings.GetSettingAsync("MqttPassword", config["Mqtt:Password"] ?? "");
+
+            return new MqttClientOptionsBuilder()
                 .WithTcpServer(host)
                 .WithCredentials(user, pass)
                 .WithTlsOptions(o => o.WithTargetHost(host))
@@ -34,7 +41,8 @@ namespace UniversalFeeder.Server.Services
             {
                 if (!_mqttClient.IsConnected)
                 {
-                    await _mqttClient.ConnectAsync(_mqttOptions);
+                    var options = await GetMqttOptionsAsync();
+                    await _mqttClient.ConnectAsync(options);
                 }
 
                 var payload = JsonSerializer.Serialize(command);
@@ -56,7 +64,6 @@ namespace UniversalFeeder.Server.Services
 
         public async Task<bool> TriggerFeedAsync(string identifier, int durationMs)
         {
-            // For MQTT, 'identifier' is the FeederId/Topic suffix
             string topic = $"feeders/{identifier}/commands";
             return await PublishCommandAsync(topic, new { action = "feed", ms = durationMs });
         }
