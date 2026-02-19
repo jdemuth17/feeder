@@ -4,7 +4,7 @@
 - [x] Task: Create Schedule Model 2c860c9
     - [ ] Add `FeedingSchedule` model (Id, FeederId, TimeOfDay, AmountInGrams, IsEnabled).
     - [ ] Update `FeederContext`.
-- [ ] Task: Migration & UI
+- [x] Task: Migration & UI d16942a
     - [ ] Create and apply EF Core migration.
     - [ ] Create `Schedules.razor` page for CRUD operations on schedules.
 - [ ] Task: Conductor - User Manual Verification 'Phase 1: Data Model & UI' (Protocol in workflow.md)
