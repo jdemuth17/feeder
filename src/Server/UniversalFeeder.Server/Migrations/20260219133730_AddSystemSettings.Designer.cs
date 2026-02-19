@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using UniversalFeeder.Server.Data;
 
@@ -10,9 +11,11 @@ using UniversalFeeder.Server.Data;
 namespace UniversalFeeder.Server.Migrations
 {
     [DbContext(typeof(FeederContext))]
-    partial class FeederContextModelSnapshot : ModelSnapshot
+    [Migration("20260219133730_AddSystemSettings")]
+    partial class AddSystemSettings
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "10.0.3");
