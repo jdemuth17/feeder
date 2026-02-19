@@ -11,3 +11,4 @@
 .vscode/
 .DS_Store
 *.nfproj.user
+.worktrees/
