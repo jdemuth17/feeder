@@ -16,3 +16,8 @@ This file tracks all major tracks for the project. Each track has its own detail
 
 - [x] **Track: Calibration Wizard: Implement a step-by-step wizard to calculate 'Grams Per Second' for different feed types and store them in the database.**
   *Link: [./tracks/calibration_wizard_20260218/](./tracks/calibration_wizard_20260218/)*
+
+---
+
+- [ ] **Track: Automated Scheduling: Implement recurring feeding schedules using Quartz.NET and link them to feeder calibration values.**
+  *Link: [./tracks/automated_scheduling_20260218/](./tracks/automated_scheduling_20260218/)*
