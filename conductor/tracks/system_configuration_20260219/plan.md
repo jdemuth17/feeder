@@ -1,13 +1,13 @@
 # Implementation Plan: System Configuration
 
 ## Phase 1: Settings Data Model
-- [ ] Task: Create SystemSetting Model
+- [x] Task: Create SystemSetting Model a66e668
     - [ ] Add `SystemSetting` model (Key, Value).
     - [ ] Update `FeederContext`.
-- [ ] Task: Migration & Repository
+- [x] Task: Migration & Repository f43bc66
     - [ ] Create and apply EF Core migration.
     - [ ] Create `SettingsService` for centralized access to global config.
-- [ ] Task: Conductor - User Manual Verification 'Phase 1: Settings Data Model' (Protocol in workflow.md)
+- [~] Task: Conductor - User Manual Verification 'Phase 1: Settings Data Model' (Protocol in workflow.md)
 
 ## Phase 2: Settings UI
 - [ ] Task: Create Settings Page
