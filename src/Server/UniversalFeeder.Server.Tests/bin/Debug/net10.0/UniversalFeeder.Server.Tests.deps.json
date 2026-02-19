@@ -8,9 +8,11 @@
     ".NETCoreApp,Version=v10.0": {
       "UniversalFeeder.Server.Tests/1.0.0": {
         "dependencies": {
+          "Microsoft.EntityFrameworkCore.InMemory": "10.0.3",
           "Microsoft.Extensions.Http": "10.0.3",
           "Microsoft.NET.Test.Sdk": "17.14.1",
           "Moq": "4.20.72",
+          "Quartz": "3.15.1",
           "UniversalFeeder.Server": "1.0.0",
           "xunit": "2.9.3"
         },
@@ -61,6 +63,19 @@
       "Microsoft.EntityFrameworkCore.Abstractions/10.0.3": {
         "runtime": {
           "lib/net10.0/Microsoft.EntityFrameworkCore.Abstractions.dll": {
+            "assemblyVersion": "10.0.3.0",
+            "fileVersion": "10.0.326.7603"
+          }
+        }
+      },
+      "Microsoft.EntityFrameworkCore.InMemory/10.0.3": {
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore": "10.0.3",
+          "Microsoft.Extensions.Caching.Memory": "10.0.3",
+          "Microsoft.Extensions.Logging": "10.0.3"
+        },
+        "runtime": {
+          "lib/net10.0/Microsoft.EntityFrameworkCore.InMemory.dll": {
             "assemblyVersion": "10.0.3.0",
             "fileVersion": "10.0.326.7603"
           }
@@ -853,6 +868,13 @@
       "sha512": "sha512-c7Uoz381xnMHNBRB8eHRhGgzUtXbgddlbODhwZRrTSzZWDharp3RkJsFwhxyESbeXhCqmML7VdvjMQ7uu+HreA==",
       "path": "microsoft.entityframeworkcore.abstractions/10.0.3",
       "hashPath": "microsoft.entityframeworkcore.abstractions.10.0.3.nupkg.sha512"
+    },
+    "Microsoft.EntityFrameworkCore.InMemory/10.0.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Gw8wef/BAHx59FiFJzgVHpccq/Qwtrghb3NzofgHZwhKxkmc9ePB7bqVhMZzrceQ4wTEwfPwD8y61FaOFPIf7Q==",
+      "path": "microsoft.entityframeworkcore.inmemory/10.0.3",
+      "hashPath": "microsoft.entityframeworkcore.inmemory.10.0.3.nupkg.sha512"
     },
     "Microsoft.EntityFrameworkCore.Relational/10.0.3": {
       "type": "package",

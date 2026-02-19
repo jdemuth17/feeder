@@ -157,3 +157,4 @@ C:\Users\Demuth_jm\DOTNET Projects\feeder\src\Server\UniversalFeeder.Server.Test
 C:\Users\Demuth_jm\DOTNET Projects\feeder\src\Server\UniversalFeeder.Server.Tests\obj\Debug\net10.0\UniversalFeeder.Server.Tests.pdb
 C:\Users\Demuth_jm\DOTNET Projects\feeder\src\Server\UniversalFeeder.Server.Tests\obj\Debug\net10.0\UniversalFeeder.Server.Tests.genruntimeconfig.cache
 C:\Users\Demuth_jm\DOTNET Projects\feeder\src\Server\UniversalFeeder.Server.Tests\obj\Debug\net10.0\ref\UniversalFeeder.Server.Tests.dll
+C:\Users\Demuth_jm\DOTNET Projects\feeder\src\Server\UniversalFeeder.Server.Tests\bin\Debug\net10.0\Microsoft.EntityFrameworkCore.InMemory.dll

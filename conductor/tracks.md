@@ -19,5 +19,5 @@ This file tracks all major tracks for the project. Each track has its own detail
 
 ---
 
-- [ ] **Track: Automated Scheduling: Implement recurring feeding schedules using Quartz.NET and link them to feeder calibration values.**
+- [~] **Track: Automated Scheduling: Implement recurring feeding schedules using Quartz.NET and link them to feeder calibration values.**
   *Link: [./tracks/automated_scheduling_20260218/](./tracks/automated_scheduling_20260218/)*

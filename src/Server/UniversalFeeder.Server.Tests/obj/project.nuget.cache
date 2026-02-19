@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "bSDF6sMKtVo=",
+  "dgSpecHash": "2vLNgd4DKUw=",
   "success": true,
   "projectFilePath": "C:\\Users\\Demuth_jm\\DOTNET Projects\\feeder\\src\\Server\\UniversalFeeder.Server.Tests\\UniversalFeeder.Server.Tests.csproj",
   "expectedPackageFiles": [
@@ -11,6 +11,7 @@
     "C:\\Users\\Demuth_jm\\.nuget\\packages\\microsoft.entityframeworkcore\\10.0.3\\microsoft.entityframeworkcore.10.0.3.nupkg.sha512",
     "C:\\Users\\Demuth_jm\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\10.0.3\\microsoft.entityframeworkcore.abstractions.10.0.3.nupkg.sha512",
     "C:\\Users\\Demuth_jm\\.nuget\\packages\\microsoft.entityframeworkcore.analyzers\\10.0.3\\microsoft.entityframeworkcore.analyzers.10.0.3.nupkg.sha512",
+    "C:\\Users\\Demuth_jm\\.nuget\\packages\\microsoft.entityframeworkcore.inmemory\\10.0.3\\microsoft.entityframeworkcore.inmemory.10.0.3.nupkg.sha512",
     "C:\\Users\\Demuth_jm\\.nuget\\packages\\microsoft.entityframeworkcore.relational\\10.0.3\\microsoft.entityframeworkcore.relational.10.0.3.nupkg.sha512",
     "C:\\Users\\Demuth_jm\\.nuget\\packages\\microsoft.entityframeworkcore.sqlite\\10.0.3\\microsoft.entityframeworkcore.sqlite.10.0.3.nupkg.sha512",
     "C:\\Users\\Demuth_jm\\.nuget\\packages\\microsoft.entityframeworkcore.sqlite.core\\10.0.3\\microsoft.entityframeworkcore.sqlite.core.10.0.3.nupkg.sha512",
