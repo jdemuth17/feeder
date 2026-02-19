@@ -20,6 +20,6 @@
 ## Phase 3: System Refactoring & Registration Update
 - [x] Task: Update Registration Logic 5de83e0
     - [ ] Change registration to focus on unique hardware IDs rather than IPs.
-- [~] Task: Final Cleanup
+- [x] Task: Final Cleanup 0a0bafa
     - [ ] Remove legacy HTTP code from firmware and server.
-- [ ] Task: Conductor - User Manual Verification 'Phase 3: System Refactoring & Registration Update' (Protocol in workflow.md)
+- [~] Task: Conductor - User Manual Verification 'Phase 3: System Refactoring & Registration Update' (Protocol in workflow.md)
