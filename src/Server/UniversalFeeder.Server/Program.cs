@@ -16,7 +16,8 @@ builder.Services.AddDbContextFactory<FeederContext>(options =>
     options.UseSqlite("Data Source=feeder.db"));
 
 // Feeder Client & Services
-builder.Services.AddHttpClient<IFeederClient, FeederClient>();
+builder.Services.AddHttpClient(); // Keep for registration API if needed elsewhere
+builder.Services.AddSingleton<IFeederClient, MqttFeederClient>();
 builder.Services.AddScoped<IFeedTypeService, FeedTypeService>();
 builder.Services.AddScoped<IScheduleService, ScheduleService>();
 
