@@ -507,6 +507,22 @@
           }
         }
       },
+      "System.Net.Http.Json/10.0.3": {
+        "type": "package",
+        "compile": {
+          "lib/net10.0/_._": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net10.0/_._": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "buildTransitive/net8.0/_._": {}
+        }
+      },
       "Xamarin.Android.Glide/4.16.0.14": {
         "type": "package",
         "dependencies": {
@@ -3003,6 +3019,22 @@
           "lib/net9.0-android35.0/Plugin.BLE.dll": {
             "related": ".pdb;.xml"
           }
+        }
+      },
+      "System.Net.Http.Json/10.0.3": {
+        "type": "package",
+        "compile": {
+          "lib/net10.0/_._": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net10.0/_._": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "buildTransitive/net8.0/_._": {}
         }
       },
       "Xamarin.Android.Glide/4.16.0.14": {
@@ -5503,6 +5535,22 @@
           }
         }
       },
+      "System.Net.Http.Json/10.0.3": {
+        "type": "package",
+        "compile": {
+          "lib/net10.0/_._": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net10.0/_._": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "buildTransitive/net8.0/_._": {}
+        }
+      },
       "Xamarin.Android.Glide/4.16.0.14": {
         "type": "package",
         "dependencies": {
@@ -7999,6 +8047,22 @@
           "lib/net9.0-android35.0/Plugin.BLE.dll": {
             "related": ".pdb;.xml"
           }
+        }
+      },
+      "System.Net.Http.Json/10.0.3": {
+        "type": "package",
+        "compile": {
+          "lib/net10.0/_._": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net10.0/_._": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "buildTransitive/net8.0/_._": {}
         }
       },
       "Xamarin.Android.Glide/4.16.0.14": {
@@ -10499,6 +10563,22 @@
           }
         }
       },
+      "System.Net.Http.Json/10.0.3": {
+        "type": "package",
+        "compile": {
+          "lib/net10.0/_._": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net10.0/_._": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "buildTransitive/net8.0/_._": {}
+        }
+      },
       "Xamarin.Android.Glide/4.16.0.14": {
         "type": "package",
         "dependencies": {
@@ -12997,6 +13077,22 @@
           }
         }
       },
+      "System.Net.Http.Json/10.0.3": {
+        "type": "package",
+        "compile": {
+          "lib/net10.0/_._": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net10.0/_._": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "buildTransitive/net8.0/_._": {}
+        }
+      },
       "Xamarin.Android.Glide/4.16.0.14": {
         "type": "package",
         "dependencies": {
@@ -15465,6 +15561,22 @@
             "related": ".pdb;.xml"
           }
         }
+      },
+      "System.Net.Http.Json/10.0.3": {
+        "type": "package",
+        "compile": {
+          "lib/net10.0/_._": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net10.0/_._": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "buildTransitive/net8.0/_._": {}
+        }
       }
     },
     "net10.0-ios26.1/android-arm64": {
@@ -15942,6 +16054,22 @@
           "lib/net9.0-ios18.0/Plugin.BLE.dll": {
             "related": ".pdb;.xml"
           }
+        }
+      },
+      "System.Net.Http.Json/10.0.3": {
+        "type": "package",
+        "compile": {
+          "lib/net10.0/_._": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net10.0/_._": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "buildTransitive/net8.0/_._": {}
         }
       }
     },
@@ -16421,6 +16549,22 @@
             "related": ".pdb;.xml"
           }
         }
+      },
+      "System.Net.Http.Json/10.0.3": {
+        "type": "package",
+        "compile": {
+          "lib/net10.0/_._": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net10.0/_._": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "buildTransitive/net8.0/_._": {}
+        }
       }
     },
     "net10.0-ios26.1/iossimulator-x64": {
@@ -16898,6 +17042,22 @@
           "lib/net9.0-ios18.0/Plugin.BLE.dll": {
             "related": ".pdb;.xml"
           }
+        }
+      },
+      "System.Net.Http.Json/10.0.3": {
+        "type": "package",
+        "compile": {
+          "lib/net10.0/_._": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net10.0/_._": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "buildTransitive/net8.0/_._": {}
         }
       }
     },
@@ -17377,6 +17537,22 @@
             "related": ".pdb;.xml"
           }
         }
+      },
+      "System.Net.Http.Json/10.0.3": {
+        "type": "package",
+        "compile": {
+          "lib/net10.0/_._": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net10.0/_._": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "buildTransitive/net8.0/_._": {}
+        }
       }
     },
     "net10.0-ios26.1/win-x64": {
@@ -17854,6 +18030,22 @@
           "lib/net9.0-ios18.0/Plugin.BLE.dll": {
             "related": ".pdb;.xml"
           }
+        }
+      },
+      "System.Net.Http.Json/10.0.3": {
+        "type": "package",
+        "compile": {
+          "lib/net10.0/_._": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net10.0/_._": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "buildTransitive/net8.0/_._": {}
         }
       }
     },
@@ -18333,6 +18525,22 @@
             "related": ".pdb;.xml"
           }
         }
+      },
+      "System.Net.Http.Json/10.0.3": {
+        "type": "package",
+        "compile": {
+          "lib/net10.0/_._": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net10.0/_._": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "buildTransitive/net8.0/_._": {}
+        }
       }
     },
     "net10.0-maccatalyst26.1/android-arm64": {
@@ -18810,6 +19018,22 @@
           "lib/net9.0-maccatalyst18.0/Plugin.BLE.dll": {
             "related": ".pdb;.xml"
           }
+        }
+      },
+      "System.Net.Http.Json/10.0.3": {
+        "type": "package",
+        "compile": {
+          "lib/net10.0/_._": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net10.0/_._": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "buildTransitive/net8.0/_._": {}
         }
       }
     },
@@ -19289,6 +19513,22 @@
             "related": ".pdb;.xml"
           }
         }
+      },
+      "System.Net.Http.Json/10.0.3": {
+        "type": "package",
+        "compile": {
+          "lib/net10.0/_._": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net10.0/_._": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "buildTransitive/net8.0/_._": {}
+        }
       }
     },
     "net10.0-maccatalyst26.1/iossimulator-x64": {
@@ -19766,6 +20006,22 @@
           "lib/net9.0-maccatalyst18.0/Plugin.BLE.dll": {
             "related": ".pdb;.xml"
           }
+        }
+      },
+      "System.Net.Http.Json/10.0.3": {
+        "type": "package",
+        "compile": {
+          "lib/net10.0/_._": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net10.0/_._": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "buildTransitive/net8.0/_._": {}
         }
       }
     },
@@ -20245,6 +20501,22 @@
             "related": ".pdb;.xml"
           }
         }
+      },
+      "System.Net.Http.Json/10.0.3": {
+        "type": "package",
+        "compile": {
+          "lib/net10.0/_._": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net10.0/_._": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "buildTransitive/net8.0/_._": {}
+        }
       }
     },
     "net10.0-maccatalyst26.1/win-x64": {
@@ -20722,6 +20994,22 @@
           "lib/net9.0-maccatalyst18.0/Plugin.BLE.dll": {
             "related": ".pdb;.xml"
           }
+        }
+      },
+      "System.Net.Http.Json/10.0.3": {
+        "type": "package",
+        "compile": {
+          "lib/net10.0/_._": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net10.0/_._": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "buildTransitive/net8.0/_._": {}
         }
       }
     },
@@ -21452,6 +21740,22 @@
             "related": ".pdb;.xml"
           }
         }
+      },
+      "System.Net.Http.Json/10.0.3": {
+        "type": "package",
+        "compile": {
+          "lib/net10.0/_._": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net10.0/_._": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "buildTransitive/net8.0/_._": {}
+        }
       }
     },
     "net10.0-windows10.0.19041/android-arm64": {
@@ -22118,6 +22422,22 @@
           "lib/net9.0-windows10.0.19041/Plugin.BLE.dll": {
             "related": ".pdb;.xml"
           }
+        }
+      },
+      "System.Net.Http.Json/10.0.3": {
+        "type": "package",
+        "compile": {
+          "lib/net10.0/_._": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net10.0/_._": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "buildTransitive/net8.0/_._": {}
         }
       }
     },
@@ -22786,6 +23106,22 @@
             "related": ".pdb;.xml"
           }
         }
+      },
+      "System.Net.Http.Json/10.0.3": {
+        "type": "package",
+        "compile": {
+          "lib/net10.0/_._": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net10.0/_._": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "buildTransitive/net8.0/_._": {}
+        }
       }
     },
     "net10.0-windows10.0.19041/iossimulator-x64": {
@@ -23453,6 +23789,22 @@
             "related": ".pdb;.xml"
           }
         }
+      },
+      "System.Net.Http.Json/10.0.3": {
+        "type": "package",
+        "compile": {
+          "lib/net10.0/_._": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net10.0/_._": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "buildTransitive/net8.0/_._": {}
+        }
       }
     },
     "net10.0-windows10.0.19041/maccatalyst-x64": {
@@ -24119,6 +24471,22 @@
           "lib/net9.0-windows10.0.19041/Plugin.BLE.dll": {
             "related": ".pdb;.xml"
           }
+        }
+      },
+      "System.Net.Http.Json/10.0.3": {
+        "type": "package",
+        "compile": {
+          "lib/net10.0/_._": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net10.0/_._": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "buildTransitive/net8.0/_._": {}
         }
       }
     },
@@ -24796,6 +25164,22 @@
           "lib/net9.0-windows10.0.19041/Plugin.BLE.dll": {
             "related": ".pdb;.xml"
           }
+        }
+      },
+      "System.Net.Http.Json/10.0.3": {
+        "type": "package",
+        "compile": {
+          "lib/net10.0/_._": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net10.0/_._": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "buildTransitive/net8.0/_._": {}
         }
       }
     }
@@ -26954,6 +27338,35 @@
         "lib/xamarinmac20/Plugin.BLE.xml",
         "plugin.ble.3.2.0.nupkg.sha512",
         "plugin.ble.nuspec"
+      ]
+    },
+    "System.Net.Http.Json/10.0.3": {
+      "sha512": "mnedfiB5HfXesLJwM7X5JLPOn9IgO/wB5mCWUc/qwfonbWSHta8D2KLiihnqQ0WwtN0rrlTqxBQPh5MqPEEPVg==",
+      "type": "package",
+      "path": "system.net.http.json/10.0.3",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "PACKAGE.md",
+        "THIRD-PARTY-NOTICES.TXT",
+        "buildTransitive/net461/System.Net.Http.Json.targets",
+        "buildTransitive/net462/_._",
+        "buildTransitive/net8.0/_._",
+        "buildTransitive/netcoreapp2.0/System.Net.Http.Json.targets",
+        "lib/net10.0/System.Net.Http.Json.dll",
+        "lib/net10.0/System.Net.Http.Json.xml",
+        "lib/net462/System.Net.Http.Json.dll",
+        "lib/net462/System.Net.Http.Json.xml",
+        "lib/net8.0/System.Net.Http.Json.dll",
+        "lib/net8.0/System.Net.Http.Json.xml",
+        "lib/net9.0/System.Net.Http.Json.dll",
+        "lib/net9.0/System.Net.Http.Json.xml",
+        "lib/netstandard2.0/System.Net.Http.Json.dll",
+        "lib/netstandard2.0/System.Net.Http.Json.xml",
+        "system.net.http.json.10.0.3.nupkg.sha512",
+        "system.net.http.json.nuspec",
+        "useSharedDesignerContext.txt"
       ]
     },
     "Xamarin.Android.Glide/4.16.0.14": {
@@ -29340,24 +29753,28 @@
       "Microsoft.Extensions.Logging.Debug >= 10.0.0",
       "Microsoft.Maui.Controls >= 10.0.1",
       "Microsoft.NET.ILLink.Tasks >= 10.0.1",
-      "Plugin.BLE >= 3.2.0"
+      "Plugin.BLE >= 3.2.0",
+      "System.Net.Http.Json >= 10.0.3"
     ],
     "net10.0-ios26.1": [
       "Microsoft.Extensions.Logging.Debug >= 10.0.0",
       "Microsoft.Maui.Controls >= 10.0.1",
       "Microsoft.NET.ILLink.Tasks >= 10.0.1",
-      "Plugin.BLE >= 3.2.0"
+      "Plugin.BLE >= 3.2.0",
+      "System.Net.Http.Json >= 10.0.3"
     ],
     "net10.0-maccatalyst26.1": [
       "Microsoft.Extensions.Logging.Debug >= 10.0.0",
       "Microsoft.Maui.Controls >= 10.0.1",
       "Microsoft.NET.ILLink.Tasks >= 10.0.1",
-      "Plugin.BLE >= 3.2.0"
+      "Plugin.BLE >= 3.2.0",
+      "System.Net.Http.Json >= 10.0.3"
     ],
     "net10.0-windows10.0.19041": [
       "Microsoft.Extensions.Logging.Debug >= 10.0.0",
       "Microsoft.Maui.Controls >= 10.0.1",
-      "Plugin.BLE >= 3.2.0"
+      "Plugin.BLE >= 3.2.0",
+      "System.Net.Http.Json >= 10.0.3"
     ]
   },
   "packageFolders": {
@@ -29444,6 +29861,10 @@
           "Plugin.BLE": {
             "target": "Package",
             "version": "[3.2.0, )"
+          },
+          "System.Net.Http.Json": {
+            "target": "Package",
+            "version": "[10.0.3, )"
           }
         },
         "imports": [
@@ -29764,6 +30185,10 @@
           "Plugin.BLE": {
             "target": "Package",
             "version": "[3.2.0, )"
+          },
+          "System.Net.Http.Json": {
+            "target": "Package",
+            "version": "[10.0.3, )"
           }
         },
         "imports": [
@@ -30084,6 +30509,10 @@
           "Plugin.BLE": {
             "target": "Package",
             "version": "[3.2.0, )"
+          },
+          "System.Net.Http.Json": {
+            "target": "Package",
+            "version": "[10.0.3, )"
           }
         },
         "imports": [
@@ -30399,6 +30828,10 @@
           "Plugin.BLE": {
             "target": "Package",
             "version": "[3.2.0, )"
+          },
+          "System.Net.Http.Json": {
+            "target": "Package",
+            "version": "[10.0.3, )"
           }
         },
         "imports": [
@@ -30720,5 +31153,20 @@
         "#import": []
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "NU1510",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "PackageReference System.Net.Http.Json will not be pruned. Consider removing this package from your dependencies, as it is likely unnecessary.",
+      "libraryId": "System.Net.Http.Json",
+      "targetGraphs": [
+        "net10.0-android36.0",
+        "net10.0-ios26.1",
+        "net10.0-maccatalyst26.1",
+        "net10.0-windows10.0.19041"
+      ]
+    }
+  ]
 }

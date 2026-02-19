@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "YiAbD4AdPDk=",
+  "dgSpecHash": "aHsXIgeQn2Y=",
   "success": true,
   "projectFilePath": "C:\\Users\\Demuth_jm\\DOTNET Projects\\feeder\\src\\Mobile\\UniversalFeeder.Mobile\\UniversalFeeder.Mobile.csproj",
   "expectedPackageFiles": [
@@ -33,6 +33,7 @@
     "C:\\Users\\Demuth_jm\\.nuget\\packages\\microsoft.windows.sdk.buildtools\\10.0.22621.756\\microsoft.windows.sdk.buildtools.10.0.22621.756.nupkg.sha512",
     "C:\\Users\\Demuth_jm\\.nuget\\packages\\microsoft.windowsappsdk\\1.7.250909003\\microsoft.windowsappsdk.1.7.250909003.nupkg.sha512",
     "C:\\Users\\Demuth_jm\\.nuget\\packages\\plugin.ble\\3.2.0\\plugin.ble.3.2.0.nupkg.sha512",
+    "C:\\Users\\Demuth_jm\\.nuget\\packages\\system.net.http.json\\10.0.3\\system.net.http.json.10.0.3.nupkg.sha512",
     "C:\\Users\\Demuth_jm\\.nuget\\packages\\xamarin.android.glide\\4.16.0.14\\xamarin.android.glide.4.16.0.14.nupkg.sha512",
     "C:\\Users\\Demuth_jm\\.nuget\\packages\\xamarin.android.glide.annotations\\4.16.0.14\\xamarin.android.glide.annotations.4.16.0.14.nupkg.sha512",
     "C:\\Users\\Demuth_jm\\.nuget\\packages\\xamarin.android.glide.disklrucache\\4.16.0.14\\xamarin.android.glide.disklrucache.4.16.0.14.nupkg.sha512",
@@ -127,5 +128,21 @@
     "C:\\Users\\Demuth_jm\\.nuget\\packages\\xamarin.kotlinx.serialization.core.jvm\\1.9.0.1\\xamarin.kotlinx.serialization.core.jvm.1.9.0.1.nupkg.sha512",
     "C:\\Users\\Demuth_jm\\.nuget\\packages\\microsoft.windows.sdk.net.ref\\10.0.19041.57\\microsoft.windows.sdk.net.ref.10.0.19041.57.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "NU1510",
+      "level": "Warning",
+      "message": "PackageReference System.Net.Http.Json will not be pruned. Consider removing this package from your dependencies, as it is likely unnecessary.",
+      "projectPath": "C:\\Users\\Demuth_jm\\DOTNET Projects\\feeder\\src\\Mobile\\UniversalFeeder.Mobile\\UniversalFeeder.Mobile.csproj",
+      "warningLevel": 1,
+      "filePath": "C:\\Users\\Demuth_jm\\DOTNET Projects\\feeder\\src\\Mobile\\UniversalFeeder.Mobile\\UniversalFeeder.Mobile.csproj",
+      "libraryId": "System.Net.Http.Json",
+      "targetGraphs": [
+        "net10.0-android36.0",
+        "net10.0-ios26.1",
+        "net10.0-maccatalyst26.1",
+        "net10.0-windows10.0.19041"
+      ]
+    }
+  ]
 }

@@ -75,9 +75,40 @@ namespace UniversalFeeder.Mobile.ViewModels
                 return;
             }
 
-            Status = "Provisioning...";
-            bool success = await _bleService.ProvisionDeviceAsync(SelectedDevice, Ssid, Password);
-            Status = success ? "Provisioning Successful!" : "Provisioning Failed.";
+            Status = "Provisioning via BLE...";
+            string ip = await _bleService.ProvisionDeviceAndGetIpAsync(SelectedDevice, Ssid, Password);
+            
+            if (string.IsNullOrEmpty(ip))
+            {
+                Status = "Provisioning Failed (No IP).";
+                return;
+            }
+
+            Status = $"BLE Success (IP: {ip}). Registering with Server...";
+
+            try
+            {
+                using var client = new HttpClient();
+                // Note: In a real scenario, this URL would be configurable
+                var response = await client.PostAsJsonAsync("http://localhost:5000/api/feeders/register", new
+                {
+                    Nickname = SelectedDevice.Name ?? "New Feeder",
+                    IpAddress = ip
+                });
+
+                if (response.IsSuccessStatusCode)
+                {
+                    Status = "Setup Complete! Feeder is registered.";
+                }
+                else
+                {
+                    Status = "Provisioned, but Server Registration failed.";
+                }
+            }
+            catch (Exception ex)
+            {
+                Status = $"Registration Error: {ex.Message}";
+            }
         }
     }
 }
