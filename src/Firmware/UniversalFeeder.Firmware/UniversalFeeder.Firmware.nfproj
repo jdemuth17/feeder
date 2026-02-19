@@ -29,6 +29,7 @@
     <Compile Include="RequestProcessor.cs" />
     <Compile Include="WebServerService.cs" />
     <Compile Include="BleProvisioningService.cs" />
+    <Compile Include="MqttService.cs" />
     <Compile Include="WifiConfigurationService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
