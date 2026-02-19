@@ -11,7 +11,7 @@ namespace UniversalFeeder.Firmware
     public class Program
     {
         private static BleProvisioningService _bleService;
-        private static WebServerService _webServer;
+        private static MqttService _mqttService;
         private static IFeedingSequenceService _feedingSequence;
 
         public static void Main()
@@ -73,9 +73,27 @@ namespace UniversalFeeder.Firmware
             var motor = new MotorService();
             var buzzer = new BuzzerService();
             _feedingSequence = new FeedingSequenceService(motor, buzzer);
-            _webServer = new WebServerService(_feedingSequence, buzzer);
+            
+            _mqttService = new MqttService(_feedingSequence, buzzer);
+            
+            // In a real app, these credentials would be provisioned via BLE and saved to NVS
+            string mqttHost = "YOUR_HIVEMQ_HOST.hivemq.cloud";
+            string mqttUser = "YOUR_USERNAME";
+            string mqttPass = "YOUR_PASSWORD";
+            string clientId = GetUniqueId();
 
-            _webServer.Start();
+            _mqttService.Start(mqttHost, mqttUser, mqttPass, clientId);
+        }
+
+        private static string GetUniqueId()
+        {
+#if NANOFRAMEWORK
+            var ni = NetworkInterface.GetAllNetworkInterfaces()[0];
+            var mac = ni.PhysicalAddress;
+            return mac[0].ToString("X2") + mac[1].ToString("X2") + mac[2].ToString("X2") + mac[3].ToString("X2") + mac[4].ToString("X2") + mac[5].ToString("X2");
+#else
+            return "DevFeeder01";
+#endif
         }
     }
 }
