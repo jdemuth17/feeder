@@ -9,13 +9,13 @@
     - [ ] Create `Schedules.razor` page for CRUD operations on schedules.
 - [~] Task: Conductor - User Manual Verification 'Phase 1: Data Model & UI' (Protocol in workflow.md)
 
-## Phase 2: Quartz.NET Integration
+## Phase 2: Quartz.NET Integration [checkpoint: 74a2572]
 - [x] Task: Implement Feeding Job 4c48f8e
     - [ ] Create `FeedingJob` implementing `IJob`.
     - [ ] Implement logic to find due schedules and trigger `FeederClient`.
 - [x] Task: Background Worker Configuration 94051fd
     - [ ] Configure Quartz in `Program.cs` to run the check every minute.
-- [~] Task: Conductor - User Manual Verification 'Phase 2: Quartz.NET Integration' (Protocol in workflow.md)
+- [x] Task: Conductor - User Manual Verification 'Phase 2: Quartz.NET Integration' (Protocol in workflow.md) 74a2572
 
 ## Phase 3: Feeder Registration API
 - [ ] Task: Create Registration Endpoint
