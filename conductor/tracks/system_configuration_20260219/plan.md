@@ -17,7 +17,7 @@
     - [ ] Add "Settings" link to the sidebar.
 - [x] Task: Conductor - User Manual Verification 'Phase 2: Settings UI' (Protocol in workflow.md) 8a0484c
 
-## Phase 3: Runtime Integration
+## Phase 3: Runtime Integration [checkpoint: 5c9893c]
 - [x] Task: Refactor MqttFeederClient 0da2695
     - [ ] Update client to use `SettingsService` for broker connection details.
-- [~] Task: Conductor - User Manual Verification 'Phase 3: Runtime Integration' (Protocol in workflow.md)
+- [x] Task: Conductor - User Manual Verification 'Phase 3: Runtime Integration' (Protocol in workflow.md) 5c9893c
