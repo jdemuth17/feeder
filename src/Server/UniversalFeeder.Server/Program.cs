@@ -56,6 +56,27 @@ app.UseHttpsRedirection();
 app.UseAntiforgery();
 
 app.MapStaticAssets();
+
+// Registration API
+app.MapPost("/api/feeders/register", async (Feeder feeder, IDbContextFactory<FeederContext> dbFactory) =>
+{
+    using var context = dbFactory.CreateDbContext();
+    var existing = await context.Feeders.FirstOrDefaultAsync(f => f.IpAddress == feeder.IpAddress);
+    
+    if (existing != null)
+    {
+        existing.Nickname = feeder.Nickname;
+        context.Feeders.Update(existing);
+    }
+    else
+    {
+        context.Feeders.Add(feeder);
+    }
+
+    await context.SaveChangesAsync();
+    return Results.Ok(feeder);
+});
+
 app.MapRazorComponents<App>()
     .AddInteractiveServerRenderMode();
 
