@@ -1,34 +1,41 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:vm="clr-namespace:UniversalFeeder.Mobile.ViewModels"
              x:Class="UniversalFeeder.Mobile.Views.ProvisioningPage"
              Title="Feeder Setup">
 
-    <ContentPage.BindingContext>
-        <vm:ProvisioningViewModel />
-    </ContentPage.BindingContext>
-
     <ScrollView>
-        <VerticalStackLayout Padding="30" Spacing="25">
+        <VerticalStackLayout Padding="20" Spacing="20">
             
-            <Label Text="1. Scan for Feeders" FontSize="Header" />
-            <Button Text="Scan" Command="{Binding ScanCommand}" />
+            <Label Text="1. Scan for Feeders" FontSize="20" FontAttributes="Bold" />
+            <Label Text="Make sure your feeder is powered on and in setup mode (no Wi-Fi configured)."
+                   FontSize="13" TextColor="Gray" />
+            <Button Text="Scan for Feeders" Command="{Binding ScanCommand}" 
+                    IsEnabled="{Binding IsBusy, Converter={StaticResource InvertBoolConverter}}" />
+            <ActivityIndicator IsRunning="{Binding IsScanning}" IsVisible="{Binding IsScanning}" />
             
-            <CollectionView ItemsSource="{Binding Devices}" SelectedItem="{Binding SelectedDevice}" SelectionMode="Single">
+            <CollectionView ItemsSource="{Binding Devices}" 
+                            SelectedItem="{Binding SelectedDevice}" 
+                            SelectionMode="Single">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <Label Text="{Binding Name}" Padding="10" />
+                        <Frame Padding="10" Margin="0,4" CornerRadius="8" HasShadow="True">
+                            <Label Text="{Binding Name}" FontSize="16" />
+                        </Frame>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
 
-            <Label Text="2. Wi-Fi Credentials" FontSize="Header" />
-            <Entry Placeholder="Wi-Fi SSID" Text="{Binding Ssid}" />
-            <Entry Placeholder="Password" IsPassword="True" Text="{Binding Password}" />
+            <Label Text="2. Wi-Fi Credentials" FontSize="20" FontAttributes="Bold" />
+            <Entry Placeholder="Wi-Fi Network Name (SSID)" Text="{Binding Ssid}" />
+            <Entry Placeholder="Wi-Fi Password" IsPassword="True" Text="{Binding Password}" />
 
-            <Button Text="Setup Feeder" Command="{Binding ProvisionCommand}" />
+            <Button Text="Setup Feeder" Command="{Binding ProvisionCommand}"
+                    BackgroundColor="#4CAF50" TextColor="White" 
+                    CornerRadius="8" HeightRequest="50" FontSize="18"
+                    IsEnabled="{Binding IsBusy, Converter={StaticResource InvertBoolConverter}}" />
 
+            <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" />
             <Label Text="{Binding Status}" HorizontalOptions="Center" TextColor="Gray" />
 
         </VerticalStackLayout>

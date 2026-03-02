@@ -1,6 +1,7 @@
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 using Plugin.BLE.Abstractions.Contracts;
+using UniversalFeeder.Mobile.Models;
 using UniversalFeeder.Mobile.Services;
 
 namespace UniversalFeeder.Mobile.ViewModels
@@ -8,11 +9,13 @@ namespace UniversalFeeder.Mobile.ViewModels
     public class ProvisioningViewModel : BindableObject
     {
         private readonly BleService _bleService;
+        private readonly FeederStorageService _storageService;
         private bool _isScanning;
-        private IDevice _selectedDevice;
-        private string _ssid;
-        private string _password;
-        private string _status;
+        private IDevice? _selectedDevice;
+        private string? _ssid;
+        private string? _password;
+        private string? _status;
+        private bool _isBusy;
 
         public ObservableCollection<IDevice> Devices { get; } = new();
 
@@ -22,93 +25,117 @@ namespace UniversalFeeder.Mobile.ViewModels
             set { _isScanning = value; OnPropertyChanged(); }
         }
 
-        public IDevice SelectedDevice
+        public IDevice? SelectedDevice
         {
             get => _selectedDevice;
             set { _selectedDevice = value; OnPropertyChanged(); }
         }
 
-        public string Ssid
+        public string? Ssid
         {
             get => _ssid;
             set { _ssid = value; OnPropertyChanged(); }
         }
 
-        public string Password
+        public string? Password
         {
             get => _password;
             set { _password = value; OnPropertyChanged(); }
         }
 
-        public string Status
+        public string? Status
         {
             get => _status;
             set { _status = value; OnPropertyChanged(); }
         }
 
+        public bool IsBusy
+        {
+            get => _isBusy;
+            set { _isBusy = value; OnPropertyChanged(); }
+        }
+
         public ICommand ScanCommand { get; }
         public ICommand ProvisionCommand { get; }
 
-        public ProvisioningViewModel()
+        public ProvisioningViewModel(BleService bleService, FeederStorageService storageService)
         {
-            _bleService = new BleService();
+            _bleService = bleService;
+            _storageService = storageService;
             ScanCommand = new Command(async () => await ScanAsync());
             ProvisionCommand = new Command(async () => await ProvisionAsync());
         }
 
         private async Task ScanAsync()
         {
+            if (!_bleService.IsBluetoothOn)
+            {
+                Status = "Bluetooth is OFF. Please enable Bluetooth.";
+                return;
+            }
+
             IsScanning = true;
-            Status = "Scanning...";
+            IsBusy = true;
+            Status = "Scanning for feeders...";
             Devices.Clear();
-            var found = await _bleService.ScanForFeedersAsync();
-            foreach (var d in found) Devices.Add(d);
-            IsScanning = false;
-            Status = found.Any() ? "Devices found." : "No feeders found.";
+
+            try
+            {
+                var found = await _bleService.ScanForFeedersAsync();
+                foreach (var d in found) Devices.Add(d);
+                Status = found.Any() ? $"Found {found.Count} feeder(s)." : "No feeders found. Make sure your feeder is in setup mode.";
+            }
+            catch (Exception ex)
+            {
+                Status = $"Scan error: {ex.Message}";
+            }
+            finally
+            {
+                IsScanning = false;
+                IsBusy = false;
+            }
         }
 
         private async Task ProvisionAsync()
         {
             if (SelectedDevice == null || string.IsNullOrEmpty(Ssid))
             {
-                Status = "Select a device and enter SSID.";
+                Status = "Select a device and enter Wi-Fi SSID.";
                 return;
             }
 
+            IsBusy = true;
             Status = "Provisioning via BLE...";
-            string ip = await _bleService.ProvisionDeviceAndGetIpAsync(SelectedDevice, Ssid, Password);
-            
-            if (string.IsNullOrEmpty(ip))
-            {
-                Status = "Provisioning Failed (No IP).";
-                return;
-            }
-
-            Status = $"BLE Success (IP: {ip}). Registering with Server...";
 
             try
             {
-                using var client = new HttpClient();
-                // Note: In a real scenario, this URL would be configurable
-                var response = await client.PostAsJsonAsync("http://localhost:5000/api/feeders/register", new
+                string? ip = await _bleService.ProvisionDeviceAsync(SelectedDevice, Ssid, Password ?? string.Empty);
+
+                if (string.IsNullOrEmpty(ip))
+                {
+                    Status = "Provisioning failed — no IP received. Check Wi-Fi credentials.";
+                    return;
+                }
+
+                // Save feeder locally (no server needed)
+                var feeder = new FeederDevice
                 {
                     UniqueId = SelectedDevice.Id.ToString(),
                     Nickname = SelectedDevice.Name ?? "New Feeder",
-                    IpAddress = ip
-                });
+                    IpAddress = ip,
+                    ProvisionedAt = DateTime.UtcNow
+                };
+                _storageService.AddFeeder(feeder);
 
-                if (response.IsSuccessStatusCode)
-                {
-                    Status = "Setup Complete! Feeder is registered.";
-                }
-                else
-                {
-                    Status = "Provisioned, but Server Registration failed.";
-                }
+                Status = $"Setup complete! {feeder.Nickname} (IP: {ip}) saved. Go to Home tab to control it.";
             }
             catch (Exception ex)
             {
-                Status = $"Registration Error: {ex.Message}";
+                Status = $"Provisioning error: {ex.Message}";
+            }
+            finally
+            {
+                IsBusy = false;
             }
         }
     }

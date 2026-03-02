@@ -75,10 +75,10 @@ namespace UniversalFeeder.Firmware
             
             _mqttService = new MqttService(_feedingSequence, buzzer);
             
-            // In a real app, these credentials would be provisioned via BLE and saved to NVS
-            string mqttHost = "YOUR_HIVEMQ_HOST.hivemq.cloud";
-            string mqttUser = "YOUR_USERNAME";
-            string mqttPass = "YOUR_PASSWORD";
+            // HiveMQ Cloud credentials
+            string mqttHost = "0827f2b3c2a54b1c8a0d539d4f5e3990.s1.eu.hivemq.cloud";
+            string mqttUser = "Jdemuth17_IOT";
+            string mqttPass = "Pdazzle17_IOT!";
             string clientId = GetUniqueId();
 
             _mqttService.Start(mqttHost, mqttUser, mqttPass, clientId);
