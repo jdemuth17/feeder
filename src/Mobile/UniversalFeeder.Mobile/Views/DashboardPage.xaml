@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:UniversalFeeder.Mobile.Models"
+             x:Class="UniversalFeeder.Mobile.Views.DashboardPage"
+             Title="My Feeders">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="16">
+
+            <!-- Connection Status -->
+            <Frame Padding="12" CornerRadius="8" BorderColor="{Binding ConnectionStatusColor}">
+                <Grid ColumnDefinitions="*,Auto">
+                    <VerticalStackLayout>
+                        <Label Text="{Binding ConnectionStatusText}" 
+                               FontAttributes="Bold" FontSize="16"
+                               TextColor="{Binding ConnectionStatusColor}" />
+                    </VerticalStackLayout>
+                    <Button Grid.Column="1" 
+                            Text="{Binding ConnectButtonText}"
+                            Command="{Binding ConnectCommand}"
+                            BackgroundColor="{Binding ConnectionStatusColor}"
+                            TextColor="White"
+                            CornerRadius="8"
+                            HeightRequest="40" />
+                </Grid>
+            </Frame>
+
+            <!-- Feeder List -->
+            <Label Text="Feeders" FontSize="20" FontAttributes="Bold" />
+
+            <CollectionView ItemsSource="{Binding Feeders}" 
+                            SelectedItem="{Binding SelectedFeeder}" 
+                            SelectionMode="Single"
+                            EmptyView="No feeders registered. Go to Setup tab to add one.">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="models:FeederDevice">
+                        <Frame Padding="12" Margin="0,4" CornerRadius="8" HasShadow="True">
+                            <Grid ColumnDefinitions="*,Auto" RowDefinitions="Auto,Auto">
+                                <Label Text="{Binding Nickname}" FontAttributes="Bold" FontSize="16" />
+                                <Label Grid.Row="1" Text="{Binding UniqueId, StringFormat='ID: {0}'}" 
+                                       FontSize="12" TextColor="Gray" />
+                                <Button Grid.Column="1" Grid.RowSpan="2"
+                                        Text="✕" TextColor="Red"
+                                        BackgroundColor="Transparent"
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.RemoveFeederCommand}"
+                                        CommandParameter="{Binding .}"
+                                        WidthRequest="40" HeightRequest="40" />
+                            </Grid>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <!-- Controls (only visible when a feeder is selected) -->
+            <VerticalStackLayout Spacing="12" IsVisible="{Binding HasSelectedFeeder}">
+                <BoxView HeightRequest="1" Color="LightGray" />
+                
+                <Label Text="{Binding SelectedFeeder.Nickname, StringFormat='Control: {0}'}" 
+                       FontSize="18" FontAttributes="Bold" />
+
+                <!-- Feed Duration Slider -->
+                <Label Text="{Binding FeedDurationSeconds, StringFormat='Feed Duration: {0} seconds'}" />
+                <Slider Minimum="1" Maximum="30" 
+                        Value="{Binding FeedDurationSeconds}" />
+
+                <!-- Action Buttons -->
+                <Grid ColumnDefinitions="*,*" ColumnSpacing="12">
+                    <Button Text="🔔 Chime" 
+                            Command="{Binding ChimeCommand}"
+                            BackgroundColor="#FF9800"
+                            TextColor="White"
+                            FontSize="18"
+                            CornerRadius="12"
+                            HeightRequest="60" />
+                    <Button Grid.Column="1" 
+                            Text="🍽 Feed Now" 
+                            Command="{Binding FeedCommand}"
+                            BackgroundColor="#4CAF50"
+                            TextColor="White"
+                            FontSize="18"
+                            CornerRadius="12"
+                            HeightRequest="60" />
+                </Grid>
+            </VerticalStackLayout>
+
+            <!-- Status -->
+            <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" />
+            <Label Text="{Binding Status}" HorizontalOptions="Center" TextColor="Gray" FontSize="14" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

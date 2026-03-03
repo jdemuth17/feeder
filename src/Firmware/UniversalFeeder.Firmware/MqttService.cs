@@ -1,5 +1,6 @@
 using System;
 using System.Text;
+using System.Threading;
 using UniversalFeeder.Shared;
 #if NANOFRAMEWORK
 using uPLibrary.Networking.M2Mqtt;
@@ -16,6 +17,12 @@ namespace UniversalFeeder.Firmware
         private MqttClient _client;
 #endif
         private string _clientId;
+        private string _host;
+        private string _username;
+        private string _password;
+        private Timer _reconnectTimer;
+        private int _reconnectDelayMs = 5000;
+        private const int MaxReconnectDelayMs = 60000;
 
         public MqttService(IFeedingSequenceService feedingSequence, IBuzzerService buzzerService)
         {
@@ -26,26 +33,86 @@ namespace UniversalFeeder.Firmware
         public void Start(string host, string username, string password, string clientId)
         {
             _clientId = clientId;
+            _host = host;
+            _username = username;
+            _password = password;
 #if NANOFRAMEWORK
             try
             {
                 _client = new MqttClient(host, 8883, true, null, null, MqttSslProtocols.TLSv1_2);
                 _client.MqttMsgPublishReceived += OnMessageReceived;
+                _client.ConnectionClosed += OnConnectionClosed;
                 _client.Connect(_clientId, username, password);
 
                 if (_client.IsConnected)
                 {
-                    string topic = MqttCommands.GetCommandTopic(_clientId);
-                    _client.Subscribe(new string[] { topic }, new byte[] { MqttMsgBase.QOS_LEVEL_AT_LEAST_ONCE });
-                    Console.WriteLine($"Connected to MQTT! Subscribed to {topic}");
+                    _reconnectDelayMs = 5000;
+                    SubscribeToCommands();
+                    Console.WriteLine($"Connected to MQTT! Subscribed to {MqttCommands.GetCommandTopic(_clientId)}");
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"MQTT Start Error: {ex.Message}");
+                Console.WriteLine($"MQTT Start Error: {ex.Message}. Will retry in {_reconnectDelayMs / 1000}s...");
+                ScheduleReconnect();
             }
 #endif
         }
+
+#if NANOFRAMEWORK
+        private void SubscribeToCommands()
+        {
+            string topic = MqttCommands.GetCommandTopic(_clientId);
+            _client.Subscribe(new string[] { topic }, new byte[] { MqttMsgBase.QOS_LEVEL_AT_LEAST_ONCE });
+        }
+
+        private void OnConnectionClosed(object sender, EventArgs e)
+        {
+            Console.WriteLine($"MQTT connection lost. Reconnecting in {_reconnectDelayMs / 1000}s...");
+            ScheduleReconnect();
+        }
+
+        private void ScheduleReconnect()
+        {
+            _reconnectTimer?.Dispose();
+            _reconnectTimer = new Timer(ReconnectCallback, null, _reconnectDelayMs, Timeout.Infinite);
+        }
+
+        private void ReconnectCallback(object state)
+        {
+            try
+            {
+                Console.WriteLine("MQTT: Attempting reconnection...");
+                if (_client != null && !_client.IsConnected)
+                {
+                    _client.Connect(_clientId, _username, _password);
+                }
+
+                if (_client != null && _client.IsConnected)
+                {
+                    _reconnectDelayMs = 5000;
+                    SubscribeToCommands();
+                    Console.WriteLine("MQTT Reconnected!");
+                }
+                else
+                {
+                    IncreaseBackoff();
+                    ScheduleReconnect();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"MQTT Reconnect Error: {ex.Message}. Retrying in {_reconnectDelayMs / 1000}s...");
+                IncreaseBackoff();
+                ScheduleReconnect();
+            }
+        }
+
+        private void IncreaseBackoff()
+        {
+            _reconnectDelayMs = Math.Min(_reconnectDelayMs * 2, MaxReconnectDelayMs);
+        }
+#endif
 
 #if NANOFRAMEWORK
         private void OnMessageReceived(object sender, MqttMsgPublishEventArgs e)
@@ -125,6 +192,7 @@ namespace UniversalFeeder.Firmware
 
         public void Dispose()
         {
+            _reconnectTimer?.Dispose();
 #if NANOFRAMEWORK
             if (_client != null && _client.IsConnected)
             {

@@ -6,60 +6,94 @@ namespace UniversalFeeder.Mobile.Services
 {
     public class BleService
     {
+        private static readonly Guid ServiceUuid = Guid.Parse("4fafc201-1fb5-459e-8fcc-c5c9c331914b");
+        private static readonly Guid SsidCharUuid = Guid.Parse("beb5483e-36e1-4688-b7f5-ea07361b26a8");
+        private static readonly Guid PassCharUuid = Guid.Parse("d6e98ba1-8ef4-4594-ba04-0390ea000001");
+        private static readonly Guid IpCharUuid = Guid.Parse("e2a00001-8ef4-4594-ba04-0390ea000001");
+
         private readonly IAdapter _adapter;
         private readonly IBluetoothLE _bluetooth;
+        private EventHandler<Plugin.BLE.Abstractions.EventArgs.DeviceEventArgs>? _discoveredHandler;
 
         public BleService()
         {
             _bluetooth = CrossBluetoothLE.Current;
             _adapter = CrossBluetoothLE.Current.Adapter;
+            _adapter.ScanTimeout = 10000; // 10 second scan timeout
         }
 
-        public async Task<List<IDevice>> ScanForFeedersAsync()
+        public bool IsBluetoothOn => _bluetooth.IsOn;
+
+        public async Task<List<IDevice>> ScanForFeedersAsync(CancellationToken ct = default)
         {
             var devices = new List<IDevice>();
-            _adapter.DeviceDiscovered += (s, a) =>
+
+            // Unsubscribe any previous handler to prevent leaks
+            if (_discoveredHandler != null)
             {
-                if (a.Device.Name?.Contains("Feeder") == true)
+                _adapter.DeviceDiscovered -= _discoveredHandler;
+            }
+
+            _discoveredHandler = (s, a) =>
+            {
+                if (a.Device.Name?.Contains("Feeder") == true &&
+                    !devices.Any(d => d.Id == a.Device.Id))
                 {
                     devices.Add(a.Device);
                 }
             };
+            _adapter.DeviceDiscovered += _discoveredHandler;
 
-            await _adapter.StartScanningForDevicesAsync();
+            try
+            {
+                await _adapter.StartScanningForDevicesAsync(cancellationToken: ct);
+            }
+            catch (OperationCanceledException)
+            {
+                // Scan was cancelled — return what we found
+            }
+            finally
+            {
+                _adapter.DeviceDiscovered -= _discoveredHandler;
+                _discoveredHandler = null;
+            }
+
             return devices;
         }
 
-        public async Task<string> ProvisionDeviceAndGetIpAsync(IDevice device, string ssid, string password)
+        public async Task<string?> ProvisionDeviceAsync(IDevice device, string ssid, string password)
         {
             try
             {
                 await _adapter.ConnectToDeviceAsync(device);
                 var services = await device.GetServicesAsync();
-                var service = services.FirstOrDefault(s => s.Id.ToString() == "4fafc201-1fb5-459e-8fcc-c5c9c331914b");
-                
-                if (service == null) return null;
+                var service = services.FirstOrDefault(s => s.Id == ServiceUuid);
 
-                var ssidChar = await service.GetCharacteristicAsync(Guid.Parse("beb5483e-36e1-4688-b7f5-ea07361b26a8"));
-                var passChar = await service.GetCharacteristicAsync(Guid.Parse("d6e98ba1-8ef4-4594-ba04-0390ea000001"));
+                if (service == null)
+                    throw new InvalidOperationException("Feeder BLE service not found on device.");
 
-                if (ssidChar != null) await ssidChar.WriteAsync(Encoding.UTF8.GetBytes(ssid));
-                if (passChar != null) await passChar.WriteAsync(Encoding.UTF8.GetBytes(password));
+                var ssidChar = await service.GetCharacteristicAsync(SsidCharUuid);
+                var passChar = await service.GetCharacteristicAsync(PassCharUuid);
 
-                // Wait for IP characteristic to be updated
-                var ipChar = await service.GetCharacteristicAsync(Guid.Parse("e2a00001-8ef4-4594-ba04-0390ea000001"));
-                string ip = null;
-                
+                if (ssidChar == null || passChar == null)
+                    throw new InvalidOperationException("Required BLE characteristics not found.");
+
+                await ssidChar.WriteAsync(Encoding.UTF8.GetBytes(ssid));
+                await passChar.WriteAsync(Encoding.UTF8.GetBytes(password));
+
+                // Poll for IP address for up to 30 seconds
+                var ipChar = await service.GetCharacteristicAsync(IpCharUuid);
+                string? ip = null;
+
                 if (ipChar != null)
                 {
-                    // Poll for IP for up to 30 seconds
                     for (int i = 0; i < 30; i++)
                     {
                         var bytes = await ipChar.ReadAsync();
-                        if (bytes != null && bytes.Length > 0)
+                        if (bytes.data != null && bytes.data.Length > 0)
                         {
-                            ip = Encoding.UTF8.GetString(bytes);
-                            if (ip != "0.0.0.0") break;
+                            ip = Encoding.UTF8.GetString(bytes.data);
+                            if (!string.IsNullOrEmpty(ip) && ip != "0.0.0.0") break;
                         }
                         await Task.Delay(1000);
                     }
@@ -68,53 +102,11 @@ namespace UniversalFeeder.Mobile.Services
                 await _adapter.DisconnectDeviceAsync(device);
                 return ip;
             }
-            catch
+            catch (Exception ex)
             {
-                return null;
-            }
-        }
-
-        public async Task<bool> ProvisionDeviceAsync(IDevice device, string ssid, string password)
-        {
-            try
-            {
-                await _adapter.ConnectToDeviceAsync(device);
-                var services = await device.GetServicesAsync();
-                var service = services.FirstOrDefault(s => s.Id.ToString() == "4fafc201-1fb5-459e-8fcc-c5c9c331914b");
-                
-                if (service == null) return false;
-
-                var ssidChar = await service.GetCharacteristicAsync(Guid.Parse("beb5483e-36e1-4688-b7f5-ea07361b26a8"));
-                var passChar = await service.GetCharacteristicAsync(Guid.Parse("d6e98ba1-8ef4-4594-ba04-0390ea000001"));
-
-                if (ssidChar != null) await ssidChar.WriteAsync(Encoding.UTF8.GetBytes(ssid));
-                if (passChar != null) await passChar.WriteAsync(Encoding.UTF8.GetBytes(password));
-
-                // Wait for IP characteristic to be updated
-                var ipChar = await service.GetCharacteristicAsync(Guid.Parse("e2a00001-8ef4-4594-ba04-0390ea000001"));
-                string ip = null;
-                
-                if (ipChar != null)
-                {
-                    // Poll for IP for up to 30 seconds
-                    for (int i = 0; i < 30; i++)
-                    {
-                        var bytes = await ipChar.ReadAsync();
-                        if (bytes != null && bytes.Length > 0)
-                        {
-                            ip = Encoding.UTF8.GetString(bytes);
-                            if (ip != "0.0.0.0") break;
-                        }
-                        await Task.Delay(1000);
-                    }
-                }
-
-                await _adapter.DisconnectDeviceAsync(device);
-                return !string.IsNullOrEmpty(ip);
-            }
-            catch
-            {
-                return false;
+                System.Diagnostics.Debug.WriteLine($"BLE Provisioning Error: {ex.Message}");
+                try { await _adapter.DisconnectDeviceAsync(device); } catch { }
+                throw;
             }
         }
     }

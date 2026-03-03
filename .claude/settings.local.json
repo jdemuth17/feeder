@@ -1,0 +1,20 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git worktree:*)",
+      "Bash(dotnet test:*)",
+      "Bash(git -C \"C:/Users/Demuth_jm/DOTNET PRojects/feeder/.worktrees/code-review-fixes\" diff f0e6a51ac84b1f2e546ab5610545ba793644fff2..23e389dd45ba36dfdf797c88c64f14613c7c5f10)",
+      "Bash(git -C \"C:/Users/Demuth_jm/DOTNET PRojects/feeder/.worktrees/code-review-fixes\" log f0e6a51ac84b1f2e546ab5610545ba793644fff2..23e389dd45ba36dfdf797c88c64f14613c7c5f10 --oneline)",
+      "Bash(git filter-repo:*)",
+      "Bash(pip show:*)",
+      "Bash(python:*)",
+      "Bash(git -C .worktrees/code-review-fixes log --oneline -3)",
+      "Bash(git -C .worktrees/code-review-fixes diff HEAD~1..HEAD)",
+      "Bash(git branch:*)",
+      "Bash(pip install:*)",
+      "Bash(\"/c/Users/Demuth_jm/AppData/Roaming/Python/Python313/Scripts/git-filter-repo\" --version)"
+    ]
+  }
+}

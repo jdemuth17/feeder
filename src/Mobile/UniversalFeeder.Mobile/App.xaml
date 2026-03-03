@@ -2,6 +2,7 @@
 <Application xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:UniversalFeeder.Mobile"
+             xmlns:converters="clr-namespace:UniversalFeeder.Mobile.Converters"
              x:Class="UniversalFeeder.Mobile.App">
     <Application.Resources>
         <ResourceDictionary>
@@ -9,6 +10,7 @@
                 <ResourceDictionary Source="Resources/Styles/Colors.xaml" />
                 <ResourceDictionary Source="Resources/Styles/Styles.xaml" />
             </ResourceDictionary.MergedDictionaries>
+            <converters:InvertBoolConverter x:Key="InvertBoolConverter" />
         </ResourceDictionary>
     </Application.Resources>
 </Application>

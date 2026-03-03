@@ -26,7 +26,6 @@
     <Compile Include="BuzzerService.cs" />
     <Compile Include="IFeedingSequenceService.cs" />
     <Compile Include="FeedingSequenceService.cs" />
-    <Compile Include="RequestProcessor.cs" />
     <Compile Include="BleProvisioningService.cs" />
     <Compile Include="MqttService.cs" />
     <Compile Include="WifiConfigurationService.cs" />
@@ -45,12 +44,6 @@
     </Reference>
     <Reference Include="System.Device.Pwm">
       <HintPath>..\packages\nanoFramework.System.Device.Pwm.1.1.1\lib\System.Device.Pwm.dll</HintPath>
-    </Reference>
-    <Reference Include="nanoFramework.WebServer">
-      <HintPath>..\packages\nanoFramework.WebServer.1.2.68\lib\nanoFramework.WebServer.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Net.Http">
-      <HintPath>..\packages\nanoFramework.System.Net.Http.1.1.108\lib\System.Net.Http.dll</HintPath>
     </Reference>
     <Reference Include="nanoFramework.Device.Bluetooth">
       <HintPath>..\packages\nanoFramework.Device.Bluetooth.1.1.77\lib\nanoFramework.Device.Bluetooth.dll</HintPath>
