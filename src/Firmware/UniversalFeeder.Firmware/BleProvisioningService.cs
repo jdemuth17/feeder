@@ -34,7 +34,7 @@ namespace UniversalFeeder.Firmware
             _server = BluetoothLEServer.Instance;
             _server.DeviceName = deviceName;
 
-            var serviceResult = GattServiceProvider.Create(Guid.Parse(_serviceUuid));
+            var serviceResult = GattServiceProvider.Create(new Guid(_serviceUuid));
             if (serviceResult.Error != BluetoothError.Success)
             {
                 Console.WriteLine("Failed to create GATT Service Provider");
@@ -45,7 +45,7 @@ namespace UniversalFeeder.Firmware
 
             // SSID Characteristic
             var ssidResult = _serviceProvider.Service.CreateCharacteristic(
-                Guid.Parse(_ssidUuid),
+                new Guid(_ssidUuid),
                 new GattLocalCharacteristicParameters
                 {
                     CharacteristicProperties = GattCharacteristicProperties.Write,
@@ -56,7 +56,7 @@ namespace UniversalFeeder.Firmware
 
             // Password Characteristic
             var passResult = _serviceProvider.Service.CreateCharacteristic(
-                Guid.Parse(_passUuid),
+                new Guid(_passUuid),
                 new GattLocalCharacteristicParameters
                 {
                     CharacteristicProperties = GattCharacteristicProperties.Write,
@@ -67,7 +67,7 @@ namespace UniversalFeeder.Firmware
 
             // IP Address Characteristic (Read/Notify)
             var ipResult = _serviceProvider.Service.CreateCharacteristic(
-                Guid.Parse(_ipUuid),
+                new Guid(_ipUuid),
                 new GattLocalCharacteristicParameters
                 {
                     CharacteristicProperties = GattCharacteristicProperties.Read | GattCharacteristicProperties.Notify,
@@ -88,8 +88,8 @@ namespace UniversalFeeder.Firmware
         public void UpdateIpAddress(string ip)
         {
 #if NANOFRAMEWORK
-            var buffer = Encoding.UTF8.GetBytes(ip);
-            _ipCharacteristic.StaticValue = buffer;
+            var bytes = Encoding.UTF8.GetBytes(ip);
+            var buffer = new Buffer(bytes);
             _ipCharacteristic.NotifyValue(buffer);
             Console.WriteLine($"BLE IP Updated: {ip}");
 #endif
@@ -99,7 +99,9 @@ namespace UniversalFeeder.Firmware
         private void OnSsidWriteRequested(GattLocalCharacteristic sender, GattWriteRequestedEventArgs e)
         {
             var request = e.GetRequest();
-            var data = request.Value.ToArray();
+            var reader = DataReader.FromBuffer(request.Value);
+            var data = new byte[reader.UnconsumedBufferLength];
+            reader.ReadBytes(data);
             Ssid = Encoding.UTF8.GetString(data, 0, data.Length);
             Console.WriteLine($"SSID Received: {Ssid}");
             
@@ -109,7 +111,9 @@ namespace UniversalFeeder.Firmware
         private void OnPassWriteRequested(GattLocalCharacteristic sender, GattWriteRequestedEventArgs e)
         {
             var request = e.GetRequest();
-            var data = request.Value.ToArray();
+            var reader = DataReader.FromBuffer(request.Value);
+            var data = new byte[reader.UnconsumedBufferLength];
+            reader.ReadBytes(data);
             Password = Encoding.UTF8.GetString(data, 0, data.Length);
             Console.WriteLine("Password Received");
 

@@ -15,6 +15,7 @@
     <RootNamespace>UniversalFeeder.Firmware</RootNamespace>
     <AssemblyName>UniversalFeeder.Firmware</AssemblyName>
     <TargetFrameworkVersion>v1.0</TargetFrameworkVersion>
+    <DefineConstants>$(DefineConstants);NANOFRAMEWORK</DefineConstants>
   </PropertyGroup>
   <Import Project="$(NanoFrameworkProjectSystemPath)NFProjectSystem.props" Condition="Exists('$(NanoFrameworkProjectSystemPath)NFProjectSystem.props')" />
   <ItemGroup>
@@ -43,10 +44,10 @@
       <HintPath>..\packages\nanoFramework.System.Device.Gpio.1.1.38\lib\System.Device.Gpio.dll</HintPath>
     </Reference>
     <Reference Include="System.Device.Pwm">
-      <HintPath>..\packages\nanoFramework.System.Device.Pwm.1.1.1\lib\System.Device.Pwm.dll</HintPath>
+      <HintPath>..\packages\nanoFramework.System.Device.Pwm.1.1.23\lib\System.Device.Pwm.dll</HintPath>
     </Reference>
     <Reference Include="nanoFramework.Device.Bluetooth">
-      <HintPath>..\packages\nanoFramework.Device.Bluetooth.1.1.77\lib\nanoFramework.Device.Bluetooth.dll</HintPath>
+      <HintPath>..\packages\nanoFramework.Device.Bluetooth.1.1.115\lib\nanoFramework.Device.Bluetooth.dll</HintPath>
     </Reference>
     <Reference Include="nanoFramework.System.Text">
       <HintPath>..\packages\nanoFramework.System.Text.1.2.54\lib\nanoFramework.System.Text.dll</HintPath>
@@ -60,8 +61,8 @@
     <Reference Include="nanoFramework.M2Mqtt">
       <HintPath>..\packages\nanoFramework.M2Mqtt.5.1.146\lib\nanoFramework.M2Mqtt.dll</HintPath>
     </Reference>
-    <Reference Include="nanoFramework.System.Net.Security">
-      <HintPath>..\packages\nanoFramework.System.Net.Security.1.0.33\lib\nanoFramework.System.Net.Security.dll</HintPath>
+    <Reference Include="nanoFramework.M2Mqtt.Core">
+      <HintPath>..\packages\nanoFramework.M2Mqtt.5.1.146\lib\nanoFramework.M2Mqtt.Core.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

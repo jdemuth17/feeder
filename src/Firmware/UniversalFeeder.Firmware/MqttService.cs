@@ -3,8 +3,8 @@ using System.Text;
 using System.Threading;
 using UniversalFeeder.Shared;
 #if NANOFRAMEWORK
-using uPLibrary.Networking.M2Mqtt;
-using uPLibrary.Networking.M2Mqtt.Messages;
+using nanoFramework.M2Mqtt;
+using nanoFramework.M2Mqtt.Messages;
 #endif
 
 namespace UniversalFeeder.Firmware
@@ -63,7 +63,7 @@ namespace UniversalFeeder.Firmware
         private void SubscribeToCommands()
         {
             string topic = MqttCommands.GetCommandTopic(_clientId);
-            _client.Subscribe(new string[] { topic }, new byte[] { MqttMsgBase.QOS_LEVEL_AT_LEAST_ONCE });
+            _client.Subscribe(new string[] { topic }, new MqttQoSLevel[] { MqttQoSLevel.AtLeastOnce });
         }
 
         private void OnConnectionClosed(object sender, EventArgs e)
@@ -110,7 +110,7 @@ namespace UniversalFeeder.Firmware
 
         private void IncreaseBackoff()
         {
-            _reconnectDelayMs = Math.Min(_reconnectDelayMs * 2, MaxReconnectDelayMs);
+            _reconnectDelayMs = (_reconnectDelayMs * 2 > MaxReconnectDelayMs) ? MaxReconnectDelayMs : _reconnectDelayMs * 2;
         }
 #endif
 

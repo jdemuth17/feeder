@@ -43,8 +43,13 @@ namespace UniversalFeeder.Mobile.Services
             var options = new MqttClientOptionsBuilder()
                 .WithTcpServer(Host, Port)
                 .WithCredentials(Username, Password)
-                .WithTlsOptions(o => o.UseTls())
-                .WithClientId($"mobile-{Guid.NewGuid():N}".Substring(0, 23))
+                .WithTlsOptions(o =>
+                {
+                    o.UseTls();
+                    o.WithSslProtocols(System.Security.Authentication.SslProtocols.Tls12);
+                    o.WithCertificateValidationHandler(_ => true);
+                })
+                .WithClientId($"mobile-{Guid.NewGuid():N}"[..23])
                 .WithCleanSession()
                 .Build();
 
@@ -55,8 +60,9 @@ namespace UniversalFeeder.Mobile.Services
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"MQTT Connect Error: {ex.Message}");
+                System.Diagnostics.Debug.WriteLine($"MQTT Connect Error: {ex}");
                 ConnectionChanged?.Invoke(this, false);
+                throw; // Let ViewModel display the error
             }
         }
 

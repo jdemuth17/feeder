@@ -114,7 +114,12 @@ namespace UniversalFeeder.Mobile.ViewModels
             }
             catch (Exception ex)
             {
-                Status = $"Connect error: {ex.Message}";
+                var fullError = ex.InnerException != null
+                    ? $"{ex.Message} → {ex.InnerException.Message}"
+                    : ex.Message;
+                Status = $"Error: {fullError}";
+                if (Application.Current?.Windows.FirstOrDefault()?.Page is Page page)
+                    await page.DisplayAlert("MQTT Error", fullError, "OK");
             }
             finally
             {

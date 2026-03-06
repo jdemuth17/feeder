@@ -11,5 +11,5 @@
 	<!-- Android 12+ BLE Permissions -->
 	<uses-permission android:name="android.permission.BLUETOOTH_SCAN" />
 	<uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
-	<uses-feature android:name="android.hardware.bluetooth_le" android:required="true" />
+	<uses-feature android:name="android.hardware.bluetooth_le" android:required="false" />
 </manifest>
