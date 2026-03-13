@@ -31,15 +31,19 @@ namespace UniversalFeeder.Firmware
         public void Start(string deviceName)
         {
 #if NANOFRAMEWORK
+            Console.WriteLine("BLE: Getting BluetoothLEServer instance...");
             _server = BluetoothLEServer.Instance;
+            Console.WriteLine($"BLE: Server instance acquired, setting name to: {deviceName}");
             _server.DeviceName = deviceName;
 
+            Console.WriteLine("BLE: Creating GATT Service Provider...");
             var serviceResult = GattServiceProvider.Create(new Guid(_serviceUuid));
             if (serviceResult.Error != BluetoothError.Success)
             {
-                Console.WriteLine("Failed to create GATT Service Provider");
+                Console.WriteLine($"Failed to create GATT Service Provider: {serviceResult.Error}");
                 return;
             }
+            Console.WriteLine("BLE: GATT Service Provider created");
 
             _serviceProvider = serviceResult.ServiceProvider;
 

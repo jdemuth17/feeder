@@ -1,5 +1,7 @@
 using Plugin.BLE;
+using Plugin.BLE.Abstractions;
 using Plugin.BLE.Abstractions.Contracts;
+using Microsoft.Maui.ApplicationModel;
 using System.Text;
 
 namespace UniversalFeeder.Mobile.Services
@@ -26,7 +28,14 @@ namespace UniversalFeeder.Mobile.Services
 
         public async Task<List<IDevice>> ScanForFeedersAsync(CancellationToken ct = default)
         {
+            await EnsureBlePermissionsAsync();
+
             var devices = new List<IDevice>();
+
+            foreach (var device in _adapter.GetSystemConnectedOrPairedDevices(new[] { ServiceUuid }))
+            {
+                AddIfMissing(devices, device);
+            }
 
             // Unsubscribe any previous handler to prevent leaks
             if (_discoveredHandler != null)
@@ -36,11 +45,7 @@ namespace UniversalFeeder.Mobile.Services
 
             _discoveredHandler = (s, a) =>
             {
-                if (a.Device.Name?.Contains("Feeder") == true &&
-                    !devices.Any(d => d.Id == a.Device.Id))
-                {
-                    devices.Add(a.Device);
-                }
+                AddIfMissing(devices, a.Device);
             };
             _adapter.DeviceDiscovered += _discoveredHandler;
 
@@ -61,10 +66,50 @@ namespace UniversalFeeder.Mobile.Services
             return devices;
         }
 
+        private static void AddIfMissing(List<IDevice> devices, IDevice device)
+        {
+            if (devices.Any(d => d.Id == device.Id))
+            {
+                return;
+            }
+
+            if (IsFeederDevice(device))
+            {
+                devices.Add(device);
+            }
+        }
+
+        private static bool IsFeederDevice(IDevice device)
+        {
+            if (device.Name?.Contains("Feeder", StringComparison.OrdinalIgnoreCase) == true)
+            {
+                return true;
+            }
+
+            foreach (var record in device.AdvertisementRecords)
+            {
+                if (record.Type != AdvertisementRecordType.CompleteLocalName &&
+                    record.Type != AdvertisementRecordType.ShortLocalName)
+                {
+                    continue;
+                }
+
+                var advertisedName = Encoding.UTF8.GetString(record.Data);
+                if (advertisedName.Contains("Feeder", StringComparison.OrdinalIgnoreCase))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
         public async Task<string?> ProvisionDeviceAsync(IDevice device, string ssid, string password)
         {
             try
             {
+                await EnsureBlePermissionsAsync();
+
                 await _adapter.ConnectToDeviceAsync(device);
                 var services = await device.GetServicesAsync();
                 var service = services.FirstOrDefault(s => s.Id == ServiceUuid);
@@ -109,5 +154,57 @@ namespace UniversalFeeder.Mobile.Services
                 throw;
             }
         }
+
+        private static async Task EnsureBlePermissionsAsync()
+        {
+#if ANDROID
+            if (OperatingSystem.IsAndroidVersionAtLeast(31))
+            {
+                var scanStatus = await Permissions.CheckStatusAsync<BluetoothScanPermission>();
+                if (scanStatus != PermissionStatus.Granted)
+                {
+                    scanStatus = await Permissions.RequestAsync<BluetoothScanPermission>();
+                }
+
+                var connectStatus = await Permissions.CheckStatusAsync<BluetoothConnectPermission>();
+                if (connectStatus != PermissionStatus.Granted)
+                {
+                    connectStatus = await Permissions.RequestAsync<BluetoothConnectPermission>();
+                }
+
+                if (scanStatus != PermissionStatus.Granted || connectStatus != PermissionStatus.Granted)
+                {
+                    throw new InvalidOperationException("Bluetooth permissions are required to scan and connect to feeders.");
+                }
+            }
+            else
+            {
+                var locationStatus = await Permissions.CheckStatusAsync<Permissions.LocationWhenInUse>();
+                if (locationStatus != PermissionStatus.Granted)
+                {
+                    locationStatus = await Permissions.RequestAsync<Permissions.LocationWhenInUse>();
+                }
+
+                if (locationStatus != PermissionStatus.Granted)
+                {
+                    throw new InvalidOperationException("Location permission is required to scan for feeders on this Android version.");
+                }
+            }
+#endif
+        }
+
+#if ANDROID
+        private sealed class BluetoothScanPermission : Permissions.BasePlatformPermission
+        {
+            public override (string androidPermission, bool isRuntime)[] RequiredPermissions =>
+                new[] { (global::Android.Manifest.Permission.BluetoothScan, true) };
+        }
+
+        private sealed class BluetoothConnectPermission : Permissions.BasePlatformPermission
+        {
+            public override (string androidPermission, bool isRuntime)[] RequiredPermissions =>
+                new[] { (global::Android.Manifest.Permission.BluetoothConnect, true) };
+        }
+#endif
     }
 }

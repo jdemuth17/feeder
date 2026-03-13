@@ -13,52 +13,75 @@ namespace UniversalFeeder.Firmware
         private static MqttService _mqttService;
         private static IFeedingSequenceService _feedingSequence;
 
+        // Set to true to always start in BLE provisioning mode for testing
+        private const bool ForceProvisioningMode = true;
+
         public static void Main()
         {
-            Console.WriteLine("Universal Auto-Feeder Firmware Starting...");
+            try
+            {
+                Console.WriteLine("Universal Auto-Feeder Firmware Starting...");
+                Console.WriteLine($"Force Provisioning Mode: {ForceProvisioningMode}");
 
-            // 1. Check for Wi-Fi Credentials
-            if (!WifiConfigurationService.HasCredentials())
-            {
-                StartProvisioningMode();
+                // 1. Check for Wi-Fi Credentials (or force provisioning)
+                if (ForceProvisioningMode || !WifiConfigurationService.HasCredentials())
+                {
+                    StartProvisioningMode();
+                }
+                else
+                {
+                    StartNormalMode();
+                }
+                
+                Thread.Sleep(Timeout.Infinite);
             }
-            else
+            catch (Exception ex)
             {
-                StartNormalMode();
+                Console.WriteLine($"FATAL: {ex.Message}");
+                Console.WriteLine($"Stack: {ex.StackTrace}");
+                Thread.Sleep(Timeout.Infinite);
             }
-            
-            Thread.Sleep(Timeout.Infinite);
         }
 
         private static void StartProvisioningMode()
         {
-            Console.WriteLine("Entering Provisioning Mode (BLE)...");
-            _bleService = new BleProvisioningService();
-            _bleService.OnCredentialsReceived += (s, e) =>
+            try
             {
-                Console.WriteLine("Credentials received. Attempting connection...");
-                WifiConfigurationService.SaveCredentials(_bleService.Ssid, _bleService.Password);
-                
-                string ip = WifiConfigurationService.WaitForIp();
-                if (ip != null)
+                Console.WriteLine("Entering Provisioning Mode (BLE)...");
+                _bleService = new BleProvisioningService();
+                Console.WriteLine("BleProvisioningService created");
+                _bleService.OnCredentialsReceived += (s, e) =>
                 {
-                    Console.WriteLine($"Connected! IP: {ip}");
-                    _bleService.UpdateIpAddress(ip);
+                    Console.WriteLine("Credentials received. Attempting connection...");
+                    WifiConfigurationService.SaveCredentials(_bleService.Ssid, _bleService.Password);
                     
-                    // Give mobile app time to read IP
-                    Thread.Sleep(5000);
-                    
-                    Console.WriteLine("Provisioning complete. Rebooting...");
+                    string ip = WifiConfigurationService.WaitForIp();
+                    if (ip != null)
+                    {
+                        Console.WriteLine($"Connected! IP: {ip}");
+                        _bleService.UpdateIpAddress(ip);
+                        
+                        // Give mobile app time to read IP
+                        Thread.Sleep(5000);
+                        
+                        Console.WriteLine("Provisioning complete. Rebooting...");
 #if NANOFRAMEWORK
-                    nanoFramework.Runtime.Native.Power.RebootDevice();
+                        nanoFramework.Runtime.Native.Power.RebootDevice();
 #endif
-                }
-                else
-                {
+                    }
+                    else
+                    {
                     Console.WriteLine("Connection failed. Remaining in provisioning mode.");
                 }
             };
             _bleService.Start("Feeder-Setup");
+            Console.WriteLine("BLE advertising started successfully");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"BLE ERROR: {ex.Message}");
+                Console.WriteLine($"Stack: {ex.StackTrace}");
+            }
         }
 
         private static void StartNormalMode()

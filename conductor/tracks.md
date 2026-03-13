@@ -31,3 +31,8 @@ This file tracks all major tracks for the project. Each track has its own detail
 
 - [x] **Track: System Configuration: Implement a settings interface to manage HiveMQ MQTT credentials and other global variables via the dashboard.**
   *Link: [./tracks/system_configuration_20260219/](./tracks/system_configuration_20260219/)*
+
+---
+
+- [ ] **Track: ESP-IDF Firmware Rewrite: Replace the ESP32 nanoFramework firmware with native ESP-IDF C while preserving the .NET mobile and server integration contracts.**
+  *Link: [./tracks/esp_idf_firmware_rewrite_20260311/](./tracks/esp_idf_firmware_rewrite_20260311/)*
