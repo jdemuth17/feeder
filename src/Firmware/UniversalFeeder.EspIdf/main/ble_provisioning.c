@@ -39,6 +39,65 @@ static const ble_uuid128_t s_ip_uuid = BLE_UUID128_INIT(
 
 static void ble_app_advertise(void);
 
+static const char *describe_ble_reason(int reason)
+{
+    switch (reason) {
+    case BLE_HS_ETIMEOUT:
+        return "operation timed out";
+    case BLE_HS_ETIMEOUT_HCI:
+        return "HCI request timed out";
+    case BLE_HS_ERR_HCI_BASE + 0x08:
+        return "connection timeout";
+    case BLE_HS_ERR_HCI_BASE + 0x13:
+        return "remote user terminated connection";
+    case BLE_HS_ERR_HCI_BASE + 0x16:
+        return "connection terminated by local host";
+    default:
+        return "unknown";
+    }
+}
+
+static void format_ble_addr(const ble_addr_t *address, char *buffer, size_t buffer_len)
+{
+    if (address == NULL || buffer == NULL || buffer_len < 18) {
+        return;
+    }
+
+    snprintf(
+        buffer,
+        buffer_len,
+        "%02X:%02X:%02X:%02X:%02X:%02X",
+        address->val[5],
+        address->val[4],
+        address->val[3],
+        address->val[2],
+        address->val[1],
+        address->val[0]);
+}
+
+static void log_conn_desc(const char *prefix, const struct ble_gap_conn_desc *desc)
+{
+    if (desc == NULL) {
+        return;
+    }
+
+    char peer_addr[18] = {0};
+    char local_addr[18] = {0};
+    format_ble_addr(&desc->peer_ota_addr, peer_addr, sizeof(peer_addr));
+    format_ble_addr(&desc->our_ota_addr, local_addr, sizeof(local_addr));
+
+    ESP_LOGI(
+        TAG,
+        "%s conn_handle=%u peer=%s our=%s interval=%u latency=%u timeout=%u",
+        prefix,
+        desc->conn_handle,
+        peer_addr,
+        local_addr,
+        desc->conn_itvl,
+        desc->conn_latency,
+        desc->supervision_timeout);
+}
+
 static esp_err_t maybe_commit_credentials(void)
 {
     if (s_pending_credentials.ssid[0] == '\0' || s_pending_credentials.password[0] == '\0') {
@@ -153,19 +212,45 @@ static int gap_event_cb(struct ble_gap_event *event, void *arg)
     case BLE_GAP_EVENT_CONNECT:
         if (event->connect.status == 0) {
             s_connection_handle = event->connect.conn_handle;
-            ESP_LOGI(TAG, "BLE client connected");
+            struct ble_gap_conn_desc desc;
+            if (ble_gap_conn_find(event->connect.conn_handle, &desc) == 0) {
+                log_conn_desc("BLE client connected", &desc);
+            } else {
+                ESP_LOGI(TAG, "BLE client connected; conn_handle=%u", event->connect.conn_handle);
+            }
         } else {
-            ESP_LOGW(TAG, "BLE connection failed; restarting advertisement");
+            ESP_LOGW(TAG, "BLE connection failed; status=%d; restarting advertisement", event->connect.status);
             ble_app_advertise();
         }
         return 0;
     case BLE_GAP_EVENT_DISCONNECT:
-        ESP_LOGI(TAG, "BLE client disconnected");
+        log_conn_desc("BLE client disconnected", &event->disconnect.conn);
+        if (event->disconnect.reason >= BLE_HS_ERR_HCI_BASE && event->disconnect.reason < BLE_HS_ERR_L2C_BASE) {
+            ESP_LOGI(
+                TAG,
+                "BLE disconnect reason=%d (%s, hci=0x%02X)",
+                event->disconnect.reason,
+                describe_ble_reason(event->disconnect.reason),
+                event->disconnect.reason - BLE_HS_ERR_HCI_BASE);
+        } else {
+            ESP_LOGI(
+                TAG,
+                "BLE disconnect reason=%d (%s)",
+                event->disconnect.reason,
+                describe_ble_reason(event->disconnect.reason));
+        }
         s_connection_handle = BLE_HS_CONN_HANDLE_NONE;
         ble_app_advertise();
         return 0;
     case BLE_GAP_EVENT_SUBSCRIBE:
-        ESP_LOGI(TAG, "Client subscription updated for IP notifications");
+        ESP_LOGI(
+            TAG,
+            "Client subscription updated: conn_handle=%u attr_handle=%u reason=%u prev_notify=%u cur_notify=%u",
+            event->subscribe.conn_handle,
+            event->subscribe.attr_handle,
+            event->subscribe.reason,
+            event->subscribe.prev_notify,
+            event->subscribe.cur_notify);
         return 0;
     case BLE_GAP_EVENT_ADV_COMPLETE:
         ble_app_advertise();

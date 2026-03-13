@@ -19,8 +19,13 @@
                             SelectionMode="Single">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <Frame Padding="10" Margin="0,4" CornerRadius="8" HasShadow="True">
-                            <Label Text="{Binding Name}" FontSize="16" />
+                        <Frame Padding="10" Margin="0,4" CornerRadius="8" HasShadow="True"
+                               BackgroundColor="{AppThemeBinding Light=White, Dark=#2A2A2A}">
+                            <VerticalStackLayout Spacing="4">
+                                <Label Text="{Binding DisplayName}" FontSize="16"
+                                       TextColor="{AppThemeBinding Light=Black, Dark=White}" />
+                                <Label Text="{Binding SecondaryText}" FontSize="12" TextColor="Gray" LineBreakMode="MiddleTruncation" />
+                            </VerticalStackLayout>
                         </Frame>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>

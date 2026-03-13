@@ -1,0 +1,250 @@
+Command: C:\Espressif\python_env\idf5.5_py3.11_env\Scripts\python.exe C:\Espressif\frameworks\esp-idf-v5.5.3\tools/idf_monitor.py -p COM4 -b 115200 --toolchain-prefix xtensa-esp32-elf- --target esp32 --revision 0 C:\Users\Demuth_jm\DOTNET Projects\feeder\src\Firmware\UniversalFeeder.EspIdf\build\universal_feeder.elf C:\Users\Demuth_jm\DOTNET Projects\feeder\src\Firmware\UniversalFeeder.EspIdf\build\bootloader\bootloader.elf --force-color -m 'C:\Espressif\python_env\idf5.5_py3.11_env\Scripts\python.exe' 'C:\Espressif\frameworks\esp-idf-v5.5.3\tools\idf.py' '-p' 'COM4'
+ets Jul 29 2019 12:21:46
+
+rst:0x1 (POWERON_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0030,len:6280
+load:0x40078000,len:15864
+load:0x40080400,len:3920
+entry 0x40080644
+[0;32mI (27) boot: ESP-IDF v5.5.3 2nd stage bootloader[0m
+[0;32mI (27) boot: compile time Mar 11 2026 13:23:30[0m
+[0;32mI (28) boot: Multicore bootloader[0m
+[0;32mI (29) boot: chip revision: v3.1[0m
+[0;32mI (32) boot.esp32: SPI Speed      : 40MHz[0m
+[0;32mI (35) boot.esp32: SPI Mode       : DIO[0m
+[0;32mI (39) boot.esp32: SPI Flash Size : 4MB[0m
+[0;32mI (42) boot: Enabling RNG early entropy source...[0m
+[0;32mI (47) boot: Partition Table:[0m
+[0;32mI (49) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (56) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (62) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (69) boot:  2 factory          factory app      00 00 00010000 00100000[0m
+[0;32mI (75) boot: End of partition table[0m
+[0;32mI (79) esp_image: segment 0: paddr=00010020 vaddr=3f400020 size=1e4b8h (124088) map[0m
+[0;32mI (129) esp_image: segment 1: paddr=0002e4e0 vaddr=3ffbdb60 size=01b38h (  6968) load[0m
+[0;32mI (131) esp_image: segment 2: paddr=00030020 vaddr=400d0020 size=a5924h (678180) map[0m
+[0;32mI (364) esp_image: segment 3: paddr=000d594c vaddr=3ffbf698 size=04214h ( 16916) load[0m
+[0;32mI (371) esp_image: segment 4: paddr=000d9b68 vaddr=40080000 size=1f430h (128048) load[0m
+[0;32mI (421) esp_image: segment 5: paddr=000f8fa0 vaddr=50000000 size=00020h (    32) load[0m
+[0;32mI (436) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (436) boot: Disabling RNG early entropy source...[0m
+[0;32mI (447) cpu_start: Multicore app[0m
+[0;32mI (455) cpu_start: GPIO 3 and 1 are used as console UART I/O pins[0m
+[0;32mI (455) cpu_start: Pro cpu start user code[0m
+[0;32mI (455) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (457) app_init: Application information:[0m
+[0;32mI (461) app_init: Project name:     universal_feeder[0m
+[0;32mI (466) app_init: App version:      14bf1ed-dirty[0m
+[0;32mI (470) app_init: Compile time:     Mar 13 2026 10:26:53[0m
+[0;32mI (475) app_init: ELF file SHA256:  96ccee53e...[0m
+[0;32mI (480) app_init: ESP-IDF:          v5.5.3[0m
+[0;32mI (483) efuse_init: Min chip rev:     v0.0[0m
+[0;32mI (487) efuse_init: Max chip rev:     v3.99 [0m
+[0;32mI (491) efuse_init: Chip rev:         v3.1[0m
+[0;32mI (495) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (501) heap_init: At 3FFAFF10 len 000000F0 (0 KiB): DRAM[0m
+[0;32mI (506) heap_init: At 3FFB6388 len 00001C78 (7 KiB): DRAM[0m
+[0;32mI (511) heap_init: At 3FFB9A20 len 00004108 (16 KiB): DRAM[0m
+[0;32mI (517) heap_init: At 3FFC89B8 len 00017648 (93 KiB): DRAM[0m
+[0;32mI (522) heap_init: At 3FFE0440 len 00003AE0 (14 KiB): D/IRAM[0m
+[0;32mI (527) heap_init: At 3FFE4350 len 0001BCB0 (111 KiB): D/IRAM[0m
+[0;32mI (533) heap_init: At 4009F430 len 00000BD0 (2 KiB): IRAM[0m
+[0;32mI (540) spi_flash: detected chip: generic[0m
+[0;32mI (542) spi_flash: flash io: dio[0m
+[0;32mI (546) coexist: coex firmware version: 093e3d2[0m
+[0;32mI (550) main_task: Started on CPU0[0m
+[0;32mI (553) main_task: Calling app_main()[0m
+[0;32mI (570) wifi:wifi driver task: 3ffcc86c, prio:23, stack:6656, core=0[0m
+[0;32mI (577) wifi:wifi firmware version: 4df78f2[0m
+[0;32mI (578) wifi:wifi certification version: v7.0[0m
+[0;32mI (578) wifi:config NVS flash: enabled[0m
+[0;32mI (579) wifi:config nano formatting: disabled[0m
+[0;32mI (583) wifi:Init data frame dynamic rx buffer num: 32[0m
+[0;32mI (588) wifi:Init static rx mgmt buffer num: 5[0m
+[0;32mI (592) wifi:Init management short buffer num: 32[0m
+[0;32mI (597) wifi:Init dynamic tx buffer num: 32[0m
+[0;32mI (601) wifi:Init static rx buffer size: 1600[0m
+[0;32mI (605) wifi:Init static rx buffer num: 10[0m
+[0;32mI (608) wifi:Init dynamic rx buffer num: 32[0m
+[0;32mI (614) wifi_init: rx ba win: 6[0m
+[0;32mI (615) wifi_init: accept mbox: 6[0m
+[0;32mI (618) wifi_init: tcpip mbox: 32[0m
+[0;32mI (621) wifi_init: udp mbox: 6[0m
+[0;32mI (624) wifi_init: tcp mbox: 6[0m
+[0;32mI (627) wifi_init: tcp tx win: 5760[0m
+[0;32mI (630) wifi_init: tcp rx win: 5760[0m
+[0;32mI (633) wifi_init: tcp mss: 1440[0m
+[0;32mI (636) wifi_init: WiFi IRAM OP enabled[0m
+[0;32mI (640) wifi_init: WiFi RX IRAM OP enabled[0m
+[0;32mI (644) UniversalFeeder: UniversalFeeder ESP-IDF Firmware[0m
+[0;32mI (649) UniversalFeeder: Device: Feeder-Setup[0m
+[0;32mI (653) UniversalFeeder: BLE Service UUID: 4fafc201-1fb5-459e-8fcc-c5c9c331914b[0m
+[0;32mI (660) UniversalFeeder: MQTT Topic Pattern: feeders/{feederId}/commands[0m
+[0;32mI (666) UniversalFeeder: No Wi-Fi credentials stored; entering provisioning mode[0m
+[0;33mW (674) BTDM_INIT: esp_bt_controller_rom_mem_release already released, mode 2[0m
+[0;32mI (681) BTDM_INIT: BT controller compile version [045a658][0m
+[0;32mI (686) BTDM_INIT: Using main XTAL as clock source[0m
+[0;32mI (691) BTDM_INIT: Bluetooth MAC: f4:2d:c9:6c:12:7e[0m
+[0;32mI (697) phy_init: phy_version 4863,a3a4459,Oct 28 2025,14:30:06[0m
+[0;32mI (1024) UniversalFeeder: Firmware initialization complete[0m
+[0;32mI (1074) NimBLE: GAP procedure initiated: advertise; [0m
+[0;32mI (1074) NimBLE: disc_mode=2[0m
+[0;32mI (1074) NimBLE:  adv_channel_map=0 own_addr_type=0 adv_filter_policy=0 adv_itvl_min=0 adv_itvl_max=0[0m
+[0;32mI (1079) NimBLE: [0m
+
+[0;32mI (1086) BleProvisioning: Advertising provisioning service as Feeder-Setup[0m
+[0;32mI (33225) BleProvisioning: BLE client connected conn_handle=0 peer=54:8C:D4:54:26:36 our=F4:2D:C9:6C:12:7E interval=12 latency=0 timeout=500[0m
+[0;32mI (33361) BleProvisioning: BLE client disconnected conn_handle=0 peer=54:8C:D4:54:26:36 our=F4:2D:C9:6C:12:7E interval=12 latency=0 timeout=500[0m
+[0;32mI (33362) BleProvisioning: BLE disconnect reason=531 (remote user terminated connection, hci=0x13)[0m
+[0;32mI (33377) NimBLE: GAP procedure initiated: advertise; [0m
+[0;32mI (33378) NimBLE: disc_mode=2[0m
+[0;32mI (33379) NimBLE:  adv_channel_map=0 own_addr_type=0 adv_filter_policy=0 adv_itvl_min=0 adv_itvl_max=0[0m
+[0;32mI (33388) NimBLE: [0m
+
+[0;32mI (33395) BleProvisioning: Advertising provisioning service as Feeder-Setup[0m
+����������������������������������������������������������������104739) BleProvisioning: BLE client connected conn_handle=0 peer=54:8C:D4:54:26:36 our=F4:2D:C9:6C:12:7E interval=12 latency=0 timeout=500
+[0;32mI (104889) BleProvisioning: BLE client disconnected conn_handle=0 peer=54:8C:D4:54:26:36 our=F4:2D:C9:6C:12:7E interval=12 latency=0 timeout=500[0m
+[0;32mI (104891) BleProvisioning: BLE disconnect reason=531 (remote user terminated connection, hci=0x13)[0m
+[0;32mI (104906) NimBLE: GAP procedure initiated: advertise; [0m
+[0;32mI (104906) NimBLE: disc_mode=2[0m
+[0;32mI (104908) NimBLE:  adv_channel_map=0 own_addr_type=0 adv_filter_policy=0 adv_itvl_min=0 adv_itvl_max=0[0m
+[0;32mI (104917) NimBLE: [0m
+
+[0;32mI (104924) BleProvisioning: Advertising provisioning service as Feeder-Setup[0m
+[0;32mI (124986) BleProvisioning: BLE client connected conn_handle=0 peer=54:8C:D4:54:26:36 our=F4:2D:C9:6C:12:7E interval=12 latency=0 timeout=500[0m
+[0;32mI (125136) BleProvisioning: BLE client disconnected conn_handle=0 peer=54:8C:D4:54:26:36 our=F4:2D:C9:6C:12:7E interval=12 latency=0 timeout=500[0m
+[0;32mI (125138) BleProvisioning: BLE disconnect reason=531 (remote user terminated connection, hci=0x13)[0m
+[0;32mI (125153) NimBLE: GAP procedure initiated: advertise; [0m
+[0;32mI (125153) NimBLE: disc_mode=2[0m
+[0;32mI (125154) NimBLE:  adv_channel_map=0 own_addr_type=0 adv_filter_policy=0 adv_itvl_min=0 adv_itvl_max=0[0m
+[0;32mI (125163) NimBLE: [0m
+
+[0;32mI (125171) BleProvisioning: Advertising provisioning service as Feeder-Setup[0m
+[0;32mI (131193) BleProvisioning: BLE client connected conn_handle=0 peer=54:8C:D4:54:26:36 our=F4:2D:C9:6C:12:7E interval=12 latency=0 timeout=500[0m
+[0;32mI (131328) BleProvisioning: BLE client disconnected conn_handle=0 peer=54:8C:D4:54:26:36 our=F4:2D:C9:6C:12:7E interval=12 latency=0 timeout=500[0m
+[0;32mI (131330) BleProvisioning: BLE disconnect reason=531 (remote user terminated connection, hci=0x13)[0m
+[0;32mI (131345) NimBLE: GAP procedure initiated: advertise; [0m
+[0;32mI (131346) NimBLE: disc_mode=2[0m
+[0;32mI (131347) NimBLE:  adv_channel_map=0 own_addr_type=0 adv_filter_policy=0 adv_itvl_min=0 adv_itvl_max=0[0m
+[0;32mI (131356) NimBLE: [0m
+
+[0;32mI (131363) BleProvisioning: Advertising provisioning service as Feeder-Setup[0m
+[0;32mI (134686) BleProvisioning: BLE client connected conn_handle=0 peer=54:8C:D4:54:26:36 our=F4:2D:C9:6C:12:7E interval=12 latency=0 timeout=500[0m
+[0;32mI (134821) BleProvisioning: BLE client disconnected conn_handle=0 peer=54:8C:D4:54:26:36 our=F4:2D:C9:6C:12:7E interval=12 latency=0 timeout=500[0m
+[0;32mI (134823) BleProvisioning: BLE disconnect reason=531 (remote user terminated connection, hci=0x13)[0m
+[0;32mI (134838) NimBLE: GAP procedure initiated: advertise; [0m
+[0;32mI (134838) NimBLE: disc_mode=2[0m
+[0;32mI (134839) NimBLE:  adv_channel_map=0 own_addr_type=0 adv_filter_policy=0 adv_itvl_min=0 adv_itvl_max=0[0m
+[0;32mI (134849) NimBLE: [0m
+
+[0;32mI (134856) BleProvisioning: Advertising provisioning service as Feeder-Setup[0m
+���������������������������������������������������������������� (138358) BleProvisioning: BLE client connected conn_handle=0 peer=54:8C:D4:54:26:36 our=F4:2D:C9:6C:12:7E interval=12 latency=0 timeout=500
+[0;32mI (138494) BleProvisioning: BLE client disconnected conn_handle=0 peer=54:8C:D4:54:26:36 our=F4:2D:C9:6C:12:7E interval=12 latency=0 timeout=500[0m
+[0;32mI (138496) BleProvisioning: BLE disconnect reason=531 (remote user terminated connection, hci=0x13)[0m
+[0;32mI (138510) NimBLE: GAP procedure initiated: advertise; [0m
+[0;32mI (138511) NimBLE: disc_mode=2[0m
+[0;32mI (138512) NimBLE:  adv_channel_map=0 own_addr_type=0 adv_filter_policy=0 adv_itvl_min=0 adv_itvl_max=0[0m
+[0;32mI (138521) NimBLE: [0m
+
+[0;32mI (138528) BleProvisioning: Advertising provisioning service as Feeder-Setup[0m
+ets Jul 29 2019 12:21:46
+
+rst:0x1 (POWERON_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0030,len:6280
+load:0x40078000,len:15864
+load:0x40080400,len:3920
+entry 0x40080644
+[0;32mI (27) boot: ESP-IDF v5.5.3 2nd stage bootloader[0m
+[0;32mI (27) boot: compile time Mar 11 2026 13:23:30[0m
+[0;32mI (28) boot: Multicore bootloader[0m
+[0;32mI (29) boot: chip revision: v3.1[0m
+[0;32mI (32) boot.esp32: SPI Speed      : 40MHz[0m
+[0;32mI (35) boot.esp32: SPI Mode       : DIO[0m
+[0;32mI (39) boot.esp32: SPI Flash Size : 4MB[0m
+[0;32mI (42) boot: Enabling RNG early entropy source...[0m
+[0;32mI (47) boot: Partition Table:[0m
+[0;32mI (49) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (56) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (62) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (69) boot:  2 factory          factory app      00 00 00010000 00100000[0m
+[0;32mI (75) boot: End of partition table[0m
+[0;32mI (79) esp_image: segment 0: paddr=00010020 vaddr=3f400020 size=1e4b8h (124088) map[0m
+[0;32mI (129) esp_image: segment 1: paddr=0002e4e0 vaddr=3ffbdb60 size=01b38h (  6968) load[0m
+[0;32mI (131) esp_image: segment 2: paddr=00030020 vaddr=400d0020 size=a5924h (678180) map[0m
+[0;32mI (364) esp_image: segment 3: paddr=000d594c vaddr=3ffbf698 size=04214h ( 16916) load[0m
+[0;32mI (371) esp_image: segment 4: paddr=000d9b68 vaddr=40080000 size=1f430h (128048) load[0m
+[0;32mI (421) esp_image: segment 5: paddr=000f8fa0 vaddr=50000000 size=00020h (    32) load[0m
+[0;32mI (436) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (436) boot: Disabling RNG early entropy source...[0m
+[0;32mI (447) cpu_start: Multicore app[0m
+[0;32mI (455) cpu_start: GPIO 3 and 1 are used as console UART I/O pins[0m
+[0;32mI (455) cpu_start: Pro cpu start user code[0m
+[0;32mI (455) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (457) app_init: Application information:[0m
+[0;32mI (461) app_init: Project name:     universal_feeder[0m
+[0;32mI (466) app_init: App version:      14bf1ed-dirty[0m
+[0;32mI (470) app_init: Compile time:     Mar 13 2026 10:26:53[0m
+[0;32mI (475) app_init: ELF file SHA256:  96ccee53e...[0m
+[0;32mI (480) app_init: ESP-IDF:          v5.5.3[0m
+[0;32mI (483) efuse_init: Min chip rev:     v0.0[0m
+[0;32mI (487) efuse_init: Max chip rev:     v3.99 [0m
+[0;32mI (491) efuse_init: Chip rev:         v3.1[0m
+[0;32mI (495) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (501) heap_init: At 3FFAFF10 len 000000F0 (0 KiB): DRAM[0m
+[0;32mI (506) heap_init: At 3FFB6388 len 00001C78 (7 KiB): DRAM[0m
+[0;32mI (512) heap_init: At 3FFB9A20 len 00004108 (16 KiB): DRAM[0m
+[0;32mI (517) heap_init: At 3FFC89B8 len 00017648 (93 KiB): DRAM[0m
+[0;32mI (522) heap_init: At 3FFE0440 len 00003AE0 (14 KiB): D/IRAM[0m
+[0;32mI (527) heap_init: At 3FFE4350 len 0001BCB0 (111 KiB): D/IRAM[0m
+[0;32mI (533) heap_init: At 4009F430 len 00000BD0 (2 KiB): IRAM[0m
+[0;32mI (540) spi_flash: detected chip: generic[0m
+[0;32mI (542) spi_flash: flash io: dio[0m
+[0;32mI (546) coexist: coex firmware version: 093e3d2[0m
+[0;32mI (550) main_task: Started on CPU0[0m
+[0;32mI (553) main_task: Calling app_main()[0m
+[0;32mI (570) wifi:wifi driver task: 3ffcc86c, prio:23, stack:6656, core=0[0m
+[0;32mI (577) wifi:wifi firmware version: 4df78f2[0m
+[0;32mI (578) wifi:wifi certification version: v7.0[0m
+[0;32mI (578) wifi:config NVS flash: enabled[0m
+[0;32mI (579) wifi:config nano formatting: disabled[0m
+[0;32mI (583) wifi:Init data frame dynamic rx buffer num: 32[0m
+[0;32mI (588) wifi:Init static rx mgmt buffer num: 5[0m
+[0;32mI (592) wifi:Init management short buffer num: 32[0m
+[0;32mI (597) wifi:Init dynamic tx buffer num: 32[0m
+[0;32mI (601) wifi:Init static rx buffer size: 1600[0m
+[0;32mI (605) wifi:Init static rx buffer num: 10[0m
+[0;32mI (608) wifi:Init dynamic rx buffer num: 32[0m
+[0;32mI (614) wifi_init: rx ba win: 6[0m
+[0;32mI (615) wifi_init: accept mbox: 6[0m
+[0;32mI (618) wifi_init: tcpip mbox: 32[0m
+[0;32mI (621) wifi_init: udp mbox: 6[0m
+[0;32mI (624) wifi_init: tcp mbox: 6[0m
+[0;32mI (627) wifi_init: tcp tx win: 5760[0m
+[0;32mI (630) wifi_init: tcp rx win: 5760[0m
+[0;32mI (633) wifi_init: tcp mss: 1440[0m
+[0;32mI (636) wifi_init: WiFi IRAM OP enabled[0m
+[0;32mI (640) wifi_init: WiFi RX IRAM OP enabled[0m
+[0;32mI (644) UniversalFeeder: UniversalFeeder ESP-IDF Firmware[0m
+[0;32mI (649) UniversalFeeder: Device: Feeder-Setup[0m
+[0;32mI (653) UniversalFeeder: BLE Service UUID: 4fafc201-1fb5-459e-8fcc-c5c9c331914b[0m
+[0;32mI (660) UniversalFeeder: MQTT Topic Pattern: feeders/{feederId}/commands[0m
+[0;32mI (666) UniversalFeeder: No Wi-Fi credentials stored; entering provisioning mode[0m
+[0;33mW (674) BTDM_INIT: esp_bt_controller_rom_mem_release already released, mode 2[0m
+[0;32mI (681) BTDM_INIT: BT controller compile version [045a658][0m
+[0;32mI (686) BTDM_INIT: Using main XTAL as clock source[0m
+[0;32mI (691) BTDM_INIT: Bluetooth MAC: f4:2d:c9:6c:12:7e[0m
+[0;32mI (697) phy_init: phy_version 4863,a3a4459,Oct 28 2025,14:30:06[0m
+[0;32mI (782) phy_init: Saving new calibration data due to checksum failure or outdated calibration data, mode(0)[0m
+[0;32mI (1038) UniversalFeeder: Firmware initialization complete[0m
+[0;32mI (1087) NimBLE: GAP procedure initiated: advertise; [0m
+[0;32mI (1087) NimBLE: disc_mode=2[0m
+[0;32mI (1088) NimBLE:  adv_channel_map=0 own_addr_type=0 adv_filter_policy=0 adv_itvl_min=0 adv_itvl_max=0[0m
+[0;32mI (1093) NimBLE: [0m
+
+[0;32mI (1099) BleProvisioning: Advertising provisioning service as Feeder-Setup[0m
