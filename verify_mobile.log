@@ -1,0 +1,12 @@
+  Determining projects to restore...
+  All projects are up-to-date for restore.
+C:\Users\Demuth_jm\DOTNET Projects\feeder\src\Mobile\UniversalFeeder.Mobile\Services\BleService.cs(798,32): warning CS0618: 'BluetoothDevice.ConnectGatt(Context?, bool, BluetoothGattCallback?, BluetoothTransports, ScanSettingsPhy, Handler?)' is obsolete: 'This method has the wrong enumeration. Use the version that takes an 'Android.Bluetooth.BluetoothPhy' instead.' [C:\Users\Demuth_jm\DOTNET Projects\feeder\src\Mobile\UniversalFeeder.Mobile\UniversalFeeder.Mobile.csproj::TargetFramework=net10.0-android]
+  UniversalFeeder.Mobile -> C:\Users\Demuth_jm\DOTNET Projects\feeder\src\Mobile\UniversalFeeder.Mobile\bin\Debug\net10.0-android\UniversalFeeder.Mobile.dll
+
+Build succeeded.
+
+C:\Users\Demuth_jm\DOTNET Projects\feeder\src\Mobile\UniversalFeeder.Mobile\Services\BleService.cs(798,32): warning CS0618: 'BluetoothDevice.ConnectGatt(Context?, bool, BluetoothGattCallback?, BluetoothTransports, ScanSettingsPhy, Handler?)' is obsolete: 'This method has the wrong enumeration. Use the version that takes an 'Android.Bluetooth.BluetoothPhy' instead.' [C:\Users\Demuth_jm\DOTNET Projects\feeder\src\Mobile\UniversalFeeder.Mobile\UniversalFeeder.Mobile.csproj::TargetFramework=net10.0-android]
+    1 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:11.75

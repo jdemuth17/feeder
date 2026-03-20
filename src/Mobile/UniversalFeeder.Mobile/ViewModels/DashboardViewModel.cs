@@ -119,7 +119,7 @@ namespace UniversalFeeder.Mobile.ViewModels
                     : ex.Message;
                 Status = $"Error: {fullError}";
                 if (Application.Current?.Windows.FirstOrDefault()?.Page is Page page)
-                    await page.DisplayAlert("MQTT Error", fullError, "OK");
+                    await page.DisplayAlertAsync("MQTT Error", fullError, "OK");
             }
             finally
             {

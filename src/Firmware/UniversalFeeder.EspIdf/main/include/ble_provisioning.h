@@ -9,6 +9,7 @@ typedef void (*ble_provisioning_credentials_cb_t)(const feeder_wifi_credentials_
 esp_err_t ble_provisioning_start(
     const feeder_wifi_credentials_t *initial_credentials,
     const char *initial_ip_address,
+    const char *device_id,
     ble_provisioning_credentials_cb_t credentials_cb);
 
 esp_err_t ble_provisioning_set_ip_address(const char *ip_address);

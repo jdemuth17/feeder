@@ -19,9 +19,11 @@ static const char *TAG = "BleProvisioning";
 static ble_provisioning_credentials_cb_t s_credentials_cb;
 static feeder_wifi_credentials_t s_pending_credentials;
 static char s_ip_address[FEEDER_IP_ADDRESS_MAX_LEN] = FEEDER_IP_ADDRESS_UNASSIGNED;
+static char s_device_id[FEEDER_DEVICE_ID_MAX_LEN] = "Unknown";
 static bool s_stack_started;
 static uint16_t s_connection_handle = BLE_HS_CONN_HANDLE_NONE;
 static uint16_t s_ip_char_handle;
+static uint16_t s_device_id_char_handle;
 static uint8_t s_own_addr_type;
 
 static const ble_uuid128_t s_service_uuid = BLE_UUID128_INIT(
@@ -36,6 +38,9 @@ static const ble_uuid128_t s_password_uuid = BLE_UUID128_INIT(
 static const ble_uuid128_t s_ip_uuid = BLE_UUID128_INIT(
     0x01, 0x00, 0x00, 0xea, 0x90, 0x03, 0x04, 0xba,
     0x94, 0x45, 0xf4, 0x8e, 0x01, 0x00, 0xa0, 0xe2);
+static const ble_uuid128_t s_device_id_uuid = BLE_UUID128_INIT(
+    0x01, 0x00, 0x00, 0xea, 0x90, 0x03, 0x04, 0xba,
+    0x94, 0x45, 0xf4, 0x8e, 0x01, 0x00, 0xb0, 0xf4);
 
 static void ble_app_advertise(void);
 
@@ -173,6 +178,16 @@ static int ip_access_cb(uint16_t conn_handle, uint16_t attr_handle, struct ble_g
     return rc == 0 ? 0 : BLE_ATT_ERR_INSUFFICIENT_RES;
 }
 
+static int device_id_access_cb(uint16_t conn_handle, uint16_t attr_handle, struct ble_gatt_access_ctxt *ctxt, void *arg)
+{
+    if (ctxt->op != BLE_GATT_ACCESS_OP_READ_CHR) {
+        return BLE_ATT_ERR_UNLIKELY;
+    }
+
+    int rc = os_mbuf_append(ctxt->om, s_device_id, strlen(s_device_id));
+    return rc == 0 ? 0 : BLE_ATT_ERR_INSUFFICIENT_RES;
+}
+
 static const struct ble_gatt_svc_def s_services[] = {
     {
         .type = BLE_GATT_SVC_TYPE_PRIMARY,
@@ -193,6 +208,12 @@ static const struct ble_gatt_svc_def s_services[] = {
                 .access_cb = ip_access_cb,
                 .flags = BLE_GATT_CHR_F_READ | BLE_GATT_CHR_F_NOTIFY,
                 .val_handle = &s_ip_char_handle,
+            },
+            {
+                .uuid = &s_device_id_uuid.u,
+                .access_cb = device_id_access_cb,
+                .flags = BLE_GATT_CHR_F_READ,
+                .val_handle = &s_device_id_char_handle,
             },
             {0}
         },
@@ -341,6 +362,7 @@ esp_err_t ble_provisioning_set_ip_address(const char *ip_address)
 esp_err_t ble_provisioning_start(
     const feeder_wifi_credentials_t *initial_credentials,
     const char *initial_ip_address,
+    const char *device_id,
     ble_provisioning_credentials_cb_t credentials_cb)
 {
     if (s_stack_started) {
@@ -355,6 +377,11 @@ esp_err_t ble_provisioning_start(
     if (initial_ip_address != NULL && initial_ip_address[0] != '\0') {
         strncpy(s_ip_address, initial_ip_address, sizeof(s_ip_address) - 1);
         s_ip_address[sizeof(s_ip_address) - 1] = '\0';
+    }
+
+    if (device_id != NULL && device_id[0] != '\0') {
+        strncpy(s_device_id, device_id, sizeof(s_device_id) - 1);
+        s_device_id[sizeof(s_device_id) - 1] = '\0';
     }
 
     s_credentials_cb = credentials_cb;

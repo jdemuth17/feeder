@@ -1,0 +1,11 @@
+  Determining projects to restore...
+  All projects are up-to-date for restore.
+  UniversalFeeder.Server -> C:\Users\Demuth_jm\DOTNET Projects\feeder\src\Server\UniversalFeeder.Server\bin\Debug\net10.0\UniversalFeeder.Server.dll
+  UniversalFeeder.Server.Tests -> C:\Users\Demuth_jm\DOTNET Projects\feeder\src\Server\UniversalFeeder.Server.Tests\bin\Debug\net10.0\UniversalFeeder.Server.Tests.dll
+Test run for C:\Users\Demuth_jm\DOTNET Projects\feeder\src\Server\UniversalFeeder.Server.Tests\bin\Debug\net10.0\UniversalFeeder.Server.Tests.dll (.NETCoreApp,Version=v10.0)
+VSTest version 18.0.1 (x64)
+
+Starting test execution, please wait...
+A total of 1 test files matched the specified pattern.
+
+Passed!  - Failed:     0, Passed:     5, Skipped:     0, Total:     5, Duration: 493 ms - UniversalFeeder.Server.Tests.dll (net10.0)

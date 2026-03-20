@@ -1,6 +1,6 @@
 # Initial Concept
 PROJECT: UNIVERSAL AUTO-FEEDER (DOTNET/IOT)
-1. DEVICE FIRMWARE (ESP32 / .NET nanoFramework)
+1. DEVICE FIRMWARE (ESP32 / ESP-IDF C)
 2. SERVER LAYER (Laptop / Blazor Server)
 3. MOBILE APP (.NET MAUI)
 4. CALIBRATION & TRAINING LOGIC
@@ -20,7 +20,7 @@ To provide a versatile, IoT-driven feeding solution that simplifies animal care 
 - **Universal Versatility:** A single physical hardware design capable of handling various feed types through software-based "Grams Per Second" calibration.
 
 ## MVP Features (First Release)
-- **Functional Firmware:** ESP32-based control of Nema 17 motors and buzzers via HTTP endpoints.
+- **Functional Firmware:** ESP32-based ESP-IDF firmware with BLE provisioning, Wi-Fi station connectivity, and preserved MQTT command contracts.
 - **Web-Based Management:** Blazor Server interface for creating, editing, and deleting feeding schedules.
 - **Seamless Setup:** .NET MAUI mobile application for BLE-based Wi-Fi provisioning of devices.
 - **Manual Control:** On-demand manual feeding triggers via the web dashboard.

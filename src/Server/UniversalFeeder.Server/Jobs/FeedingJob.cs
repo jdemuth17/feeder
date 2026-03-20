@@ -31,19 +31,25 @@ namespace UniversalFeeder.Server.Jobs
 
             var dueSchedules = await dbContext.Schedules
                 .Include(s => s.Feeder)
-                .ThenInclude(f => f.FeedType)
+                .ThenInclude(feeder => feeder!.FeedType)
                 .Where(s => s.IsEnabled && s.TimeOfDay >= windowStart && s.TimeOfDay < windowEnd)
                 .ToListAsync();
 
             foreach (var schedule in dueSchedules)
             {
-                if (schedule.Feeder == null || string.IsNullOrEmpty(schedule.Feeder.IpAddress))
+                if (schedule.Feeder == null || string.IsNullOrWhiteSpace(schedule.Feeder.UniqueId))
                 {
-                    _logger.LogWarning("Schedule {Id} has no valid feeder or IP.", schedule.Id);
+                    _logger.LogWarning("Schedule {Id} has no valid feeder identifier.", schedule.Id);
                     continue;
                 }
 
                 double gramsPerSecond = schedule.Feeder.FeedType?.GramsPerSecond ?? 10.0;
+                if (gramsPerSecond <= 0)
+                {
+                    _logger.LogWarning("Schedule {Id} has invalid feed rate {Rate}g/s.", schedule.Id, gramsPerSecond);
+                    continue;
+                }
+
                 int durationMs = (int)((schedule.AmountInGrams / gramsPerSecond) * 1000);
 
                 _logger.LogInformation("Triggering scheduled feed for {Nickname} ({UniqueId}): {Amount}g -> {Duration}ms", 

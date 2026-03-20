@@ -99,8 +99,7 @@ namespace UniversalFeeder.Firmware
             _serviceProvider.StartAdvertising(new GattServiceProviderAdvertisingParameters
             {
                 IsDiscoverable = true,
-                IsConnectable = true,
-                ServiceUuid = new Guid(_serviceUuid) // Important for filtering
+                IsConnectable = true
             });
 
             Console.WriteLine($"BLE Provisioning Server Started: {deviceName}");

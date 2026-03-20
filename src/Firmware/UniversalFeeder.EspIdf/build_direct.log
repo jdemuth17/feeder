@@ -1,0 +1,3 @@
+ESP-IDF v5.5.3
+"cmake" must be available on the PATH to use idf.py
+Executing action: all (aliases: build)

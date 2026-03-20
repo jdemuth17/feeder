@@ -34,5 +34,5 @@ This file tracks all major tracks for the project. Each track has its own detail
 
 ---
 
-- [ ] **Track: ESP-IDF Firmware Rewrite: Replace the ESP32 nanoFramework firmware with native ESP-IDF C while preserving the .NET mobile and server integration contracts.**
+- [ ] **Track: ESP-IDF Firmware Rewrite: Complete the ESP-IDF firmware path and retire the remaining nanoFramework firmware artifacts.**
   *Link: [./tracks/esp_idf_firmware_rewrite_20260311/](./tracks/esp_idf_firmware_rewrite_20260311/)*

@@ -64,5 +64,92 @@ namespace UniversalFeeder.Server.Tests
                 Assert.False(log.IsManualOverride);
             }
         }
+
+        [Fact]
+        public async Task Execute_ShouldTriggerFeeder_WhenScheduleIsDueWithoutIpAddress()
+        {
+            var options = new DbContextOptionsBuilder<FeederContext>()
+                .UseInMemoryDatabase(databaseName: Guid.NewGuid().ToString())
+                .Options;
+
+            var mockDbFactory = new Mock<IDbContextFactory<FeederContext>>();
+            mockDbFactory.Setup(f => f.CreateDbContext()).Returns(() => new FeederContext(options));
+
+            var mockFeederClient = new Mock<IFeederClient>();
+            var mockLogger = new Mock<ILogger<FeedingJob>>();
+            var mockContext = new Mock<IJobExecutionContext>();
+
+            using (var context = new FeederContext(options))
+            {
+                var feedType = new FeedType { Id = 1, Name = "Test", GramsPerSecond = 10 };
+                var feeder = new Feeder { Id = 1, UniqueId = "Feeder01", Nickname = "Feeder1", IpAddress = string.Empty, FeedTypeId = 1 };
+                var now = DateTime.Now.TimeOfDay;
+                var schedule = new FeedingSchedule
+                {
+                    Id = 1,
+                    FeederId = 1,
+                    TimeOfDay = new TimeSpan(now.Hours, now.Minutes, 0),
+                    AmountInGrams = 100,
+                    IsEnabled = true
+                };
+
+                context.FeedTypes.Add(feedType);
+                context.Feeders.Add(feeder);
+                context.Schedules.Add(schedule);
+                await context.SaveChangesAsync();
+            }
+
+            var job = new FeedingJob(mockDbFactory.Object, mockFeederClient.Object, mockLogger.Object);
+
+            await job.Execute(mockContext.Object);
+
+            mockFeederClient.Verify(c => c.TriggerFeedAsync("Feeder01", 10000), Times.Once);
+        }
+
+        [Fact]
+        public async Task Execute_ShouldSkipSchedule_WhenFeedRateIsNotPositive()
+        {
+            var options = new DbContextOptionsBuilder<FeederContext>()
+                .UseInMemoryDatabase(databaseName: Guid.NewGuid().ToString())
+                .Options;
+
+            var mockDbFactory = new Mock<IDbContextFactory<FeederContext>>();
+            mockDbFactory.Setup(f => f.CreateDbContext()).Returns(() => new FeederContext(options));
+
+            var mockFeederClient = new Mock<IFeederClient>();
+            var mockLogger = new Mock<ILogger<FeedingJob>>();
+            var mockContext = new Mock<IJobExecutionContext>();
+
+            using (var context = new FeederContext(options))
+            {
+                var feedType = new FeedType { Id = 1, Name = "Test", GramsPerSecond = 0 };
+                var feeder = new Feeder { Id = 1, UniqueId = "Feeder01", Nickname = "Feeder1", IpAddress = string.Empty, FeedTypeId = 1 };
+                var now = DateTime.Now.TimeOfDay;
+                var schedule = new FeedingSchedule
+                {
+                    Id = 1,
+                    FeederId = 1,
+                    TimeOfDay = new TimeSpan(now.Hours, now.Minutes, 0),
+                    AmountInGrams = 100,
+                    IsEnabled = true
+                };
+
+                context.FeedTypes.Add(feedType);
+                context.Feeders.Add(feeder);
+                context.Schedules.Add(schedule);
+                await context.SaveChangesAsync();
+            }
+
+            var job = new FeedingJob(mockDbFactory.Object, mockFeederClient.Object, mockLogger.Object);
+
+            await job.Execute(mockContext.Object);
+
+            mockFeederClient.Verify(c => c.TriggerFeedAsync(It.IsAny<string>(), It.IsAny<int>()), Times.Never);
+
+            using (var context = new FeederContext(options))
+            {
+                Assert.Empty(context.Logs);
+            }
+        }
     }
 }

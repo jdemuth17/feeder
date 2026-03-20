@@ -3,6 +3,7 @@ using Plugin.BLE.Abstractions;
 using Plugin.BLE.Abstractions.Contracts;
 using Plugin.BLE.Abstractions.Exceptions;
 using Microsoft.Maui.ApplicationModel;
+using System.Runtime.Versioning;
 using System.Text;
 #if ANDROID
 using System.Collections.Concurrent;
@@ -272,7 +273,7 @@ namespace UniversalFeeder.Mobile.Services
             LogBle($"BLE provisioning: native target address={connectDevice.Address} name={connectDevice.Name ?? "<null>"} type={connectDevice.Type} bondState={connectDevice.BondState}");
             await EnsureUnbondedAsync(connectDevice);
 
-            using var connectLogger = new AndroidBleConnectLogger(connectDevice.Address);
+            using var connectLogger = new AndroidBleConnectLogger(connectDevice.Address ?? string.Empty);
             using var session = new AndroidBleProvisioningSession(connectDevice);
 
             await session.ConnectAsync();
@@ -312,7 +313,7 @@ namespace UniversalFeeder.Mobile.Services
 
         private static BluetoothDevice ResolveConnectDevice(BluetoothDevice nativeDevice)
         {
-            var adapter = BluetoothAdapter.DefaultAdapter;
+            var adapter = GetBluetoothAdapter();
             var address = nativeDevice.Address;
             if (adapter == null || string.IsNullOrWhiteSpace(address))
             {
@@ -327,6 +328,37 @@ namespace UniversalFeeder.Mobile.Services
             {
                 return nativeDevice;
             }
+        }
+
+        private static BluetoothAdapter? GetBluetoothAdapter()
+        {
+            if (OperatingSystem.IsAndroidVersionAtLeast(31))
+            {
+                var manager = global::Android.App.Application.Context.GetSystemService(Context.BluetoothService) as BluetoothManager;
+                return manager?.Adapter;
+            }
+
+#pragma warning disable CA1422
+            return BluetoothAdapter.DefaultAdapter;
+#pragma warning restore CA1422
+        }
+
+        [SupportedOSPlatform("android33.0")]
+        private static BluetoothDevice? GetBluetoothDeviceExtraApi33(Intent intent)
+        {
+            return intent.GetParcelableExtra(BluetoothDevice.ExtraDevice, Java.Lang.Class.FromType(typeof(BluetoothDevice))) as BluetoothDevice;
+        }
+
+        private static BluetoothDevice? GetBluetoothDeviceExtra(Intent intent)
+        {
+            if (OperatingSystem.IsAndroidVersionAtLeast(33))
+            {
+                return GetBluetoothDeviceExtraApi33(intent);
+            }
+
+#pragma warning disable CS0618
+            return intent.GetParcelableExtra(BluetoothDevice.ExtraDevice) as BluetoothDevice;
+#pragma warning restore CS0618
         }
 
         private static async Task EnsureUnbondedAsync(BluetoothDevice device)
@@ -426,7 +458,7 @@ namespace UniversalFeeder.Mobile.Services
                     return;
                 }
 
-                var device = intent.GetParcelableExtra(BluetoothDevice.ExtraDevice, Java.Lang.Class.FromType(typeof(BluetoothDevice))) as BluetoothDevice;
+                var device = GetBluetoothDeviceExtra(intent);
                 var address = device?.Address;
                 if (!string.Equals(address, _address, StringComparison.OrdinalIgnoreCase))
                 {
@@ -434,7 +466,9 @@ namespace UniversalFeeder.Mobile.Services
                 }
 
                 var action = intent.Action ?? "<unknown>";
-                var transport = intent.GetIntExtra(BluetoothDevice.ExtraTransport, int.MinValue);
+                var transport = OperatingSystem.IsAndroidVersionAtLeast(33)
+                    ? intent.GetIntExtra(BluetoothDevice.ExtraTransport, int.MinValue)
+                    : int.MinValue;
                 var bondState = intent.GetIntExtra(BluetoothDevice.ExtraBondState, int.MinValue);
                 var previousBondState = intent.GetIntExtra(BluetoothDevice.ExtraPreviousBondState, int.MinValue);
                 var pairingVariant = intent.GetIntExtra(BluetoothDevice.ExtraPairingVariant, int.MinValue);
@@ -539,12 +573,14 @@ namespace UniversalFeeder.Mobile.Services
         }
 
 #if ANDROID
+        [SupportedOSPlatform("android31.0")]
         private sealed class BluetoothScanPermission : Permissions.BasePlatformPermission
         {
             public override (string androidPermission, bool isRuntime)[] RequiredPermissions =>
                 new[] { (global::Android.Manifest.Permission.BluetoothScan, true) };
         }
 
+        [SupportedOSPlatform("android31.0")]
         private sealed class BluetoothConnectPermission : Permissions.BasePlatformPermission
         {
             public override (string androidPermission, bool isRuntime)[] RequiredPermissions =>
@@ -628,14 +664,7 @@ namespace UniversalFeeder.Mobile.Services
                 var operation = NewBoolTcs();
                 _writeOperations[key] = operation;
 
-                characteristic.WriteType = GattWriteType.Default;
-                if (!characteristic.SetValue(value))
-                {
-                    _writeOperations.TryRemove(key, out _);
-                    throw new InvalidOperationException($"Failed to set value for characteristic {characteristicUuid}.");
-                }
-
-                if (!_gatt!.WriteCharacteristic(characteristic))
+                if (!TryWriteCharacteristicValue(characteristic, value, characteristicUuid))
                 {
                     _writeOperations.TryRemove(key, out _);
                     throw new InvalidOperationException($"BluetoothGatt.WriteCharacteristic returned false for {characteristicUuid}.");
@@ -721,7 +750,7 @@ namespace UniversalFeeder.Mobile.Services
 
                 if (status == GattStatus.Success)
                 {
-                    operation.TrySetResult(characteristic?.GetValue() ?? Array.Empty<byte>());
+                    operation.TrySetResult(GetCharacteristicValue(characteristic));
                     return;
                 }
 
@@ -766,17 +795,49 @@ namespace UniversalFeeder.Mobile.Services
                     if (OperatingSystem.IsAndroidVersionAtLeast(26) && attempt.UseHandler)
                     {
                         var transport = attempt.UseAutoTransport ? BluetoothTransports.Auto : BluetoothTransports.Le;
+#pragma warning disable CS0618
                         return _device.ConnectGatt(_context, attempt.AutoConnect, this, transport, (global::Android.Bluetooth.LE.ScanSettingsPhy)Le1mPhyMask, _callbackHandler);
+#pragma warning restore CS0618
                     }
 
                     if (OperatingSystem.IsAndroidVersionAtLeast(23))
                     {
                         var transport = attempt.UseAutoTransport ? BluetoothTransports.Auto : BluetoothTransports.Le;
+#pragma warning disable CS0618
                         return _device.ConnectGatt(_context, attempt.AutoConnect, this, transport);
+#pragma warning restore CS0618
                     }
 
+#pragma warning disable CS0618
                     return _device.ConnectGatt(_context, attempt.AutoConnect, this);
+#pragma warning restore CS0618
                 });
+            }
+
+            private byte[] GetCharacteristicValue(BluetoothGattCharacteristic? characteristic)
+            {
+                if (characteristic == null)
+                {
+                    return Array.Empty<byte>();
+                }
+
+#pragma warning disable CA1422
+                return characteristic.GetValue() ?? Array.Empty<byte>();
+#pragma warning restore CA1422
+            }
+
+            private bool TryWriteCharacteristicValue(BluetoothGattCharacteristic characteristic, byte[] value, Guid characteristicUuid)
+            {
+                characteristic.WriteType = GattWriteType.Default;
+
+#pragma warning disable CA1422
+                if (!characteristic.SetValue(value))
+                {
+                    throw new InvalidOperationException($"Failed to set value for characteristic {characteristicUuid}.");
+                }
+
+                return _gatt!.WriteCharacteristic(characteristic);
+#pragma warning restore CA1422
             }
 
             private async Task KickConnectIfStalledAsync(ConnectAttempt attempt)

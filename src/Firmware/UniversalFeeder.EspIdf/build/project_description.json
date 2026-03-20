@@ -1,7 +1,7 @@
 {
     "version":            "1.2",
     "project_name":       "universal_feeder",
-    "project_version":    "14bf1ed-dirty",
+    "project_version":    "f671769-dirty",
     "project_path":       "C:/Users/Demuth_jm/DOTNET Projects/feeder/src/Firmware/UniversalFeeder.EspIdf",
     "idf_path":           "C:/Espressif/frameworks/esp-idf-v5.5.3",
     "build_dir":          "C:/Users/Demuth_jm/DOTNET Projects/feeder/src/Firmware/UniversalFeeder.EspIdf/build",
@@ -1235,12 +1235,12 @@
             "dir": "C:/Users/Demuth_jm/DOTNET Projects/feeder/src/Firmware/UniversalFeeder.EspIdf/main",
             "type": "LIBRARY",
             "lib": "__idf_main",
-            "reqs": [],
+            "reqs": [ "bt", "driver", "esp_event", "esp_netif", "esp_wifi", "json", "mqtt", "nvs_flash" ],
             "priv_reqs": [],
             "managed_reqs": [],
             "managed_priv_reqs": [],
             "file": "C:/Users/Demuth_jm/DOTNET Projects/feeder/src/Firmware/UniversalFeeder.EspIdf/build/esp-idf/main/libmain.a",
-            "sources": [ "C:/Users/Demuth_jm/DOTNET Projects/feeder/src/Firmware/UniversalFeeder.EspIdf/main/app_main.c", "C:/Users/Demuth_jm/DOTNET Projects/feeder/src/Firmware/UniversalFeeder.EspIdf/main/provisioning_store.c", "C:/Users/Demuth_jm/DOTNET Projects/feeder/src/Firmware/UniversalFeeder.EspIdf/main/ble_provisioning.c", "C:/Users/Demuth_jm/DOTNET Projects/feeder/src/Firmware/UniversalFeeder.EspIdf/main/wifi_manager.c" ],
+            "sources": [ "C:/Users/Demuth_jm/DOTNET Projects/feeder/src/Firmware/UniversalFeeder.EspIdf/main/app_main.c", "C:/Users/Demuth_jm/DOTNET Projects/feeder/src/Firmware/UniversalFeeder.EspIdf/main/ble_provisioning.c", "C:/Users/Demuth_jm/DOTNET Projects/feeder/src/Firmware/UniversalFeeder.EspIdf/main/buzzer_control.c", "C:/Users/Demuth_jm/DOTNET Projects/feeder/src/Firmware/UniversalFeeder.EspIdf/main/device_identity.c", "C:/Users/Demuth_jm/DOTNET Projects/feeder/src/Firmware/UniversalFeeder.EspIdf/main/feeding_sequence.c", "C:/Users/Demuth_jm/DOTNET Projects/feeder/src/Firmware/UniversalFeeder.EspIdf/main/motor_control.c", "C:/Users/Demuth_jm/DOTNET Projects/feeder/src/Firmware/UniversalFeeder.EspIdf/main/mqtt_service.c", "C:/Users/Demuth_jm/DOTNET Projects/feeder/src/Firmware/UniversalFeeder.EspIdf/main/provisioning_store.c", "C:/Users/Demuth_jm/DOTNET Projects/feeder/src/Firmware/UniversalFeeder.EspIdf/main/wifi_manager.c" ],
             "include_dirs": [ "include" ]
         },
         "mbedtls": {
@@ -2934,7 +2934,7 @@
             "prefix": "idf",
             "dir": "C:/Users/Demuth_jm/DOTNET Projects/feeder/src/Firmware/UniversalFeeder.EspIdf/main",
             "lib": "__idf_main",
-            "reqs": [],
+            "reqs": [ "bt", "driver", "esp_event", "esp_netif", "esp_wifi", "json", "mqtt", "nvs_flash" ],
             "priv_reqs": [],
             "managed_reqs": [],
             "managed_priv_reqs": [],

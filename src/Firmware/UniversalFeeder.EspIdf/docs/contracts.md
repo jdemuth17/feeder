@@ -6,8 +6,8 @@ This document defines the BLE and MQTT contracts that the firmware must implemen
 
 These contracts are **locked** for backward compatibility. Changes require coordination with mobile app and server teams.
 
-Last verified: 2026-03-11  
-Source: Existing nanoFramework implementation
+Last verified: 2026-03-20  
+Source: Existing nanoFramework implementation and ESP-IDF port
 
 ---
 
@@ -81,6 +81,22 @@ e2a00001-8ef4-4594-ba04-0390ea000001
 192.168.1.42
 ```
 
+#### Device ID Characteristic
+
+**UUID:**
+```
+f4b00001-8ef4-4594-ba04-0390ea000001
+```
+
+**Properties:** Read  
+**Format:** UTF-8 string (12-char uppercase device identifier)  
+**Purpose:** Firmware exposes the unique feeder identifier used for MQTT topic selection and mobile registration flows
+
+**Example:**
+```
+AABBCCDDEEFF
+```
+
 ### Provisioning Flow
 
 1. Device boots and advertises as "Feeder-Setup"
@@ -90,8 +106,9 @@ e2a00001-8ef4-4594-ba04-0390ea000001
 5. Firmware attempts WiFi connection
 6. On success, firmware writes IP address to IP characteristic and sends notification
 7. Mobile app reads IP address
-8. BLE connection terminates
-9. Device operates in WiFi station mode
+8. Mobile app can read the device ID characteristic
+9. BLE connection terminates
+10. Device operates in WiFi station mode
 
 ---
 
@@ -162,7 +179,7 @@ Plays audio through the speaker at a specified volume.
 
 ### MQTT Connection Parameters
 
-**Broker:** Configurable via provisioning or NVS storage  
+**Broker:** Current ESP-IDF build uses the configured HiveMQ Cloud broker URI and credentials compiled into firmware  
 **QoS:** 1 (at least once delivery)  
 **Retained:** No  
 **Clean Session:** Yes
@@ -201,7 +218,7 @@ Use `esp_mqtt_client`:
 Use NVS (Non-Volatile Storage) for:
 - WiFi credentials (if persistent provisioning desired)
 - MQTT broker URL
-- Device ID / Feeder ID
+- Last known IP address
 - Calibration parameters
 
 ### Security Considerations
@@ -218,9 +235,10 @@ Before releasing firmware changes affecting these contracts:
 
 - [ ] BLE device name matches pattern
 - [ ] BLE service UUID is correct
-- [ ] All three characteristic UUIDs are correct
+- [ ] All four characteristic UUIDs are correct
 - [ ] SSID/Password write callbacks function correctly
 - [ ] IP address read/notify functions correctly
+- [ ] Device ID read function correctly
 - [ ] MQTT topic pattern matches `feeders/{feederId}/commands`
 - [ ] Feed command accepted with correct JSON structure
 - [ ] Chime command accepted with correct JSON structure
@@ -233,3 +251,4 @@ Before releasing firmware changes affecting these contracts:
 ## Change History
 
 - 2026-03-11: Initial contract lock for ESP-IDF rewrite (Phase 1)
+- 2026-03-20: ESP-IDF implementation updated to expose the device ID characteristic and execute MQTT `feed`/`chime` commands through native buzzer, motor, and feeding-sequence modules

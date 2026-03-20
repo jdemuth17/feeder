@@ -1,13 +1,14 @@
 # Tech Stack: Universal Auto-Feeder
 
 ## 1. Device Firmware (IoT)
-- **Runtime:** [.NET nanoFramework](https://www.nanoframework.net/)
-- **Language:** C#
+- **Runtime:** [ESP-IDF](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/)
+- **Language:** C
 - **Hardware Platform:** ESP32 (WROOM/WROVER)
 - **Key Libraries:**
-  - `nanoFramework.M2Mqtt` (MQTT Client)
-  - `nanoFramework.System.Net.Security` (TLS for HiveMQ Cloud)
-  - `nanoFramework.Hardware.Esp32` (PWM for Buzzer, GPIO for A4988)
+  - `esp_wifi` (station mode connectivity)
+  - NimBLE (BLE provisioning service)
+  - NVS (credential and IP storage)
+  - `esp-mqtt` (planned MQTT command transport)
 
 ## 2. Server Layer (Backend & Dashboard)
 - **Framework:** Blazor Server (.NET 8/9)
@@ -31,4 +32,4 @@
 ## 5. Development & Infrastructure
 - **IDE:** Visual Studio 2022
 - **Version Control:** Git
-- **Testing:** xUnit / Moq (for Server/Mobile), nanoFramework Test Framework (for Firmware)
+- **Testing:** xUnit / Moq (for Server), .NET MAUI device validation (for Mobile), hardware and integration validation under ESP-IDF (for Firmware)

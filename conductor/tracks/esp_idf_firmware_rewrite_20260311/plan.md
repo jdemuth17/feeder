@@ -4,64 +4,64 @@
 Rewrite the ESP32 firmware from nanoFramework C# to ESP-IDF C while preserving the mobile BLE provisioning flow and the server MQTT contract. The firmware should remain a thin appliance layer so the rest of the project can continue to center on .NET mobile, server, and product work.
 
 ## Phase 1: Contract Lock And Project Skeleton [checkpoint: contract-and-skeleton]
-- [ ] Task: Lock device-facing contracts
-  - [ ] Confirm BLE service UUID and characteristic UUIDs to preserve from the current firmware.
-  - [ ] Confirm MQTT topic and payload contract to preserve from the current firmware.
-  - [ ] Confirm feeder identity strategy used by server and firmware.
-- [ ] Task: Create ESP-IDF firmware project structure
-  - [ ] Add a new firmware project directory for ESP-IDF.
-  - [ ] Add build configuration, flash targets, and a minimal app entry point.
-  - [ ] Add a central config header for pins, broker settings, and feature flags.
+- [x] Task: Lock device-facing contracts
+  - [x] Confirm BLE service UUID and characteristic UUIDs to preserve from the current firmware.
+  - [x] Confirm MQTT topic and payload contract to preserve from the current firmware.
+  - [x] Confirm feeder identity strategy used by server and firmware.
+- [x] Task: Create ESP-IDF firmware project structure
+  - [x] Add a new firmware project directory for ESP-IDF.
+  - [x] Add build configuration, flash targets, and a minimal app entry point.
+  - [x] Add a central config header for pins, broker settings, and feature flags.
 - [ ] Acceptance
-  - [ ] Firmware builds cleanly under ESP-IDF.
+  - [x] Firmware builds cleanly under ESP-IDF.
   - [ ] Device boots and emits stable serial logs.
-  - [ ] No mobile or server contracts have been changed.
+  - [x] No mobile or server contracts have been changed.
 
 ## Phase 2: Provisioning Slice [checkpoint: provisioning-slice]
-- [ ] Task: Implement storage and boot mode selection
-  - [ ] Use NVS to store and retrieve Wi-Fi credentials.
-  - [ ] Decide at boot whether to enter provisioning mode or normal mode.
-- [ ] Task: Implement BLE provisioning service
-  - [ ] Recreate the current GATT service and characteristics.
-  - [ ] Accept SSID and password writes from the mobile app.
-  - [ ] Expose or notify assigned IP after successful join.
+- [x] Task: Implement storage and boot mode selection
+  - [x] Use NVS to store and retrieve Wi-Fi credentials.
+  - [x] Decide at boot whether to enter provisioning mode or normal mode.
+- [x] Task: Implement BLE provisioning service
+  - [x] Recreate the current GATT service and characteristics.
+  - [x] Accept SSID and password writes from the mobile app.
+  - [x] Expose or notify assigned IP after successful join.
 - [ ] Acceptance
   - [ ] Mobile app can discover the device and provision credentials.
   - [ ] Credentials survive reboot.
   - [ ] Assigned IP can be surfaced to the app using the preserved BLE contract.
 
 ## Phase 3: Connectivity Slice [checkpoint: connectivity-slice]
-- [ ] Task: Implement Wi-Fi manager
-  - [ ] Connect automatically using stored credentials.
-  - [ ] Surface connection state and IP address to the application state machine.
-- [ ] Task: Implement MQTT client
-  - [ ] Connect to HiveMQ Cloud over TLS.
-  - [ ] Subscribe to `feeders/{feederId}/commands`.
-  - [ ] Implement reconnect with bounded backoff.
+- [x] Task: Implement Wi-Fi manager
+  - [x] Connect automatically using stored credentials.
+  - [x] Surface connection state and IP address to the application state machine.
+- [x] Task: Implement MQTT client
+  - [x] Connect to HiveMQ Cloud over TLS.
+  - [x] Subscribe to `feeders/{feederId}/commands`.
+  - [x] Implement reconnect with bounded backoff.
 - [ ] Acceptance
   - [ ] Device connects to Wi-Fi on boot with stored credentials.
   - [ ] Device connects to HiveMQ Cloud and receives command traffic.
   - [ ] Power cycling the device does not require re-provisioning.
 
 ## Phase 4: Hardware Control Slice [checkpoint: hardware-slice]
-- [ ] Task: Implement motor controller
-  - [ ] Port step, direction, and enable control for the A4988-driven motor.
-  - [ ] Preserve the duration-driven motor command behavior used by the current firmware.
-- [ ] Task: Implement buzzer driver
-  - [ ] Port buzzer control using LEDC/PWM.
-  - [ ] Preserve basic volume and duration behavior used by the current firmware.
+- [x] Task: Implement motor controller
+  - [x] Port step, direction, and enable control for the A4988-driven motor.
+  - [x] Preserve the duration-driven motor command behavior used by the current firmware.
+- [x] Task: Implement buzzer driver
+  - [x] Port buzzer control using LEDC/PWM.
+  - [x] Preserve basic volume and duration behavior used by the current firmware.
 - [ ] Acceptance
   - [ ] Manual hardware tests confirm motor rotation for target durations.
   - [ ] Manual hardware tests confirm audible buzzer output with expected duration.
   - [ ] No unstable GPIO behavior is observed during repeated runs.
 
 ## Phase 5: Feeding And Fallback Slice [checkpoint: feeding-and-fallback]
-- [ ] Task: Implement command parser and dispatch
-  - [ ] Parse the current MQTT JSON command schema.
-  - [ ] Dispatch `feed` and `chime` commands to hardware services.
-- [ ] Task: Implement feeding sequence orchestration
-  - [ ] Recreate the current chime-plus-feed sequence.
-  - [ ] Serialize execution so overlapping commands do not corrupt device state.
+- [x] Task: Implement command parser and dispatch
+  - [x] Parse the current MQTT JSON command schema.
+  - [x] Dispatch `feed` and `chime` commands to hardware services.
+- [x] Task: Implement feeding sequence orchestration
+  - [x] Recreate the current chime-plus-feed sequence.
+  - [x] Serialize execution so overlapping commands do not corrupt device state.
 - [ ] Task: Implement local fallback schedule
   - [ ] Define the minimum viable offline schedule behavior.
   - [ ] Trigger fallback feedings when cloud connectivity is unavailable long enough to require local operation.

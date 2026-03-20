@@ -78,22 +78,26 @@ idf.py -p COM3 monitor
 
 ## Current Implementation Status
 
-**Phase 2 (Current):** Provisioning slice in progress
+**Current status:** Connectivity and device-control slices are implemented in code and build successfully under ESP-IDF.
 - Basic ESP-IDF project structure
 - NVS initialization
 - NVS-backed Wi-Fi credential storage
 - BLE provisioning GATT service with preserved UUIDs
+- BLE device ID characteristic for feeder identity reads from the mobile app
 - Boot-time provisioning mode selection
 - Wi-Fi station mode connection from stored or provisioned credentials
 - IP address persistence and BLE characteristic updates
+- MQTT client startup and subscription to `feeders/{feederId}/commands`
+- JSON command parsing for `feed` and `chime`
+- LEDC buzzer driver
+- GPIO motor driver for the A4988 control pins
+- Serialized feeding sequence orchestration
 - Logging framework
 - Contract documentation (see docs/contracts.md)
 
-**Planned:**
-- MQTT client integration
-- Feed motor control
-- Chime speaker control
+**Still pending:**
 - Local schedule fallback
+- Hardware validation for motor, buzzer, and end-to-end command flow
 
 ## Contract Preservation
 
@@ -120,4 +124,5 @@ UniversalFeeder.EspIdf/
 - Preserves existing mobile/server contracts where practical
 - Uses native ESP-IDF APIs for BLE (NimBLE) and MQTT
 - Contract UUIDs and topic patterns locked to maintain backward compatibility
+- On this machine, direct `idf.py` invocation with explicit `IDF_PATH`, `IDF_TOOLS_PATH`, `IDF_PYTHON_ENV_PATH`, and tool directories on `PATH` is more reliable than the default wrapper scripts
 - Future enhancements should validate against docs/contracts.md

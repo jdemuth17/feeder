@@ -1,0 +1,11 @@
+  Determining projects to restore...
+  All projects are up-to-date for restore.
+  UniversalFeeder.Server -> C:\Users\Demuth_jm\DOTNET Projects\feeder\src\Server\UniversalFeeder.Server\bin\Debug\net10.0\UniversalFeeder.Server.dll
+  UniversalFeeder.Server.Tests -> C:\Users\Demuth_jm\DOTNET Projects\feeder\src\Server\UniversalFeeder.Server.Tests\bin\Debug\net10.0\UniversalFeeder.Server.Tests.dll
+  UniversalFeeder.Mobile -> C:\Users\Demuth_jm\DOTNET Projects\feeder\src\Mobile\UniversalFeeder.Mobile\bin\Debug\net10.0-android\UniversalFeeder.Mobile.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:05.49
