@@ -31,14 +31,22 @@ namespace UniversalFeeder.Firmware
         public static void SaveCredentials(string ssid, string password)
         {
 #if NANOFRAMEWORK
-            var config = new Wireless80211Configuration(0)
+            var config = Wireless80211Configuration.GetAllWireless80211Configurations();
+            Wireless80211Configuration currentConfig;
+            if (config.Length > 0)
             {
-                Ssid = ssid,
-                Password = password,
-                Options = Wireless80211Configuration.ConfigurationOptions.AutoConnect
-            };
-            config.SaveConfiguration();
-            Console.WriteLine("Wi-Fi Credentials Saved to NVS");
+                currentConfig = config[0];
+            }
+            else
+            {
+                currentConfig = new Wireless80211Configuration(0);
+            }
+
+            currentConfig.Ssid = ssid;
+            currentConfig.Password = password;
+            currentConfig.Options = Wireless80211Configuration.ConfigurationOptions.AutoConnect | Wireless80211Configuration.ConfigurationOptions.Enable;
+            currentConfig.SaveConfiguration();
+            Console.WriteLine($"Wi-Fi Credentials Saved for SSID: {ssid}");
 #endif
         }
 

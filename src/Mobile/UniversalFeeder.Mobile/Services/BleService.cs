@@ -22,6 +22,7 @@ namespace UniversalFeeder.Mobile.Services
         private static readonly Guid SsidCharUuid = Guid.Parse("beb5483e-36e1-4688-b7f5-ea07361b26a8");
         private static readonly Guid PassCharUuid = Guid.Parse("d6e98ba1-8ef4-4594-ba04-0390ea000001");
         private static readonly Guid IpCharUuid = Guid.Parse("e2a00001-8ef4-4594-ba04-0390ea000001");
+        private static readonly Guid IdCharUuid = Guid.Parse("f4b00001-8ef4-4594-ba04-0390ea000001");
         private static readonly ConnectParameters DirectConnectParameters = new(autoConnect: false, forceBleTransport: true, connectionParameterSet: ConnectionParameterSet.None);
         private const string LogTag = "UniversalFeeder.BLE";
 
@@ -216,9 +217,19 @@ namespace UniversalFeeder.Mobile.Services
                 LogBle("BLE provisioning: writing password");
                 await passChar.WriteAsync(Encoding.UTF8.GetBytes(password));
 
-                // Poll for IP address for up to 30 seconds
+                // Poll for IP address and Read Device ID
                 var ipChar = await service.GetCharacteristicAsync(IpCharUuid);
+                var idChar = await service.GetCharacteristicAsync(IdCharUuid);
                 string? ip = null;
+                string? deviceId = null;
+
+                if (idChar != null)
+                {
+                    LogBle("BLE provisioning: reading Device ID");
+                    var bytes = await idChar.ReadAsync();
+                    if (bytes.data != null) deviceId = Encoding.UTF8.GetString(bytes.data);
+                    LogBle($"BLE provisioning: Device ID read returned '{deviceId}'");
+                }
 
                 if (ipChar != null)
                 {
@@ -236,9 +247,9 @@ namespace UniversalFeeder.Mobile.Services
                     }
                 }
 
-                LogBle($"BLE provisioning complete: final IP='{ip ?? "<null>"}' state={device.State}");
+                LogBle($"BLE provisioning complete: final IP='{ip ?? "<null>"}' DeviceId='{deviceId ?? "<null>"}' state={device.State}");
                 await TryDisconnectAsync(device);
-                return ip;
+                return ip != null ? $"{ip}|{deviceId}" : null;
 #endif
             }
             catch (Exception ex)
@@ -382,7 +393,7 @@ namespace UniversalFeeder.Mobile.Services
 
             public AndroidBleConnectLogger(string address)
             {
-                _context = Application.Context;
+                _context = global::Android.App.Application.Context;
                 _address = address;
 
                 var filter = new IntentFilter();

@@ -128,7 +128,12 @@ namespace UniversalFeeder.Firmware
                 if (action == MqttCommands.ActionFeed)
                 {
                     int ms = ExtractInt(message, $"\"{MqttCommands.KeyDurationMs}\"");
-                    _feedingSequence.Execute(ms > 0 ? ms : 5000);
+                    int duration = ms > 0 ? ms : 5000;
+                    new Thread(() => {
+                        Console.WriteLine($"Starting feeding for {duration}ms...");
+                        _feedingSequence.Execute(duration);
+                        Console.WriteLine("Feeding complete.");
+                    }).Start();
                 }
                 else if (action == MqttCommands.ActionChime)
                 {

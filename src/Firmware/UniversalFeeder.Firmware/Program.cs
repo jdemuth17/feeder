@@ -47,7 +47,8 @@ namespace UniversalFeeder.Firmware
         {
             try
             {
-                Console.WriteLine("Entering Provisioning Mode (BLE)...");
+                string deviceId = GetUniqueId();
+                Console.WriteLine($"Entering Provisioning Mode (BLE) for Device: {deviceId}...");
                 _bleService = new BleProvisioningService();
                 Console.WriteLine("BleProvisioningService created");
                 _bleService.OnCredentialsReceived += (s, e) =>
@@ -71,11 +72,11 @@ namespace UniversalFeeder.Firmware
                     }
                     else
                     {
-                    Console.WriteLine("Connection failed. Remaining in provisioning mode.");
-                }
-            };
-            _bleService.Start("Feeder-Setup");
-            Console.WriteLine("BLE advertising started successfully");
+                        Console.WriteLine("Connection failed. Remaining in provisioning mode.");
+                    }
+                };
+                _bleService.Start("Feeder-Setup", deviceId);
+                Console.WriteLine("BLE advertising started successfully");
             }
             catch (Exception ex)
             {

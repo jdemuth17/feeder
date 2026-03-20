@@ -135,25 +135,30 @@ namespace UniversalFeeder.Mobile.ViewModels
 
             try
             {
-                string? ip = await _bleService.ProvisionDeviceAsync(SelectedDevice.Device, Ssid, Password ?? string.Empty);
+                string? result = await _bleService.ProvisionDeviceAsync(SelectedDevice.Device, Ssid, Password ?? string.Empty);
 
-                if (string.IsNullOrEmpty(ip))
+                if (string.IsNullOrEmpty(result))
                 {
                     Status = "Provisioning failed — no IP received. Check Wi-Fi credentials.";
                     return;
                 }
 
-                // Save feeder locally (no server needed)
+                // Parse piped result "IP|DeviceId"
+                var parts = result.Split('|');
+                string ip = parts[0];
+                string deviceId = parts.Length > 1 ? parts[1] : SelectedDevice.Device.Id.ToString();
+
+                // Save feeder locally
                 var feeder = new FeederDevice
                 {
-                    UniqueId = SelectedDevice.Device.Id.ToString(),
+                    UniqueId = deviceId, // Use the MAC address from ESP32
                     Nickname = SelectedDevice.DisplayName,
                     IpAddress = ip,
                     ProvisionedAt = DateTime.UtcNow
                 };
                 _storageService.AddFeeder(feeder);
 
-                Status = $"Setup complete! {feeder.Nickname} (IP: {ip}) saved. Go to Home tab to control it.";
+                Status = $"Setup complete! {feeder.Nickname} (ID: {deviceId}, IP: {ip}) saved. Go to Home tab to control it.";
             }
             catch (Exception ex)
             {
