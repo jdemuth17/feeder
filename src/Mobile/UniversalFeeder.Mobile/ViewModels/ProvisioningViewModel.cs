@@ -144,7 +144,7 @@ namespace UniversalFeeder.Mobile.ViewModels
                 }
 
                 // Parse piped result "IP|DeviceId"
-                var parts = result.Split('|');
+                var parts = result.Split('|', 2);
                 string ip = parts[0];
                 string deviceId = parts.Length > 1 ? parts[1] : SelectedDevice.Device.Id.ToString();
 
@@ -158,7 +158,9 @@ namespace UniversalFeeder.Mobile.ViewModels
                 };
                 _storageService.AddFeeder(feeder);
 
-                Status = $"Setup complete! {feeder.Nickname} (ID: {deviceId}, IP: {ip}) saved. Go to Home tab to control it.";
+                Status = string.IsNullOrWhiteSpace(ip) || ip == "0.0.0.0"
+                    ? $"Provisioning reached {feeder.Nickname} (ID: {deviceId}) and the feeder was saved, but the app did not receive a final IP before BLE disconnected. Check Home for the saved feeder and refresh after Wi-Fi finishes connecting."
+                    : $"Setup complete! {feeder.Nickname} (ID: {deviceId}, IP: {ip}) saved. Go to Home tab to control it.";
             }
             catch (Exception ex)
             {

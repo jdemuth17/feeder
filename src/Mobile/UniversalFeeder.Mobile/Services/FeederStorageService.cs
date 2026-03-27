@@ -8,6 +8,8 @@ namespace UniversalFeeder.Mobile.Services
         private const string StorageKey = "registered_feeders";
         private List<FeederDevice>? _cache;
 
+        public event EventHandler? FeedersChanged;
+
         public List<FeederDevice> GetFeeders()
         {
             if (_cache != null) return _cache;
@@ -54,6 +56,7 @@ namespace UniversalFeeder.Mobile.Services
             _cache = feeders;
             var json = JsonSerializer.Serialize(feeders);
             Preferences.Set(StorageKey, json);
+            FeedersChanged?.Invoke(this, EventArgs.Empty);
         }
     }
 }

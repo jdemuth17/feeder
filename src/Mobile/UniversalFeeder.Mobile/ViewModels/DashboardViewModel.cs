@@ -79,6 +79,11 @@ namespace UniversalFeeder.Mobile.ViewModels
                 });
             };
 
+            _storageService.FeedersChanged += (s, e) =>
+            {
+                MainThread.BeginInvokeOnMainThread(LoadFeeders);
+            };
+
             LoadFeeders();
         }
 

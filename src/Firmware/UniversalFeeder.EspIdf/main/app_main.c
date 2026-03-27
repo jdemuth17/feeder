@@ -8,6 +8,7 @@
 #include "app_config.h"
 #include "ble_provisioning.h"
 #include "device_identity.h"
+#include "fallback_scheduler.h"
 #include "feeding_sequence.h"
 #include "mqtt_service.h"
 #include "provisioning_store.h"
@@ -51,6 +52,7 @@ void app_main(void)
     ESP_ERROR_CHECK(provisioning_store_load_ip_address(ip_address, sizeof(ip_address)));
     ESP_ERROR_CHECK(wifi_manager_init(on_ip_address_changed));
     ESP_ERROR_CHECK(feeding_sequence_init());
+    ESP_ERROR_CHECK(fallback_scheduler_init());
     ESP_ERROR_CHECK(mqtt_service_init());
 
     ESP_LOGI(TAG, "UniversalFeeder ESP-IDF Firmware");

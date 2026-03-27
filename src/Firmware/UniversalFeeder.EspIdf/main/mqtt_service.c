@@ -5,6 +5,7 @@
 #include "esp_event.h"
 #include "esp_log.h"
 #include "mqtt_client.h"
+#include "fallback_scheduler.h"
 #include "mqtt_service.h"
 #include "feeding_sequence.h"
 #include "app_config.h"
@@ -35,6 +36,8 @@ static void handle_command(const char *payload, size_t payload_len)
         esp_err_t err = feeding_sequence_start(duration_ms);
         if (err != ESP_OK) {
             ESP_LOGW(TAG, "Feed command was rejected: %s", esp_err_to_name(err));
+        } else {
+            fallback_scheduler_note_feed_event();
         }
     } else if (strcmp(action->valuestring, "chime") == 0) {
         cJSON *volume = cJSON_GetObjectItemCaseSensitive(root, "vol");
@@ -57,7 +60,12 @@ static void mqtt_event_handler(void *handler_args, esp_event_base_t base, int32_
     switch ((esp_mqtt_event_id_t)event_id) {
     case MQTT_EVENT_CONNECTED:
         ESP_LOGI(TAG, "Connected to broker; subscribing to %s", s_topic);
+        fallback_scheduler_notify_mqtt_connected();
         esp_mqtt_client_subscribe(event->client, s_topic, 1);
+        break;
+    case MQTT_EVENT_DISCONNECTED:
+        ESP_LOGW(TAG, "Disconnected from broker");
+        fallback_scheduler_notify_mqtt_disconnected();
         break;
     case MQTT_EVENT_DATA:
         if ((size_t)event->topic_len == strlen(s_topic) && strncmp(event->topic, s_topic, event->topic_len) == 0) {
@@ -86,6 +94,8 @@ esp_err_t mqtt_service_start(const char *device_id)
     if (s_client != NULL) {
         return ESP_OK;
     }
+
+    fallback_scheduler_notify_mqtt_disconnected();
 
     snprintf(s_topic, sizeof(s_topic), "%s%s%s", MQTT_TOPIC_PREFIX, device_id, MQTT_TOPIC_SUFFIX);
 

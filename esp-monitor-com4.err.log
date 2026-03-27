@@ -1,0 +1,6 @@
+--- Warning: GDB cannot open serial ports accessed as COMx
+--- Using \\.\COM4 instead...
+--- esp-idf-monitor 1.9.0 on \\.\COM4 115200
+--- Quit: Ctrl+] | Menu: Ctrl+T | Help: Ctrl+T followed by Ctrl+H
+--- 0x40080400: _invalid_pc_placeholder at C:/Espressif/frameworks/esp-idf-v5.5.3/components/xtensa/xtensa_vectors.S:2235
+--- 0x40080644: call_start_cpu0 at C:/Espressif/frameworks/esp-idf-v5.5.3/components/bootloader/subproject/main/bootloader_start.c:27

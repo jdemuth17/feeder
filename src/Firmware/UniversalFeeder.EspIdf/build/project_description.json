@@ -1,7 +1,7 @@
 {
     "version":            "1.2",
     "project_name":       "universal_feeder",
-    "project_version":    "f671769-dirty",
+    "project_version":    "ace56e9-dirty",
     "project_path":       "C:/Users/Demuth_jm/DOTNET Projects/feeder/src/Firmware/UniversalFeeder.EspIdf",
     "idf_path":           "C:/Espressif/frameworks/esp-idf-v5.5.3",
     "build_dir":          "C:/Users/Demuth_jm/DOTNET Projects/feeder/src/Firmware/UniversalFeeder.EspIdf/build",
@@ -1240,7 +1240,7 @@
             "managed_reqs": [],
             "managed_priv_reqs": [],
             "file": "C:/Users/Demuth_jm/DOTNET Projects/feeder/src/Firmware/UniversalFeeder.EspIdf/build/esp-idf/main/libmain.a",
-            "sources": [ "C:/Users/Demuth_jm/DOTNET Projects/feeder/src/Firmware/UniversalFeeder.EspIdf/main/app_main.c", "C:/Users/Demuth_jm/DOTNET Projects/feeder/src/Firmware/UniversalFeeder.EspIdf/main/ble_provisioning.c", "C:/Users/Demuth_jm/DOTNET Projects/feeder/src/Firmware/UniversalFeeder.EspIdf/main/buzzer_control.c", "C:/Users/Demuth_jm/DOTNET Projects/feeder/src/Firmware/UniversalFeeder.EspIdf/main/device_identity.c", "C:/Users/Demuth_jm/DOTNET Projects/feeder/src/Firmware/UniversalFeeder.EspIdf/main/feeding_sequence.c", "C:/Users/Demuth_jm/DOTNET Projects/feeder/src/Firmware/UniversalFeeder.EspIdf/main/motor_control.c", "C:/Users/Demuth_jm/DOTNET Projects/feeder/src/Firmware/UniversalFeeder.EspIdf/main/mqtt_service.c", "C:/Users/Demuth_jm/DOTNET Projects/feeder/src/Firmware/UniversalFeeder.EspIdf/main/provisioning_store.c", "C:/Users/Demuth_jm/DOTNET Projects/feeder/src/Firmware/UniversalFeeder.EspIdf/main/wifi_manager.c" ],
+            "sources": [ "C:/Users/Demuth_jm/DOTNET Projects/feeder/src/Firmware/UniversalFeeder.EspIdf/main/app_main.c", "C:/Users/Demuth_jm/DOTNET Projects/feeder/src/Firmware/UniversalFeeder.EspIdf/main/ble_provisioning.c", "C:/Users/Demuth_jm/DOTNET Projects/feeder/src/Firmware/UniversalFeeder.EspIdf/main/buzzer_control.c", "C:/Users/Demuth_jm/DOTNET Projects/feeder/src/Firmware/UniversalFeeder.EspIdf/main/device_identity.c", "C:/Users/Demuth_jm/DOTNET Projects/feeder/src/Firmware/UniversalFeeder.EspIdf/main/fallback_scheduler.c", "C:/Users/Demuth_jm/DOTNET Projects/feeder/src/Firmware/UniversalFeeder.EspIdf/main/feeding_sequence.c", "C:/Users/Demuth_jm/DOTNET Projects/feeder/src/Firmware/UniversalFeeder.EspIdf/main/motor_control.c", "C:/Users/Demuth_jm/DOTNET Projects/feeder/src/Firmware/UniversalFeeder.EspIdf/main/mqtt_service.c", "C:/Users/Demuth_jm/DOTNET Projects/feeder/src/Firmware/UniversalFeeder.EspIdf/main/provisioning_store.c", "C:/Users/Demuth_jm/DOTNET Projects/feeder/src/Firmware/UniversalFeeder.EspIdf/main/wifi_manager.c" ],
             "include_dirs": [ "include" ]
         },
         "mbedtls": {

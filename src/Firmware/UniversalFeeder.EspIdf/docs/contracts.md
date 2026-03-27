@@ -191,6 +191,14 @@ Plays audio through the speaker at a specified volume.
 - Missing required fields: Use defaults or ignore
 - Out-of-range values: Clamp to valid range
 
+### Offline Fallback Behavior
+
+Current MVP behavior is intentionally narrow and device-local:
+- Fallback only arms when MQTT has been disconnected for 12 hours.
+- Once armed, the device issues one local feed using the default duration every 24 hours until MQTT reconnects.
+- Any successful `feed` command resets the fallback timer.
+- Reconnecting to MQTT immediately suspends fallback feeding.
+
 ---
 
 ## Implementation Notes
@@ -242,6 +250,7 @@ Before releasing firmware changes affecting these contracts:
 - [ ] MQTT topic pattern matches `feeders/{feederId}/commands`
 - [ ] Feed command accepted with correct JSON structure
 - [ ] Chime command accepted with correct JSON structure
+- [ ] Fallback feed triggers after the configured offline interval
 - [ ] Default values applied when fields missing
 - [ ] Mobile app can provision device end-to-end
 - [ ] Server can send commands successfully
@@ -252,3 +261,4 @@ Before releasing firmware changes affecting these contracts:
 
 - 2026-03-11: Initial contract lock for ESP-IDF rewrite (Phase 1)
 - 2026-03-20: ESP-IDF implementation updated to expose the device ID characteristic and execute MQTT `feed`/`chime` commands through native buzzer, motor, and feeding-sequence modules
+- 2026-03-20: Added MVP offline fallback scheduling and a repo-local ESP-IDF build script/task for Windows development

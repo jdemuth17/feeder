@@ -1,0 +1,402 @@
+--------- beginning of main
+03-27 13:31:07.575  3576  3900 D ImpulseConnection: timeout didn't happen: com.google.android.apps.turbo
+03-27 13:31:07.584  1982  1982 I pixel-thermal: VIRTUAL-SKIN:32.3523 raw data: VIRTUAL-SKIN:32352.3 VIRTUAL-SKIN-EQ:32352.3 VIRTUAL-SKIN-LEGACY:32863.5 VIRTUAL-SKIN-LEGACY-MODEL-DIFF:516.553 VIRTUAL-SKIN-LEGACY-SHUTDOWN:0 VIRTUAL-SKIN-MODEL:32347 VIRTUAL-SKIN-MODEL-CLAMPED:32347 VIRTUAL-SKIN-MODEL-LEGACY-DIFF:-516.553 VIRTUAL-SKIN-MODEL-UPDATED:32352.3 VIRTUAL-SKIN-MODEL-UPPER-CLAMPED:32347 VIRTUAL-SKIN-SUB-0:32528.9 VIRTUAL-SKIN-SUB-1:32710.6 VIRTUAL-SKIN-SUB-2:32665.6 VIRTUAL-SKIN-SUB-3:32863.5 VIRTUAL-SKIN-SUB-4:32547.1 VIRTUAL-SKIN-SUB-5:32752.2 VIRTUAL-SKIN-SUB-6:32459.8 VIRTUAL-SKIN-SUB-7:32247.8 VT_LEGACY_WEIGHT:0 VT_MODEL_WEIGHT:1 charging_therm:36142 disp0_therm:30409 flash_therm:31413 north_therm:33440 quiet_therm:34950 rfpa_therm:36888 soc_therm:36538 usb_pwr_therm:30375 
+03-27 13:31:07.585  3576  4728 D TemperatureStateSource: getDeviceTemperatures: sequence=50294 deviceTemperatureType=3 temperatureSource=0 temperatures=[32.35229]
+03-27 13:31:07.585  3576  4728 D BusinessScope: Enqueuing the block
+03-27 13:31:07.586  3576  4728 D TemperatureStateSource: sequence=50294 waitTime=10000
+03-27 13:31:07.586  3576  4728 D BusinessScope: Start running the #120265 block
+03-27 13:31:07.587  3576  4728 D BusinessScope: Enqueuing the block
+03-27 13:31:07.587  3576  4728 D ImpulseStateSource: Notify clients: 60116
+03-27 13:31:07.587  3576  4728 D BusinessScope: Finish running the #120265 block
+03-27 13:31:07.587  3576  4728 D BusinessScope: Start running the #120266 block
+03-27 13:31:07.588  3576  4728 D BusinessScope: Finish running the #120266 block
+03-27 13:31:07.604 22987 23217 D WM-GreedyScheduler: Ignoring {WorkSpec: e2c206bf-e0f2-4842-9092-91352a51598e}. Requires ContentUri triggers.
+03-27 13:31:07.604 22987 23217 D WM-GreedyScheduler: Ignoring {WorkSpec: 7e28db7c-ab53-48d1-a9e2-f4d46cb9a3dd}. Requires ContentUri triggers.
+03-27 13:31:07.604 22987 23217 D WM-GreedyScheduler: Ignoring {WorkSpec: 0bf6d73c-323e-452c-b4fc-ad588676ae8f}. Requires device idle.
+03-27 13:31:07.605 22987 23217 D WM-GreedyScheduler: Starting tracking for 5919c476-81c1-4697-aa53-50c655f5e803,87c8f1ce-93b8-4030-9df8-b5c89cb91d2a
+03-27 13:31:07.620 22987 23012 D WM-BrdcstRcvrCnstrntTrc: tce: unregistering receiver
+03-27 13:31:07.629 22987 23217 D MddListenableWorkerFactory: createWorker for class: com.google.android.apps.messaging.shared.datamodel.workqueue.WorkQueueWorkerShim
+03-27 13:31:07.655 22987 23217 D WM-ConstraintTracker: tce: initial state = true
+03-27 13:31:07.655 22987 23217 D WM-BrdcstRcvrCnstrntTrc: tce: registering receiver
+03-27 13:31:07.676 22987 22987 D WM-WorkerWrapper: Starting work for com.google.android.apps.messaging.shared.datamodel.workqueue.WorkQueueWorkerShim
+03-27 13:31:07.681 22987 23012 D WM-GreedyScheduler: Constraints met: Scheduling work ID WorkGenerationalId(workSpecId=87c8f1ce-93b8-4030-9df8-b5c89cb91d2a, generation=0)
+03-27 13:31:07.692 22987 25540 D WM-Processor: Work WorkGenerationalId(workSpecId=87c8f1ce-93b8-4030-9df8-b5c89cb91d2a, generation=0) is already enqueued for processing
+03-27 13:31:07.693 22987 23015 I BugleSearch: Icing index rebuild kt runs on a table. [CONTEXT table_type=1 window_start=44420 window_end=44440 ]
+03-27 13:31:07.710 22987 23015 I BugleSearch: start to update index. [CONTEXT table_type=1 class_name="OnDeviceIndexerApiImpl" ]
+03-27 13:31:07.844  1379  1434 I CHRE    : @ 620470.801: [ImuCal] [GYRO_RPS] (s0, c0) Offset | Temp [C] | Quality: 0.001117, -0.000571, 0.000056 | 35.75 | 4
+03-27 13:31:07.845  1379  1434 I CHRE    : @ 620470.801: [ImuCal] [GYRO_RPS] (s0) Temp Sensitivity: 0.000058, 0.000005, -0.000017
+03-27 13:31:07.845  1379  1434 I CHRE    : @ 620470.801: [ImuCal] [GYRO_RPS] (s0) Temp Intercept: -0.001102, -0.000690, 0.000599
+03-27 13:31:07.848  1685  1685 D AOC     : CHRE: DRAM vote count begins
+03-27 13:31:07.848  1685  1685 D AOC     : CHRE: DRAM vote count ends: 0 ms
+03-27 13:31:07.848  1685  1685 D AOC     : CHRE: DRAM vote count begins
+03-27 13:31:07.848  1685  1685 D AOC     : CHRE: DRAM vote count ends: 0 ms
+03-27 13:31:07.941  1967  3375 W libbinder.IPCThreadState: Sending oneway calls to frozen process.
+03-27 13:31:07.963  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 2 -> 1 d_lux:417.40 w_lux: 375.68 C:12.41 G:4.43
+03-27 13:31:07.965  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 1 -> 2 d_lux:426.48 w_lux: 387.98 C:12.83 G:4.53
+03-27 13:31:08.361  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 2 -> 1 d_lux:417.67 w_lux: 376.08 C:12.43 G:4.44
+03-27 13:31:08.364  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 1 -> 2 d_lux:424.44 w_lux: 388.68 C:12.88 G:4.53
+03-27 13:31:08.404 22987 25540 I WM-WorkerWrapper: Worker result SUCCESS for Work [ id=87c8f1ce-93b8-4030-9df8-b5c89cb91d2a, tags={ com.google.android.apps.messaging.shared.datamodel.workqueue.WorkQueueWorkerShim,icing_index_rebuild_single_work_handler- } ]
+03-27 13:31:08.409 22987 25540 I WM-WorkerWrapper: Setting status to enqueued for 0f194d24-6d26-45e5-b079-3b5ab56ba7d9
+03-27 13:31:08.412 22987 22987 D WM-Processor: sxl 87c8f1ce-93b8-4030-9df8-b5c89cb91d2a executed; reschedule = false
+03-27 13:31:08.412 22987 22987 D WM-GreedyScheduler: Stopping tracking for WorkGenerationalId(workSpecId=87c8f1ce-93b8-4030-9df8-b5c89cb91d2a, generation=0)
+03-27 13:31:08.413 22987 22987 D WM-SystemJobService: 87c8f1ce-93b8-4030-9df8-b5c89cb91d2a executed on JobScheduler
+03-27 13:31:08.423 22987 25540 D WM-GreedyScheduler: Cancelling work ID 87c8f1ce-93b8-4030-9df8-b5c89cb91d2a
+03-27 13:31:08.447 22987 25540 W JobInfo : Requested important-while-foreground flag for job2006 is ignored and takes no effect
+03-27 13:31:08.447 22987 25540 D WM-SystemJobScheduler: Scheduling work ID 0f194d24-6d26-45e5-b079-3b5ab56ba7d9Job ID 2006
+03-27 13:31:08.460 22987 25540 D WM-GreedyScheduler: Ignoring {WorkSpec: e2c206bf-e0f2-4842-9092-91352a51598e}. Requires ContentUri triggers.
+03-27 13:31:08.460 22987 25540 D WM-GreedyScheduler: Ignoring {WorkSpec: 7e28db7c-ab53-48d1-a9e2-f4d46cb9a3dd}. Requires ContentUri triggers.
+03-27 13:31:08.460 22987 25540 D WM-GreedyScheduler: Ignoring {WorkSpec: 0bf6d73c-323e-452c-b4fc-ad588676ae8f}. Requires device idle.
+03-27 13:31:08.460 22987 25540 D WM-GreedyScheduler: Starting tracking for 5919c476-81c1-4697-aa53-50c655f5e803,0f194d24-6d26-45e5-b079-3b5ab56ba7d9
+03-27 13:31:08.464 22987 23217 D WM-BrdcstRcvrCnstrntTrc: tce: unregistering receiver
+03-27 13:31:08.471 22987 22987 D WM-SystemJobService: onStartJob for WorkGenerationalId(workSpecId=0f194d24-6d26-45e5-b079-3b5ab56ba7d9, generation=0)
+03-27 13:31:08.489 22987 23217 D WM-Processor: sxl: processing WorkGenerationalId(workSpecId=0f194d24-6d26-45e5-b079-3b5ab56ba7d9, generation=0)
+03-27 13:31:08.499 22987 25540 D MddListenableWorkerFactory: createWorker for class: com.google.android.apps.messaging.shared.datamodel.workqueue.WorkQueueWorkerShim
+03-27 13:31:08.545 22987 25540 D WM-ConstraintTracker: tce: initial state = true
+03-27 13:31:08.546 22987 25540 D WM-BrdcstRcvrCnstrntTrc: tce: registering receiver
+03-27 13:31:08.560  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 2 -> 1 d_lux:418.83 w_lux: 375.68 C:12.41 G:4.44
+03-27 13:31:08.565  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 1 -> 2 d_lux:421.73 w_lux: 388.78 C:12.86 G:4.50
+03-27 13:31:08.587 22987 23217 D WM-GreedyScheduler: Constraints met: Scheduling work ID WorkGenerationalId(workSpecId=0f194d24-6d26-45e5-b079-3b5ab56ba7d9, generation=0)
+03-27 13:31:08.589 22987 22987 D WM-WorkerWrapper: Starting work for com.google.android.apps.messaging.shared.datamodel.workqueue.WorkQueueWorkerShim
+03-27 13:31:08.605 22987 23004 I BugleSearch: Icing index rebuild kt runs on a table. [CONTEXT table_type=1 window_start=44440 window_end=44460 ]
+03-27 13:31:08.610 22987 23012 D WM-Processor: Work WorkGenerationalId(workSpecId=0f194d24-6d26-45e5-b079-3b5ab56ba7d9, generation=0) is already enqueued for processing
+03-27 13:31:08.621 22987 23004 I BugleSearch: start to update index. [CONTEXT table_type=1 class_name="OnDeviceIndexerApiImpl" ]
+03-27 13:31:08.777  1685  1685 D AOC     : A3:MSG: usf_vsc_log.cc, 69: VSC: [Auto Brightness] Retune sensor-0 (tout:1 drop:0): avg 420.096 -> 420.095 [wm:420.353
+03-27 13:31:08.778  1685  1685 D AOC     : A3:MSG: usf_vsc_log.cc, 69: VSC: [Auto Brightness] Retune sensor-2 (tout:1 drop:0): avg 0.000 -> 0.000 [wm:0.000]
+03-27 13:31:08.779  1685  1685 D AOC     : A3:MSG: usf_vsc_log.cc, 69: VSC: [Auto Brightness] Retune sensor-3 (tout:1 drop:0): avg 420.088 -> 420.088 [wm:420.238
+03-27 13:31:08.848  1967  5115 W libbinder.IPCThreadState: Sending oneway calls to frozen process.
+03-27 13:31:08.927  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 2 -> 1 d_lux:418.68 w_lux: 376.38 C:12.42 G:4.44
+03-27 13:31:08.931  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 1 -> 2 d_lux:425.02 w_lux: 387.78 C:12.84 G:4.53
+03-27 13:31:09.016  1982  1982 I pixel-thermal: VIRTUAL-SKIN:32.3523 raw data: VIRTUAL-SKIN:32352.3 
+03-27 13:31:09.017   599   711 I hwc-pixel-skin-temperature: writes skin_temperature(32) to the sysfs node for display 0
+03-27 13:31:09.323 22987 25540 I WM-WorkerWrapper: Worker result SUCCESS for Work [ id=0f194d24-6d26-45e5-b079-3b5ab56ba7d9, tags={ com.google.android.apps.messaging.shared.datamodel.workqueue.WorkQueueWorkerShim,icing_index_rebuild_single_work_handler- } ]
+03-27 13:31:09.344 22987 25540 I WM-WorkerWrapper: Setting status to enqueued for 5fc953dc-7877-47cf-af42-4084f9cad24e
+03-27 13:31:09.353 22987 22987 D WM-Processor: sxl 0f194d24-6d26-45e5-b079-3b5ab56ba7d9 executed; reschedule = false
+03-27 13:31:09.353 22987 22987 D WM-GreedyScheduler: Stopping tracking for WorkGenerationalId(workSpecId=0f194d24-6d26-45e5-b079-3b5ab56ba7d9, generation=0)
+03-27 13:31:09.354 22987 22987 D WM-SystemJobService: 0f194d24-6d26-45e5-b079-3b5ab56ba7d9 executed on JobScheduler
+03-27 13:31:09.382 22987 25540 D WM-GreedyScheduler: Cancelling work ID 0f194d24-6d26-45e5-b079-3b5ab56ba7d9
+03-27 13:31:09.413 22987 25540 W JobInfo : Requested important-while-foreground flag for job2007 is ignored and takes no effect
+03-27 13:31:09.413 22987 25540 D WM-SystemJobScheduler: Scheduling work ID 5fc953dc-7877-47cf-af42-4084f9cad24eJob ID 2007
+03-27 13:31:09.429 22987 25540 D WM-GreedyScheduler: Ignoring {WorkSpec: e2c206bf-e0f2-4842-9092-91352a51598e}. Requires ContentUri triggers.
+03-27 13:31:09.429 22987 25540 D WM-GreedyScheduler: Ignoring {WorkSpec: 7e28db7c-ab53-48d1-a9e2-f4d46cb9a3dd}. Requires ContentUri triggers.
+03-27 13:31:09.429 22987 25540 D WM-GreedyScheduler: Ignoring {WorkSpec: 0bf6d73c-323e-452c-b4fc-ad588676ae8f}. Requires device idle.
+03-27 13:31:09.429 22987 25540 D WM-GreedyScheduler: Starting tracking for 5919c476-81c1-4697-aa53-50c655f5e803,5fc953dc-7877-47cf-af42-4084f9cad24e
+03-27 13:31:09.434 22987 22987 D WM-SystemJobService: onStartJob for WorkGenerationalId(workSpecId=5fc953dc-7877-47cf-af42-4084f9cad24e, generation=0)
+03-27 13:31:09.444 22987 23217 D WM-BrdcstRcvrCnstrntTrc: tce: unregistering receiver
+03-27 13:31:09.468 22987 25540 D WM-Processor: sxl: processing WorkGenerationalId(workSpecId=5fc953dc-7877-47cf-af42-4084f9cad24e, generation=0)
+03-27 13:31:09.472 22987 23217 D MddListenableWorkerFactory: createWorker for class: com.google.android.apps.messaging.shared.datamodel.workqueue.WorkQueueWorkerShim
+03-27 13:31:09.477 22987 23217 D WM-ConstraintTracker: tce: initial state = true
+03-27 13:31:09.477 22987 23217 D WM-BrdcstRcvrCnstrntTrc: tce: registering receiver
+03-27 13:31:09.483 22987 22987 D WM-WorkerWrapper: Starting work for com.google.android.apps.messaging.shared.datamodel.workqueue.WorkQueueWorkerShim
+03-27 13:31:09.486 22987 25540 D WM-GreedyScheduler: Constraints met: Scheduling work ID WorkGenerationalId(workSpecId=5fc953dc-7877-47cf-af42-4084f9cad24e, generation=0)
+03-27 13:31:09.488 22987 23035 I BugleSearch: Icing index rebuild kt runs on a table. [CONTEXT table_type=1 window_start=44460 window_end=44480 ]
+03-27 13:31:09.491 22987 23217 D WM-Processor: Work WorkGenerationalId(workSpecId=5fc953dc-7877-47cf-af42-4084f9cad24e, generation=0) is already enqueued for processing
+03-27 13:31:09.499 22987 23035 I BugleSearch: start to update index. [CONTEXT table_type=1 class_name="OnDeviceIndexerApiImpl" ]
+03-27 13:31:09.681  1967  3375 W libbinder.IPCThreadState: Sending oneway calls to frozen process.
+03-27 13:31:09.905 22987 23031 I BugleSearch: Icing indexing call is done. [CONTEXT item_id="content://com.google.android.apps.messaging/messages/44814" table_type=1 operation="1" outcome="Success" ]
+--------- beginning of system
+03-27 13:31:10.051  1967  2968 D ActivityManager: freezing 8222 com.aws.android.elite
+03-27 13:31:10.072  1967  3287 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET, states=14
+03-27 13:31:10.077  1967  3287 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET6, states=14
+03-27 13:31:10.077  1967  3287 D InetDiagMessage: Destroyed live tcp sockets for uids={10326} in 8ms
+03-27 13:31:10.358 22987 23217 I WM-WorkerWrapper: Worker result SUCCESS for Work [ id=5fc953dc-7877-47cf-af42-4084f9cad24e, tags={ com.google.android.apps.messaging.shared.datamodel.workqueue.WorkQueueWorkerShim,icing_index_rebuild_single_work_handler- } ]
+03-27 13:31:10.369 22987 23217 I WM-WorkerWrapper: Setting status to enqueued for 8611b4ae-b7be-4f4d-a7dd-c60ea08d0b74
+03-27 13:31:10.374 22987 22987 D WM-Processor: sxl 5fc953dc-7877-47cf-af42-4084f9cad24e executed; reschedule = false
+03-27 13:31:10.375 22987 22987 D WM-GreedyScheduler: Stopping tracking for WorkGenerationalId(workSpecId=5fc953dc-7877-47cf-af42-4084f9cad24e, generation=0)
+03-27 13:31:10.376 22987 22987 D WM-SystemJobService: 5fc953dc-7877-47cf-af42-4084f9cad24e executed on JobScheduler
+03-27 13:31:10.424 22987 23217 D WM-GreedyScheduler: Cancelling work ID 5fc953dc-7877-47cf-af42-4084f9cad24e
+03-27 13:31:10.439 22987 23217 W JobInfo : Requested important-while-foreground flag for job2008 is ignored and takes no effect
+03-27 13:31:10.440 22987 23217 D WM-SystemJobScheduler: Scheduling work ID 8611b4ae-b7be-4f4d-a7dd-c60ea08d0b74Job ID 2008
+03-27 13:31:10.452 22987 23217 D WM-GreedyScheduler: Ignoring {WorkSpec: e2c206bf-e0f2-4842-9092-91352a51598e}. Requires ContentUri triggers.
+03-27 13:31:10.452 22987 23217 D WM-GreedyScheduler: Ignoring {WorkSpec: 7e28db7c-ab53-48d1-a9e2-f4d46cb9a3dd}. Requires ContentUri triggers.
+03-27 13:31:10.452 22987 23217 D WM-GreedyScheduler: Ignoring {WorkSpec: 0bf6d73c-323e-452c-b4fc-ad588676ae8f}. Requires device idle.
+03-27 13:31:10.452 22987 23217 D WM-GreedyScheduler: Starting tracking for 5919c476-81c1-4697-aa53-50c655f5e803,8611b4ae-b7be-4f4d-a7dd-c60ea08d0b74
+03-27 13:31:10.479 22987 22987 D WM-SystemJobService: onStartJob for WorkGenerationalId(workSpecId=8611b4ae-b7be-4f4d-a7dd-c60ea08d0b74, generation=0)
+03-27 13:31:10.483 22987 25540 D WM-BrdcstRcvrCnstrntTrc: tce: unregistering receiver
+03-27 13:31:10.520 22987 23217 D WM-Processor: sxl: processing WorkGenerationalId(workSpecId=8611b4ae-b7be-4f4d-a7dd-c60ea08d0b74, generation=0)
+03-27 13:31:10.525 22987 25540 D MddListenableWorkerFactory: createWorker for class: com.google.android.apps.messaging.shared.datamodel.workqueue.WorkQueueWorkerShim
+03-27 13:31:10.552 22987 25540 D WM-ConstraintTracker: tce: initial state = true
+03-27 13:31:10.552 22987 25540 D WM-BrdcstRcvrCnstrntTrc: tce: registering receiver
+03-27 13:31:10.573 22987 22987 D WM-WorkerWrapper: Starting work for com.google.android.apps.messaging.shared.datamodel.workqueue.WorkQueueWorkerShim
+03-27 13:31:10.573 22987 23217 D WM-GreedyScheduler: Constraints met: Scheduling work ID WorkGenerationalId(workSpecId=8611b4ae-b7be-4f4d-a7dd-c60ea08d0b74, generation=0)
+03-27 13:31:10.576 22987 25540 D WM-Processor: Work WorkGenerationalId(workSpecId=8611b4ae-b7be-4f4d-a7dd-c60ea08d0b74, generation=0) is already enqueued for processing
+03-27 13:31:10.587 22987 23015 I BugleSearch: Icing index rebuild kt runs on a table. [CONTEXT table_type=1 window_start=44480 window_end=44500 ]
+03-27 13:31:10.610 22987 23015 I BugleSearch: start to update index. [CONTEXT table_type=1 class_name="OnDeviceIndexerApiImpl" ]
+03-27 13:31:10.778  1967  5115 W libbinder.IPCThreadState: Sending oneway calls to frozen process.
+03-27 13:31:11.019  1982  2016 I pixel-thermal: VIRTUAL-SKIN-MODEL: model_input: [36042.00 30379.00 31400.00 33405.00 34883.00 36698.00 36423.00 30369.00 ]
+03-27 13:31:11.019  1982  2016 I native  : I0000 00:00:1774636271.019760    2016 thermal_tflite_wrapper.cc:261] ThermalTfliteInvoke
+03-27 13:31:11.020  1982  2016 I pixel-thermal: VIRTUAL-SKIN-MODEL: model_output: [32326.6 ]
+03-27 13:31:11.020  1982  2016 I pixel-thermal: VIRTUAL-SKIN-MODEL: predicted_value: [32326.6 ]
+03-27 13:31:11.020  1982  2016 I pixel-thermal: VIRTUAL-SKIN-HINT:32.342 raw data: VIRTUAL-SKIN:32342 VIRTUAL-SKIN-EQ:32342 VIRTUAL-SKIN-HINT:32342 VIRTUAL-SKIN-LEGACY:32820.9 VIRTUAL-SKIN-LEGACY-MODEL-DIFF:494.242 VIRTUAL-SKIN-LEGACY-SHUTDOWN:0 VIRTUAL-SKIN-MODEL:32326.6 VIRTUAL-SKIN-MODEL-CLAMPED:32326.6 VIRTUAL-SKIN-MODEL-LEGACY-DIFF:-494.242 VIRTUAL-SKIN-MODEL-UPDATED:32342 VIRTUAL-SKIN-MODEL-UPPER-CLAMPED:32326.6 VIRTUAL-SKIN-SUB-0:32498.8 VIRTUAL-SKIN-SUB-1:32665.7 VIRTUAL-SKIN-SUB-2:32635.5 VIRTUAL-SKIN-SUB-3:32820.9 VIRTUAL-SKIN-SUB-4:32501.8 VIRTUAL-SKIN-SUB-5:32692.1 VIRTUAL-SKIN-SUB-6:32423.6 VIRTUAL-SKIN-SUB-7:32221.2 VT_LEGACY_WEIGHT:0 VT_MODEL_WEIGHT:1 charging_therm:36042 disp0_therm:30379 flash_therm:31400 north_therm:33405 quiet_therm:34883 rfpa_therm:36698 soc_therm:36423 usb_pwr_therm:30369 
+03-27 13:31:11.021  1982  2016 I pixel-thermal: cellular-emergency:32.342 raw data: VIRTUAL-SKIN:32342 cellular-emergency:32342 
+03-27 13:31:11.021  1982  2016 I pixel-thermal: BG-TASKS-THROTTLING-HINT:0 raw data: BG-TASKS-THROTTLING-EXP-PROPERTY:0 BG-TASKS-THROTTLING-HINT:0 BG_TASKS_THROTTLING_COUNT:1 IS_BG_TASKS_THROTTLING_ACTIVE:0 IS_CHARGING:1 VIRTUAL-SKIN:32342 thb_hda:54 
+03-27 13:31:11.021  1982  2016 I pixel-thermal: VIRTUAL-SKIN-CPU-LIGHT-ODPM:32.342 raw data: VIRTUAL-SKIN:32342 VIRTUAL-SKIN-CPU-LIGHT-ODPM:32342 
+03-27 13:31:11.022  1982  2016 I pixel-thermal: VIRTUAL-SKIN-CPU-MID:32.342 raw data: VIRTUAL-SKIN:32342 VIRTUAL-SKIN-CPU-MID:32342 
+03-27 13:31:11.022  1982  2016 I pixel-thermal: VIRTUAL-SKIN:32.342 raw data: VIRTUAL-SKIN:32342 
+03-27 13:31:11.022  1982  2016 I pixel-thermal: VIRTUAL-SKIN-SPEAKER:32.5768 raw data: VIRTUAL-SKIN-SPEAKER:32576.8 VIRTUAL-SKIN-SPEAKER-SUB-0:31576.8 VIRTUAL-SKIN-SPEAKER-SUB-1:31482 charging_therm:36042 disp0_therm:30379 flash_therm:31400 north_therm:33405 quiet_therm:34883 rfpa_therm:36698 soc_therm:36423 usb_pwr_therm:30369 
+03-27 13:31:11.022  1982  2016 I pixel-thermal: VIRTUAL-SKIN-CPU-HIGH:32.342 raw data: VIRTUAL-SKIN:32342 VIRTUAL-SKIN-CPU-HIGH:32342 
+03-27 13:31:11.023  1982  2016 I pixel-thermal: VIRTUAL-SKIN-SOC:32.342 raw data: VIRTUAL-SKIN:32342 VIRTUAL-SKIN-SOC:32342 
+03-27 13:31:11.023  1982  2016 I pixel-thermal: VIRTUAL-SKIN-CPU-ODPM:32.342 raw data: VIRTUAL-SKIN:32342 VIRTUAL-SKIN-CPU-ODPM:32342 
+03-27 13:31:11.023  1982  2016 I pixel-thermal: VIRTUAL-SKIN-CHARGE-WIRED:32.842 raw data: NO_WLC:1 VIRTUAL-SKIN-CHARGE:32842 VIRTUAL-SKIN-CHARGE-WIRED:32842 VIRTUAL-SKIN-EQ:32342 WLC_CHECK:1 thb_hda:54 
+03-27 13:31:11.024  1982  2016 I pixel-thermal: STATS-UPDATOR:0 raw data: EXTREME-CONDITION-POWER-MONITOR-44C:0 EXTREME-CONDITION-POWER-MONITOR-45C:0 EXTREME-CONDITION-POWER-MONITOR-46C:0 EXTREME_WORKLOAD_ODPM:1312.73 STATS-UPDATOR:0 VIRTUAL-SKIN:32342 VIRTUAL-SKIN-44C:0 VIRTUAL-SKIN-45C:0 VIRTUAL-SKIN-46C:0 VIRTUAL-SKIN-PREDICTION-MODEL:32508.5 VT-FORECAST-30SEC-BACK:32559.3 VT-FORECAST-60SEC-BACK:33490.5 VT-FORECAST-ERROR-30SEC:217.256 VT-FORECAST-ERROR-60SEC:1148.46 VT-FORECAST-ERROR-NOW:200.191 VT-FORECAST-NOW:32542.2 
+03-27 13:31:11.024  1982  2016 I pixel-thermal: VIRTUAL-SKIN-CHARGE-PERSIST:32.842 raw data: VIRTUAL-SKIN-CHARGE:32842 VIRTUAL-SKIN-CHARGE-PERSIST:32842 
+03-27 13:31:11.385 22987 25540 I WM-WorkerWrapper: Worker result SUCCESS for Work [ id=8611b4ae-b7be-4f4d-a7dd-c60ea08d0b74, tags={ com.google.android.apps.messaging.shared.datamodel.workqueue.WorkQueueWorkerShim,icing_index_rebuild_single_work_handler- } ]
+03-27 13:31:11.401 22987 25540 I WM-WorkerWrapper: Setting status to enqueued for 01da0ae5-6cc7-41e2-8982-3ed6dced10c6
+03-27 13:31:11.429 22987 22987 D WM-Processor: sxl 8611b4ae-b7be-4f4d-a7dd-c60ea08d0b74 executed; reschedule = false
+03-27 13:31:11.429 22987 22987 D WM-GreedyScheduler: Stopping tracking for WorkGenerationalId(workSpecId=8611b4ae-b7be-4f4d-a7dd-c60ea08d0b74, generation=0)
+03-27 13:31:11.430 22987 22987 D WM-SystemJobService: 8611b4ae-b7be-4f4d-a7dd-c60ea08d0b74 executed on JobScheduler
+03-27 13:31:11.472 22987 25540 D WM-GreedyScheduler: Cancelling work ID 8611b4ae-b7be-4f4d-a7dd-c60ea08d0b74
+03-27 13:31:11.472  1982  2016 I pixel-thermal: soc_therm:36.423 raw data: soc_therm:36423 
+03-27 13:31:11.473  1982  2016 I pixel-thermal: north_therm:33.405 raw data: north_therm:33405 
+03-27 13:31:11.473  1982  2016 I pixel-thermal: flash_therm:31.4 raw data: flash_therm:31400 
+03-27 13:31:11.473  1982  2016 I pixel-thermal: rfpa_therm:36.698 raw data: rfpa_therm:36698 
+03-27 13:31:11.474  1982  2016 I pixel-thermal: quiet_therm:34.883 raw data: quiet_therm:34883 
+03-27 13:31:11.474  1982  2016 I pixel-thermal: VIRTUAL-SKIN-PREDICTION-MODEL: model_input: [33405.00 31400.00 36423.00 36698.00 36042.00 30379.00 30369.00 34883.00 32342.03 ]
+03-27 13:31:11.474  1982  2016 I native  : I0000 00:00:1774636271.474485    2016 thermal_tflite_wrapper.cc:261] ThermalTfliteInvoke
+03-27 13:31:11.480  1982  2016 I pixel-thermal: VIRTUAL-SKIN-PREDICTION-MODEL: model_output: [32473.3 32505.6 32533 32564.9 32605.9 32647.5 32691.8 32742.8 32791.1 32836.3 ]
+03-27 13:31:11.480  1982  2016 I pixel-thermal: VIRTUAL-SKIN-PREDICTION-MODEL: predicted_value: [32473.3 32505.6 32533 32564.9 32605.9 32647.5 32691.8 32742.8 32791.1 32836.3 ]
+03-27 13:31:11.482  1982  2016 I pixel-thermal: EARLY-WARNING-SENSOR:0 raw data: EARLY-EMERGENCY-WARNING-SENSOR:0 EARLY-SHUTDOWN-WARNING-SENSOR:0 EARLY-WARNING-SENSOR:0 VIRTUAL-SKIN:32342 VIRTUAL-SKIN-PREDICTION-MODEL:32473.3 VT-FORECAST-30SEC:32617.8 VT-FORECAST-60SEC:32816.9 charging_therm:36042 disp0_therm:30379 flash_therm:31400 north_therm:33405 quiet_therm:34883 rfpa_therm:36698 soc_therm:36423 usb_pwr_therm:30369 
+03-27 13:31:11.509 22987 25540 W JobInfo : Requested important-while-foreground flag for job2009 is ignored and takes no effect
+03-27 13:31:11.509 22987 25540 D WM-SystemJobScheduler: Scheduling work ID 01da0ae5-6cc7-41e2-8982-3ed6dced10c6Job ID 2009
+03-27 13:31:11.537  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 2 -> 1 d_lux:418.71 w_lux: 378.18 C:12.43 G:4.44
+03-27 13:31:11.542  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 1 -> 2 d_lux:422.08 w_lux: 386.48 C:12.81 G:4.51
+03-27 13:31:11.551 22987 25540 D WM-GreedyScheduler: Ignoring {WorkSpec: e2c206bf-e0f2-4842-9092-91352a51598e}. Requires ContentUri triggers.
+03-27 13:31:11.551 22987 25540 D WM-GreedyScheduler: Ignoring {WorkSpec: 7e28db7c-ab53-48d1-a9e2-f4d46cb9a3dd}. Requires ContentUri triggers.
+03-27 13:31:11.551 22987 25540 D WM-GreedyScheduler: Ignoring {WorkSpec: 0bf6d73c-323e-452c-b4fc-ad588676ae8f}. Requires device idle.
+03-27 13:31:11.551 22987 25540 D WM-GreedyScheduler: Starting tracking for 5919c476-81c1-4697-aa53-50c655f5e803,01da0ae5-6cc7-41e2-8982-3ed6dced10c6
+03-27 13:31:11.564 22987 22987 D WM-SystemJobService: onStartJob for WorkGenerationalId(workSpecId=01da0ae5-6cc7-41e2-8982-3ed6dced10c6, generation=0)
+03-27 13:31:11.567 22987 23217 D WM-BrdcstRcvrCnstrntTrc: tce: unregistering receiver
+03-27 13:31:11.594 22987 25540 D WM-Processor: sxl: processing WorkGenerationalId(workSpecId=01da0ae5-6cc7-41e2-8982-3ed6dced10c6, generation=0)
+03-27 13:31:11.599 22987 23217 D MddListenableWorkerFactory: createWorker for class: com.google.android.apps.messaging.shared.datamodel.workqueue.WorkQueueWorkerShim
+03-27 13:31:11.610 22987 23217 D WM-ConstraintTracker: tce: initial state = true
+03-27 13:31:11.610 22987 23217 D WM-BrdcstRcvrCnstrntTrc: tce: registering receiver
+03-27 13:31:11.620 22987 22987 D WM-WorkerWrapper: Starting work for com.google.android.apps.messaging.shared.datamodel.workqueue.WorkQueueWorkerShim
+03-27 13:31:11.620 22987 25540 D WM-GreedyScheduler: Constraints met: Scheduling work ID WorkGenerationalId(workSpecId=01da0ae5-6cc7-41e2-8982-3ed6dced10c6, generation=0)
+03-27 13:31:11.629 22987 23013 D WM-Processor: Work WorkGenerationalId(workSpecId=01da0ae5-6cc7-41e2-8982-3ed6dced10c6, generation=0) is already enqueued for processing
+03-27 13:31:11.632 22987 23033 I BugleSearch: Icing index rebuild kt runs on a table. [CONTEXT table_type=1 window_start=44500 window_end=44520 ]
+03-27 13:31:11.644 22987 23033 I BugleSearch: start to update index. [CONTEXT table_type=1 class_name="OnDeviceIndexerApiImpl" ]
+03-27 13:31:11.780  1967  3375 W libbinder.IPCThreadState: Sending oneway calls to frozen process.
+03-27 13:31:11.896 22987 23217 I WM-WorkerWrapper: Worker result SUCCESS for Work [ id=01da0ae5-6cc7-41e2-8982-3ed6dced10c6, tags={ com.google.android.apps.messaging.shared.datamodel.workqueue.WorkQueueWorkerShim,icing_index_rebuild_single_work_handler- } ]
+03-27 13:31:12.462 22987 25540 W JobInfo : Requested important-while-foreground flag for job2010 is ignored and takes no effect
+03-27 13:31:12.463 22987 25540 D WM-SystemJobScheduler: Scheduling work ID 37ea56bf-b799-467f-88d3-4d7fdd76a821Job ID 2010
+03-27 13:31:12.475 22987 25540 D WM-GreedyScheduler: Ignoring {WorkSpec: e2c206bf-e0f2-4842-9092-91352a51598e}. Requires ContentUri triggers.
+03-27 13:31:12.475 22987 25540 D WM-GreedyScheduler: Ignoring {WorkSpec: 7e28db7c-ab53-48d1-a9e2-f4d46cb9a3dd}. Requires ContentUri triggers.
+03-27 13:31:12.475 22987 25540 D WM-GreedyScheduler: Ignoring {WorkSpec: 0bf6d73c-323e-452c-b4fc-ad588676ae8f}. Requires device idle.
+03-27 13:31:12.475 22987 25540 D WM-GreedyScheduler: Starting tracking for 37ea56bf-b799-467f-88d3-4d7fdd76a821,5919c476-81c1-4697-aa53-50c655f5e803
+03-27 13:31:12.481 22987 22987 D WM-SystemJobService: onStartJob for WorkGenerationalId(workSpecId=37ea56bf-b799-467f-88d3-4d7fdd76a821, generation=0)
+03-27 13:31:12.508 22987 22987 D WM-Processor: sxl 01da0ae5-6cc7-41e2-8982-3ed6dced10c6 executed; reschedule = false
+03-27 13:31:12.508 22987 22987 D WM-GreedyScheduler: Stopping tracking for WorkGenerationalId(workSpecId=01da0ae5-6cc7-41e2-8982-3ed6dced10c6, generation=0)
+03-27 13:31:12.509 22987 22987 D WM-SystemJobService: 01da0ae5-6cc7-41e2-8982-3ed6dced10c6 executed on JobScheduler
+03-27 13:31:12.521 22987 25540 D WM-Processor: sxl: processing WorkGenerationalId(workSpecId=37ea56bf-b799-467f-88d3-4d7fdd76a821, generation=0)
+03-27 13:31:12.528 22987 25540 D WM-GreedyScheduler: Cancelling work ID 01da0ae5-6cc7-41e2-8982-3ed6dced10c6
+03-27 13:31:12.562 22987 25540 D WM-GreedyScheduler: Ignoring {WorkSpec: e2c206bf-e0f2-4842-9092-91352a51598e}. Requires ContentUri triggers.
+03-27 13:31:12.562 22987 25540 D WM-GreedyScheduler: Ignoring {WorkSpec: 7e28db7c-ab53-48d1-a9e2-f4d46cb9a3dd}. Requires ContentUri triggers.
+03-27 13:31:12.562 22987 25540 D WM-GreedyScheduler: Ignoring {WorkSpec: 0bf6d73c-323e-452c-b4fc-ad588676ae8f}. Requires device idle.
+03-27 13:31:12.562 22987 25540 D WM-GreedyScheduler: Starting tracking for 37ea56bf-b799-467f-88d3-4d7fdd76a821,5919c476-81c1-4697-aa53-50c655f5e803
+03-27 13:31:12.571 22987 23217 D WM-BrdcstRcvrCnstrntTrc: tce: unregistering receiver
+03-27 13:31:12.599 22987 25540 D MddListenableWorkerFactory: createWorker for class: com.google.android.apps.messaging.shared.datamodel.workqueue.WorkQueueWorkerShim
+03-27 13:31:12.627 22987 25540 D WM-ConstraintTracker: tce: initial state = true
+03-27 13:31:12.628 22987 25540 D WM-BrdcstRcvrCnstrntTrc: tce: registering receiver
+03-27 13:31:12.640 22987 22987 D WM-WorkerWrapper: Starting work for com.google.android.apps.messaging.shared.datamodel.workqueue.WorkQueueWorkerShim
+03-27 13:31:12.643 22987 23217 D WM-GreedyScheduler: Constraints met: Scheduling work ID WorkGenerationalId(workSpecId=37ea56bf-b799-467f-88d3-4d7fdd76a821, generation=0)
+03-27 13:31:12.676 22987 23013 D WM-Processor: Work WorkGenerationalId(workSpecId=37ea56bf-b799-467f-88d3-4d7fdd76a821, generation=0) is already enqueued for processing
+03-27 13:31:12.702 22987 23010 I BugleSearch: Icing index rebuild kt runs on a table. [CONTEXT table_type=1 window_start=44520 window_end=44540 ]
+03-27 13:31:12.709 22987 23010 I BugleSearch: start to update index. [CONTEXT table_type=1 class_name="OnDeviceIndexerApiImpl" ]
+03-27 13:31:12.842  1967  5115 W libbinder.IPCThreadState: Sending oneway calls to frozen process.
+03-27 13:31:12.871 22987 23032 I BugleSearch: Icing indexing call is done. [CONTEXT item_id="content://com.google.android.apps.messaging/messages/44877" table_type=1 operation="1" outcome="Success" ]
+03-27 13:31:13.028 22987 23217 I WM-WorkerWrapper: Worker result SUCCESS for Work [ id=37ea56bf-b799-467f-88d3-4d7fdd76a821, tags={ com.google.android.apps.messaging.shared.datamodel.workqueue.WorkQueueWorkerShim,icing_index_rebuild_single_work_handler- } ]
+03-27 13:31:13.035 22987 23217 I WM-WorkerWrapper: Setting status to enqueued for 1c875000-145b-44d8-8900-990aaacf1dc7
+03-27 13:31:13.041  1967  1990 I system_server: Background young concurrent mark compact GC freed 93MB AllocSpace bytes, 79(1548KB) LOS objects, 46% free, 111MB/207MB, paused 2.355ms,13.549ms total 253.245ms
+03-27 13:31:13.059 22987 22987 D WM-Processor: sxl 37ea56bf-b799-467f-88d3-4d7fdd76a821 executed; reschedule = false
+03-27 13:31:13.059 22987 22987 D WM-GreedyScheduler: Stopping tracking for WorkGenerationalId(workSpecId=37ea56bf-b799-467f-88d3-4d7fdd76a821, generation=0)
+03-27 13:31:13.060 22987 22987 D WM-SystemJobService: 37ea56bf-b799-467f-88d3-4d7fdd76a821 executed on JobScheduler
+03-27 13:31:13.073 22987 23217 D WM-GreedyScheduler: Cancelling work ID 37ea56bf-b799-467f-88d3-4d7fdd76a821
+03-27 13:31:13.090 22987 23217 W JobInfo : Requested important-while-foreground flag for job2011 is ignored and takes no effect
+03-27 13:31:13.090 22987 23217 D WM-SystemJobScheduler: Scheduling work ID 1c875000-145b-44d8-8900-990aaacf1dc7Job ID 2011
+03-27 13:31:13.106 22987 23217 D WM-GreedyScheduler: Ignoring {WorkSpec: e2c206bf-e0f2-4842-9092-91352a51598e}. Requires ContentUri triggers.
+03-27 13:31:13.106 22987 23217 D WM-GreedyScheduler: Ignoring {WorkSpec: 7e28db7c-ab53-48d1-a9e2-f4d46cb9a3dd}. Requires ContentUri triggers.
+03-27 13:31:13.106 22987 23217 D WM-GreedyScheduler: Ignoring {WorkSpec: 0bf6d73c-323e-452c-b4fc-ad588676ae8f}. Requires device idle.
+03-27 13:31:13.106 22987 23217 D WM-GreedyScheduler: Starting tracking for 5919c476-81c1-4697-aa53-50c655f5e803,1c875000-145b-44d8-8900-990aaacf1dc7
+03-27 13:31:13.115 22987 22987 D WM-SystemJobService: onStartJob for WorkGenerationalId(workSpecId=1c875000-145b-44d8-8900-990aaacf1dc7, generation=0)
+03-27 13:31:13.120 22987 23013 D WM-BrdcstRcvrCnstrntTrc: tce: unregistering receiver
+03-27 13:31:13.148 22987 23217 D WM-Processor: sxl: processing WorkGenerationalId(workSpecId=1c875000-145b-44d8-8900-990aaacf1dc7, generation=0)
+03-27 13:31:13.152 22987 23013 D MddListenableWorkerFactory: createWorker for class: com.google.android.apps.messaging.shared.datamodel.workqueue.WorkQueueWorkerShim
+03-27 13:31:13.159 22987 23013 D WM-ConstraintTracker: tce: initial state = true
+03-27 13:31:13.159 22987 23013 D WM-BrdcstRcvrCnstrntTrc: tce: registering receiver
+03-27 13:31:13.165 22987 23217 D WM-GreedyScheduler: Constraints met: Scheduling work ID WorkGenerationalId(workSpecId=1c875000-145b-44d8-8900-990aaacf1dc7, generation=0)
+03-27 13:31:13.165 22987 22987 D WM-WorkerWrapper: Starting work for com.google.android.apps.messaging.shared.datamodel.workqueue.WorkQueueWorkerShim
+03-27 13:31:13.166 22987 23013 D WM-Processor: Work WorkGenerationalId(workSpecId=1c875000-145b-44d8-8900-990aaacf1dc7, generation=0) is already enqueued for processing
+03-27 13:31:13.175 22987 23004 I BugleSearch: Icing index rebuild kt runs on a table. [CONTEXT table_type=1 window_start=44540 window_end=44560 ]
+03-27 13:31:13.178 22987 23004 I BugleSearch: start to update index. [CONTEXT table_type=1 class_name="OnDeviceIndexerApiImpl" ]
+03-27 13:31:13.301  1967  3375 W libbinder.IPCThreadState: Sending oneway calls to frozen process.
+03-27 13:31:13.746 22987 23013 I WM-WorkerWrapper: Worker result SUCCESS for Work [ id=1c875000-145b-44d8-8900-990aaacf1dc7, tags={ com.google.android.apps.messaging.shared.datamodel.workqueue.WorkQueueWorkerShim,icing_index_rebuild_single_work_handler- } ]
+03-27 13:31:13.751 22987 23013 I WM-WorkerWrapper: Setting status to enqueued for 550f160c-d5a3-41a2-ab14-abe29990d334
+03-27 13:31:13.754 22987 22987 D WM-Processor: sxl 1c875000-145b-44d8-8900-990aaacf1dc7 executed; reschedule = false
+03-27 13:31:13.754 22987 22987 D WM-GreedyScheduler: Stopping tracking for WorkGenerationalId(workSpecId=1c875000-145b-44d8-8900-990aaacf1dc7, generation=0)
+03-27 13:31:13.754 22987 22987 D WM-SystemJobService: 1c875000-145b-44d8-8900-990aaacf1dc7 executed on JobScheduler
+03-27 13:31:13.767 22987 23013 D WM-GreedyScheduler: Cancelling work ID 1c875000-145b-44d8-8900-990aaacf1dc7
+03-27 13:31:13.782 22987 23013 W JobInfo : Requested important-while-foreground flag for job2012 is ignored and takes no effect
+03-27 13:31:13.783 22987 23013 D WM-SystemJobScheduler: Scheduling work ID 550f160c-d5a3-41a2-ab14-abe29990d334Job ID 2012
+03-27 13:31:13.796 22987 23013 D WM-GreedyScheduler: Ignoring {WorkSpec: e2c206bf-e0f2-4842-9092-91352a51598e}. Requires ContentUri triggers.
+03-27 13:31:13.796 22987 23013 D WM-GreedyScheduler: Ignoring {WorkSpec: 7e28db7c-ab53-48d1-a9e2-f4d46cb9a3dd}. Requires ContentUri triggers.
+03-27 13:31:13.797 22987 23013 D WM-GreedyScheduler: Ignoring {WorkSpec: 0bf6d73c-323e-452c-b4fc-ad588676ae8f}. Requires device idle.
+03-27 13:31:13.797 22987 23013 D WM-GreedyScheduler: Starting tracking for 550f160c-d5a3-41a2-ab14-abe29990d334,5919c476-81c1-4697-aa53-50c655f5e803
+03-27 13:31:13.799 22987 25540 D WM-BrdcstRcvrCnstrntTrc: tce: unregistering receiver
+03-27 13:31:13.814 22987 23013 D WM-ConstraintTracker: tce: initial state = true
+03-27 13:31:13.814 22987 23013 D WM-BrdcstRcvrCnstrntTrc: tce: registering receiver
+03-27 13:31:13.817 22987 22987 D WM-SystemJobService: onStartJob for WorkGenerationalId(workSpecId=550f160c-d5a3-41a2-ab14-abe29990d334, generation=0)
+03-27 13:31:13.824 22987 25540 D WM-Processor: sxl: processing WorkGenerationalId(workSpecId=550f160c-d5a3-41a2-ab14-abe29990d334, generation=0)
+03-27 13:31:13.825 22987 23013 D WM-GreedyScheduler: Constraints met: Scheduling work ID WorkGenerationalId(workSpecId=550f160c-d5a3-41a2-ab14-abe29990d334, generation=0)
+03-27 13:31:13.829 22987 25540 D MddListenableWorkerFactory: createWorker for class: com.google.android.apps.messaging.shared.datamodel.workqueue.WorkQueueWorkerShim
+03-27 13:31:13.834 22987 23013 D WM-Processor: Work WorkGenerationalId(workSpecId=550f160c-d5a3-41a2-ab14-abe29990d334, generation=0) is already enqueued for processing
+03-27 13:31:13.839 22987 22987 D WM-WorkerWrapper: Starting work for com.google.android.apps.messaging.shared.datamodel.workqueue.WorkQueueWorkerShim
+03-27 13:31:13.854 22987 23035 I BugleSearch: Icing index rebuild kt runs on a table. [CONTEXT table_type=1 window_start=44560 window_end=44580 ]
+03-27 13:31:13.862 22987 23035 I BugleSearch: start to update index. [CONTEXT table_type=1 class_name="OnDeviceIndexerApiImpl" ]
+03-27 13:31:14.048 22987 23032 I BugleSearch: Icing indexing call is done. [CONTEXT item_id="content://com.google.android.apps.messaging/messages/44907" table_type=1 operation="1" outcome="Success" ]
+03-27 13:31:14.071  1967  5115 W libbinder.IPCThreadState: Sending oneway calls to frozen process.
+03-27 13:31:14.077 22987 23036 I BugleSearch: AppSearch indexing call is done. [CONTEXT item_id="44914" table_type=1 operation="1" outcome="Success" ]
+03-27 13:31:14.103 22987 25540 I WM-WorkerWrapper: Worker result SUCCESS for Work [ id=550f160c-d5a3-41a2-ab14-abe29990d334, tags={ com.google.android.apps.messaging.shared.datamodel.workqueue.WorkQueueWorkerShim,icing_index_rebuild_single_work_handler- } ]
+03-27 13:31:14.362  7311 28089 I NearbyMediums: No BLE Fast/GATT advertisements found in the latest cycle.
+03-27 13:31:14.362  7311 28089 I NearbyMediums: Current Tracked Scanning Clients are : {NearbyConnections.EnvironmentMonitor, NearbySharing, NearbyConnections.TxAdvertisement}
+03-27 13:31:14.563 22987 23217 W JobInfo : Requested important-while-foreground flag for job2013 is ignored and takes no effect
+03-27 13:31:14.563 22987 23217 D WM-SystemJobScheduler: Scheduling work ID 831cf6a0-ac65-4b70-969e-59b2222bae1eJob ID 2013
+03-27 13:31:14.575 22987 22987 D WM-SystemJobService: onStartJob for WorkGenerationalId(workSpecId=831cf6a0-ac65-4b70-969e-59b2222bae1e, generation=0)
+03-27 13:31:14.576 22987 23217 D WM-GreedyScheduler: Ignoring {WorkSpec: e2c206bf-e0f2-4842-9092-91352a51598e}. Requires ContentUri triggers.
+03-27 13:31:14.576 22987 23217 D WM-GreedyScheduler: Ignoring {WorkSpec: 7e28db7c-ab53-48d1-a9e2-f4d46cb9a3dd}. Requires ContentUri triggers.
+03-27 13:31:14.576 22987 23217 D WM-GreedyScheduler: Ignoring {WorkSpec: 0bf6d73c-323e-452c-b4fc-ad588676ae8f}. Requires device idle.
+03-27 13:31:14.576 22987 23217 D WM-GreedyScheduler: Starting tracking for 5919c476-81c1-4697-aa53-50c655f5e803,831cf6a0-ac65-4b70-969e-59b2222bae1e
+03-27 13:31:14.582 22987 22987 D WM-Processor: sxl 550f160c-d5a3-41a2-ab14-abe29990d334 executed; reschedule = false
+03-27 13:31:14.583 22987 22987 D WM-GreedyScheduler: Stopping tracking for WorkGenerationalId(workSpecId=550f160c-d5a3-41a2-ab14-abe29990d334, generation=0)
+03-27 13:31:14.583 22987 22987 D WM-SystemJobService: 550f160c-d5a3-41a2-ab14-abe29990d334 executed on JobScheduler
+03-27 13:31:14.585 22987 23013 D WM-Processor: sxl: processing WorkGenerationalId(workSpecId=831cf6a0-ac65-4b70-969e-59b2222bae1e, generation=0)
+03-27 13:31:14.591 22987 23217 D WM-GreedyScheduler: Cancelling work ID 550f160c-d5a3-41a2-ab14-abe29990d334
+03-27 13:31:14.675 22987 23217 D WM-GreedyScheduler: Ignoring {WorkSpec: e2c206bf-e0f2-4842-9092-91352a51598e}. Requires ContentUri triggers.
+03-27 13:31:14.675 22987 23217 D WM-GreedyScheduler: Ignoring {WorkSpec: 7e28db7c-ab53-48d1-a9e2-f4d46cb9a3dd}. Requires ContentUri triggers.
+03-27 13:31:14.675 22987 23217 D WM-GreedyScheduler: Ignoring {WorkSpec: 0bf6d73c-323e-452c-b4fc-ad588676ae8f}. Requires device idle.
+03-27 13:31:14.675 22987 23217 D WM-GreedyScheduler: Starting tracking for 5919c476-81c1-4697-aa53-50c655f5e803,831cf6a0-ac65-4b70-969e-59b2222bae1e
+03-27 13:31:14.688 22987 25540 D WM-BrdcstRcvrCnstrntTrc: tce: unregistering receiver
+03-27 13:31:14.703 22987 25540 D MddListenableWorkerFactory: createWorker for class: com.google.android.apps.messaging.shared.datamodel.workqueue.WorkQueueWorkerShim
+03-27 13:31:14.766 22987 23217 D WM-ConstraintTracker: tce: initial state = true
+03-27 13:31:14.768 22987 23217 D WM-BrdcstRcvrCnstrntTrc: tce: registering receiver
+03-27 13:31:14.774 22987 22987 D WM-WorkerWrapper: Starting work for com.google.android.apps.messaging.shared.datamodel.workqueue.WorkQueueWorkerShim
+03-27 13:31:14.780 22987 23217 D WM-GreedyScheduler: Constraints met: Scheduling work ID WorkGenerationalId(workSpecId=831cf6a0-ac65-4b70-969e-59b2222bae1e, generation=0)
+03-27 13:31:14.789 22987 23010 I BugleSearch: Icing index rebuild kt runs on a table. [CONTEXT table_type=1 window_start=44580 window_end=44600 ]
+03-27 13:31:14.808 22987 23010 I BugleSearch: start to update index. [CONTEXT table_type=1 class_name="OnDeviceIndexerApiImpl" ]
+03-27 13:31:14.823 22987 25540 D WM-Processor: Work WorkGenerationalId(workSpecId=831cf6a0-ac65-4b70-969e-59b2222bae1e, generation=0) is already enqueued for processing
+03-27 13:31:14.848  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 2 -> 1 d_lux:424.03 w_lux: 382.98 C:12.59 G:4.50
+03-27 13:31:14.852  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 1 -> 2 d_lux:421.30 w_lux: 381.68 C:12.67 G:4.48
+03-27 13:31:14.942  1967  3375 W libbinder.IPCThreadState: Sending oneway calls to frozen process.
+03-27 13:31:15.435 22987 23013 I WM-WorkerWrapper: Worker result SUCCESS for Work [ id=831cf6a0-ac65-4b70-969e-59b2222bae1e, tags={ com.google.android.apps.messaging.shared.datamodel.workqueue.WorkQueueWorkerShim,icing_index_rebuild_single_work_handler- } ]
+03-27 13:31:15.446 22987 23013 I WM-WorkerWrapper: Setting status to enqueued for c68dc1fd-76a2-4dba-a968-8a10ccbde888
+03-27 13:31:15.453 22987 22987 D WM-Processor: sxl 831cf6a0-ac65-4b70-969e-59b2222bae1e executed; reschedule = false
+03-27 13:31:15.453 22987 22987 D WM-GreedyScheduler: Stopping tracking for WorkGenerationalId(workSpecId=831cf6a0-ac65-4b70-969e-59b2222bae1e, generation=0)
+03-27 13:31:15.454 22987 22987 D WM-SystemJobService: 831cf6a0-ac65-4b70-969e-59b2222bae1e executed on JobScheduler
+03-27 13:31:15.488 22987 23013 D WM-GreedyScheduler: Cancelling work ID 831cf6a0-ac65-4b70-969e-59b2222bae1e
+03-27 13:31:15.502 22987 23033 I ForwardSyncCache: reclaimMemory: Clearing caches
+03-27 13:31:15.509 22987 23033 W Bugle   : TextClassifierLibManagerImpl: Reclaiming memory at level: 40
+03-27 13:31:15.582 22987 23013 W JobInfo : Requested important-while-foreground flag for job2014 is ignored and takes no effect
+03-27 13:31:15.583 22987 23013 D WM-SystemJobScheduler: Scheduling work ID c68dc1fd-76a2-4dba-a968-8a10ccbde888Job ID 2014
+03-27 13:31:15.610 22987 23013 D WM-GreedyScheduler: Ignoring {WorkSpec: e2c206bf-e0f2-4842-9092-91352a51598e}. Requires ContentUri triggers.
+03-27 13:31:15.610 22987 23013 D WM-GreedyScheduler: Ignoring {WorkSpec: 7e28db7c-ab53-48d1-a9e2-f4d46cb9a3dd}. Requires ContentUri triggers.
+03-27 13:31:15.611 22987 23013 D WM-GreedyScheduler: Ignoring {WorkSpec: 0bf6d73c-323e-452c-b4fc-ad588676ae8f}. Requires device idle.
+03-27 13:31:15.611 22987 23013 D WM-GreedyScheduler: Starting tracking for c68dc1fd-76a2-4dba-a968-8a10ccbde888,5919c476-81c1-4697-aa53-50c655f5e803
+03-27 13:31:15.624 22987 22987 D WM-SystemJobService: onStartJob for WorkGenerationalId(workSpecId=c68dc1fd-76a2-4dba-a968-8a10ccbde888, generation=0)
+03-27 13:31:15.632 22987 25540 D WM-BrdcstRcvrCnstrntTrc: tce: unregistering receiver
+03-27 13:31:15.647 22987 23013 D WM-Processor: sxl: processing WorkGenerationalId(workSpecId=c68dc1fd-76a2-4dba-a968-8a10ccbde888, generation=0)
+03-27 13:31:15.647  1967  2968 D ActivityManager: freezing 26354 com.android.vending:background
+03-27 13:31:15.649 22987 25540 D MddListenableWorkerFactory: createWorker for class: com.google.android.apps.messaging.shared.datamodel.workqueue.WorkQueueWorkerShim
+03-27 13:31:15.653 22987 25540 D WM-ConstraintTracker: tce: initial state = true
+03-27 13:31:15.654 22987 25540 D WM-BrdcstRcvrCnstrntTrc: tce: registering receiver
+03-27 13:31:15.659 22987 23013 D WM-GreedyScheduler: Constraints met: Scheduling work ID WorkGenerationalId(workSpecId=c68dc1fd-76a2-4dba-a968-8a10ccbde888, generation=0)
+03-27 13:31:15.659 22987 22987 D WM-WorkerWrapper: Starting work for com.google.android.apps.messaging.shared.datamodel.workqueue.WorkQueueWorkerShim
+03-27 13:31:15.660 22987 25540 D WM-Processor: Work WorkGenerationalId(workSpecId=c68dc1fd-76a2-4dba-a968-8a10ccbde888, generation=0) is already enqueued for processing
+03-27 13:31:15.670 22987 23033 I BugleSearch: Icing index rebuild kt runs on a table. [CONTEXT table_type=1 window_start=44600 window_end=44620 ]
+03-27 13:31:15.675 22987 23033 I BugleSearch: start to update index. [CONTEXT table_type=1 class_name="OnDeviceIndexerApiImpl" ]
+03-27 13:31:15.761  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 2 -> 1 d_lux:423.83 w_lux: 380.38 C:12.60 G:4.50
+03-27 13:31:15.766  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 1 -> 2 d_lux:419.12 w_lux: 384.18 C:12.70 G:4.48
+03-27 13:31:15.797  1967  5115 W libbinder.IPCThreadState: Sending oneway calls to frozen process.
+03-27 13:31:16.004 24421 28164 D nativeloader: Load /data/app/~~sUrkpBZHEBS4Wud-B6JIcg==/com.zhiliaoapp.musically-_uPBgGxftuqsQOsIEvqowg==/lib/arm64/libclient_ai_impl_jni.so using class loader ns clns-11 (caller=/data/app/~~sUrkpBZHEBS4Wud-B6JIcg==/com.zhiliaoapp.musically-_uPBgGxftuqsQOsIEvqowg==/base.apk!classes32.dex): ok
+03-27 13:31:16.012 24421 28164 I ML#BertTokenizer_Native: BertTokenizer all dicts released.
+03-27 13:31:16.031  7311  7311 D BoundBrokerSvc: onUnbind: Intent { act=com.google.android.gms.libs.gmscorelogger.service.START dat=chimera-action:/... xflg=0x4 cmp=com.google.android.gms/.chimera.PersistentDirectBootAwareApiService }
+03-27 13:31:16.255 22987 25540 I WM-WorkerWrapper: Worker result SUCCESS for Work [ id=c68dc1fd-76a2-4dba-a968-8a10ccbde888, tags={ com.google.android.apps.messaging.shared.datamodel.workqueue.WorkQueueWorkerShim,icing_index_rebuild_single_work_handler- } ]
+03-27 13:31:16.259 22987 25540 I WM-WorkerWrapper: Setting status to enqueued for 26e0e5fe-4b30-45f5-b2e3-0b192a98eb41
+03-27 13:31:16.263 22987 22987 D WM-Processor: sxl c68dc1fd-76a2-4dba-a968-8a10ccbde888 executed; reschedule = false
+03-27 13:31:16.263 22987 22987 D WM-GreedyScheduler: Stopping tracking for WorkGenerationalId(workSpecId=c68dc1fd-76a2-4dba-a968-8a10ccbde888, generation=0)
+03-27 13:31:16.264 22987 22987 D WM-SystemJobService: c68dc1fd-76a2-4dba-a968-8a10ccbde888 executed on JobScheduler
+03-27 13:31:16.291 22987 25540 D WM-GreedyScheduler: Cancelling work ID c68dc1fd-76a2-4dba-a968-8a10ccbde888
+03-27 13:31:16.304 22987 23035 I ForwardSyncCache: reclaimMemory: Clearing caches
+03-27 13:31:16.312 22987 23035 W Bugle   : TextClassifierLibManagerImpl: Reclaiming memory at level: 40
+03-27 13:31:16.365 22987 25540 W JobInfo : Requested important-while-foreground flag for job2015 is ignored and takes no effect
+03-27 13:31:16.366 22987 25540 D WM-SystemJobScheduler: Scheduling work ID 26e0e5fe-4b30-45f5-b2e3-0b192a98eb41Job ID 2015
+03-27 13:31:16.388 22987 25540 D WM-GreedyScheduler: Ignoring {WorkSpec: e2c206bf-e0f2-4842-9092-91352a51598e}. Requires ContentUri triggers.
+03-27 13:31:16.389 22987 25540 D WM-GreedyScheduler: Ignoring {WorkSpec: 7e28db7c-ab53-48d1-a9e2-f4d46cb9a3dd}. Requires ContentUri triggers.
+03-27 13:31:16.389 22987 25540 D WM-GreedyScheduler: Ignoring {WorkSpec: 0bf6d73c-323e-452c-b4fc-ad588676ae8f}. Requires device idle.
+03-27 13:31:16.389 22987 25540 D WM-GreedyScheduler: Starting tracking for 5919c476-81c1-4697-aa53-50c655f5e803,26e0e5fe-4b30-45f5-b2e3-0b192a98eb41
+03-27 13:31:16.402 22987 22987 D WM-SystemJobService: onStartJob for WorkGenerationalId(workSpecId=26e0e5fe-4b30-45f5-b2e3-0b192a98eb41, generation=0)
+03-27 13:31:16.410 22987 23217 D WM-BrdcstRcvrCnstrntTrc: tce: unregistering receiver
+03-27 13:31:16.449 22987 23217 D WM-Processor: sxl: processing WorkGenerationalId(workSpecId=26e0e5fe-4b30-45f5-b2e3-0b192a98eb41, generation=0)
+03-27 13:31:16.453 22987 25540 D MddListenableWorkerFactory: createWorker for class: com.google.android.apps.messaging.shared.datamodel.workqueue.WorkQueueWorkerShim
+03-27 13:31:16.465 22987 25540 D WM-ConstraintTracker: tce: initial state = true
+03-27 13:31:16.465 22987 25540 D WM-BrdcstRcvrCnstrntTrc: tce: registering receiver
+03-27 13:31:16.475 22987 22987 D WM-WorkerWrapper: Starting work for com.google.android.apps.messaging.shared.datamodel.workqueue.WorkQueueWorkerShim
+03-27 13:31:16.476 22987 23217 D WM-GreedyScheduler: Constraints met: Scheduling work ID WorkGenerationalId(workSpecId=26e0e5fe-4b30-45f5-b2e3-0b192a98eb41, generation=0)
+03-27 13:31:16.482 22987 25540 D WM-Processor: Work WorkGenerationalId(workSpecId=26e0e5fe-4b30-45f5-b2e3-0b192a98eb41, generation=0) is already enqueued for processing
+03-27 13:31:16.488 22987 23035 I BugleSearch: Icing index rebuild kt runs on a table. [CONTEXT table_type=1 window_start=44620 window_end=44640 ]
+03-27 13:31:16.505 22987 23035 I BugleSearch: start to update index. [CONTEXT table_type=1 class_name="OnDeviceIndexerApiImpl" ]
+03-27 13:31:16.746  1967  3375 W libbinder.IPCThreadState: Sending oneway calls to frozen process.
+03-27 13:31:16.822 22987 23013 I WM-WorkerWrapper: Worker result SUCCESS for Work [ id=26e0e5fe-4b30-45f5-b2e3-0b192a98eb41, tags={ com.google.android.apps.messaging.shared.datamodel.workqueue.WorkQueueWorkerShim,icing_index_rebuild_single_work_handler- } ]
+03-27 13:31:16.834 22987 22987 D WM-Processor: sxl 26e0e5fe-4b30-45f5-b2e3-0b192a98eb41 executed; reschedule = false
+03-27 13:31:16.835 22987 22987 D WM-GreedyScheduler: Stopping tracking for WorkGenerationalId(workSpecId=26e0e5fe-4b30-45f5-b2e3-0b192a98eb41, generation=0)
+03-27 13:31:16.835 22987 22987 D WM-SystemJobService: 26e0e5fe-4b30-45f5-b2e3-0b192a98eb41 executed on JobScheduler
+03-27 13:31:16.836  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 2 -> 1 d_lux:421.73 w_lux: 376.98 C:12.53 G:4.47
+03-27 13:31:16.842  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 1 -> 2 d_lux:421.70 w_lux: 386.88 C:12.77 G:4.50
+03-27 13:31:16.847 22987 23013 D WM-GreedyScheduler: Cancelling work ID 26e0e5fe-4b30-45f5-b2e3-0b192a98eb41
+03-27 13:31:16.867 22987 23010 I ForwardSyncCache: reclaimMemory: Clearing caches
+03-27 13:31:16.869 22987 23013 D WM-GreedyScheduler: Ignoring {WorkSpec: e2c206bf-e0f2-4842-9092-91352a51598e}. Requires ContentUri triggers.
+03-27 13:31:16.869 22987 23013 D WM-GreedyScheduler: Ignoring {WorkSpec: 7e28db7c-ab53-48d1-a9e2-f4d46cb9a3dd}. Requires ContentUri triggers.
+03-27 13:31:16.869 22987 23013 D WM-GreedyScheduler: Ignoring {WorkSpec: 0bf6d73c-323e-452c-b4fc-ad588676ae8f}. Requires device idle.
+03-27 13:31:16.869 22987 23013 D WM-GreedyScheduler: Starting tracking for 5919c476-81c1-4697-aa53-50c655f5e803
+03-27 13:31:16.871 22987 23010 W Bugle   : TextClassifierLibManagerImpl: Reclaiming memory at level: 40
+03-27 13:31:16.873 22987 25540 D WM-BrdcstRcvrCnstrntTrc: tce: unregistering receiver
+03-27 13:31:17.009  1681  1681 W TracingMuxer: type=1400 audit(0.0:194812): avc:  denied  { write } for  name="traced_producer" dev="tmpfs" ino=1430 scontext=u:r:gxp_logging:s0 tcontext=u:object_r:traced_producer_socket:s0 tclass=sock_file permissive=0
+03-27 13:31:17.030  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 2 -> 1 d_lux:421.70 w_lux: 377.48 C:12.51 G:4.47
+03-27 13:31:17.032  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 1 -> 2 d_lux:420.21 w_lux: 387.28 C:12.76 G:4.48
+03-27 13:31:17.370 22987 23013 W JobInfo : Requested important-while-foreground flag for job2016 is ignored and takes no effect
+03-27 13:31:17.371 22987 23013 D WM-SystemJobScheduler: Scheduling work ID b8c840bc-a9c1-49b6-b52c-9700339ffa4bJob ID 2016
+03-27 13:31:17.399 22987 23013 D WM-GreedyScheduler: Ignoring {WorkSpec: e2c206bf-e0f2-4842-9092-91352a51598e}. Requires ContentUri triggers.
+03-27 13:31:17.399 22987 23013 D WM-GreedyScheduler: Ignoring {WorkSpec: 7e28db7c-ab53-48d1-a9e2-f4d46cb9a3dd}. Requires ContentUri triggers.
+03-27 13:31:17.399 22987 23013 D WM-GreedyScheduler: Ignoring {WorkSpec: 0bf6d73c-323e-452c-b4fc-ad588676ae8f}. Requires device idle.
+03-27 13:31:17.400 22987 23013 D WM-GreedyScheduler: Starting tracking for 5919c476-81c1-4697-aa53-50c655f5e803,b8c840bc-a9c1-49b6-b52c-9700339ffa4b
+03-27 13:31:17.403 22987 22987 D WM-SystemJobService: onStartJob for WorkGenerationalId(workSpecId=b8c840bc-a9c1-49b6-b52c-9700339ffa4b, generation=0)
+03-27 13:31:17.406 24421 24801 D ThreadBooster: [Scene Stop] After reset priority, aoapp.musically priority is -19
+03-27 13:31:17.406 24421 24801 D ThreadBooster: [Scene Start] After adjust priority,  aoapp.musically priority is -20, tid: 24421
+03-27 13:31:17.413 22987 25540 D WM-Processor: sxl: processing WorkGenerationalId(workSpecId=b8c840bc-a9c1-49b6-b52c-9700339ffa4b, generation=0)
+03-27 13:31:17.419 22987 23217 D MddListenableWorkerFactory: createWorker for class: com.google.android.apps.messaging.shared.datamodel.workqueue.WorkQueueWorkerShim
+03-27 13:31:17.431 22987 23217 D WM-ConstraintTracker: tce: initial state = true
+03-27 13:31:17.432 22987 23217 D WM-BrdcstRcvrCnstrntTrc: tce: registering receiver
+03-27 13:31:17.441 22987 22987 D WM-WorkerWrapper: Starting work for com.google.android.apps.messaging.shared.datamodel.workqueue.WorkQueueWorkerShim
+03-27 13:31:17.444 22987 25540 D WM-GreedyScheduler: Constraints met: Scheduling work ID WorkGenerationalId(workSpecId=b8c840bc-a9c1-49b6-b52c-9700339ffa4b, generation=0)
+03-27 13:31:17.448 22987 23013 D WM-Processor: Work WorkGenerationalId(workSpecId=b8c840bc-a9c1-49b6-b52c-9700339ffa4b, generation=0) is already enqueued for processing
+03-27 13:31:17.454 22987 23004 I BugleSearch: Icing index rebuild kt runs on a table. [CONTEXT table_type=1 window_start=44640 window_end=44660 ]
+03-27 13:31:17.461 22987 23004 I BugleSearch: start to update index. [CONTEXT table_type=1 class_name="OnDeviceIndexerApiImpl" ]
+03-27 13:31:17.560  3576  3773 D ImpulseConnection: timeout happen: com.google.android.apps.turbo
+03-27 13:31:17.561  3576  3773 D ImpulseConnection: unbindService for releasing a CONNECTED connection com.google.android.apps.turbo
+03-27 13:31:17.600  3576  3900 D TemperatureStateSource: sequence=50294 actualDelay=10013
+03-27 13:31:17.601  3576  3900 D TemperatureStateSource: Reading temperature: sequence=50295
+03-27 13:31:17.608  1982  1982 I pixel-thermal: VIRTUAL-SKIN:32.3359 raw data: VIRTUAL-SKIN:32335.9 VIRTUAL-SKIN-EQ:32335.9 VIRTUAL-SKIN-LEGACY:32755.4 VIRTUAL-SKIN-LEGACY-MODEL-DIFF:428.814 VIRTUAL-SKIN-LEGACY-SHUTDOWN:0 VIRTUAL-SKIN-MODEL:32326.6 VIRTUAL-SKIN-MODEL-CLAMPED:32326.6 VIRTUAL-SKIN-MODEL-LEGACY-DIFF:-428.814 VIRTUAL-SKIN-MODEL-UPDATED:32335.9 VIRTUAL-SKIN-MODEL-UPPER-CLAMPED:32326.6 VIRTUAL-SKIN-SUB-0:32451.1 VIRTUAL-SKIN-SUB-1:32606.9 VIRTUAL-SKIN-SUB-2:32603.8 VIRTUAL-SKIN-SUB-3:32755.4 VIRTUAL-SKIN-SUB-4:32439.8 VIRTUAL-SKIN-SUB-5:32579.2 VIRTUAL-SKIN-SUB-6:32352.1 VIRTUAL-SKIN-SUB-7:32200.6 VT_LEGACY_WEIGHT:0 VT_MODEL_WEIGHT:1 charging_therm:35845 disp0_therm:30343 flash_therm:31452 north_therm:33346 quiet_therm:34763 rfpa_therm:36250 soc_therm:36235 usb_pwr_therm:30356 
+03-27 13:31:17.610  3576  3900 D TemperatureStateSource: getDeviceTemperatures: sequence=50295 deviceTemperatureType=3 temperatureSource=0 temperatures=[32.33587]
+03-27 13:31:17.610  3576  3900 D BusinessScope: Enqueuing the block
+03-27 13:31:17.610  3576  4728 D BusinessScope: Start running the #120267 block
+03-27 13:31:17.611  3576  3900 D TemperatureStateSource: sequence=50295 waitTime=10000
+03-27 13:31:17.614  1982  1982 I pixel-thermal: VIRTUAL-SKIN:32.3359 raw data: VIRTUAL-SKIN:32335.9 
+03-27 13:31:17.614  3576  4728 I TemperatureStateSource: temperature was set
+03-27 13:31:17.615  3576  4728 D BusinessScope: Enqueuing the block
+03-27 13:31:17.616  3576  4728 D ImpulseStateSource: Notify clients: 60117
+03-27 13:31:17.616  3576  4728 D BusinessScope: Finish running the #120267 block
+03-27 13:31:17.616  3576  4728 D BusinessScope: Start running the #120268 block
+03-27 13:31:17.617  3576  4728 D ImpulseConnection: bindService: com.google.android.apps.turbo
+03-27 13:31:17.628  1967  3338 D BackgroundInstallControlService: Package event received: 0
+03-27 13:31:17.630  1967  3338 D BackgroundInstallControlService: Package event received: 0
+03-27 13:31:17.631  1967  5115 W libbinder.IPCThreadState: Sending oneway calls to frozen process.
+03-27 13:31:17.646  3576  3576 D ImpulseConnection: onServiceConnected: ComponentInfo{com.google.android.apps.turbo/com.google.android.apps.turbo.adaptiveplatform.impulse.ImpulseClientService} service is null false
+03-27 13:31:17.650  3576  3689 D BusinessScope: Finish running the #120268 block
+03-27 13:31:17.695  7678 27984 W Turbo.DeviceHealthLeversManagerImpl: applyLeversWithMaintenanceWindow: ignore the same request

@@ -20,11 +20,13 @@ namespace UniversalFeeder.Mobile.Services
     public class BleService
     {
         private static readonly Guid ServiceUuid = Guid.Parse("4fafc201-1fb5-459e-8fcc-c5c9c331914b");
+        private static readonly byte[] ServiceUuidAdvertisementBytes = ToBleAdvertisementBytes(ServiceUuid);
         private static readonly Guid SsidCharUuid = Guid.Parse("beb5483e-36e1-4688-b7f5-ea07361b26a8");
         private static readonly Guid PassCharUuid = Guid.Parse("d6e98ba1-8ef4-4594-ba04-0390ea000001");
         private static readonly Guid IpCharUuid = Guid.Parse("e2a00001-8ef4-4594-ba04-0390ea000001");
         private static readonly Guid IdCharUuid = Guid.Parse("f4b00001-8ef4-4594-ba04-0390ea000001");
         private static readonly ConnectParameters DirectConnectParameters = new(autoConnect: false, forceBleTransport: true, connectionParameterSet: ConnectionParameterSet.None);
+        private static readonly TimeSpan ServiceDiscoveryTimeout = TimeSpan.FromSeconds(20);
         private const string LogTag = "UniversalFeeder.BLE";
 
         private readonly IAdapter _adapter;
@@ -91,6 +93,8 @@ namespace UniversalFeeder.Mobile.Services
         {
             await EnsureBlePermissionsAsync();
 
+            LogBle($"BLE scan: starting bluetoothOn={_bluetooth.IsOn} adapterScanning={_adapter.IsScanning} timeoutMs={_adapter.ScanTimeout}");
+
             var devices = new List<IDevice>();
 
             foreach (var device in _adapter.GetSystemConnectedOrPairedDevices(new[] { ServiceUuid }))
@@ -106,6 +110,7 @@ namespace UniversalFeeder.Mobile.Services
 
             _discoveredHandler = (s, a) =>
             {
+                LogBle($"BLE scan: discovered id={a.Device.Id} name={a.Device.Name ?? "<null>"} advertised={GetAdvertisedName(a.Device) ?? "<null>"} records={DescribeAdvertisementRecords(a.Device)}");
                 AddIfMissing(devices, a.Device);
             };
             _adapter.DeviceDiscovered += _discoveredHandler;
@@ -113,10 +118,12 @@ namespace UniversalFeeder.Mobile.Services
             try
             {
                 await _adapter.StartScanningForDevicesAsync(cancellationToken: ct);
+                LogBle($"BLE scan: completed discoveredCount={devices.Count}");
             }
             catch (System.OperationCanceledException)
             {
                 // Scan was cancelled — return what we found
+                LogBle($"BLE scan: cancelled discoveredCount={devices.Count}");
             }
             finally
             {
@@ -131,13 +138,18 @@ namespace UniversalFeeder.Mobile.Services
         {
             if (devices.Any(d => d.Id == device.Id))
             {
+                LogBle($"BLE scan: ignoring duplicate id={device.Id} name={device.Name ?? "<null>"}");
                 return;
             }
 
             if (IsFeederDevice(device))
             {
+                LogBle($"BLE scan: accepted feeder id={device.Id} display={GetAdvertisedName(device) ?? device.Name ?? "<null>"}");
                 devices.Add(device);
+                return;
             }
+
+            LogBle($"BLE scan: filtered non-feeder id={device.Id} name={device.Name ?? "<null>"} advertised={GetAdvertisedName(device) ?? "<null>"} records={DescribeAdvertisementRecords(device)}");
         }
 
         private static bool IsFeederDevice(IDevice device)
@@ -148,7 +160,12 @@ namespace UniversalFeeder.Mobile.Services
             }
 
             var advertisedName = GetAdvertisedName(device);
-            return advertisedName?.Contains("Feeder", StringComparison.OrdinalIgnoreCase) == true;
+            if (advertisedName?.Contains("Feeder", StringComparison.OrdinalIgnoreCase) == true)
+            {
+                return true;
+            }
+
+            return AdvertisementContainsServiceUuid(device);
         }
 
         private static string? GetAdvertisedName(IDevice device)
@@ -169,6 +186,60 @@ namespace UniversalFeeder.Mobile.Services
             }
 
             return null;
+        }
+
+        private static string DescribeAdvertisementRecords(IDevice device)
+        {
+            if (device.AdvertisementRecords == null || device.AdvertisementRecords.Count == 0)
+            {
+                return "none";
+            }
+
+            return string.Join(",", device.AdvertisementRecords.Select(record => $"{(int)record.Type}:{Convert.ToHexString(record.Data ?? Array.Empty<byte>())}"));
+        }
+
+        private static bool AdvertisementContainsServiceUuid(IDevice device)
+        {
+            foreach (var record in device.AdvertisementRecords)
+            {
+                var type = (int)record.Type;
+                if (type != 0x06 && type != 0x07 && type != 0x21)
+                {
+                    continue;
+                }
+
+                if (record.Data == null || record.Data.Length < ServiceUuidAdvertisementBytes.Length)
+                {
+                    continue;
+                }
+
+                if (ContainsSequence(record.Data, ServiceUuidAdvertisementBytes))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        private static bool ContainsSequence(byte[] source, byte[] target)
+        {
+            for (var index = 0; index <= source.Length - target.Length; index++)
+            {
+                if (source.AsSpan(index, target.Length).SequenceEqual(target))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        private static byte[] ToBleAdvertisementBytes(Guid uuid)
+        {
+            var bytes = Convert.FromHexString(uuid.ToString("N"));
+            Array.Reverse(bytes);
+            return bytes;
         }
 
         public async Task<string?> ProvisionDeviceAsync(IDevice device, string ssid, string password)
@@ -279,7 +350,7 @@ namespace UniversalFeeder.Mobile.Services
             await session.ConnectAsync();
             LogBle("BLE provisioning: native connect finished");
 
-            await session.DiscoverServicesAsync();
+            await DiscoverServicesWithRetryAsync(session);
             LogBle("BLE provisioning: native services discovered");
 
             await session.WriteCharacteristicAsync(ServiceUuid, SsidCharUuid, Encoding.UTF8.GetBytes(ssid));
@@ -288,27 +359,56 @@ namespace UniversalFeeder.Mobile.Services
             await session.WriteCharacteristicAsync(ServiceUuid, PassCharUuid, Encoding.UTF8.GetBytes(password));
             LogBle("BLE provisioning: native password write complete");
 
+            string? deviceId = null;
+            try
+            {
+                LogBle("BLE provisioning: native Device ID read");
+                var deviceIdValue = await session.ReadCharacteristicAsync(ServiceUuid, IdCharUuid);
+                if (deviceIdValue.Length > 0)
+                {
+                    deviceId = Encoding.UTF8.GetString(deviceIdValue).TrimEnd('\0');
+                }
+
+                LogBle($"BLE provisioning: native Device ID read returned '{deviceId ?? "<null>"}'");
+            }
+            catch (Exception ex)
+            {
+                LogBle($"BLE provisioning: native Device ID read failed: {ex.Message}");
+            }
+
+            string? ip = null;
+
             for (int attempt = 1; attempt <= 30; attempt++)
             {
                 LogBle($"BLE provisioning: native IP read attempt={attempt}");
-                var value = await session.ReadCharacteristicAsync(ServiceUuid, IpCharUuid);
+                byte[] value;
+                try
+                {
+                    value = await session.ReadCharacteristicAsync(ServiceUuid, IpCharUuid);
+                }
+                catch (TimeoutException ex)
+                {
+                    LogBle($"BLE provisioning: native IP read timed out attempt={attempt} error='{ex.Message}'");
+                    break;
+                }
+
                 if (value.Length == 0)
                 {
                     await Task.Delay(1000);
                     continue;
                 }
 
-                var ip = Encoding.UTF8.GetString(value).TrimEnd('\0');
+                ip = Encoding.UTF8.GetString(value).TrimEnd('\0');
                 LogBle($"BLE provisioning: native IP read returned '{ip}'");
                 if (!string.IsNullOrWhiteSpace(ip) && ip != "0.0.0.0")
                 {
-                    return ip;
+                    return $"{ip}|{deviceId}";
                 }
 
                 await Task.Delay(1000);
             }
 
-            return null;
+            return !string.IsNullOrWhiteSpace(deviceId) ? $"{ip ?? string.Empty}|{deviceId}" : null;
         }
 
         private static BluetoothDevice ResolveConnectDevice(BluetoothDevice nativeDevice)
@@ -415,6 +515,30 @@ namespace UniversalFeeder.Mobile.Services
                 LogBle($"BLE provisioning: {methodName} failed: {ex.Message}");
                 return false;
             }
+        }
+
+        private static async Task DiscoverServicesWithRetryAsync(AndroidBleProvisioningSession session)
+        {
+            try
+            {
+                LogBle("BLE provisioning: native discovering services attempt=1");
+                await session.DiscoverServicesAsync();
+            }
+            catch (Exception ex) when (IsRecoverableServiceDiscoveryFailure(ex))
+            {
+                LogBle($"BLE provisioning: native service discovery retrying after error='{ex.Message}'");
+                await session.RefreshGattCacheAsync();
+                await Task.Delay(750);
+                LogBle("BLE provisioning: native discovering services attempt=2");
+                await session.DiscoverServicesAsync();
+            }
+        }
+
+        private static bool IsRecoverableServiceDiscoveryFailure(Exception ex)
+        {
+            return ex is TimeoutException ||
+                   ex is InvalidOperationException invalidOperationException &&
+                   invalidOperationException.Message.Contains("Service discovery failed", StringComparison.OrdinalIgnoreCase);
         }
 
         private sealed class AndroidBleConnectLogger : BroadcastReceiver, IDisposable
@@ -551,9 +675,17 @@ namespace UniversalFeeder.Mobile.Services
                     connectStatus = await Permissions.RequestAsync<BluetoothConnectPermission>();
                 }
 
-                if (scanStatus != PermissionStatus.Granted || connectStatus != PermissionStatus.Granted)
+                var locationStatus = await Permissions.CheckStatusAsync<Permissions.LocationWhenInUse>();
+                if (locationStatus != PermissionStatus.Granted)
                 {
-                    throw new InvalidOperationException("Bluetooth permissions are required to scan and connect to feeders.");
+                    locationStatus = await Permissions.RequestAsync<Permissions.LocationWhenInUse>();
+                }
+
+                LogBle($"BLE permissions: scan={scanStatus} connect={connectStatus} location={locationStatus}");
+
+                if (scanStatus != PermissionStatus.Granted || connectStatus != PermissionStatus.Granted || locationStatus != PermissionStatus.Granted)
+                {
+                    throw new InvalidOperationException("Bluetooth and location permissions are required to scan for feeders on this device.");
                 }
             }
             else
@@ -563,6 +695,8 @@ namespace UniversalFeeder.Mobile.Services
                 {
                     locationStatus = await Permissions.RequestAsync<Permissions.LocationWhenInUse>();
                 }
+
+                LogBle($"BLE permissions: location={locationStatus}");
 
                 if (locationStatus != PermissionStatus.Granted)
                 {
@@ -654,7 +788,33 @@ namespace UniversalFeeder.Mobile.Services
                     throw new InvalidOperationException("BluetoothGatt.DiscoverServices returned false.");
                 }
 
-                await WaitAsync(_servicesTcs.Task, TimeSpan.FromSeconds(10), "service discovery");
+                try
+                {
+                    await WaitAsync(_servicesTcs.Task, ServiceDiscoveryTimeout, "service discovery");
+                }
+                catch (TimeoutException)
+                {
+                    if (HasProvisioningService())
+                    {
+                        LogBle("BLE native service discovery timeout, but provisioning service is already present in GATT cache");
+                        _servicesTcs.TrySetResult(true);
+                        return;
+                    }
+
+                    throw;
+                }
+            }
+
+            public async Task RefreshGattCacheAsync()
+            {
+                if (_gatt == null)
+                {
+                    return;
+                }
+
+                var refreshed = TryRefreshGattCache(_gatt);
+                LogBle($"BLE native refresh cache returned={refreshed}");
+                await Task.Delay(500);
             }
 
             public async Task WriteCharacteristicAsync(Guid serviceUuid, Guid characteristicUuid, byte[] value)
@@ -911,6 +1071,43 @@ namespace UniversalFeeder.Mobile.Services
                 }
 
                 return characteristic;
+            }
+
+            private bool HasProvisioningService()
+            {
+                if (_gatt == null)
+                {
+                    return false;
+                }
+
+                try
+                {
+                    return _gatt.GetService(UUID.FromString(ServiceUuid.ToString())) != null;
+                }
+                catch
+                {
+                    return false;
+                }
+            }
+
+            private static bool TryRefreshGattCache(BluetoothGatt gatt)
+            {
+                try
+                {
+                    var refreshMethod = gatt.Class?.GetMethod("refresh");
+                    if (refreshMethod == null)
+                    {
+                        return false;
+                    }
+
+                    var result = refreshMethod.Invoke(gatt);
+                    return result is null || result.ToString()?.Equals("true", StringComparison.OrdinalIgnoreCase) == true;
+                }
+                catch (Exception ex)
+                {
+                    LogBle($"BLE native refresh cache failed: {ex.Message}");
+                    return false;
+                }
             }
 
             private static TaskCompletionSource<bool> NewBoolTcs()

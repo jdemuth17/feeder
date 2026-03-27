@@ -39,6 +39,13 @@ $env:IDF_TOOLS_PATH = 'C:\Espressif'
 
 ### Build and Flash
 
+**Repo-local build entry point (recommended on this machine):**
+```powershell
+pwsh -NoProfile -ExecutionPolicy Bypass -File scripts/build-esp-idf.ps1
+```
+
+**VS Code task:** `Build ESP-IDF Firmware`
+
 Navigate to the firmware directory:
 ```bash
 cd src/Firmware/UniversalFeeder.EspIdf
@@ -92,11 +99,11 @@ idf.py -p COM3 monitor
 - LEDC buzzer driver
 - GPIO motor driver for the A4988 control pins
 - Serialized feeding sequence orchestration
+- MVP offline fallback scheduler that arms after prolonged MQTT outage and issues default-duration feeds on a fixed interval until MQTT returns
 - Logging framework
 - Contract documentation (see docs/contracts.md)
 
 **Still pending:**
-- Local schedule fallback
 - Hardware validation for motor, buzzer, and end-to-end command flow
 
 ## Contract Preservation
@@ -125,4 +132,5 @@ UniversalFeeder.EspIdf/
 - Uses native ESP-IDF APIs for BLE (NimBLE) and MQTT
 - Contract UUIDs and topic patterns locked to maintain backward compatibility
 - On this machine, direct `idf.py` invocation with explicit `IDF_PATH`, `IDF_TOOLS_PATH`, `IDF_PYTHON_ENV_PATH`, and tool directories on `PATH` is more reliable than the default wrapper scripts
+- The current fallback policy is intentionally narrow: after 12 hours of MQTT outage, the feeder falls back to a default-duration local feed every 24 hours until MQTT reconnects
 - Future enhancements should validate against docs/contracts.md

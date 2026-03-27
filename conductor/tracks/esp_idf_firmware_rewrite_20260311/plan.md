@@ -62,9 +62,9 @@ Rewrite the ESP32 firmware from nanoFramework C# to ESP-IDF C while preserving t
 - [x] Task: Implement feeding sequence orchestration
   - [x] Recreate the current chime-plus-feed sequence.
   - [x] Serialize execution so overlapping commands do not corrupt device state.
-- [ ] Task: Implement local fallback schedule
-  - [ ] Define the minimum viable offline schedule behavior.
-  - [ ] Trigger fallback feedings when cloud connectivity is unavailable long enough to require local operation.
+- [x] Task: Implement local fallback schedule
+  - [x] Define the minimum viable offline schedule behavior.
+  - [x] Trigger fallback feedings when cloud connectivity is unavailable long enough to require local operation.
 - [ ] Acceptance
   - [ ] Publishing the current server command payloads triggers the expected hardware behavior.
   - [ ] The device can feed on a local fallback schedule when cloud connectivity is lost.
