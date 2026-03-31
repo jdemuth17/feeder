@@ -39,6 +39,10 @@
 		<TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
 	</PropertyGroup>
 
+	<PropertyGroup Condition="'$(Configuration)'=='Debug'">
+		<AndroidFastDeploy>false</AndroidFastDeploy>
+	</PropertyGroup>
+
 	<ItemGroup>
 		<!-- App Icon -->
 		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
@@ -62,6 +66,7 @@
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="9.0.0" />
 		<PackageReference Include="Plugin.BLE" Version="3.2.0" />
 		<PackageReference Include="MQTTnet" Version="4.3.7.1207" />
+		<PackageReference Include="sqlite-net-pcl" Version="1.8.116" />
 	</ItemGroup>
 
 	<ItemGroup>
