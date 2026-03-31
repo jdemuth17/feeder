@@ -6,6 +6,8 @@ idf_component_register(
         "device_identity.c"
         "fallback_scheduler.c"
         "feeding_sequence.c"
+            "schedule_store.c"
+            "schedule_manager.c"
         "motor_control.c"
         "mqtt_service.c"
         "provisioning_store.c"

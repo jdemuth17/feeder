@@ -11,11 +11,12 @@
 #include "fallback_scheduler.h"
 #include "feeding_sequence.h"
 #include "mqtt_service.h"
+#include "schedule_manager.h"
 #include "provisioning_store.h"
 #include "wifi_manager.h"
 
 static const char *TAG = "UniversalFeeder";
-static char s_device_id[FEEDER_DEVICE_ID_MAX_LEN] = {0};
+char g_device_id[FEEDER_DEVICE_ID_MAX_LEN] = {0};
 static bool s_mqtt_started;
 
 static void on_ip_address_changed(const char *ip_address)
@@ -53,6 +54,7 @@ void app_main(void)
     ESP_ERROR_CHECK(wifi_manager_init(on_ip_address_changed));
     ESP_ERROR_CHECK(feeding_sequence_init());
     ESP_ERROR_CHECK(fallback_scheduler_init());
+    ESP_ERROR_CHECK(schedule_manager_init());
     ESP_ERROR_CHECK(mqtt_service_init());
 
     ESP_LOGI(TAG, "UniversalFeeder ESP-IDF Firmware");

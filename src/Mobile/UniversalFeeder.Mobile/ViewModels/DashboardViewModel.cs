@@ -14,13 +14,23 @@ namespace UniversalFeeder.Mobile.ViewModels
         private bool _isConnected;
         private bool _isBusy;
         private int _feedDurationSeconds = 5;
+        public ObservableCollection<string> Logs { get; } = new();
 
         public ObservableCollection<FeederDevice> Feeders { get; } = new();
 
         public FeederDevice? SelectedFeeder
         {
             get => _selectedFeeder;
-            set { _selectedFeeder = value; OnPropertyChanged(); OnPropertyChanged(nameof(HasSelectedFeeder)); }
+            set
+            {
+                _selectedFeeder = value;
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(HasSelectedFeeder));
+                if (IsConnected && _selectedFeeder != null)
+                {
+                    _ = _mqttService.SubscribeToLogsAsync(_selectedFeeder.UniqueId);
+                }
+            }
         }
 
         public bool HasSelectedFeeder => _selectedFeeder != null;
@@ -56,6 +66,7 @@ namespace UniversalFeeder.Mobile.ViewModels
         public ICommand ConnectCommand { get; }
         public ICommand FeedCommand { get; }
         public ICommand ChimeCommand { get; }
+        public ICommand SendScheduleCommand { get; }
         public ICommand RefreshCommand { get; }
         public ICommand RemoveFeederCommand { get; }
 
@@ -67,6 +78,7 @@ namespace UniversalFeeder.Mobile.ViewModels
             ConnectCommand = new Command(async () => await ConnectAsync());
             FeedCommand = new Command(async () => await FeedAsync());
             ChimeCommand = new Command(async () => await ChimeAsync());
+            SendScheduleCommand = new Command(async () => await SendScheduleAsync());
             RefreshCommand = new Command(LoadFeeders);
             RemoveFeederCommand = new Command<FeederDevice>(RemoveFeeder);
 
@@ -76,6 +88,10 @@ namespace UniversalFeeder.Mobile.ViewModels
                 {
                     IsConnected = connected;
                     Status = connected ? "Connected to MQTT broker" : "Disconnected from MQTT";
+                    if (connected && SelectedFeeder != null)
+                    {
+                        _ = _mqttService.SubscribeToLogsAsync(SelectedFeeder.UniqueId);
+                    }
                 });
             };
 
@@ -85,6 +101,18 @@ namespace UniversalFeeder.Mobile.ViewModels
             };
 
             LoadFeeders();
+
+            _mqttService.LogMessageReceived += (s, tuple) =>
+            {
+                var (feederId, payload) = tuple;
+                MainThread.BeginInvokeOnMainThread(() =>
+                {
+                    if (SelectedFeeder == null || SelectedFeeder.UniqueId == feederId)
+                    {
+                        Logs.Insert(0, $"{DateTime.Now:yyyy-MM-dd HH:mm:ss} {payload}");
+                    }
+                });
+            };
         }
 
         public void LoadFeeders()
@@ -192,6 +220,44 @@ namespace UniversalFeeder.Mobile.ViewModels
             catch (Exception ex)
             {
                 Status = $"Chime error: {ex.Message}";
+            }
+            finally
+            {
+                IsBusy = false;
+            }
+        }
+
+        private async Task SendScheduleAsync()
+        {
+            if (SelectedFeeder == null)
+            {
+                Status = "Select a feeder first";
+                return;
+            }
+
+            if (!IsConnected)
+            {
+                Status = "Connect to MQTT first";
+                return;
+            }
+
+            // Sample schedule: morning and evening
+            var schedule = new[]
+            {
+                new { time = "08:00", amount = 50.0, enabled = true },
+                new { time = "18:00", amount = 50.0, enabled = true }
+            };
+
+            IsBusy = true;
+            Status = $"Sending schedule to {SelectedFeeder.Nickname}...";
+            try
+            {
+                var success = await _mqttService.SendScheduleAsync(SelectedFeeder.UniqueId, schedule);
+                Status = success ? "Schedule sent!" : "Failed to send schedule";
+            }
+            catch (Exception ex)
+            {
+                Status = $"Schedule error: {ex.Message}";
             }
             finally
             {

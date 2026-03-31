@@ -7,9 +7,27 @@
 #include "motor_control.h"
 #include "buzzer_control.h"
 #include "app_config.h"
+#include "mqtt_service.h"
+#include <time.h>
 
 static const char *TAG = "FeedingSequence";
 static SemaphoreHandle_t s_operation_mutex;
+
+// Publish a log after a feed event
+void feeding_sequence_publish_log(bool success, const char *status, bool manual)
+{
+    // Compose JSON log message
+    char log_json[256];
+    snprintf(log_json, sizeof(log_json),
+        "{\"timestamp\":%ld,\"success\":%s,\"status\":\"%s\",\"manual\":%s}",
+        (long)time(NULL),
+        success ? "true" : "false",
+        status ? status : "",
+        manual ? "true" : "false");
+    // Use device_id if available (assume global or pass in as needed)
+    extern char g_device_id[];
+    mqtt_service_publish_log(g_device_id, log_json);
+}
 
 typedef struct {
     int duration_ms;
@@ -49,10 +67,12 @@ static void chime_task(void *arg)
 esp_err_t feeding_sequence_init(void)
 {
     if (s_operation_mutex == NULL) {
-        s_operation_mutex = xSemaphoreCreateMutex();
+        s_operation_mutex = xSemaphoreCreateBinary();
         if (s_operation_mutex == NULL) {
             return ESP_ERR_NO_MEM;
         }
+
+        xSemaphoreGive(s_operation_mutex);
     }
 
     ESP_ERROR_CHECK(motor_control_init());

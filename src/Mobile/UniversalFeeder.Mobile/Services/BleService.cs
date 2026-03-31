@@ -284,12 +284,7 @@ namespace UniversalFeeder.Mobile.Services
                 if (ssidChar == null || passChar == null)
                     throw new InvalidOperationException("Required BLE characteristics not found.");
 
-                LogBle("BLE provisioning: writing SSID");
-                await ssidChar.WriteAsync(Encoding.UTF8.GetBytes(ssid));
-                LogBle("BLE provisioning: writing password");
-                await passChar.WriteAsync(Encoding.UTF8.GetBytes(password));
-
-                // Poll for IP address and Read Device ID
+                // Read the feeder identity before credentials trigger a Wi-Fi reconnect.
                 var ipChar = await service.GetCharacteristicAsync(IpCharUuid);
                 var idChar = await service.GetCharacteristicAsync(IdCharUuid);
                 string? ip = null;
@@ -302,6 +297,11 @@ namespace UniversalFeeder.Mobile.Services
                     if (bytes.data != null) deviceId = Encoding.UTF8.GetString(bytes.data);
                     LogBle($"BLE provisioning: Device ID read returned '{deviceId}'");
                 }
+
+                LogBle("BLE provisioning: writing SSID");
+                await ssidChar.WriteAsync(Encoding.UTF8.GetBytes(ssid));
+                LogBle("BLE provisioning: writing password");
+                await passChar.WriteAsync(Encoding.UTF8.GetBytes(password));
 
                 if (ipChar != null)
                 {
@@ -353,12 +353,6 @@ namespace UniversalFeeder.Mobile.Services
             await DiscoverServicesWithRetryAsync(session);
             LogBle("BLE provisioning: native services discovered");
 
-            await session.WriteCharacteristicAsync(ServiceUuid, SsidCharUuid, Encoding.UTF8.GetBytes(ssid));
-            LogBle("BLE provisioning: native SSID write complete");
-
-            await session.WriteCharacteristicAsync(ServiceUuid, PassCharUuid, Encoding.UTF8.GetBytes(password));
-            LogBle("BLE provisioning: native password write complete");
-
             string? deviceId = null;
             try
             {
@@ -375,6 +369,12 @@ namespace UniversalFeeder.Mobile.Services
             {
                 LogBle($"BLE provisioning: native Device ID read failed: {ex.Message}");
             }
+
+            await session.WriteCharacteristicAsync(ServiceUuid, SsidCharUuid, Encoding.UTF8.GetBytes(ssid));
+            LogBle("BLE provisioning: native SSID write complete");
+
+            await session.WriteCharacteristicAsync(ServiceUuid, PassCharUuid, Encoding.UTF8.GetBytes(password));
+            LogBle("BLE provisioning: native password write complete");
 
             string? ip = null;
 

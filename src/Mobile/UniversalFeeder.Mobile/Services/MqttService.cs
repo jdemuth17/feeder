@@ -19,6 +19,7 @@ namespace UniversalFeeder.Mobile.Services
 
         public bool IsConnected => _client?.IsConnected ?? false;
         public event EventHandler<bool>? ConnectionChanged;
+        public event EventHandler<(string feederId, string payload)>? LogMessageReceived;
 
         public async Task ConnectAsync()
         {
@@ -57,6 +58,34 @@ namespace UniversalFeeder.Mobile.Services
             {
                 await _client.ConnectAsync(options);
                 ConnectionChanged?.Invoke(this, true);
+                // register global message handler
+                _client.ApplicationMessageReceivedAsync += e =>
+                {
+                    try
+                    {
+                        var topic = e.ApplicationMessage.Topic;
+                        var payload = Encoding.UTF8.GetString(e.ApplicationMessage.Payload ?? Array.Empty<byte>());
+                        // match log topic pattern: feeders/{id}/logs
+                        if (!string.IsNullOrEmpty(topic) && topic.Contains("/logs"))
+                        {
+                            // extract feeder id between prefix and /logs
+                            var prefix = "feeders/";
+                            var idx = topic.IndexOf(prefix);
+                            if (idx >= 0)
+                            {
+                                var start = idx + prefix.Length;
+                                var end = topic.IndexOf("/logs", start);
+                                if (end > start)
+                                {
+                                    var feederId = topic.Substring(start, end - start);
+                                    LogMessageReceived?.Invoke(this, (feederId, payload));
+                                }
+                            }
+                        }
+                    }
+                    catch { }
+                    return Task.CompletedTask;
+                };
             }
             catch (Exception ex)
             {
@@ -129,6 +158,52 @@ namespace UniversalFeeder.Mobile.Services
             catch (Exception ex)
             {
                 System.Diagnostics.Debug.WriteLine($"MQTT Publish Error: {ex.Message}");
+                return false;
+            }
+        }
+
+        public async Task<bool> SendScheduleAsync(string feederId, object schedule)
+        {
+            if (_client is not { IsConnected: true }) return false;
+
+            var topic = MqttCommands.GetScheduleTopic(feederId);
+            var payload = JsonSerializer.Serialize(new
+            {
+                action = MqttCommands.ActionSetSchedule,
+                schedule = schedule
+            });
+
+            try
+            {
+                var message = new MqttApplicationMessageBuilder()
+                    .WithTopic(topic)
+                    .WithPayload(Encoding.UTF8.GetBytes(payload))
+                    .WithQualityOfServiceLevel(MqttQualityOfServiceLevel.AtLeastOnce)
+                    .Build();
+
+                await _client.PublishAsync(message);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"MQTT Publish Error: {ex.Message}");
+                return false;
+            }
+        }
+
+        public async Task<bool> SubscribeToLogsAsync(string feederId)
+        {
+            if (_client is not { IsConnected: true }) return false;
+
+            var topic = MqttCommands.GetLogTopic(feederId);
+            try
+            {
+                await _client.SubscribeAsync(topic, MqttQualityOfServiceLevel.AtLeastOnce);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"MQTT Subscribe Error: {ex.Message}");
                 return false;
             }
         }
