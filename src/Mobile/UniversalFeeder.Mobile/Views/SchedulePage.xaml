@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:UniversalFeeder.Mobile.Models"
+             x:Class="UniversalFeeder.Mobile.Views.SchedulePage"
+             Title="Edit Schedule">
+
+    <VerticalStackLayout Padding="20" Spacing="12">
+        <Label Text="Schedule" FontAttributes="Bold" FontSize="20" />
+
+        <ActivityIndicator IsRunning="{Binding IsLoading}" IsVisible="{Binding IsLoading}" HorizontalOptions="Center" />
+
+        <CollectionView ItemsSource="{Binding Entries}" HeightRequest="300">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="models:FeedingScheduleEntry">
+                    <Grid ColumnDefinitions="Auto,Auto,Auto,Auto" ColumnSpacing="8" Padding="6">
+                        <TimePicker Grid.Column="0" Time="{Binding Time, Mode=TwoWay}" />
+                        <Entry Grid.Column="1" Text="{Binding DurationSeconds, Mode=TwoWay, StringFormat='{0:F0}'}" Keyboard="Numeric" WidthRequest="70" />
+                        <Switch Grid.Column="2" IsToggled="{Binding Enabled, Mode=TwoWay}" />
+                        <Button Grid.Column="3" Text="Delete" Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.DeleteCommand}" CommandParameter="{Binding .}" />
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <Grid ColumnDefinitions="Auto,Auto,Auto,Auto" ColumnSpacing="8">
+            <TimePicker x:Name="timePicker" />
+            <Entry x:Name="amountEntry" Placeholder="seconds" Keyboard="Numeric" />
+            <Switch x:Name="enabledSwitch" IsToggled="True" />
+            <Button Text="Add" Clicked="OnAddClicked" />
+        </Grid>
+
+        <Button Text="Save &amp; Send" Command="{Binding SaveCommand}" />
+    </VerticalStackLayout>
+
+</ContentPage>

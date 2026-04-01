@@ -1,0 +1,184 @@
+Command: C:\Espressif\python_env\idf5.5_py3.11_env\Scripts\python.exe C:\Espressif\frameworks\esp-idf-v5.5.3\tools/idf_monitor.py -p COM4 -b 115200 --toolchain-prefix xtensa-esp32-elf- --target esp32 --revision 0 C:\Users\Demuth_jm\DOTNET Projects\feeder\src\Firmware\UniversalFeeder.EspIdf\build\universal_feeder.elf C:\Users\Demuth_jm\DOTNET Projects\feeder\src\Firmware\UniversalFeeder.EspIdf\build\bootloader\bootloader.elf --force-color -m 'C:\Espressif\python_env\idf5.5_py3.11_env\Scripts\python.exe' 'C:\Espressif\frameworks\esp-idf-v5.5.3\tools\idf.py'
+ets Jul 29 2019 12:21:46
+
+rst:0x1 (POWERON_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0030,len:6280
+load:0x40078000,len:15864
+load:0x40080400,len:3920
+entry 0x40080644
+[0;32mI (27) boot: ESP-IDF v5.5.3 2nd stage bootloader[0m
+[0;32mI (27) boot: compile time Mar 20 2026 14:22:13[0m
+[0;32mI (28) boot: Multicore bootloader[0m
+[0;32mI (29) boot: chip revision: v3.1[0m
+[0;32mI (32) boot.esp32: SPI Speed      : 40MHz[0m
+[0;32mI (35) boot.esp32: SPI Mode       : DIO[0m
+[0;32mI (39) boot.esp32: SPI Flash Size : 4MB[0m
+[0;32mI (42) boot: Enabling RNG early entropy source...[0m
+[0;32mI (47) boot: Partition Table:[0m
+[0;32mI (49) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (56) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (62) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (69) boot:  2 factory          factory app      00 00 00010000 00177000[0m
+[0;32mI (75) boot: End of partition table[0m
+[0;32mI (79) esp_image: segment 0: paddr=00010020 vaddr=3f400020 size=366e0h (222944) map[0m
+[0;32mI (162) esp_image: segment 1: paddr=00046708 vaddr=3ffbdb60 size=05e64h ( 24164) load[0m
+[0;32mI (171) esp_image: segment 2: paddr=0004c574 vaddr=40080000 size=03aa4h ( 15012) load[0m
+[0;32mI (178) esp_image: segment 3: paddr=00050020 vaddr=400d0020 size=cbba4h (834468) map[0m
+[0;32mI (463) esp_image: segment 4: paddr=0011bbcc vaddr=40083aa4 size=1bd28h (113960) load[0m
+[0;32mI (507) esp_image: segment 5: paddr=001378fc vaddr=50000000 size=00020h (    32) load[0m
+[0;32mI (523) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (523) boot: Disabling RNG early entropy source...[0m
+[0;32mI (534) cpu_start: Multicore app[0m
+[0;32mI (542) cpu_start: GPIO 3 and 1 are used as console UART I/O pins[0m
+[0;32mI (542) cpu_start: Pro cpu start user code[0m
+[0;32mI (542) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (544) app_init: Application information:[0m
+[0;32mI (548) app_init: Project name:     universal_feeder[0m
+[0;32mI (553) app_init: App version:      73c219a-dirty[0m
+[0;32mI (557) app_init: Compile time:     Apr  1 2026 08:11:53[0m
+[0;32mI (562) app_init: ELF file SHA256:  b6a403227...[0m
+[0;32mI (567) app_init: ESP-IDF:          v5.5.3[0m
+[0;32mI (570) efuse_init: Min chip rev:     v0.0[0m
+[0;32mI (574) efuse_init: Max chip rev:     v3.99 [0m
+[0;32mI (578) efuse_init: Chip rev:         v3.1[0m
+[0;32mI (582) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (588) heap_init: At 3FFAFF10 len 000000F0 (0 KiB): DRAM[0m
+[0;32mI (593) heap_init: At 3FFB6388 len 00001C78 (7 KiB): DRAM[0m
+[0;32mI (599) heap_init: At 3FFB9A20 len 00004108 (16 KiB): DRAM[0m
+[0;32mI (604) heap_init: At 3FFC9280 len 00016D80 (91 KiB): DRAM[0m
+[0;32mI (609) heap_init: At 3FFE0440 len 00003AE0 (14 KiB): D/IRAM[0m
+[0;32mI (614) heap_init: At 3FFE4350 len 0001BCB0 (111 KiB): D/IRAM[0m
+[0;32mI (620) heap_init: At 4009F7CC len 00000834 (2 KiB): IRAM[0m
+[0;32mI (627) spi_flash: detected chip: generic[0m
+[0;32mI (629) spi_flash: flash io: dio[0m
+[0;32mI (633) coexist: coex firmware version: 093e3d2[0m
+[0;32mI (637) main_task: Started on CPU0[0m
+[0;32mI (640) main_task: Calling app_main()[0m
+[0;32mI (668) TimeStore: No valid saved time found (err=ESP_ERR_NVS_NOT_FOUND)[0m
+[0;32mI (675) wifi:wifi driver task: 3ffcd260, prio:23, stack:6656, core=0[0m
+[0;32mI (689) wifi:wifi firmware version: 4df78f2[0m
+[0;32mI (689) wifi:wifi certification version: v7.0[0m
+[0;32mI (689) wifi:config NVS flash: enabled[0m
+[0;32mI (690) wifi:config nano formatting: disabled[0m
+[0;32mI (694) wifi:Init data frame dynamic rx buffer num: 32[0m
+[0;32mI (699) wifi:Init static rx mgmt buffer num: 5[0m
+[0;32mI (703) wifi:Init management short buffer num: 32[0m
+[0;32mI (707) wifi:Init dynamic tx buffer num: 32[0m
+[0;32mI (711) wifi:Init static rx buffer size: 1600[0m
+[0;32mI (715) wifi:Init static rx buffer num: 10[0m
+[0;32mI (719) wifi:Init dynamic rx buffer num: 32[0m
+[0;32mI (724) wifi_init: rx ba win: 6[0m
+[0;32mI (726) wifi_init: accept mbox: 6[0m
+[0;32mI (729) wifi_init: tcpip mbox: 32[0m
+[0;32mI (732) wifi_init: udp mbox: 6[0m
+[0;32mI (735) wifi_init: tcp mbox: 6[0m
+[0;32mI (737) wifi_init: tcp tx win: 5760[0m
+[0;32mI (741) wifi_init: tcp rx win: 5760[0m
+[0;32mI (744) wifi_init: tcp mss: 1440[0m
+[0;32mI (747) wifi_init: WiFi IRAM OP enabled[0m
+[0;32mI (750) wifi_init: WiFi RX IRAM OP enabled[0m
+[0;32mI (758) ScheduleStore: Loaded schedules from NVS[0m
+[0;32mI (759) ScheduleManager: Loaded 1 schedule entries[0m
+[0;32mI (763) ScheduleManager: Schedule manager initialized[0m
+[0;32mI (768) UniversalFeeder: UniversalFeeder ESP-IDF Firmware[0m
+[0;32mI (773) UniversalFeeder: Device: Feeder-Setup (F42DC96C127C)[0m
+[0;32mI (778) UniversalFeeder: BLE Service UUID: 4fafc201-1fb5-459e-8fcc-c5c9c331914b[0m
+[0;32mI (785) UniversalFeeder: MQTT Topic Pattern: feeders/{feederId}/commands[0m
+[0;32mI (792) UniversalFeeder: Stored Wi-Fi credentials found for SSID 'ATTEipwUBA'[0m
+[0;32mI (798) UniversalFeeder: Last known IP: 10.91.251.228[0m
+[0;32mI (805) phy_init: phy_version 4863,a3a4459,Oct 28 2025,14:30:06[0m
+[0;32mI (891) phy_init: Saving new calibration data due to checksum failure or outdated calibration data, mode(0)[0m
+[0;32mI (909) wifi:mode : sta (f4:2d:c9:6c:12:7c)[0m
+[0;32mI (910) wifi:enable tsf[0m
+[0;33mW (914) BTDM_INIT: esp_bt_controller_rom_mem_release already released, mode 2[0m
+[0;32mI (914) WifiManager: Wi-Fi station started; connecting to 'ATTEipwUBA'[0m
+[0;32mI (922) BTDM_INIT: BT controller compile version [045a658][0m
+[0;32mI (924) BTDM_INIT: Using main XTAL as clock source[0m
+[0;32mI (929) BTDM_INIT: Bluetooth MAC: f4:2d:c9:6c:12:7e[0m
+[0;32mI (938) wifi:new:<11,0>, old:<1,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (941) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (947) wifi:state: auth -> assoc (0x0)[0m
+[0;32mI (953) wifi:Association refused temporarily time 1269, comeback time 1369 (TUs)[0m
+[0;32mI (1190) UniversalFeeder: Firmware initialization complete[0m
+[0;32mI (1226) NimBLE: GAP procedure initiated: advertise; [0m
+[0;32mI (1227) NimBLE: disc_mode=2[0m
+[0;32mI (1227) NimBLE:  adv_channel_map=0 own_addr_type=0 adv_filter_policy=0 adv_itvl_min=0 adv_itvl_max=0[0m
+[0;32mI (1232) NimBLE: [0m
+
+[0;32mI (1238) BleProvisioning: Advertising provisioning service as Feeder-Setup[0m
+[0;32mI (2357) wifi:state: assoc -> assoc (0x0)[0m
+[0;32mI (2381) wifi:state: assoc -> init (0x6c0)[0m
+[0;32mI (2385) wifi:Coexist: Wi-Fi connect fail, apply reconnect coex policy[0m
+
+[0;32mI (2386) wifi:new:<11,0>, old:<11,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (2392) UniversalFeeder: IP address update: 0.0.0.0[0m
+[0;32mI (2399) BleProvisioning: Updated IP characteristic to 0.0.0.0[0m
+[0;33mW (2401) WifiManager: Wi-Fi disconnected; retrying (1/5)[0m
+[0;32mI (7234) wifi:Coexist: Wi-Fi connect fail, apply reconnect coex policy[0m
+
+[0;32mI (7236) UniversalFeeder: IP address update: 0.0.0.0[0m
+[0;32mI (7237) BleProvisioning: Updated IP characteristic to 0.0.0.0[0m
+[0;33mW (7240) WifiManager: Wi-Fi disconnected; retrying (2/5)[0m
+[0;32mI (7292) wifi:new:<11,0>, old:<11,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (7294) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (7303) wifi:state: auth -> assoc (0x0)[0m
+[0;32mI (7314) wifi:state: assoc -> run (0x10)[0m
+[0;32mI (7335) wifi:connected with ATTEipwUBA, aid = 1, channel 11, BW20, bssid = 8a:8e:0d:2e:99:6c[0m
+[0;32mI (7336) wifi:security: WPA2-PSK, phy: bgn, rssi: -46[0m
+[0;32mI (7342) wifi:pm start, type: 1[0m
+
+[0;32mI (7342) wifi:dp: 1, bi: 102400, li: 3, scale listen interval from 307200 us to 307200 us[0m
+[0;32mI (7390) wifi:dp: 2, bi: 102400, li: 4, scale listen interval from 307200 us to 409600 us[0m
+[0;32mI (7391) wifi:AP's beacon interval = 102400 us, DTIM period = 2[0m
+[0;32mI (8407) esp_netif_handlers: sta ip: 10.91.251.228, mask: 255.255.255.0, gw: 10.91.251.141[0m
+[0;32mI (8410) WifiManager: Wi-Fi connected, IP address: 10.91.251.228[0m
+[0;32mI (8413) WifiManager: SNTP sync started[0m
+[0;32mI (8416) TimeStore: Periodic time save started (every 5 min)[0m
+[0;32mI (8421) UniversalFeeder: IP address update: 10.91.251.228[0m
+[0;32mI (8431) BleProvisioning: Updated IP characteristic to 10.91.251.228[0m
+[0;32mI (9247) wifi:<ba-add>idx:0 (ifx:0, 8a:8e:0d:2e:99:6c), tid:3, ssn:0, winSize:64[0m
+[0;32mI (9600) esp-x509-crt-bundle: Certificate validated[0m
+[0;32mI (11523) MqttService: Connected to broker; subscribing to feeders/F42DC96C127C/commands and feeders/F42DC96C127C/schedule[0m
+[0;32mI (16207) BuzzerControl: Playing buzzer at volume 1.00 for 1000 ms[0m
+[0;32mI (26663) BuzzerControl: Playing buzzer at volume 1.00 for 3000 ms[0m
+[0;32mI (26684) LogStore: Appended log entry to NVS[0m
+[0;32mI (26690) MqttService: Published log message: {"timestamp":26,"success":true,"status":"manual feed","manual":true}[0m
+[0;32mI (30665) BuzzerControl: Playing buzzer at volume 1.00 for 3000 ms[0m
+[0;32mI (34666) BuzzerControl: Playing buzzer at volume 1.00 for 3000 ms[0m
+[0;32mI (37666) MotorControl: Rotating motor for 5000 ms[0m
+[0;32mI (180438) wifi:sta rx csa, newchan=5, old=11[0m
+[0;32mI (180568) wifi:sta rx csa, newchan=5, old=11[0m
+[0;32mI (180747) wifi:sta rx csa, newchan=5, old=11[0m
+[0;32mI (180848) wifi:sta rx csa, newchan=5, old=11[0m
+[0;32mI (180950) wifi:sta rx csa, newchan=5, old=11[0m
+[0;32mI (181052) wifi:sta rx csa, newchan=5, old=11[0m
+[0;32mI (181156) wifi:sta rx csa, newchan=5, old=11[0m
+[0;32mI (181257) wifi:sta rx csa, newchan=5, old=11[0m
+[0;32mI (181360) wifi:sta rx csa, newchan=5, old=11[0m
+[0;32mI (181539) wifi:switch to channel 5[0m
+[0;32mI (181540) wifi:new:<5,0>, old:<11,0>, ap:<255,255>, sta:<5,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (289494) wifi:sta rx csa, newchan=11, old=5[0m
+[0;32mI (289590) wifi:sta rx csa, newchan=11, old=5[0m
+[0;32mI (289693) wifi:sta rx csa, newchan=11, old=5[0m
+[0;32mI (289795) wifi:sta rx csa, newchan=11, old=5[0m
+I (289913) wifi:sta rx csa, newchan=11, old=5
+[0;32mI (290000) wifi:sta rx csa, newchan=11, old=5[0m
+[0;32mI (290102) wifi:sta rx csa, newchan=11, old=5[0m
+[0;32mI (290222) wifi:sta rx csa, newchan=11, old=5[0m
+[0;32mI (290308) wifi:sta rx csa, newchan=11, old=5[0m
+[0;32mI (290495) wifi:switch to channel 11[0m
+[0;32mI (290496) wifi:new:<11,0>, old:<5,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (533391) wifi:sta rx csa, newchan=5, old=11[0m
+[0;32mI (533494) wifi:sta rx csa, newchan=5, old=11[0m
+[0;32mI (533596) wifi:sta rx csa, newchan=5, old=11[0m
+[0;32mI (533707) wifi:sta rx csa, newchan=5, old=11[0m
+[0;32mI (533801) wifi:sta rx csa, newchan=5, old=11[0m
+[0;32mI (533903) wifi:sta rx csa, newchan=5, old=11[0m
+[0;32mI (534108) wifi:sta rx csa, newchan=5, old=11[0m
+[0;32mI (534210) wifi:sta rx csa, newchan=5, old=11[0m
+[0;32mI (534313) wifi:sta rx csa, newchan=5, old=11[0m
+[0;32mI (534492) wifi:switch to channel 5[0m
+[0;32mI (534493) wifi:new:<5,0>, old:<11,0>, ap:<255,255>, sta:<5,0>, prof:1, snd_ch_cfg:0x0[0m

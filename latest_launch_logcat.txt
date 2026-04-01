@@ -1,0 +1,1093 @@
+--------- beginning of main
+03-31 13:24:28.572  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 2 -> 1 d_lux:422.21 w_lux: 379.47 C:12.46 G:4.46
+03-31 13:24:28.576  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 1 -> 2 d_lux:428.79 w_lux: 392.87 C:12.88 G:4.55
+03-31 13:24:28.728 23209 31309 I WM-WorkerWrapper: Worker result SUCCESS for Work [ id=30fb5d32-84dd-4462-a238-f6054f1fa95b, tags={ com.google.android.apps.messaging.shared.datamodel.workqueue.WorkQueueWorkerShim,icing_index_rebuild_single_work_handler- } ]
+03-31 13:24:28.742 23209 31309 I WM-WorkerWrapper: Setting status to enqueued for 8429f579-f6ec-4a8d-b0ce-6d726c6ffb6f
+03-31 13:24:28.756  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 2 -> 1 d_lux:419.53 w_lux: 379.97 C:12.46 G:4.45
+03-31 13:24:28.761  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 1 -> 2 d_lux:430.93 w_lux: 392.57 C:12.89 G:4.57
+03-31 13:24:28.765  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 2 -> 1 d_lux:419.75 w_lux: 379.57 C:12.44 G:4.45
+03-31 13:24:28.766 23209 23209 D WM-Processor: sxl 30fb5d32-84dd-4462-a238-f6054f1fa95b executed; reschedule = false
+03-31 13:24:28.767 23209 23209 D WM-GreedyScheduler: Stopping tracking for WorkGenerationalId(workSpecId=30fb5d32-84dd-4462-a238-f6054f1fa95b, generation=0)
+03-31 13:24:28.770  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 1 -> 2 d_lux:431.60 w_lux: 393.57 C:12.90 G:4.57
+03-31 13:24:28.817 23209 31309 D WM-GreedyScheduler: Cancelling work ID 30fb5d32-84dd-4462-a238-f6054f1fa95b
+03-31 13:24:28.856  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 2 -> 1 d_lux:419.46 w_lux: 378.87 C:12.44 G:4.44
+03-31 13:24:28.860  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 1 -> 2 d_lux:427.23 w_lux: 393.27 C:12.89 G:4.54
+03-31 13:24:28.930 23209 31309 D WM-GreedyScheduler: Ignoring {WorkSpec: 61b740fe-a307-4028-bcb7-fe9775bcc920}. Requires device idle.
+03-31 13:24:28.930 23209 31309 D WM-GreedyScheduler: Ignoring {WorkSpec: e27ea9bb-9fac-4394-8a82-a5c90daf4366}. Requires device idle.
+03-31 13:24:28.930 23209 31309 D WM-GreedyScheduler: Ignoring {WorkSpec: 3d9c5755-8e9a-4a5a-b4b0-0e85f5842319}. Requires device idle.
+03-31 13:24:28.946 23209 31309 D WM-GreedyScheduler: Ignoring {WorkSpec: af30f26a-95dc-4657-b051-92292a35af3f}. Requires device idle.
+03-31 13:24:28.947 23209 31309 D WM-GreedyScheduler: Ignoring {WorkSpec: f0d51df1-3cf9-43cf-a0d8-3e4330ce29fa}. Requires device idle.
+03-31 13:24:28.947 23209 31309 D WM-GreedyScheduler: Ignoring {WorkSpec: 9d9fc1bb-4f7e-46d9-852b-23a26f6e1301}. Requires device idle.
+03-31 13:24:28.947 23209 31309 D WM-GreedyScheduler: Ignoring {WorkSpec: a2355e43-be8d-4844-ab10-04071d85678b}. Requires device idle.
+03-31 13:24:28.947 23209 31309 D WM-GreedyScheduler: Ignoring {WorkSpec: 4d6f5b5d-1e3a-4ec8-bf0a-5e5e19cd3766}. Requires device idle.
+03-31 13:24:28.947 23209 31309 D WM-GreedyScheduler: Ignoring {WorkSpec: a359a366-165a-47c4-a54f-3d4cc551a294}. Requires device idle.
+03-31 13:24:28.947 23209 31309 D WM-GreedyScheduler: Ignoring {WorkSpec: 0728484e-8275-4d4f-8904-cc8790250e75}. Requires ContentUri triggers.
+03-31 13:24:28.947 23209 31309 D WM-GreedyScheduler: Ignoring {WorkSpec: e7aba2c2-8492-4680-bac7-8682837a69c6}. Requires ContentUri triggers.
+03-31 13:24:28.947 23209 31309 D WM-GreedyScheduler: Starting tracking for 8429f579-f6ec-4a8d-b0ce-6d726c6ffb6f,5919c476-81c1-4697-aa53-50c655f5e803
+03-31 13:24:28.957 23209 32417 D WM-BrdcstRcvrCnstrntTrc: tce: unregistering receiver
+03-31 13:24:28.973 23209 31309 D WM-ConstraintTracker: tce: initial state = true
+03-31 13:24:28.974 23209 31309 D WM-BrdcstRcvrCnstrntTrc: tce: registering receiver
+03-31 13:24:28.977 23209 31309 D WM-GreedyScheduler: Constraints met: Scheduling work ID WorkGenerationalId(workSpecId=8429f579-f6ec-4a8d-b0ce-6d726c6ffb6f, generation=0)
+03-31 13:24:28.979 23209 31309 D WM-Processor: sxl: processing WorkGenerationalId(workSpecId=8429f579-f6ec-4a8d-b0ce-6d726c6ffb6f, generation=0)
+03-31 13:24:28.986 23209 31309 D MddListenableWorkerFactory: createWorker for class: com.google.android.apps.messaging.shared.datamodel.workqueue.WorkQueueWorkerShim
+03-31 13:24:29.000 23209 23209 D WM-WorkerWrapper: Starting work for com.google.android.apps.messaging.shared.datamodel.workqueue.WorkQueueWorkerShim
+03-31 13:24:29.011 23209 23231 I BugleSearch: Icing index rebuild kt runs on a table. [CONTEXT table_type=1 window_start=38640 window_end=38660 ]
+03-31 13:24:29.021 23209 23231 I BugleSearch: start to update index. [CONTEXT table_type=1 class_name="OnDeviceIndexerApiImpl" ]
+03-31 13:24:29.023  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 2 -> 1 d_lux:421.10 w_lux: 379.97 C:12.43 G:4.45
+03-31 13:24:29.034  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 1 -> 2 d_lux:428.46 w_lux: 393.77 C:12.92 G:4.55
+03-31 13:24:29.123  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 2 -> 1 d_lux:420.26 w_lux: 379.97 C:12.42 G:4.44
+03-31 13:24:29.127  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 1 -> 2 d_lux:428.38 w_lux: 393.68 C:12.91 G:4.55
+03-31 13:24:29.242  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 2 -> 1 d_lux:419.46 w_lux: 379.97 C:12.48 G:4.45
+03-31 13:24:29.244  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 1 -> 2 d_lux:426.01 w_lux: 393.27 C:12.90 G:4.53
+03-31 13:24:29.248  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 2 -> 1 d_lux:421.64 w_lux: 381.47 C:12.46 G:4.46
+03-31 13:24:29.252  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 1 -> 2 d_lux:430.03 w_lux: 392.87 C:12.90 G:4.56
+03-31 13:24:29.274  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 2 -> 1 d_lux:419.27 w_lux: 381.07 C:12.45 G:4.45
+03-31 13:24:29.278  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 1 -> 2 d_lux:429.59 w_lux: 393.77 C:12.91 G:4.56
+03-31 13:24:29.306  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 2 -> 1 d_lux:419.80 w_lux: 379.37 C:12.44 G:4.44
+03-31 13:24:29.310  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 1 -> 2 d_lux:427.52 w_lux: 392.97 C:12.90 G:4.55
+03-31 13:24:29.314  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 2 -> 1 d_lux:420.12 w_lux: 380.17 C:12.43 G:4.44
+03-31 13:24:29.320  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 1 -> 2 d_lux:430.12 w_lux: 392.17 C:12.87 G:4.56
+03-31 13:24:29.323  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 2 -> 1 d_lux:419.76 w_lux: 380.77 C:12.46 G:4.45
+03-31 13:24:29.328  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 1 -> 2 d_lux:431.00 w_lux: 393.07 C:12.87 G:4.57
+03-31 13:24:29.405  3576  4728 D TemperatureStateSource: sequence=80285 actualDelay=10001
+03-31 13:24:29.408  3576  4728 D TemperatureStateSource: Reading temperature: sequence=80286
+03-31 13:24:29.410  1982  1982 I pixel-thermal: VIRTUAL-SKIN:36.5395 raw data: VIRTUAL-SKIN:36539.5 
+03-31 13:24:29.410  3576  4728 D TemperatureStateSource: getDeviceTemperatures: sequence=80286 deviceTemperatureType=3 temperatureSource=0 temperatures=[36.53954]
+03-31 13:24:29.410  3576  4728 D BusinessScope: Enqueuing the block
+03-31 13:24:29.411  3576  4728 D TemperatureStateSource: sequence=80286 waitTime=10000
+03-31 13:24:29.411  3576  4728 D BusinessScope: Start running the #191224 block
+03-31 13:24:29.411  3576  4728 D BusinessScope: Enqueuing the block
+03-31 13:24:29.411  3576  4728 D ImpulseStateSource: Notify clients: 95591
+03-31 13:24:29.411  3576  4728 D BusinessScope: Finish running the #191224 block
+03-31 13:24:29.411  3576  4728 D BusinessScope: Start running the #191225 block
+03-31 13:24:29.411  3576  4728 D BusinessScope: Finish running the #191225 block
+03-31 13:24:29.498  1293  1293 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+03-31 13:24:29.515  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 2 -> 1 d_lux:420.26 w_lux: 381.87 C:12.48 G:4.45
+03-31 13:24:29.520  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 1 -> 2 d_lux:431.82 w_lux: 391.97 C:12.87 G:4.57
+03-31 13:24:29.524  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 2 -> 1 d_lux:421.67 w_lux: 381.27 C:12.49 G:4.47
+03-31 13:24:29.527  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 1 -> 2 d_lux:432.08 w_lux: 392.57 C:12.89 G:4.58
+03-31 13:24:29.531 23209 31309 I WM-WorkerWrapper: Worker result SUCCESS for Work [ id=8429f579-f6ec-4a8d-b0ce-6d726c6ffb6f, tags={ com.google.android.apps.messaging.shared.datamodel.workqueue.WorkQueueWorkerShim,icing_index_rebuild_single_work_handler- } ]
+03-31 13:24:29.533 23209 31309 I WM-WorkerWrapper: Setting status to enqueued for 3f27074c-6b71-4d3e-97d5-7e75bf2546aa
+03-31 13:24:29.537 23209 23209 D WM-Processor: sxl 8429f579-f6ec-4a8d-b0ce-6d726c6ffb6f executed; reschedule = false
+03-31 13:24:29.538 23209 23209 D WM-GreedyScheduler: Stopping tracking for WorkGenerationalId(workSpecId=8429f579-f6ec-4a8d-b0ce-6d726c6ffb6f, generation=0)
+03-31 13:24:29.546  1293  1293 I AndroidRuntime: Using default boot image
+03-31 13:24:29.546  1293  1293 I AndroidRuntime: Leaving lock profiling enabled
+03-31 13:24:29.563 23209 31309 D WM-GreedyScheduler: Cancelling work ID 8429f579-f6ec-4a8d-b0ce-6d726c6ffb6f
+03-31 13:24:29.564  1293  1293 I app_process: Using CollectorTypeCMC GC.
+03-31 13:24:29.581 23209 31309 D WM-GreedyScheduler: Ignoring {WorkSpec: 61b740fe-a307-4028-bcb7-fe9775bcc920}. Requires device idle.
+03-31 13:24:29.581 23209 31309 D WM-GreedyScheduler: Ignoring {WorkSpec: e27ea9bb-9fac-4394-8a82-a5c90daf4366}. Requires device idle.
+03-31 13:24:29.582 23209 31309 D WM-GreedyScheduler: Ignoring {WorkSpec: 3d9c5755-8e9a-4a5a-b4b0-0e85f5842319}. Requires device idle.
+03-31 13:24:29.582 23209 31309 D WM-GreedyScheduler: Ignoring {WorkSpec: af30f26a-95dc-4657-b051-92292a35af3f}. Requires device idle.
+03-31 13:24:29.582 23209 31309 D WM-GreedyScheduler: Ignoring {WorkSpec: f0d51df1-3cf9-43cf-a0d8-3e4330ce29fa}. Requires device idle.
+03-31 13:24:29.582 23209 31309 D WM-GreedyScheduler: Ignoring {WorkSpec: 9d9fc1bb-4f7e-46d9-852b-23a26f6e1301}. Requires device idle.
+03-31 13:24:29.582 23209 31309 D WM-GreedyScheduler: Ignoring {WorkSpec: a2355e43-be8d-4844-ab10-04071d85678b}. Requires device idle.
+03-31 13:24:29.582 23209 31309 D WM-GreedyScheduler: Ignoring {WorkSpec: 4d6f5b5d-1e3a-4ec8-bf0a-5e5e19cd3766}. Requires device idle.
+03-31 13:24:29.582 23209 31309 D WM-GreedyScheduler: Ignoring {WorkSpec: a359a366-165a-47c4-a54f-3d4cc551a294}. Requires device idle.
+03-31 13:24:29.582 23209 31309 D WM-GreedyScheduler: Ignoring {WorkSpec: 0728484e-8275-4d4f-8904-cc8790250e75}. Requires ContentUri triggers.
+03-31 13:24:29.582 23209 31309 D WM-GreedyScheduler: Ignoring {WorkSpec: e7aba2c2-8492-4680-bac7-8682837a69c6}. Requires ContentUri triggers.
+03-31 13:24:29.582 23209 31309 D WM-GreedyScheduler: Starting tracking for 5919c476-81c1-4697-aa53-50c655f5e803,3f27074c-6b71-4d3e-97d5-7e75bf2546aa
+03-31 13:24:29.586 23209 32423 D WM-BrdcstRcvrCnstrntTrc: tce: unregistering receiver
+03-31 13:24:29.613 23209 31309 D WM-ConstraintTracker: tce: initial state = true
+03-31 13:24:29.613 23209 31309 D WM-BrdcstRcvrCnstrntTrc: tce: registering receiver
+03-31 13:24:29.618 23209 31309 D WM-GreedyScheduler: Constraints met: Scheduling work ID WorkGenerationalId(workSpecId=3f27074c-6b71-4d3e-97d5-7e75bf2546aa, generation=0)
+03-31 13:24:29.622 23209 31309 D WM-Processor: sxl: processing WorkGenerationalId(workSpecId=3f27074c-6b71-4d3e-97d5-7e75bf2546aa, generation=0)
+03-31 13:24:29.625 23209 31309 D MddListenableWorkerFactory: createWorker for class: com.google.android.apps.messaging.shared.datamodel.workqueue.WorkQueueWorkerShim
+03-31 13:24:29.631 23209 23209 D WM-WorkerWrapper: Starting work for com.google.android.apps.messaging.shared.datamodel.workqueue.WorkQueueWorkerShim
+03-31 13:24:29.642 23209 23244 I BugleSearch: Icing index rebuild kt runs on a table. [CONTEXT table_type=1 window_start=38660 window_end=38680 ]
+03-31 13:24:29.646 23209 23244 I BugleSearch: start to update index. [CONTEXT table_type=1 class_name="OnDeviceIndexerApiImpl" ]
+03-31 13:24:29.846  1293  1293 D nativeloader: InitDefaultPublicLibraries for_preload=1: libandroid.so:libaaudio.so:libamidi.so:libbinder_ndk.so:libc.so:libcamera2ndk.so:libdl.so:libEGL.so:libGLESv1_CM.so:libGLESv2.so:libGLESv3.so:libicu.so:libicui18n.so:libicuuc.so:libjnigraphics.so:liblog.so:libmediandk.so:libm.so:libnativehelper.so:libnativewindow.so:libOpenMAXAL.so:libOpenSLES.so:libRS.so:libstdc++.so:libsync.so:libvulkan.so:libwebviewchromium_plat_support.so:libz.so
+03-31 13:24:29.904  1293  1293 D nativeloader: Load libicu_jni.so using APEX ns com_android_art for caller /apex/com.android.art/javalib/core-oj.jar: ok
+03-31 13:24:29.904  1293  1293 D app_process: u_setTimeZoneFilesDirectory("/apex/com.android.tzdata/etc/tz/versioned/9/icu") succeeded. 
+03-31 13:24:29.904  1293  1293 D app_process: I18n APEX ICU file found: /apex/com.android.i18n/etc/icu/icudt76l.dat
+03-31 13:24:29.910  1293  1293 D nativeloader: Load libjavacore.so using APEX ns com_android_art for caller /apex/com.android.art/javalib/core-oj.jar: ok
+03-31 13:24:29.914  1293  1293 D nativeloader: Load libopenjdk.so using APEX ns com_android_art for caller /apex/com.android.art/javalib/core-oj.jar: ok
+03-31 13:24:29.920  1293  1293 I app_process: Priority-to-niceness mapping: 19, 16, 13, 10, 0, -2, -4, -5, -6, -8
+03-31 13:24:29.991  1293  1293 D nativeloader: Load libframework-connectivity-tiramisu-jni.so using APEX ns com_android_tethering for caller /apex/com.android.tethering/javalib/framework-connectivity-t.jar: ok
+03-31 13:24:29.993  1293  1293 D AndroidRuntime: Calling main entry com.android.commands.monkey.Monkey
+03-31 13:24:29.998  1293  1293 D nativeloader: Load /system/lib64/libmonkey_jni.so using ns default for caller /system/framework/monkey.jar in same partition (is_bridged=0): ok
+03-31 13:24:29.999  1293  1293 W Monkey  : args: [-p, com.universalfeeder.mobile, -c, android.intent.category.LAUNCHER, 1]
+03-31 13:24:30.013  1293  1293 I AconfigPackage: com.android.cellbroadcastreceiver.flags is mapped to com.android.cellbroadcast
+03-31 13:24:30.014  1293  1293 I AconfigPackage: com.android.nfc.module.flags is mapped to com.android.nfcservices
+03-31 13:24:30.014  1293  1293 I AconfigPackage: com.android.nfc.module.nonexported.flags is mapped to com.android.nfcservices
+03-31 13:24:30.015  1293  1293 I AconfigPackage: com.android.adservices.flags is mapped to com.android.adservices
+03-31 13:24:30.015  1293  1293 I AconfigPackage: com.android.sdksandbox.flags is mapped to com.android.adservices
+03-31 13:24:30.016  1293  1293 I AconfigPackage: android.provider.flags is mapped to com.android.configinfrastructure
+03-31 13:24:30.016  1293  1293 I AconfigPackage: com.android.server.deviceconfig is mapped to com.android.configinfrastructure
+03-31 13:24:30.017  1293  1293 I AconfigPackage: com.android.art.flags is mapped to com.android.art
+03-31 13:24:30.017  1293  1293 I AconfigPackage: com.android.art.rw.flags is mapped to com.android.art
+03-31 13:24:30.017  1293  1293 I AconfigPackage: com.android.libcore is mapped to com.android.art
+03-31 13:24:30.019  1293  1293 I AconfigPackage: android.graphics.pdf.flags is mapped to com.android.mediaprovider
+03-31 13:24:30.019  1293  1293 I AconfigPackage: com.android.providers.media.flags is mapped to com.android.mediaprovider
+03-31 13:24:30.019  1293  1293 I AconfigPackage: android.graphics.pdf.flags.readonly is mapped to com.android.mediaprovider
+03-31 13:24:30.020  1293  1293 I AconfigPackage: com.android.tethering.mainline.beta is mapped to com.android.tethering
+03-31 13:24:30.020  1293  1293 I AconfigPackage: android.net.http is mapped to com.android.tethering
+03-31 13:24:30.020  1293  1293 I AconfigPackage: com.android.tethering.readonly.flags is mapped to com.android.tethering
+03-31 13:24:30.020  1293  1293 I AconfigPackage: android.net.vcn is mapped to com.android.tethering
+03-31 13:24:30.020  1293  1293 I AconfigPackage: com.android.net.flags is mapped to com.android.tethering
+03-31 13:24:30.020  1293  1293 I AconfigPackage: com.android.tethering.flags is mapped to com.android.tethering
+03-31 13:24:30.020  1293  1293 I AconfigPackage: com.android.tethering.beta.test is mapped to com.android.tethering
+03-31 13:24:30.020  1293  1293 I AconfigPackage: com.android.nearby.flags is mapped to com.android.tethering
+03-31 13:24:30.020  1293  1293 I AconfigPackage: com.android.net.thread.flags is mapped to com.android.tethering
+03-31 13:24:30.020  1293  1293 I AconfigPackage: com.android.net.ct.flags is mapped to com.android.tethering
+03-31 13:24:30.021  1293  1293 I AconfigPackage: com.android.permission.flags is mapped to com.android.permission
+03-31 13:24:30.021  1293  1293 I AconfigPackage: com.android.permissioncontroller.flags is mapped to com.android.permission
+03-31 13:24:30.022  1293  1293 I AconfigPackage: com.android.wifi.flags is mapped to com.android.wifi
+03-31 13:24:30.023  1293  1293 I AconfigPackage: com.android.org.conscrypt.flags is mapped to com.android.conscrypt
+03-31 13:24:30.023  1293  1293 I AconfigPackage: com.android.org.conscrypt.net.flags is mapped to com.android.conscrypt
+03-31 13:24:30.024  1293  1293 I AconfigPackage: com.android.uwb.flags is mapped to com.android.uwb
+03-31 13:24:30.024  1293  1293 I AconfigPackage: com.android.ranging.flags is mapped to com.android.uwb
+03-31 13:24:30.025  1293  1293 I AconfigPackage: com.android.bluetooth.flags is mapped to com.android.bt
+03-31 13:24:30.026  1293  1293 I AconfigPackage: android.os.profiling is mapped to com.android.profiling
+03-31 13:24:30.026  1293  1293 I AconfigPackage: android.os.profiling.anomaly.flags is mapped to com.android.profiling
+03-31 13:24:30.027  1293  1293 I AconfigPackage: android.uprobestats.mainline.flags is mapped to com.android.uprobestats
+03-31 13:24:30.028  1293  1293 I AconfigPackage: com.android.ipsec.flags is mapped to com.android.ipsec
+03-31 13:24:30.031  1293  1293 I AconfigPackage: com.android.system.virtualmachine.flags is mapped to com.android.virt
+03-31 13:24:30.033  1293  1293 I AconfigPackage: com.android.os.statsd.flags is mapped to com.android.os.statsd
+03-31 13:24:30.034  1293  1293 I AconfigPackage: com.android.icu is mapped to com.android.i18n
+03-31 13:24:30.036  1293  1293 I AconfigPackage: com.android.adservices.ondevicepersonalization.flags is mapped to com.android.ondevicepersonalization
+03-31 13:24:30.038  1293  1293 I AconfigPackage: android.media.swcodec.flags is mapped to com.android.media.swcodec
+03-31 13:24:30.041  1293  1293 I AconfigPackage: com.android.healthfitness.flags is mapped to com.android.healthfitness
+03-31 13:24:30.041  1293  1293 I AconfigPackage: com.android.media.extractor.flags is mapped to com.android.media
+03-31 13:24:30.041  1293  1293 I AconfigPackage: com.android.media.mainline.flags is mapped to com.android.media
+03-31 13:24:30.043  1293  1293 I AconfigPackage: com.android.appsearch.flags is mapped to com.android.appsearch
+03-31 13:24:30.045  1293  1293 I AconfigPackage: com.android.devicelock.flags is mapped to com.android.devicelock
+03-31 13:24:30.046  1293  1293 I AconfigPackage: com.android.rkpd.flags is mapped to com.android.rkpd
+03-31 13:24:30.047  1293  1293 I AconfigPackage: com.android.adbd.flags is mapped to com.android.adbd
+03-31 13:24:30.048  1293  1293 I AconfigPackage: com.android.crashrecovery.flags is mapped to com.android.crashrecovery
+03-31 13:24:30.050  1293  1293 I AconfigPackage: com.android.telephony.flags is mapped to com.android.telephonycore
+03-31 13:24:30.051  1293  1293 I AconfigPackage: com.android.compos.flags is mapped to com.android.compos
+03-31 13:24:30.051  1293  1293 E FeatureFlagsImplExport: android.os.flagging.AconfigStorageReadException: ERROR_PACKAGE_NOT_FOUND: package android.xr cannot be found on the device
+03-31 13:24:30.056  1293  1293 W libc    : Access denied finding property "qemu.sf.lcd_density"
+03-31 13:24:30.056  1293  1293 W libc    : Access denied finding property "qemu.sf.lcd_density"
+03-31 13:24:30.050  1293  1293 W commands.monkey: type=1400 audit(0.0:313521): avc:  denied  { read } for  name="u:object_r:qemu_sf_lcd_density_prop:s0" dev="tmpfs" ino=416 scontext=u:r:shell:s0 tcontext=u:object_r:qemu_sf_lcd_density_prop:s0 tclass=file permissive=0
+03-31 13:24:30.054  1293  1293 W commands.monkey: type=1400 audit(0.0:313522): avc:  denied  { read } for  name="u:object_r:qemu_sf_lcd_density_prop:s0" dev="tmpfs" ino=416 scontext=u:r:shell:s0 tcontext=u:object_r:qemu_sf_lcd_density_prop:s0 tclass=file permissive=0
+03-31 13:24:30.062  1293  1293 W Monkey  :  arg: "-p"
+03-31 13:24:30.062  1293  1293 W Monkey  :  arg: "com.universalfeeder.mobile"
+03-31 13:24:30.062  1293  1293 W Monkey  :  arg: "-c"
+03-31 13:24:30.062  1293  1293 W Monkey  :  arg: "android.intent.category.LAUNCHER"
+03-31 13:24:30.062  1293  1293 W Monkey  :  arg: "1"
+03-31 13:24:30.063  1293  1293 W Monkey  : data="com.universalfeeder.mobile"
+03-31 13:24:30.063  1293  1293 W Monkey  : data="android.intent.category.LAUNCHER"
+03-31 13:24:30.067  1967  2981 D EventHub: No input device configuration file found for device 'Monkey touch'.
+03-31 13:24:30.068  1967  2981 I EventHub: usingClockIoctl=true
+03-31 13:24:30.068  1967  2981 I EventHub: New device: id=14, fd=734, path='/dev/input/event3', name='Monkey touch', classes=TOUCH | TOUCH_MT, configuration='', keyLayout='', keyCharacterMap='', builtinKeyboard=false, 
+03-31 13:24:30.070  1967  2981 I InputReader: Device reconfigured: id=14, name='Monkey touch', size 1080x2404, orientation Rotation0, mode DIRECT, display id 0
+03-31 13:24:30.070  1967  2981 I InputReader: Device added: id=14, eventHubId=14, name='Monkey touch', descriptor='e1fe28b90f915c7d1febbd52c1ef84b3c4cbed9f',sources=TOUCHSCREEN
+--------- beginning of system
+03-31 13:24:30.080  1967  2031 D WindowManager: Direct invocation of sendNewConfiguration: Display{#0 state=ON size=1080x2404 ROTATION_0}
+03-31 13:24:30.084  1967  2031 W libbinder.IPCThreadState: Sending oneway calls to frozen process.
+03-31 13:24:30.084  1967  2031 W libbinder.IPCThreadState: Sending oneway calls to frozen process.
+03-31 13:24:30.084  1967  2031 W libbinder.IPCThreadState: Sending oneway calls to frozen process.
+03-31 13:24:30.085  1967  2031 W libbinder.IPCThreadState: Sending oneway calls to frozen process.
+03-31 13:24:30.085  3387  3442 V ShellDesktopMode: DesktopDisplayModeController: canDesktopFirstModeBeEnabledOnDefaultDisplay: isDefaultDisplayDesktopEligible=false
+03-31 13:24:30.086 29949 29949 I PkDeviceHelper: PkDeviceHelper.refreshDevices():87 refreshing devices
+03-31 13:24:30.090  1967  5223 W ActivityManager: registerReceiverWithFeature: no app for null
+03-31 13:24:30.097  1967  2031 W libbinder.IPCThreadState: Sending oneway calls to frozen process.
+03-31 13:24:30.110  1967  5223 W ParceledListSlice: Element #189 is 16412 bytes.
+03-31 13:24:30.112  1293  1293 I Monkey  : ** No activities found to run, monkey aborted.
+03-31 13:24:30.114  1293  1293 I app_process: System.exit called, status: -4
+03-31 13:24:30.114  1293  1293 I AndroidRuntime: VM exiting with result code -4.
+03-31 13:24:30.142 23209 31309 I WM-WorkerWrapper: Worker result SUCCESS for Work [ id=3f27074c-6b71-4d3e-97d5-7e75bf2546aa, tags={ com.google.android.apps.messaging.shared.datamodel.workqueue.WorkQueueWorkerShim,icing_index_rebuild_single_work_handler- } ]
+03-31 13:24:30.146 23209 31309 I WM-WorkerWrapper: Setting status to enqueued for 877a9322-e6c9-4c29-af73-8bce82ea59df
+03-31 13:24:30.149 23209 23209 D WM-Processor: sxl 3f27074c-6b71-4d3e-97d5-7e75bf2546aa executed; reschedule = false
+03-31 13:24:30.149 23209 23209 D WM-GreedyScheduler: Stopping tracking for WorkGenerationalId(workSpecId=3f27074c-6b71-4d3e-97d5-7e75bf2546aa, generation=0)
+03-31 13:24:30.159 23209 31309 D WM-GreedyScheduler: Cancelling work ID 3f27074c-6b71-4d3e-97d5-7e75bf2546aa
+03-31 13:24:30.175 23209 31309 D WM-GreedyScheduler: Ignoring {WorkSpec: 61b740fe-a307-4028-bcb7-fe9775bcc920}. Requires device idle.
+03-31 13:24:30.175 23209 31309 D WM-GreedyScheduler: Ignoring {WorkSpec: e27ea9bb-9fac-4394-8a82-a5c90daf4366}. Requires device idle.
+03-31 13:24:30.175 23209 31309 D WM-GreedyScheduler: Ignoring {WorkSpec: 3d9c5755-8e9a-4a5a-b4b0-0e85f5842319}. Requires device idle.
+03-31 13:24:30.175 23209 31309 D WM-GreedyScheduler: Ignoring {WorkSpec: af30f26a-95dc-4657-b051-92292a35af3f}. Requires device idle.
+03-31 13:24:30.175 23209 31309 D WM-GreedyScheduler: Ignoring {WorkSpec: f0d51df1-3cf9-43cf-a0d8-3e4330ce29fa}. Requires device idle.
+03-31 13:24:30.175 23209 31309 D WM-GreedyScheduler: Ignoring {WorkSpec: 9d9fc1bb-4f7e-46d9-852b-23a26f6e1301}. Requires device idle.
+03-31 13:24:30.175 23209 31309 D WM-GreedyScheduler: Ignoring {WorkSpec: a2355e43-be8d-4844-ab10-04071d85678b}. Requires device idle.
+03-31 13:24:30.175 23209 31309 D WM-GreedyScheduler: Ignoring {WorkSpec: 4d6f5b5d-1e3a-4ec8-bf0a-5e5e19cd3766}. Requires device idle.
+03-31 13:24:30.175 23209 31309 D WM-GreedyScheduler: Ignoring {WorkSpec: a359a366-165a-47c4-a54f-3d4cc551a294}. Requires device idle.
+03-31 13:24:30.175 23209 31309 D WM-GreedyScheduler: Ignoring {WorkSpec: 0728484e-8275-4d4f-8904-cc8790250e75}. Requires ContentUri triggers.
+03-31 13:24:30.175 23209 31309 D WM-GreedyScheduler: Ignoring {WorkSpec: e7aba2c2-8492-4680-bac7-8682837a69c6}. Requires ContentUri triggers.
+03-31 13:24:30.175 23209 31309 D WM-GreedyScheduler: Starting tracking for 5919c476-81c1-4697-aa53-50c655f5e803,877a9322-e6c9-4c29-af73-8bce82ea59df
+03-31 13:24:30.180 23209 32423 D WM-BrdcstRcvrCnstrntTrc: tce: unregistering receiver
+03-31 13:24:30.182  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 2 -> 1 d_lux:423.68 w_lux: 383.17 C:12.56 G:4.48
+03-31 13:24:30.186  1967  2981 I EventHub: Removing device Monkey touch due to epoll hang-up event.
+03-31 13:24:30.186  1967  2981 I EventHub: Removed device: path=/dev/input/event3 name=Monkey touch id=14 fd=734 classes=TOUCH | TOUCH_MT
+03-31 13:24:30.189  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 1 -> 2 d_lux:426.96 w_lux: 387.57 C:12.79 G:4.53
+03-31 13:24:30.190  1967  2981 I InputReader: Device removed: id=14, eventHubId=14, name='Monkey touch', descriptor='e1fe28b90f915c7d1febbd52c1ef84b3c4cbed9f', sources=TOUCHSCREEN
+03-31 13:24:30.195 23209 32417 D WM-ConstraintTracker: tce: initial state = true
+03-31 13:24:30.195 23209 32417 D WM-BrdcstRcvrCnstrntTrc: tce: registering receiver
+03-31 13:24:30.196 23209 32417 D WM-GreedyScheduler: Constraints met: Scheduling work ID WorkGenerationalId(workSpecId=877a9322-e6c9-4c29-af73-8bce82ea59df, generation=0)
+03-31 13:24:30.197 23209 32417 D WM-Processor: sxl: processing WorkGenerationalId(workSpecId=877a9322-e6c9-4c29-af73-8bce82ea59df, generation=0)
+03-31 13:24:30.198 23209 32417 D MddListenableWorkerFactory: createWorker for class: com.google.android.apps.messaging.shared.datamodel.workqueue.WorkQueueWorkerShim
+03-31 13:24:30.201 23209 23209 D WM-WorkerWrapper: Starting work for com.google.android.apps.messaging.shared.datamodel.workqueue.WorkQueueWorkerShim
+03-31 13:24:30.201  1967  2031 D WindowManager: Direct invocation of sendNewConfiguration: Display{#0 state=ON size=1080x2404 ROTATION_0}
+03-31 13:24:30.202  1967  2981 I EventHub: Removing device '/dev/input/event3' due to inotify event
+03-31 13:24:30.202  1967  2031 W libbinder.IPCThreadState: Sending oneway calls to frozen process.
+03-31 13:24:30.202  1967  2031 W libbinder.IPCThreadState: Sending oneway calls to frozen process.
+03-31 13:24:30.202  1967  2031 W libbinder.IPCThreadState: Sending oneway calls to frozen process.
+03-31 13:24:30.202  1967  2031 W libbinder.IPCThreadState: Sending oneway calls to frozen process.
+03-31 13:24:30.202  3387  3442 V ShellDesktopMode: DesktopDisplayModeController: canDesktopFirstModeBeEnabledOnDefaultDisplay: isDefaultDisplayDesktopEligible=false
+03-31 13:24:30.203  1967  2031 W libbinder.IPCThreadState: Sending oneway calls to frozen process.
+03-31 13:24:30.206 29949 29949 I PkDeviceHelper: PkDeviceHelper.refreshDevices():87 refreshing devices
+03-31 13:24:30.213  3387  3387 D NavigationModeController: getCurrentUserContext: contextUser=0 currentUser=0
+03-31 13:24:30.222 23209 23231 I BugleSearch: Icing index rebuild kt runs on a table. [CONTEXT table_type=1 window_start=38680 window_end=38700 ]
+03-31 13:24:30.229 23209 23231 I BugleSearch: start to update index. [CONTEXT table_type=1 class_name="OnDeviceIndexerApiImpl" ]
+03-31 13:24:30.369 23209 23306 I BugleSearch: AppSearch indexing call is done. [CONTEXT item_id="38952" table_type=1 operation="1" outcome="Success" ]
+03-31 13:24:30.532 27968  1284 I NearbyMediums: No BLE Fast/GATT advertisements found in the latest cycle.
+03-31 13:24:30.532 27968  1284 I NearbyMediums: Current Tracked Scanning Clients are : {NearbyConnections.EnvironmentMonitor, NearbySharing, NearbyConnections.TxAdvertisement}
+03-31 13:24:30.699  1685  1685 D AOC     : A3:MSG: controller.cc, 933: SysMem: ipc: C-F1-Ar, cmd ID: 0x00c8, tag: 0xae, rc: 0
+03-31 13:24:30.699  1685  1685 D AOC     : A3:MSG: controller.cc, 933: SysMem: ipc: C-F1-Ar, cmd ID: 0x00c8, tag: 0xaf, rc: 0
+03-31 13:24:30.700  1685  1685 D AOC     : A3:MSG: controller.cc, 933: SysMem: ipc: C-F1-Ar, cmd ID: 0x00c8, tag: 0xb0, rc: 0
+03-31 13:24:30.763 23209 31309 I WM-WorkerWrapper: Worker result SUCCESS for Work [ id=877a9322-e6c9-4c29-af73-8bce82ea59df, tags={ com.google.android.apps.messaging.shared.datamodel.workqueue.WorkQueueWorkerShim,icing_index_rebuild_single_work_handler- } ]
+03-31 13:24:30.772 23209 31309 I WM-WorkerWrapper: Setting status to enqueued for e121e211-b93e-4ff1-8d02-ab1cab9a7bff
+03-31 13:24:30.780 23209 23209 D WM-Processor: sxl 877a9322-e6c9-4c29-af73-8bce82ea59df executed; reschedule = false
+03-31 13:24:30.780 23209 23209 D WM-GreedyScheduler: Stopping tracking for WorkGenerationalId(workSpecId=877a9322-e6c9-4c29-af73-8bce82ea59df, generation=0)
+03-31 13:24:30.807 23209 31309 D WM-GreedyScheduler: Cancelling work ID 877a9322-e6c9-4c29-af73-8bce82ea59df
+03-31 13:24:30.835 23209 31309 D WM-GreedyScheduler: Ignoring {WorkSpec: 61b740fe-a307-4028-bcb7-fe9775bcc920}. Requires device idle.
+03-31 13:24:30.835 23209 31309 D WM-GreedyScheduler: Ignoring {WorkSpec: e27ea9bb-9fac-4394-8a82-a5c90daf4366}. Requires device idle.
+03-31 13:24:30.835 23209 31309 D WM-GreedyScheduler: Ignoring {WorkSpec: 3d9c5755-8e9a-4a5a-b4b0-0e85f5842319}. Requires device idle.
+03-31 13:24:30.835 23209 31309 D WM-GreedyScheduler: Ignoring {WorkSpec: af30f26a-95dc-4657-b051-92292a35af3f}. Requires device idle.
+03-31 13:24:30.836 23209 31309 D WM-GreedyScheduler: Ignoring {WorkSpec: f0d51df1-3cf9-43cf-a0d8-3e4330ce29fa}. Requires device idle.
+03-31 13:24:30.836 23209 31309 D WM-GreedyScheduler: Ignoring {WorkSpec: 9d9fc1bb-4f7e-46d9-852b-23a26f6e1301}. Requires device idle.
+03-31 13:24:30.836 23209 31309 D WM-GreedyScheduler: Ignoring {WorkSpec: a2355e43-be8d-4844-ab10-04071d85678b}. Requires device idle.
+03-31 13:24:30.836 23209 31309 D WM-GreedyScheduler: Ignoring {WorkSpec: 4d6f5b5d-1e3a-4ec8-bf0a-5e5e19cd3766}. Requires device idle.
+03-31 13:24:30.836 23209 31309 D WM-GreedyScheduler: Ignoring {WorkSpec: a359a366-165a-47c4-a54f-3d4cc551a294}. Requires device idle.
+03-31 13:24:30.836 23209 31309 D WM-GreedyScheduler: Ignoring {WorkSpec: 0728484e-8275-4d4f-8904-cc8790250e75}. Requires ContentUri triggers.
+03-31 13:24:30.836 23209 31309 D WM-GreedyScheduler: Ignoring {WorkSpec: e7aba2c2-8492-4680-bac7-8682837a69c6}. Requires ContentUri triggers.
+03-31 13:24:30.836 23209 31309 D WM-GreedyScheduler: Starting tracking for 5919c476-81c1-4697-aa53-50c655f5e803,e121e211-b93e-4ff1-8d02-ab1cab9a7bff
+03-31 13:24:30.842 23209 32417 D WM-BrdcstRcvrCnstrntTrc: tce: unregistering receiver
+03-31 13:24:30.859 23209 31309 D WM-ConstraintTracker: tce: initial state = true
+03-31 13:24:30.859 23209 31309 D WM-BrdcstRcvrCnstrntTrc: tce: registering receiver
+03-31 13:24:30.863 23209 31309 D WM-GreedyScheduler: Constraints met: Scheduling work ID WorkGenerationalId(workSpecId=e121e211-b93e-4ff1-8d02-ab1cab9a7bff, generation=0)
+03-31 13:24:30.867 23209 31309 D WM-Processor: sxl: processing WorkGenerationalId(workSpecId=e121e211-b93e-4ff1-8d02-ab1cab9a7bff, generation=0)
+03-31 13:24:30.871 23209 31309 D MddListenableWorkerFactory: createWorker for class: com.google.android.apps.messaging.shared.datamodel.workqueue.WorkQueueWorkerShim
+03-31 13:24:30.877 23209 23209 D WM-WorkerWrapper: Starting work for com.google.android.apps.messaging.shared.datamodel.workqueue.WorkQueueWorkerShim
+03-31 13:24:30.883  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 2 -> 1 d_lux:428.47 w_lux: 389.57 C:12.68 G:4.53
+03-31 13:24:30.887  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 1 -> 2 d_lux:424.70 w_lux: 384.07 C:12.68 G:4.50
+03-31 13:24:30.891 23209 23246 I BugleSearch: Icing index rebuild kt runs on a table. [CONTEXT table_type=1 window_start=38700 window_end=38720 ]
+03-31 13:24:30.895 23209 23246 I BugleSearch: start to update index. [CONTEXT table_type=1 class_name="OnDeviceIndexerApiImpl" ]
+03-31 13:24:30.929  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 2 -> 1 d_lux:426.73 w_lux: 384.77 C:12.64 G:4.51
+03-31 13:24:30.933  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 1 -> 2 d_lux:424.62 w_lux: 389.47 C:12.72 G:4.51
+03-31 13:24:30.956  1967  3450 W ParceledListSlice: Element #4 is 21560 bytes.
+03-31 13:24:30.956  1967  3450 W ParceledListSlice: Element #5 is 21548 bytes.
+03-31 13:24:30.956  1967  3450 W ParceledListSlice: Element #6 is 21548 bytes.
+03-31 13:24:31.063 23209 23298 I BugleSearch: AppSearch indexing call is done. [CONTEXT item_id="38987" table_type=1 operation="1" outcome="Success" ]
+03-31 13:24:31.084 23209 23299 I BugleSearch: Icing indexing call is done. [CONTEXT item_id="content://com.google.android.apps.messaging/messages/38985" table_type=1 operation="1" outcome="Success" ]
+03-31 13:24:31.105 27968   380 W CCTFlatFileLogStore: Excessive logging: 64 events, 153408 bytes from log source ANDROID_MESSAGING last 83s
+03-31 13:24:31.237  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 2 -> 1 d_lux:425.45 w_lux: 383.47 C:12.59 G:4.50
+03-31 13:24:31.241  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 1 -> 2 d_lux:426.23 w_lux: 391.47 C:12.78 G:4.53
+03-31 13:24:31.321  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 2 -> 1 d_lux:425.40 w_lux: 382.67 C:12.55 G:4.49
+03-31 13:24:31.325  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 1 -> 2 d_lux:425.16 w_lux: 391.47 C:12.80 G:4.52
+03-31 13:24:31.439 31408 31783 D ThreadBooster: [Scene Stop] After reset priority, aoapp.musically priority is -19
+03-31 13:24:31.439 31408 31783 D ThreadBooster: [Scene Start] After adjust priority,  aoapp.musically priority is -20, tid: 31408
+03-31 13:24:31.467  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 2 -> 1 d_lux:423.46 w_lux: 382.47 C:12.53 G:4.47
+03-31 13:24:31.467  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 1 -> 2 d_lux:425.65 w_lux: 391.07 C:12.80 G:4.52
+03-31 13:24:31.489 23209 23244 I ForwardSyncCache: reclaimMemory: Clearing caches
+03-31 13:24:31.493 23209 23244 W Bugle   : TextClassifierLibManagerImpl: Reclaiming memory at level: 40
+03-31 13:24:31.512 23209 31309 I WM-WorkerWrapper: Worker result SUCCESS for Work [ id=e121e211-b93e-4ff1-8d02-ab1cab9a7bff, tags={ com.google.android.apps.messaging.shared.datamodel.workqueue.WorkQueueWorkerShim,icing_index_rebuild_single_work_handler- } ]
+03-31 13:24:31.530  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 2 -> 1 d_lux:421.36 w_lux: 381.47 C:12.51 G:4.47
+03-31 13:24:31.534  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 1 -> 2 d_lux:425.38 w_lux: 392.67 C:12.83 G:4.53
+03-31 13:24:31.584 23209 31309 I WM-WorkerWrapper: Setting status to enqueued for ebecfecb-a982-4cd4-8f44-f6796effd412
+03-31 13:24:31.600 23209 23209 D WM-Processor: sxl e121e211-b93e-4ff1-8d02-ab1cab9a7bff executed; reschedule = false
+03-31 13:24:31.600 23209 23209 D WM-GreedyScheduler: Stopping tracking for WorkGenerationalId(workSpecId=e121e211-b93e-4ff1-8d02-ab1cab9a7bff, generation=0)
+03-31 13:24:31.627 23209 31309 D WM-GreedyScheduler: Cancelling work ID e121e211-b93e-4ff1-8d02-ab1cab9a7bff
+03-31 13:24:31.640  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 2 -> 1 d_lux:423.02 w_lux: 382.18 C:12.47 G:4.47
+03-31 13:24:31.643  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 1 -> 2 d_lux:426.58 w_lux: 392.67 C:12.85 G:4.54
+03-31 13:24:31.668 23209 31309 D WM-GreedyScheduler: Ignoring {WorkSpec: 61b740fe-a307-4028-bcb7-fe9775bcc920}. Requires device idle.
+03-31 13:24:31.669 23209 31309 D WM-GreedyScheduler: Ignoring {WorkSpec: e27ea9bb-9fac-4394-8a82-a5c90daf4366}. Requires device idle.
+03-31 13:24:31.669 23209 31309 D WM-GreedyScheduler: Ignoring {WorkSpec: 3d9c5755-8e9a-4a5a-b4b0-0e85f5842319}. Requires device idle.
+03-31 13:24:31.669 23209 31309 D WM-GreedyScheduler: Ignoring {WorkSpec: af30f26a-95dc-4657-b051-92292a35af3f}. Requires device idle.
+03-31 13:24:31.669 23209 31309 D WM-GreedyScheduler: Ignoring {WorkSpec: f0d51df1-3cf9-43cf-a0d8-3e4330ce29fa}. Requires device idle.
+03-31 13:24:31.670 23209 31309 D WM-GreedyScheduler: Ignoring {WorkSpec: 9d9fc1bb-4f7e-46d9-852b-23a26f6e1301}. Requires device idle.
+03-31 13:24:31.670 23209 31309 D WM-GreedyScheduler: Ignoring {WorkSpec: a2355e43-be8d-4844-ab10-04071d85678b}. Requires device idle.
+03-31 13:24:31.670 23209 31309 D WM-GreedyScheduler: Ignoring {WorkSpec: 4d6f5b5d-1e3a-4ec8-bf0a-5e5e19cd3766}. Requires device idle.
+03-31 13:24:31.670 23209 31309 D WM-GreedyScheduler: Ignoring {WorkSpec: a359a366-165a-47c4-a54f-3d4cc551a294}. Requires device idle.
+03-31 13:24:31.670 23209 31309 D WM-GreedyScheduler: Ignoring {WorkSpec: 0728484e-8275-4d4f-8904-cc8790250e75}. Requires ContentUri triggers.
+03-31 13:24:31.670 23209 31309 D WM-GreedyScheduler: Ignoring {WorkSpec: e7aba2c2-8492-4680-bac7-8682837a69c6}. Requires ContentUri triggers.
+03-31 13:24:31.670 23209 31309 D WM-GreedyScheduler: Starting tracking for 5919c476-81c1-4697-aa53-50c655f5e803,ebecfecb-a982-4cd4-8f44-f6796effd412
+03-31 13:24:31.674 23209 31272 D WM-BrdcstRcvrCnstrntTrc: tce: unregistering receiver
+03-31 13:24:31.691 23209 31309 D WM-ConstraintTracker: tce: initial state = true
+03-31 13:24:31.691 23209 31309 D WM-BrdcstRcvrCnstrntTrc: tce: registering receiver
+03-31 13:24:31.695 23209 31309 D WM-GreedyScheduler: Constraints met: Scheduling work ID WorkGenerationalId(workSpecId=ebecfecb-a982-4cd4-8f44-f6796effd412, generation=0)
+03-31 13:24:31.698  1685  1685 D AOC     : A3:MSG: controller.cc, 933: SysMem: ipc: C-F1-Ar, cmd ID: 0x00c8, tag: 0xb1, rc: 0
+03-31 13:24:31.699  1685  1685 D AOC     : A3:MSG: controller.cc, 933: SysMem: ipc: C-F1-Ar, cmd ID: 0x00c8, tag: 0xb2, rc: 0
+03-31 13:24:31.700 23209 31309 D WM-Processor: sxl: processing WorkGenerationalId(workSpecId=ebecfecb-a982-4cd4-8f44-f6796effd412, generation=0)
+03-31 13:24:31.704 23209 31309 D MddListenableWorkerFactory: createWorker for class: com.google.android.apps.messaging.shared.datamodel.workqueue.WorkQueueWorkerShim
+03-31 13:24:31.713 23209 23209 D WM-WorkerWrapper: Starting work for com.google.android.apps.messaging.shared.datamodel.workqueue.WorkQueueWorkerShim
+03-31 13:24:31.724  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 2 -> 1 d_lux:422.92 w_lux: 380.97 C:12.52 G:4.47
+03-31 13:24:31.725  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 1 -> 2 d_lux:426.20 w_lux: 392.07 C:12.88 G:4.53
+03-31 13:24:31.727 23209 23231 I BugleSearch: Icing index rebuild kt runs on a table. [CONTEXT table_type=1 window_start=38720 window_end=38740 ]
+03-31 13:24:31.734 23209 23231 I BugleSearch: start to update index. [CONTEXT table_type=1 class_name="OnDeviceIndexerApiImpl" ]
+03-31 13:24:31.780  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 2 -> 1 d_lux:422.83 w_lux: 380.17 C:12.49 G:4.47
+03-31 13:24:31.784  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 1 -> 2 d_lux:426.97 w_lux: 392.17 C:12.88 G:4.54
+03-31 13:24:31.813  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 2 -> 1 d_lux:422.16 w_lux: 379.97 C:12.49 G:4.46
+03-31 13:24:31.817  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 1 -> 2 d_lux:425.18 w_lux: 393.77 C:12.87 G:4.53
+03-31 13:24:31.821  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 2 -> 1 d_lux:420.75 w_lux: 380.47 C:12.50 G:4.46
+03-31 13:24:31.825  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 1 -> 2 d_lux:426.57 w_lux: 393.17 C:12.86 G:4.53
+03-31 13:24:31.864  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 2 -> 1 d_lux:421.46 w_lux: 380.57 C:12.50 G:4.46
+03-31 13:24:31.873  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 1 -> 2 d_lux:426.66 w_lux: 393.47 C:12.89 G:4.54
+03-31 13:24:31.942  1378  1378 W TracingMuxer: type=1400 audit(0.0:313523): avc:  denied  { write } for  name="traced_producer" dev="tmpfs" ino=1430 scontext=u:r:hal_camera_default:s0 tcontext=u:object_r:traced_producer_socket:s0 tclass=sock_file permissive=0
+03-31 13:24:31.954  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 2 -> 1 d_lux:421.13 w_lux: 380.47 C:12.50 G:4.46
+03-31 13:24:31.960  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 1 -> 2 d_lux:429.99 w_lux: 393.47 C:12.89 G:4.56
+03-31 13:24:32.113  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 2 -> 1 d_lux:420.05 w_lux: 379.57 C:12.47 G:4.45
+03-31 13:24:32.117  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 1 -> 2 d_lux:428.22 w_lux: 392.67 C:12.86 G:4.54
+03-31 13:24:32.188  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 2 -> 1 d_lux:419.74 w_lux: 380.47 C:12.47 G:4.45
+03-31 13:24:32.192  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 1 -> 2 d_lux:430.69 w_lux: 392.97 C:12.87 G:4.56
+03-31 13:24:32.222  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 2 -> 1 d_lux:420.02 w_lux: 379.97 C:12.47 G:4.45
+03-31 13:24:32.231  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 1 -> 2 d_lux:420.03 w_lux: 380.27 C:12.47 G:4.45
+03-31 13:24:32.397  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 2 -> 1 d_lux:421.06 w_lux: 380.17 C:12.48 G:4.46
+03-31 13:24:32.402  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 1 -> 2 d_lux:430.35 w_lux: 394.27 C:12.88 G:4.57
+03-31 13:24:32.441  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 2 -> 1 d_lux:422.18 w_lux: 379.97 C:12.46 G:4.46
+03-31 13:24:32.444  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 1 -> 2 d_lux:432.38 w_lux: 393.97 C:12.85 G:4.58
+03-31 13:24:32.472  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 2 -> 1 d_lux:419.70 w_lux: 377.57 C:12.45 G:4.45
+03-31 13:24:32.476  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 1 -> 2 d_lux:428.64 w_lux: 392.77 C:12.89 G:4.55
+03-31 13:24:32.531  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 2 -> 1 d_lux:417.93 w_lux: 379.57 C:12.41 G:4.43
+03-31 13:24:32.534  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 1 -> 2 d_lux:428.38 w_lux: 392.67 C:12.86 G:4.55
+03-31 13:24:32.565  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 2 -> 1 d_lux:417.80 w_lux: 378.57 C:12.38 G:4.43
+03-31 13:24:32.568  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 1 -> 2 d_lux:427.80 w_lux: 392.47 C:12.87 G:4.55
+03-31 13:24:32.614  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 2 -> 1 d_lux:419.09 w_lux: 379.97 C:12.41 G:4.44
+03-31 13:24:32.618  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 1 -> 2 d_lux:427.81 w_lux: 392.77 C:12.87 G:4.54
+03-31 13:24:32.622  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 2 -> 1 d_lux:417.82 w_lux: 378.77 C:12.44 G:4.44
+03-31 13:24:32.626  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 1 -> 2 d_lux:428.74 w_lux: 392.07 C:12.84 G:4.55
+03-31 13:24:32.644 23209 32423 I WM-WorkerWrapper: Worker result SUCCESS for Work [ id=ebecfecb-a982-4cd4-8f44-f6796effd412, tags={ com.google.android.apps.messaging.shared.datamodel.workqueue.WorkQueueWorkerShim,icing_index_rebuild_single_work_handler- } ]
+03-31 13:24:32.650 23209 32423 I WM-WorkerWrapper: Setting status to enqueued for 85980403-77e9-42b8-99be-a8eb3bb84751
+03-31 13:24:32.652 23209 23209 D WM-Processor: sxl ebecfecb-a982-4cd4-8f44-f6796effd412 executed; reschedule = false
+03-31 13:24:32.653 23209 23209 D WM-GreedyScheduler: Stopping tracking for WorkGenerationalId(workSpecId=ebecfecb-a982-4cd4-8f44-f6796effd412, generation=0)
+03-31 13:24:32.659 23209 32423 D WM-GreedyScheduler: Cancelling work ID ebecfecb-a982-4cd4-8f44-f6796effd412
+03-31 13:24:32.689 23209 32423 D WM-GreedyScheduler: Ignoring {WorkSpec: 61b740fe-a307-4028-bcb7-fe9775bcc920}. Requires device idle.
+03-31 13:24:32.690 23209 32423 D WM-GreedyScheduler: Ignoring {WorkSpec: e27ea9bb-9fac-4394-8a82-a5c90daf4366}. Requires device idle.
+03-31 13:24:32.690 23209 32423 D WM-GreedyScheduler: Ignoring {WorkSpec: 3d9c5755-8e9a-4a5a-b4b0-0e85f5842319}. Requires device idle.
+03-31 13:24:32.690 23209 32423 D WM-GreedyScheduler: Ignoring {WorkSpec: af30f26a-95dc-4657-b051-92292a35af3f}. Requires device idle.
+03-31 13:24:32.690 23209 32423 D WM-GreedyScheduler: Ignoring {WorkSpec: f0d51df1-3cf9-43cf-a0d8-3e4330ce29fa}. Requires device idle.
+03-31 13:24:32.691 23209 32423 D WM-GreedyScheduler: Ignoring {WorkSpec: 9d9fc1bb-4f7e-46d9-852b-23a26f6e1301}. Requires device idle.
+03-31 13:24:32.691 23209 32423 D WM-GreedyScheduler: Ignoring {WorkSpec: a2355e43-be8d-4844-ab10-04071d85678b}. Requires device idle.
+03-31 13:24:32.691 23209 32423 D WM-GreedyScheduler: Ignoring {WorkSpec: 4d6f5b5d-1e3a-4ec8-bf0a-5e5e19cd3766}. Requires device idle.
+03-31 13:24:32.692 23209 32423 D WM-GreedyScheduler: Ignoring {WorkSpec: a359a366-165a-47c4-a54f-3d4cc551a294}. Requires device idle.
+03-31 13:24:32.692 23209 32423 D WM-GreedyScheduler: Ignoring {WorkSpec: 0728484e-8275-4d4f-8904-cc8790250e75}. Requires ContentUri triggers.
+03-31 13:24:32.692 23209 32423 D WM-GreedyScheduler: Ignoring {WorkSpec: e7aba2c2-8492-4680-bac7-8682837a69c6}. Requires ContentUri triggers.
+03-31 13:24:32.692 23209 32423 D WM-GreedyScheduler: Starting tracking for 5919c476-81c1-4697-aa53-50c655f5e803,85980403-77e9-42b8-99be-a8eb3bb84751
+03-31 13:24:32.696 23209 31309 D WM-BrdcstRcvrCnstrntTrc: tce: unregistering receiver
+03-31 13:24:32.721 23209 31309 D WM-ConstraintTracker: tce: initial state = true
+03-31 13:24:32.722 23209 31309 D WM-BrdcstRcvrCnstrntTrc: tce: registering receiver
+03-31 13:24:32.727 23209 31309 D WM-GreedyScheduler: Constraints met: Scheduling work ID WorkGenerationalId(workSpecId=85980403-77e9-42b8-99be-a8eb3bb84751, generation=0)
+03-31 13:24:32.731 23209 31309 D WM-Processor: sxl: processing WorkGenerationalId(workSpecId=85980403-77e9-42b8-99be-a8eb3bb84751, generation=0)
+03-31 13:24:32.734 23209 31309 D MddListenableWorkerFactory: createWorker for class: com.google.android.apps.messaging.shared.datamodel.workqueue.WorkQueueWorkerShim
+03-31 13:24:32.741 23209 23209 D WM-WorkerWrapper: Starting work for com.google.android.apps.messaging.shared.datamodel.workqueue.WorkQueueWorkerShim
+03-31 13:24:32.751  1685  1685 D AOC     : CHRE: DRAM vote count begins
+03-31 13:24:32.752  1685  1685 D AOC     : F1:MSG: controller.cc, 275: AudioInCtrl: cmd ID: 0x00f4, tag: 0x46 [cntr = 133155]
+03-31 13:24:32.752  1685  1685 D AOC     : F1:MSG: controller_audio_input.cc, 4423: Got Chre audio start cmd (input path = 0)
+03-31 13:24:32.752  1685  1685 D AOC     : F1:MSG: audio_capture_pdm.cc, 448: Reconfig seamless
+03-31 13:24:32.752  1685  1685 D AOC     : F1:Stream 1: mask 0x5, rings {1, 0}, pipe 0x1, sr 16000, il {0,2,0,0}, en 1, mc 0, ni 1, fpo 0, ru 1, hq 0
+03-31 13:24:32.752  1685  1685 D AOC     : F1:Stream 4: mask 0x1, rings {7, 0}, pipe 0x10, sr 16000, il {0,0,0,0}, en 1, mc 0, ni 10, fpo 0, ru 1, hq 0
+03-31 13:24:32.753  1685  1685 D AOC     : F1:MSG: audio_capture_pdm.cc, 580: Stream 4 restarted (ramp ON)
+03-31 13:24:32.753  1685  1685 D AOC     : F1:MSG: chre_src.cc, 427: Set input source to 0
+03-31 13:24:32.753  1685  1685 D AOC     : F1:TRC: hotword_input_processor.cc, 1014: Receive cmd: 0x84 (132)
+03-31 13:24:32.753  1685  1685 D AOC     : F1:TRC: hotword_input_processor.cc, 1510: Finished cmd: 0x84 (132)
+03-31 13:24:32.753  1685  1685 D AOC     : CHRE: DRAM vote count ends: 0 ms
+03-31 13:24:32.753  1685  1685 D AOC     : CHRE: DRAM vote count begins
+03-31 13:24:32.753  1685  1685 D AOC     : CHRE: DRAM vote count ends: 0 ms
+03-31 13:24:32.754  1685  1685 D AOC     : F1:MSG: controller.cc, 933: AudioInCtrl: ipc: C-Ch-AI, cmd ID: 0x00f4, tag: 0x46, rc: 0
+03-31 13:24:32.754  1685  1685 D AOC     : CHRE: DRAM vote count begins
+03-31 13:24:32.755  1379  1434 I CHRE    : @ 965677.842: [vice_ambient_volume] SendMessageToAmbientVolume, message_type: 33281 to instance_id: 0x3
+03-31 13:24:32.755  1379  1434 I CHRE    : @ 965677.842: [vice_ambient_volume] Ambient Volume enabled
+03-31 13:24:32.755  1379  1434 I CHRE    : @ 965677.842: [AV] Client info registered: client endpoint 0x19, include_volume_history_seconds: transition=0 exposure=0
+03-31 13:24:32.756  1379  1434 D CHRE    : @ 965677.845: request audio send: 0
+03-31 13:24:32.756  1379  1434 I CHRE    : @ 965677.846: [AV] Requested audio from handle 0, status: 1
+03-31 13:24:32.756  1379  1434 I CHRE    : @ 965677.846: [vice_ambient_volume] Received ACK from Ambient Volume for enable request
+03-31 13:24:32.756  1685  1685 D AOC     : CHRE: DRAM vote count ends: 0 ms
+03-31 13:24:32.756  1685  1685 D AOC     : CHRE: DRAM vote count begins
+03-31 13:24:32.756  1685  1685 D AOC     : CHRE: DRAM vote count ends: 0 ms
+03-31 13:24:32.757  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 2 -> 1 d_lux:420.41 w_lux: 378.77 C:12.42 G:4.44
+03-31 13:24:32.759  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 1 -> 2 d_lux:429.47 w_lux: 393.57 C:12.91 G:4.57
+03-31 13:24:32.760  1685  1685 D AOC     : F1:MSG: chre_src.cc, 152: CHRE SRC Reset Requested
+03-31 13:24:32.763  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 2 -> 1 d_lux:420.16 w_lux: 379.47 C:12.45 G:4.44
+03-31 13:24:32.767  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 1 -> 2 d_lux:426.88 w_lux: 392.57 C:12.88 G:4.53
+03-31 13:24:32.775 23209 23246 I BugleSearch: Icing index rebuild kt runs on a table. [CONTEXT table_type=1 window_start=38740 window_end=38760 ]
+03-31 13:24:32.805  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 2 -> 1 d_lux:419.79 w_lux: 379.47 C:12.44 G:4.44
+03-31 13:24:32.810  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 1 -> 2 d_lux:428.20 w_lux: 392.97 C:12.87 G:4.55
+03-31 13:24:32.820  1375  2218 I AUtl::Battery: UpdateProperty: update Battery Levelfrom 85 to 86
+03-31 13:24:32.828 23209 23246 I BugleSearch: start to update index. [CONTEXT table_type=1 class_name="OnDeviceIndexerApiImpl" ]
+03-31 13:24:32.852  3387  3387 D DLObserver: onReceive(); android.intent.action.BATTERY_CHANGED
+03-31 13:24:32.852  3387  3387 D DLObserver: plugged=2
+03-31 13:24:32.872  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 2 -> 1 d_lux:420.56 w_lux: 379.17 C:12.45 G:4.45
+03-31 13:24:32.876  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 1 -> 2 d_lux:430.36 w_lux: 391.37 C:12.87 G:4.56
+03-31 13:24:32.883 18144 18144 D BatteryUsageBroadcastReceiver: onReceive:android.intent.action.BATTERY_LEVEL_CHANGED
+03-31 13:24:32.884  3387  3387 D SystemEventDataSource: onReceive: intentAction
+03-31 13:24:32.885  3387  3387 D PowerNotificationWarningsGoogleImpl: onReceive: android.intent.action.BATTERY_CHANGED
+03-31 13:24:32.885  3387  3387 D PulsarController: dispatchIntent: android.intent.action.BATTERY_CHANGED
+03-31 13:24:32.885  3387  3387 D IncompatibleChargerNotification: dispatchIntent: android.intent.action.BATTERY_CHANGED
+03-31 13:24:32.891  3387  3513 D GoogleBatteryDataSource: fetchDwellDefendStatus: CONNECTED
+03-31 13:24:32.893  3387  3513 D GoogleBatteryDataSource: fetchTempDefendStatus: t_sum=0, time_sum=0 t_avg=0 lst_v=4372265 lst_t=355 lst_u=965653, dt=940933, t=0 e=1
+03-31 13:24:32.893  3387  3513 D SystemEventDataSource: updatedEventData: SystemEventData(intentAction=android.intent.action.BATTERY_CHANGED, plugged=EventData(value=2), batteryScale=EventData(value=100), batteryLevel=EventData(value=86), chargingStatus=EventData(value=1), maxChargingCurrent=EventData(value=3000000), maxChargingVoltage=EventData(value=5000000), batteryStatus=EventData(value=2), halEventData=HalEventData(dockDefendStatus=EventData(value=-3), tempDefendEventData=EventData(value=false), dwellDefendEventData=EventData(value=false)), settingsEventData=SettingsEventData(dockDefenderBypass=EventData(value=0), chargingLimitSettings=EventData(value=0), dndState=EventData(value=false), airplaneState=EventData(value=false)), frameworkApiEventData=FrameworkApiEventData(batterySaverState=EventData(value=false), extremeBatterySaverState=EventData(value=false)))
+03-31 13:24:32.893  3387  3513 D ChargingLimitEventModule: validate()=false, chargingStatus=1
+03-31 13:24:32.893  3387  3513 D DwellDefendBatteryModule: validate: false -> false
+03-31 13:24:32.893  3387  3513 D TempDefendBatteryModule: validate: false -> false
+03-31 13:24:32.893  3387  3513 D BatteryEventService: collect BatteryEvents: BatteryEvents(eventTypes=[SCREEN_ON, REGULAR_CHARGING], batteryLevel=86, pluggedType=2)
+03-31 13:24:32.893  3387  3513 D BatteryEventService: notifyForBatteryEventsUpdate: BatteryEvents(eventTypes=[SCREEN_ON, REGULAR_CHARGING], batteryLevel=86, pluggedType=2)
+03-31 13:24:32.893  3387  3513 D BatteryEventService: AIDL callback listeners count: 1
+03-31 13:24:32.893  3387  3513 D BatteryEventService: aidlCallback: NOTIFICATION, events: []
+03-31 13:24:32.894  3387  3513 D BatteryEventClient: [PowerNotificationWarningsGoogleImpl] onBatteryEventChanged: [], batteryLevel: 86
+03-31 13:24:32.894  3387  3513 D PowerNotificationWarningsGoogleImpl: [onBatteryEventUpdate] []
+03-31 13:24:32.894  3387  3513 D BatteryDefenderNotification: onNonDefenderEvent: charged: false
+03-31 13:24:32.894  3387  3513 D BatteryEventService: notify AIDL callback to null, cost: 1 ms
+03-31 13:24:32.894  3387  3513 I BatteryEventService: notify all AIDL callbacks, cost: 1 ms
+03-31 13:24:32.894  3387  3513 D BatteryEventService: BatteryEventsListener (broadcast) count: 1
+03-31 13:24:32.894  3387  3513 D BatteryEventService: broadcastIntent(uid:0): Intent { act=com.google.android.battery_event.BATTERY_EVENTS_UPDATE cmp=com.google.android.apps.turbo/.batteryevent.BatteryEventUpdateReceiver (has extras) }, events:[SCREEN_ON]
+03-31 13:24:32.894  7678  7678 W JobInfo : Job 'com.google.android.apps.turbo/.deadline.library.BatteryFlagService#201' has a deadline with no functional constraints. The deadline won't improve job execution latency. Consider removing the deadline.
+03-31 13:24:32.895  1967  1996 W JobInfo : Job 'com.google.android.apps.turbo/.deadline.library.BatteryFlagService#201' has a deadline with no functional constraints. The deadline won't improve job execution latency. Consider removing the deadline.
+03-31 13:24:32.897  3387  3513 I BatteryEventService: notify all broadcast intent, cost: 3 ms
+03-31 13:24:32.907   597   597 D SurfaceFlinger: setDesiredMode 4619827452008645888 {mode={fps=60.00 Hz, modePtr={id=1, vsyncRate=120.00 Hz, peakRefreshRate=120.00 Hz}}, emitEvent=false, force=false}
+03-31 13:24:32.908  1967  2031 I DisplayDeviceRepository: Display device changed render timings: "Built-in Screen", renderFrameRate=60.000004, presentationDeadlineNanos=11500000, appVsyncOffsetNanos=6233332, frameRateOverrides=[{uid=10270 frameRateHz=60.000004}]
+03-31 13:24:32.909  1967  2028 D WindowManager: DeferredDisplayUpdater: partially applying DisplayInfo(1080 x 2404) immediately
+03-31 13:24:32.912  1457  3307 D DeviceHalAidl: [default] setParameters: parameters: "screen_state=on"
+03-31 13:24:32.913  1375  2218 D ASvc::Module: updateScreenState: 1
+03-31 13:24:32.913  1457  3307 D DeviceHalAidl: [r_submix] setParameters: parameters: "screen_state=on"
+03-31 13:24:32.913  1375  2218 D AHAL_Module: updateScreenState: r_submix: 1
+03-31 13:24:32.913  1457  3307 D DeviceHalAidl: [bluetooth] setParameters: parameters: "screen_state=on"
+03-31 13:24:32.913  1375  2218 D AHAL_Module: updateScreenState: bluetooth: 1
+03-31 13:24:32.914  1967  1996 W JobInfo : Job 'com.google.android.apps.turbo/.deadline.library.DeadlineUpdateJobService#200' has a deadline with no functional constraints. The deadline won't improve job execution latency. Consider removing the deadline.
+03-31 13:24:32.914  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 2 -> 1 d_lux:419.56 w_lux: 380.87 C:12.46 G:4.45
+03-31 13:24:32.920  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 1 -> 2 d_lux:430.60 w_lux: 392.47 C:12.87 G:4.57
+03-31 13:24:32.922  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 2 -> 1 d_lux:418.99 w_lux: 380.77 C:12.43 G:4.44
+03-31 13:24:32.924  1967  2968 D ActivityManager: freezing 10677 com.google.android.settings.intelligence
+03-31 13:24:32.926  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 1 -> 2 d_lux:428.65 w_lux: 393.17 C:12.87 G:4.55
+03-31 13:24:32.930  1967  3287 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET, states=14
+03-31 13:24:32.935  7678  7678 W JobInfo : Job 'com.google.android.apps.turbo/.nudges.broadcasts.BatteryHistoryLoggerJobService#2' has a deadline with no functional constraints. The deadline won't improve job execution latency. Consider removing the deadline.
+03-31 13:24:32.936  1967  1996 W JobInfo : Job 'com.google.android.apps.turbo/.nudges.broadcasts.BatteryHistoryLoggerJobService#2' has a deadline with no functional constraints. The deadline won't improve job execution latency. Consider removing the deadline.
+03-31 13:24:32.941  7678 15848 W Turbo.PersonalRemainingTimeLoader: Start to load model for: [battery_remaining_time] model file with new version 20251204
+03-31 13:24:32.941  1967  3287 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET6, states=14
+03-31 13:24:32.942  1967  3287 D InetDiagMessage: Destroyed live tcp sockets for uids={10130} in 13ms
+03-31 13:24:32.946  1967  3338 D BackgroundInstallControlService: Package event received: 0
+03-31 13:24:32.947  1967  3338 D BackgroundInstallControlService: Package event received: 0
+03-31 13:24:32.950  1967  3436 D ActivityManager: sync unfroze 13054 com.google.android.turboadapter for 6
+03-31 13:24:32.950  1967  3338 D BackgroundInstallControlService: Package event received: 0
+03-31 13:24:32.969  1967  1996 W JobScheduler.JobStatus: Exempted app com.android.vending considered buggy
+03-31 13:24:32.969  1967  1996 W JobScheduler.JobStatus: Exempted app com.android.vending considered buggy
+03-31 13:24:32.969  1967  1996 W JobScheduler.JobStatus: Exempted app com.android.vending considered buggy
+03-31 13:24:32.972  1967  2959 W JobScheduler.JobStatus: Exempted app com.android.vending considered buggy
+03-31 13:24:32.972  1967  2959 W JobScheduler.JobStatus: Exempted app com.android.vending considered buggy
+03-31 13:24:32.972  1967  2959 W JobScheduler.JobStatus: Exempted app com.android.vending considered buggy
+03-31 13:24:32.972  1967  2959 W JobScheduler.JobStatus: Exempted app com.android.vending considered buggy
+03-31 13:24:32.972  1967  2959 W JobScheduler.JobStatus: Exempted app com.android.vending considered buggy
+03-31 13:24:32.972  1967  2959 W JobScheduler.JobStatus: Exempted app com.android.vending considered buggy
+03-31 13:24:32.972  1967  2959 W JobScheduler.JobStatus: Exempted app com.android.vending considered buggy
+03-31 13:24:32.972  1967  2959 W JobScheduler.JobStatus: Exempted app com.android.vending considered buggy
+03-31 13:24:32.972  1967  2959 W JobScheduler.JobStatus: Exempted app com.android.vending considered buggy
+03-31 13:24:32.972  1967  2959 W JobScheduler.JobStatus: Exempted app com.android.vending considered buggy
+03-31 13:24:32.972  1967  2959 W JobScheduler.JobStatus: Exempted app com.android.vending considered buggy
+03-31 13:24:32.981  1967  1996 W JobScheduler.JobStatus: Exempted app com.android.vending considered buggy
+03-31 13:24:32.981  1967  1996 W JobScheduler.JobStatus: Exempted app com.android.vending considered buggy
+03-31 13:24:32.981  1967  1996 W JobScheduler.JobStatus: Exempted app com.android.vending considered buggy
+03-31 13:24:32.985  1967  2959 W JobScheduler.JobStatus: Exempted app com.android.vending considered buggy
+03-31 13:24:32.985  1967  2959 W JobScheduler.JobStatus: Exempted app com.android.vending considered buggy
+03-31 13:24:32.985  1967  2959 W JobScheduler.JobStatus: Exempted app com.android.vending considered buggy
+03-31 13:24:32.985  1967  2959 W JobScheduler.JobStatus: Exempted app com.android.vending considered buggy
+03-31 13:24:32.985  1967  2959 W JobScheduler.JobStatus: Exempted app com.android.vending considered buggy
+03-31 13:24:32.985  1967  2959 W JobScheduler.JobStatus: Exempted app com.android.vending considered buggy
+03-31 13:24:32.985  1967  2959 W JobScheduler.JobStatus: Exempted app com.android.vending considered buggy
+03-31 13:24:32.985  1967  2959 W JobScheduler.JobStatus: Exempted app com.android.vending considered buggy
+03-31 13:24:32.985  1967  2959 W JobScheduler.JobStatus: Exempted app com.android.vending considered buggy
+03-31 13:24:32.985  1967  2959 W JobScheduler.JobStatus: Exempted app com.android.vending considered buggy
+03-31 13:24:32.986  1967  2959 W JobScheduler.JobStatus: Exempted app com.android.vending considered buggy
+03-31 13:24:32.997  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 2 -> 1 d_lux:418.61 w_lux: 379.97 C:12.43 G:4.44
+03-31 13:24:33.001  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 1 -> 2 d_lux:427.79 w_lux: 392.47 C:12.87 G:4.55
+03-31 13:24:33.012  1377  1377 I bluetooth_hal.extensions.controller_stats: getStateResidency: ActivityStats{
+03-31 13:24:33.012  1377  1377 I bluetooth_hal.extensions.controller_stats:   idle: ActivityStatData{id: 0, totalTimeInStateMs: 34209, totalStateEntryCount: 94056534, lastEntryTimestampMs: 821383883}
+03-31 13:24:33.012  1377  1377 I bluetooth_hal.extensions.controller_stats:   active: ActivityStatData{id: 1, totalTimeInStateMs: 4896, totalStateEntryCount: 12617535, lastEntryTimestampMs: 821383951}
+03-31 13:24:33.012  1377  1377 I bluetooth_hal.extensions.controller_stats:   tx: ActivityStatData{id: 2, totalTimeInStateMs: 81, totalStateEntryCount: 28646035, lastEntryTimestampMs: 821383879}
+03-31 13:24:33.012  1377  1377 I bluetooth_hal.extensions.controller_stats:   rx: ActivityStatData{id: 3, totalTimeInStateMs: 1847, totalStateEntryCount: 65410496, lastEntryTimestampMs: 821383879}
+03-31 13:24:33.012  1377  1377 I bluetooth_hal.extensions.controller_stats: }
+03-31 13:24:33.014   599  3269 W hwc-Writeback-3: GetStatistics: DisplayRefreshProfile: id = -1, power mode = 1, brightness = 2, width_ = 0, height_ = 0, num_vsync_ = 2, te_frequency_ = 0, refresh source = present is not a valid profile
+03-31 13:24:33.015  1685  1685 D AOC     : A3:MSG: controller.cc, 933: SysMem: ipc: C-F1-Ar, cmd ID: 0x00c8, tag: 0xb3, rc: 0
+03-31 13:24:33.016  1685  1685 D AOC     : A3:MSG: controller.cc, 933: SysMem: ipc: C-F1-Ar, cmd ID: 0x00c8, tag: 0xb4, rc: 0
+03-31 13:24:33.017  1685  1685 D AOC     : A3:MSG: controller.cc, 275: CNTRL: cmd ID: 0x000a, tag: 0xbd [cntr = 271065]
+03-31 13:24:33.018  1685  1685 D AOC     : A3:MSG: controller.cc, 933: CNTRL: ipc: control, cmd ID: 0x000a, tag: 0xbd, rc: 0
+03-31 13:24:33.020  1685  1685 D AOC     : A3:MSG: controller.cc, 933: SysMem: ipc: C-F1-Ar, cmd ID: 0x00c8, tag: 0xb5, rc: 0
+03-31 13:24:33.021  1685  1685 D AOC     : A3:MSG: controller.cc, 933: SysMem: ipc: C-F1-Ar, cmd ID: 0x00c8, tag: 0xb6, rc: 0
+03-31 13:24:33.022  1685  1685 D AOC     : A3:MSG: controller.cc, 275: CNTRL: cmd ID: 0x000a, tag: 0xbe [cntr = 271066]
+03-31 13:24:33.022  1685  1685 D AOC     : A3:MSG: controller.cc, 933: CNTRL: ipc: control, cmd ID: 0x000a, tag: 0xbe, rc: 0
+03-31 13:24:33.025  1685  1685 D AOC     : A3:MSG: controller.cc, 933: SysMem: ipc: C-F1-Ar, cmd ID: 0x00c8, tag: 0xb7, rc: 0
+03-31 13:24:33.029  1685  1685 D AOC     : A3:MSG: controller.cc, 275: CNTRL: cmd ID: 0x000a, tag: 0xbf [cntr = 271067]
+03-31 13:24:33.029  1685  1685 D AOC     : A3:MSG: controller.cc, 933: CNTRL: ipc: control, cmd ID: 0x000a, tag: 0xbf, rc: 0
+03-31 13:24:33.029  1685  1685 D AOC     : A3:MSG: controller.cc, 933: SysMem: ipc: C-F1-Ar, cmd ID: 0x00c8, tag: 0xb8, rc: 0
+03-31 13:24:33.030  1685  1685 D AOC     : A3:MSG: controller.cc, 275: CNTRL: cmd ID: 0x000a, tag: 0xc0 [cntr = 271068]
+03-31 13:24:33.030  1685  1685 D AOC     : A3:MSG: controller.cc, 933: SysMem: ipc: C-F1-Ar, cmd ID: 0x00c8, tag: 0xb9, rc: 0
+03-31 13:24:33.030  1685  1685 D AOC     : A3:MSG: controller.cc, 933: CNTRL: ipc: control, cmd ID: 0x000a, tag: 0xc0, rc: 0
+03-31 13:24:33.034  1685  1685 D AOC     : A3:MSG: controller.cc, 933: SysMem: ipc: C-F1-Ar, cmd ID: 0x00c8, tag: 0xba, rc: 0
+03-31 13:24:33.034  1685  1685 D AOC     : A3:MSG: controller.cc, 933: SysMem: ipc: C-F1-Ar, cmd ID: 0x00c8, tag: 0xbb, rc: 0
+03-31 13:24:33.034  1685  1685 D AOC     : A3:MSG: controller.cc, 275: CNTRL: cmd ID: 0x000a, tag: 0xc1 [cntr = 271069]
+03-31 13:24:33.034  1685  1685 D AOC     : A3:MSG: controller.cc, 933: SysMem: ipc: C-F1-Ar, cmd ID: 0x00c8, tag: 0xbc, rc: 0
+03-31 13:24:33.034  1685  1685 D AOC     : A3:MSG: controller.cc, 933: CNTRL: ipc: control, cmd ID: 0x000a, tag: 0xc1, rc: 0
+03-31 13:24:33.034  1685  1685 D AOC     : A3:MSG: controller.cc, 933: SysMem: ipc: C-F1-Ar, cmd ID: 0x00c8, tag: 0xbd, rc: 0
+03-31 13:24:33.038  1685  1685 D AOC     : A3:MSG: controller.cc, 933: SysMem: ipc: C-F1-Ar, cmd ID: 0x00c8, tag: 0xbe, rc: 0
+03-31 13:24:33.038  1685  1685 D AOC     : A3:MSG: controller.cc, 275: CNTRL: cmd ID: 0x000a, tag: 0xc2 [cntr = 271070]
+03-31 13:24:33.039  1685  1685 D AOC     : A3:MSG: controller.cc, 933: SysMem: ipc: C-F1-Ar, cmd ID: 0x00c8, tag: 0xbf, rc: 0
+03-31 13:24:33.039  1685  1685 D AOC     : A3:MSG: controller.cc, 933: CNTRL: ipc: control, cmd ID: 0x000a, tag: 0xc2, rc: 0
+03-31 13:24:33.039  1685  1685 D AOC     : A3:MSG: controller.cc, 933: SysMem: ipc: C-F1-Ar, cmd ID: 0x00c8, tag: 0xc0, rc: 0
+03-31 13:24:33.039  1685  1685 D AOC     : A3:MSG: controller.cc, 933: SysMem: ipc: C-F1-Ar, cmd ID: 0x00c8, tag: 0xc1, rc: 0
+03-31 13:24:33.039  1685  1685 D AOC     : A3:MSG: controller.cc, 275: CNTRL: cmd ID: 0x000a, tag: 0xc3 [cntr = 271071]
+03-31 13:24:33.039  1685  1685 D AOC     : A3:MSG: controller.cc, 933: SysMem: ipc: C-F1-Ar, cmd ID: 0x00c8, tag: 0xc2, rc: 0
+03-31 13:24:33.039  1685  1685 D AOC     : A3:MSG: controller.cc, 933: CNTRL: ipc: control, cmd ID: 0x000a, tag: 0xc3, rc: 0
+03-31 13:24:33.040  1685  1685 D AOC     : A3:MSG: controller.cc, 933: SysMem: ipc: C-F1-Ar, cmd ID: 0x00c8, tag: 0xc3, rc: 0
+03-31 13:24:33.042  1685  1685 D AOC     : A3:MSG: controller.cc, 275: CNTRL: cmd ID: 0x000a, tag: 0xc4 [cntr = 271072]
+03-31 13:24:33.043  1685  1685 D AOC     : A3:MSG: controller.cc, 933: SysMem: ipc: C-F1-Ar, cmd ID: 0x00c8, tag: 0xc4, rc: 0
+03-31 13:24:33.043  1685  1685 D AOC     : A3:MSG: controller.cc, 933: SysMem: ipc: C-F1-Ar, cmd ID: 0x00c8, tag: 0xc5, rc: 0
+03-31 13:24:33.044  1685  1685 D AOC     : A3:MSG: controller.cc, 933: SysMem: ipc: C-F1-Ar, cmd ID: 0x00c8, tag: 0xc6, rc: 0
+03-31 13:24:33.045  1685  1685 D AOC     : A3:MSG: controller.cc, 933: CNTRL: ipc: control, cmd ID: 0x000a, tag: 0xc4, rc: 0
+03-31 13:24:33.046  1685  1685 D AOC     : A3:MSG: controller.cc, 933: SysMem: ipc: C-F1-Ar, cmd ID: 0x00c8, tag: 0xc7, rc: 0
+03-31 13:24:33.047  1685  1685 D AOC     : A3:MSG: controller.cc, 275: CNTRL: cmd ID: 0x000a, tag: 0xc5 [cntr = 271073]
+03-31 13:24:33.047  1685  1685 D AOC     : A3:MSG: controller.cc, 933: SysMem: ipc: C-F1-Ar, cmd ID: 0x00c8, tag: 0xc8, rc: 0
+03-31 13:24:33.047  1685  1685 D AOC     : A3:MSG: controller.cc, 933: CNTRL: ipc: control, cmd ID: 0x000a, tag: 0xc5, rc: 0
+03-31 13:24:33.048  1685  1685 D AOC     : A3:MSG: controller.cc, 933: SysMem: ipc: C-F1-Ar, cmd ID: 0x00c8, tag: 0xc9, rc: 0
+03-31 13:24:33.051  1685  1685 D AOC     : A3:MSG: controller.cc, 933: SysMem: ipc: C-F1-Ar, cmd ID: 0x00c8, tag: 0xca, rc: 0
+03-31 13:24:33.051  1685  1685 D AOC     : A3:MSG: controller.cc, 933: SysMem: ipc: C-F1-Ar, cmd ID: 0x00c8, tag: 0xcb, rc: 0
+03-31 13:24:33.051  1685  1685 D AOC     : A3:MSG: controller.cc, 933: SysMem: ipc: C-F1-Ar, cmd ID: 0x00c8, tag: 0xcc, rc: 0
+03-31 13:24:33.052  1685  1685 D AOC     : A3:MSG: controller.cc, 275: CNTRL: cmd ID: 0x000a, tag: 0xc6 [cntr = 271074]
+03-31 13:24:33.052  1685  1685 D AOC     : A3:MSG: controller.cc, 933: CNTRL: ipc: control, cmd ID: 0x000a, tag: 0xc6, rc: 0
+03-31 13:24:33.054  1685  1685 D AOC     : A3:MSG: controller.cc, 933: SysMem: ipc: C-F1-Ar, cmd ID: 0x00c8, tag: 0xcd, rc: 0
+03-31 13:24:33.054  1685  1685 D AOC     : A3:MSG: controller.cc, 275: CNTRL: cmd ID: 0x000a, tag: 0xc7 [cntr = 271075]
+03-31 13:24:33.055  1685  1685 D AOC     : A3:MSG: controller.cc, 933: SysMem: ipc: C-F1-Ar, cmd ID: 0x00c8, tag: 0xce, rc: 0
+03-31 13:24:33.056  1685  1685 D AOC     : A3:MSG: controller.cc, 933: CNTRL: ipc: control, cmd ID: 0x000a, tag: 0xc7, rc: 0
+03-31 13:24:33.058  1685  1685 D AOC     : A3:MSG: controller.cc, 275: CNTRL: cmd ID: 0x000a, tag: 0xc8 [cntr = 271076]
+03-31 13:24:33.058  1685  1685 D AOC     : A3:MSG: controller.cc, 933: CNTRL: ipc: control, cmd ID: 0x000a, tag: 0xc8, rc: 0
+03-31 13:24:33.059  1685  1685 D AOC     : A3:MSG: controller.cc, 275: CNTRL: cmd ID: 0x000a, tag: 0xc9 [cntr = 271077]
+03-31 13:24:33.059  1685  1685 D AOC     : A3:MSG: controller.cc, 933: CNTRL: ipc: control, cmd ID: 0x000a, tag: 0xc9, rc: 0
+03-31 13:24:33.061  1685  1685 D AOC     : A3:MSG: controller.cc, 275: CNTRL: cmd ID: 0x000a, tag: 0xca [cntr = 271078]
+03-31 13:24:33.061  1685  1685 D AOC     : A3:MSG: controller.cc, 933: CNTRL: ipc: control, cmd ID: 0x000a, tag: 0xca, rc: 0
+03-31 13:24:33.061  1377  2805 I bluetooth_hal.extensions.controller_stats: OnCommandCallback: Filtered <(104)[04 0e 65 01 59 fd 00 01 90 c0 ae 00 ff 76 00 00 ... ]>
+03-31 13:24:33.062  1377  2805 I bluetooth_hal.bqr: BqrEnergyMonitoringEventV7: Avg_Cur_Pwr: 3 mA, BEr_Tx_Plv: 16 dBm, Le_Tx_Plv: 14 dBm, Idle_Tm: 30572 ms, Act_Tm: 9442 ms, BEr_Tx_Tm: 0 ms, BEr_Rx_Tm: 322 ms, Le_Tx_Tm: 471 ms, Le_Rx_Tm: 3985 ms, Rpt_Dur: 35350 ms, Rx_Act_1_Chain: 4307 ms, Rx_Act_2_Chain: 0 ms, Tx_iPA_Act_1_Chain: 435 ms, Tx_iPA_Act_2_Chain: 0 ms, Tx_xPA_Act_1_Chain: 36 ms, Tx_xPA_Act_2_Chain: 0 ms, BR/EDR_Rx_Act_Scan: 322 ms, LE_Rx_Act_Scan: 3970 ms
+03-31 13:24:33.062  1685  1685 D AOC     : A3:MSG: controller.cc, 275: CNTRL: cmd ID: 0x000a, tag: 0xcb [cntr = 271079]
+03-31 13:24:33.062  1685  1685 D AOC     : A3:MSG: controller.cc, 933: CNTRL: ipc: control, cmd ID: 0x000a, tag: 0xcb, rc: 0
+03-31 13:24:33.063 26272 26319 W btm_acl : system/stack/acl/btm_acl.cc:1348 BTM_ReadRemoteVersion: Unable to find active acl
+03-31 13:24:33.063 26272 26319 I bluetooth: system/btif/src/btif_bqr.cc:1045 bqr_delivery_event: len: 89, addr: ff:ff:ff:ff:ff:ff, lmp_ver: 0, manufacturer_id: 0, lmp_subver: 0
+03-31 13:24:33.063 26272 26349 I BluetoothQualityReportJni: android/app/jni/com_android_bluetooth_BluetoothQualityReport.cpp:52 bqr_delivery_callback: 
+03-31 13:24:33.063  1685  1685 D AOC     : A3:MSG: controller.cc, 275: CNTRL: cmd ID: 0x000a, tag: 0xcc [cntr = 271080]
+03-31 13:24:33.063  1685  1685 D AOC     : A3:MSG: controller.cc, 933: CNTRL: ipc: control, cmd ID: 0x000a, tag: 0xcc, rc: 0
+03-31 13:24:33.064 26272 26349 I BluetoothQualityReportNativeCallback: BQR: {
+03-31 13:24:33.064 26272 26349 I BluetoothQualityReportNativeCallback:   mAddr: FF:FF:FF:FF:FF:FF, mLmpVer: 0x00, mLmpSubVer: 0x0000, mManufacturerId: 0x0000, mName: , mBluetoothClass: 0,
+03-31 13:24:33.064 26272 26349 I BluetoothQualityReportNativeCallback:   BqrCommon: {
+03-31 13:24:33.064 26272 26349 I BluetoothQualityReportNativeCallback:     mQualityReportId: Energy Monitor(0x06), mPacketType: INVALID(0x00), mConnectionHandle: 0x0000, mConnectionRole: 0(0), mTxPowerLevel: 0, mRssi: 0, mSnr: 0, mUnusedAfhChannelCount: 0,
+03-31 13:24:33.064 26272 26349 I BluetoothQualityReportNativeCallback:     mAfhSelectUnidealChannelCount: 0, mLsto: 0, mPiconetClock: 0x00000000, mRetransmissionCount: 0, mNoRxCount: 0, mNakCount: 0, mLastTxAckTimestamp: 0x00000000, mFlowOffCount: 0,
+03-31 13:24:33.064 26272 26349 I BluetoothQualityReportNativeCallback:     mLastFlowOnTimestamp: 0x00000000, mOverflowCount: 0, mUnderflowCount: 0, mAddr: null, mCalFailedItemCount: 0,
+03-31 13:24:33.064 26272 26349 I BluetoothQualityReportNativeCallback:     mTxTotalPackets: 0, mTxUnackPackets: 0, mTxFlushPackets: 0, mTxLastSubeventPackets: 0, mCrcErrorPackets: 0, mRxDupPackets: 0, mRxUnRecvPackets: 0, mCoexInfoMask: 0
+03-31 13:24:33.064 26272 26349 I BluetoothQualityReportNativeCallback:   }
+03-31 13:24:33.064 26272 26349 I BluetoothQualityReportNativeCallback:   BqrEnergyMonitor: {
+03-31 13:24:33.064 26272 26349 I BluetoothQualityReportNativeCallback:     AvgCurrentConsume: 3, mIdleTotalTime: 30572, mIdleStateEnterCount: 31458, mActiveTotalTime: 9442, mActiveStateEnterCount: 1026,
+03-31 13:24:33.064 26272 26349 I BluetoothQualityReportNativeCallback:     mBredrTxTotalTime: 0, mBredrTxStateEnterCount: 11793, mBredrTxAvgPowerLevel: 16, mBredrRxTotalTime: 322, mBredrRxStateEnterCount: 112, mLeTxTotalTime: 471, mLeTxStateEnterCount: 17709, mLeTxAvgPowerLevel: 14, mLeRxTotalTime: 3985, mLeRxStateEnterCount: 1843, mReportTotalTime: 35350, mRxActiveOneChainTime: 4307, mRxActiveTwoChainTime: 0, mTxiPaActiveOneChainTime: 435, mTxiPaActiveTwoChainTime: 0, mTxePaActiveOneChainTime: 36, mTxePaActiveTwoChainTime: 0
+03-31 13:24:33.064 26272 26349 I BluetoothQualityReportNativeCallback:   }
+03-31 13:24:33.064 26272 26349 I BluetoothQualityReportNativeCallback: }
+03-31 13:24:33.066  1685  1685 D AOC     : A3:MSG: controller.cc, 275: CNTRL: cmd ID: 0x000a, tag: 0xcd [cntr = 271081]
+03-31 13:24:33.066  1685  1685 D AOC     : A3:MSG: controller.cc, 933: CNTRL: ipc: control, cmd ID: 0x000a, tag: 0xcd, rc: 0
+03-31 13:24:33.068  1685  1685 D AOC     : A3:MSG: controller.cc, 275: CNTRL: cmd ID: 0x000a, tag: 0xce [cntr = 271082]
+03-31 13:24:33.069  1685  1685 D AOC     : A3:MSG: controller.cc, 933: CNTRL: ipc: control, cmd ID: 0x000a, tag: 0xce, rc: 0
+03-31 13:24:33.069  1685  1685 D AOC     : A3:MSG: controller.cc, 275: CNTRL: cmd ID: 0x000a, tag: 0xcf [cntr = 271083]
+03-31 13:24:33.069  1685  1685 D AOC     : A3:MSG: controller.cc, 933: CNTRL: ipc: control, cmd ID: 0x000a, tag: 0xcf, rc: 0
+03-31 13:24:33.070  1685  1685 D AOC     : A3:MSG: controller.cc, 275: CNTRL: cmd ID: 0x000a, tag: 0xd0 [cntr = 271084]
+03-31 13:24:33.070  1685  1685 D AOC     : A3:MSG: controller.cc, 933: CNTRL: ipc: control, cmd ID: 0x000a, tag: 0xd0, rc: 0
+03-31 13:24:33.070  1685  1685 D AOC     : A3:MSG: controller.cc, 275: CNTRL: cmd ID: 0x000a, tag: 0xd1 [cntr = 271085]
+03-31 13:24:33.071  1685  1685 D AOC     : A3:MSG: controller.cc, 933: CNTRL: ipc: control, cmd ID: 0x000a, tag: 0xd1, rc: 0
+03-31 13:24:33.075  7678 15848 W Turbo.EstimatedTimeRemainingProvider: queryTimeToDischarge: 28295254
+03-31 13:24:33.077  7678 10476 W Turbo.PersonalRemainingTimeLoader: Start to load model for: [battery_remaining_time] model file with new version 20251204
+03-31 13:24:33.077  3387  9372 D PowerUI : can't show warning due to - plugged: true status unknown: false
+03-31 13:24:33.168  1967  2069 E BatteryHistoryStepDetails: updateStateResidency: buffer not enough
+03-31 13:24:33.225  7678 10476 W Turbo.EstimatedTimeRemainingProvider: queryTimeToDischarge: 28295254
+03-31 13:24:33.234  1967  3436 W JobScheduler.JobStatus: Exempted app com.android.vending considered buggy
+03-31 13:24:33.234  1967  3436 W JobScheduler.JobStatus: Exempted app com.android.vending considered buggy
+03-31 13:24:33.234  1967  3436 W JobScheduler.JobStatus: Exempted app com.android.vending considered buggy
+03-31 13:24:33.240  1967  2959 W JobScheduler.JobStatus: Exempted app com.android.vending considered buggy
+03-31 13:24:33.240  1967  2959 W JobScheduler.JobStatus: Exempted app com.android.vending considered buggy
+03-31 13:24:33.240  1967  2959 W JobScheduler.JobStatus: Exempted app com.android.vending considered buggy
+03-31 13:24:33.240  1967  2959 W JobScheduler.JobStatus: Exempted app com.android.vending considered buggy
+03-31 13:24:33.240  1967  2959 W JobScheduler.JobStatus: Exempted app com.android.vending considered buggy
+03-31 13:24:33.240  1967  2959 W JobScheduler.JobStatus: Exempted app com.android.vending considered buggy
+03-31 13:24:33.240  1967  2959 W JobScheduler.JobStatus: Exempted app com.android.vending considered buggy
+03-31 13:24:33.240  1967  2959 W JobScheduler.JobStatus: Exempted app com.android.vending considered buggy
+03-31 13:24:33.240  1967  2959 W JobScheduler.JobStatus: Exempted app com.android.vending considered buggy
+03-31 13:24:33.240  1967  2959 W JobScheduler.JobStatus: Exempted app com.android.vending considered buggy
+03-31 13:24:33.241  1967  2959 W JobScheduler.JobStatus: Exempted app com.android.vending considered buggy
+03-31 13:24:33.256 31408  1310 W System.err: FlagsHookHelper: skip hook flags method getInstanceHook
+03-31 13:24:33.273  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 2 -> 1 d_lux:420.93 w_lux: 382.27 C:12.45 G:4.45
+03-31 13:24:33.277  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 1 -> 2 d_lux:426.28 w_lux: 390.67 C:12.85 G:4.53
+03-31 13:24:33.287 31408 31603 W NaviWarn: StackPtr is not 8-byte aligned.
+03-31 13:24:33.314  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 2 -> 1 d_lux:422.48 w_lux: 381.57 C:12.46 G:4.47
+03-31 13:24:33.320  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 1 -> 2 d_lux:426.65 w_lux: 391.77 C:12.82 G:4.53
+03-31 13:24:33.372  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 2 -> 1 d_lux:421.56 w_lux: 381.47 C:12.50 G:4.47
+03-31 13:24:33.377  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 1 -> 2 d_lux:424.34 w_lux: 391.17 C:12.85 G:4.52
+03-31 13:24:33.402  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 2 -> 1 d_lux:432.72 w_lux: 391.07 C:12.81 G:4.57
+03-31 13:24:33.407  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 1 -> 2 d_lux:419.52 w_lux: 382.07 C:12.51 G:4.45
+03-31 13:24:33.523 23209 32423 I WM-WorkerWrapper: Worker result SUCCESS for Work [ id=85980403-77e9-42b8-99be-a8eb3bb84751, tags={ com.google.android.apps.messaging.shared.datamodel.workqueue.WorkQueueWorkerShim,icing_index_rebuild_single_work_handler- } ]
+03-31 13:24:33.531 23209 32423 I WM-WorkerWrapper: Setting status to enqueued for 2d59e956-119f-4cf4-be3c-f4e088c52694
+03-31 13:24:33.538 23209 23209 D WM-Processor: sxl 85980403-77e9-42b8-99be-a8eb3bb84751 executed; reschedule = false
+03-31 13:24:33.539 23209 23209 D WM-GreedyScheduler: Stopping tracking for WorkGenerationalId(workSpecId=85980403-77e9-42b8-99be-a8eb3bb84751, generation=0)
+03-31 13:24:33.564 23209 32423 D WM-GreedyScheduler: Cancelling work ID 85980403-77e9-42b8-99be-a8eb3bb84751
+03-31 13:24:33.586 23209 32423 D WM-GreedyScheduler: Ignoring {WorkSpec: 61b740fe-a307-4028-bcb7-fe9775bcc920}. Requires device idle.
+03-31 13:24:33.586 23209 32423 D WM-GreedyScheduler: Ignoring {WorkSpec: e27ea9bb-9fac-4394-8a82-a5c90daf4366}. Requires device idle.
+03-31 13:24:33.586 23209 32423 D WM-GreedyScheduler: Ignoring {WorkSpec: 3d9c5755-8e9a-4a5a-b4b0-0e85f5842319}. Requires device idle.
+03-31 13:24:33.586 23209 32423 D WM-GreedyScheduler: Ignoring {WorkSpec: af30f26a-95dc-4657-b051-92292a35af3f}. Requires device idle.
+03-31 13:24:33.586 23209 32423 D WM-GreedyScheduler: Ignoring {WorkSpec: f0d51df1-3cf9-43cf-a0d8-3e4330ce29fa}. Requires device idle.
+03-31 13:24:33.586 23209 32423 D WM-GreedyScheduler: Ignoring {WorkSpec: 9d9fc1bb-4f7e-46d9-852b-23a26f6e1301}. Requires device idle.
+03-31 13:24:33.587 23209 32423 D WM-GreedyScheduler: Ignoring {WorkSpec: a2355e43-be8d-4844-ab10-04071d85678b}. Requires device idle.
+03-31 13:24:33.587 23209 32423 D WM-GreedyScheduler: Ignoring {WorkSpec: 4d6f5b5d-1e3a-4ec8-bf0a-5e5e19cd3766}. Requires device idle.
+03-31 13:24:33.587 23209 32423 D WM-GreedyScheduler: Ignoring {WorkSpec: a359a366-165a-47c4-a54f-3d4cc551a294}. Requires device idle.
+03-31 13:24:33.587 23209 32423 D WM-GreedyScheduler: Ignoring {WorkSpec: 0728484e-8275-4d4f-8904-cc8790250e75}. Requires ContentUri triggers.
+03-31 13:24:33.587 23209 32423 D WM-GreedyScheduler: Ignoring {WorkSpec: e7aba2c2-8492-4680-bac7-8682837a69c6}. Requires ContentUri triggers.
+03-31 13:24:33.587 23209 32423 D WM-GreedyScheduler: Starting tracking for 5919c476-81c1-4697-aa53-50c655f5e803,2d59e956-119f-4cf4-be3c-f4e088c52694
+03-31 13:24:33.590 23209 31272 D WM-BrdcstRcvrCnstrntTrc: tce: unregistering receiver
+03-31 13:24:33.606 23209 32423 D WM-ConstraintTracker: tce: initial state = true
+03-31 13:24:33.606 23209 32423 D WM-BrdcstRcvrCnstrntTrc: tce: registering receiver
+03-31 13:24:33.609 23209 32423 D WM-GreedyScheduler: Constraints met: Scheduling work ID WorkGenerationalId(workSpecId=2d59e956-119f-4cf4-be3c-f4e088c52694, generation=0)
+03-31 13:24:33.612 23209 32423 D WM-Processor: sxl: processing WorkGenerationalId(workSpecId=2d59e956-119f-4cf4-be3c-f4e088c52694, generation=0)
+03-31 13:24:33.615 23209 32423 D MddListenableWorkerFactory: createWorker for class: com.google.android.apps.messaging.shared.datamodel.workqueue.WorkQueueWorkerShim
+03-31 13:24:33.621 23209 23209 D WM-WorkerWrapper: Starting work for com.google.android.apps.messaging.shared.datamodel.workqueue.WorkQueueWorkerShim
+03-31 13:24:33.631 23209 23647 I BugleSearch: Icing index rebuild kt runs on a table. [CONTEXT table_type=1 window_start=38760 window_end=38780 ]
+03-31 13:24:33.667  1967  2031 I DisplayDeviceRepository: Display device changed render timings: "Built-in Screen", renderFrameRate=60.000004, presentationDeadlineNanos=11500000, appVsyncOffsetNanos=6233332, frameRateOverrides=[]
+03-31 13:24:33.778 23209 23647 I BugleSearch: start to update index. [CONTEXT table_type=1 class_name="OnDeviceIndexerApiImpl" ]
+03-31 13:24:34.265  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 2 -> 1 d_lux:426.14 w_lux: 387.67 C:12.63 G:4.51
+03-31 13:24:34.270  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 1 -> 2 d_lux:423.01 w_lux: 386.07 C:12.69 G:4.50
+03-31 13:24:34.310 31408  1011 W System.err: FlagsHookHelper: skip hook flags method getInstanceHook
+03-31 13:24:34.315  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 2 -> 1 d_lux:425.89 w_lux: 385.87 C:12.62 G:4.50
+03-31 13:24:34.320  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 1 -> 2 d_lux:423.73 w_lux: 385.78 C:12.66 G:4.49
+03-31 13:24:34.342 31408 31603 W NaviWarn: StackPtr is not 8-byte aligned.
+03-31 13:24:34.361  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 2 -> 1 d_lux:426.94 w_lux: 386.37 C:12.64 G:4.52
+03-31 13:24:34.365  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 1 -> 2 d_lux:422.71 w_lux: 387.87 C:12.66 G:4.49
+03-31 13:24:34.370  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 2 -> 1 d_lux:426.44 w_lux: 386.37 C:12.63 G:4.51
+03-31 13:24:34.374  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 1 -> 2 d_lux:420.37 w_lux: 386.97 C:12.72 G:4.48
+03-31 13:24:34.503  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 2 -> 1 d_lux:426.78 w_lux: 384.27 C:12.62 G:4.51
+03-31 13:24:34.506  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 1 -> 2 d_lux:424.61 w_lux: 388.17 C:12.68 G:4.50
+03-31 13:24:34.509  1982  2016 I pixel-thermal: soc_therm:42.865 raw data: soc_therm:42865 
+03-31 13:24:34.514  1982  2016 I pixel-thermal: VIRTUAL-SKIN-MODEL: model_input: [43235.00 35026.00 35169.00 38932.00 40332.00 42535.00 42865.00 35575.00 ]
+03-31 13:24:34.515  1982  2016 I native  : I0000 00:00:1774981474.515054    2016 thermal_tflite_wrapper.cc:261] ThermalTfliteInvoke
+03-31 13:24:34.515  1982  2016 I pixel-thermal: VIRTUAL-SKIN-MODEL: model_output: [36344.7 ]
+03-31 13:24:34.515  1982  2016 I pixel-thermal: VIRTUAL-SKIN-MODEL: predicted_value: [36344.7 ]
+03-31 13:24:34.516  1982  2016 I pixel-thermal: VIRTUAL-SKIN-HINT:36.4616 raw data: VIRTUAL-SKIN:36461.6 VIRTUAL-SKIN-EQ:36461.6 VIRTUAL-SKIN-HINT:36461.6 VIRTUAL-SKIN-LEGACY:37790.3 VIRTUAL-SKIN-LEGACY-MODEL-DIFF:1445.59 VIRTUAL-SKIN-LEGACY-SHUTDOWN:0 VIRTUAL-SKIN-MODEL:36344.7 VIRTUAL-SKIN-MODEL-CLAMPED:36344.7 VIRTUAL-SKIN-MODEL-LEGACY-DIFF:-1445.59 VIRTUAL-SKIN-MODEL-UPDATED:36461.6 VIRTUAL-SKIN-MODEL-UPPER-CLAMPED:36344.7 VIRTUAL-SKIN-SUB-0:37665.9 VIRTUAL-SKIN-SUB-1:37522.4 VIRTUAL-SKIN-SUB-2:37506.7 VIRTUAL-SKIN-SUB-3:37790.3 VIRTUAL-SKIN-SUB-4:37534.9 VIRTUAL-SKIN-SUB-5:37679.5 VIRTUAL-SKIN-SUB-6:37685.6 VIRTUAL-SKIN-SUB-7:37007 VT_LEGACY_WEIGHT:0 VT_MODEL_WEIGHT:1 charging_therm:43235 disp0_therm:35026 flash_therm:35169 north_therm:38932 quiet_therm:40332 rfpa_therm:42535 soc_therm:42865 usb_pwr_therm:35575 
+03-31 13:24:34.517  1982  2016 I pixel-thermal: cellular-emergency:36.4616 raw data: VIRTUAL-SKIN:36461.6 cellular-emergency:36461.6 
+03-31 13:24:34.517  1982  2016 I pixel-thermal: BG-TASKS-THROTTLING-HINT:0 raw data: BG-TASKS-THROTTLING-EXP-PROPERTY:0 BG-TASKS-THROTTLING-HINT:0 BG_TASKS_THROTTLING_COUNT:1 IS_BG_TASKS_THROTTLING_ACTIVE:0 IS_CHARGING:1 VIRTUAL-SKIN:36461.6 thb_hda:54 
+03-31 13:24:34.518  1982  2016 I pixel-thermal: VIRTUAL-USB-UI:0 raw data: USB-MINUS-CHARGING:-7660 VIRTUAL-USB-UI:0 charging_therm:43235 usb_pwr_therm:35575 
+03-31 13:24:34.518  1982  2016 I pixel-thermal: disp0_therm:35.026 raw data: disp0_therm:35026 
+03-31 13:24:34.518  1982  2016 I pixel-thermal: VIRTUAL-SKIN-CPU-LIGHT-ODPM:36.4616 raw data: VIRTUAL-SKIN:36461.6 VIRTUAL-SKIN-CPU-LIGHT-ODPM:36461.6 
+03-31 13:24:34.518  1982  2016 I pixel-thermal: north_therm:38.932 raw data: north_therm:38932 
+03-31 13:24:34.518  1982  2016 I pixel-thermal: VIRTUAL-SKIN-CPU-MID:36.4616 raw data: VIRTUAL-SKIN:36461.6 VIRTUAL-SKIN-CPU-MID:36461.6 
+03-31 13:24:34.518  1982  2016 I pixel-thermal: VIRTUAL-SKIN:36.4616 raw data: VIRTUAL-SKIN:36461.6 
+03-31 13:24:34.519  1982  2016 I pixel-thermal: VIRTUAL-SKIN-SPEAKER:37.8103 raw data: VIRTUAL-SKIN-SPEAKER:37810.3 VIRTUAL-SKIN-SPEAKER-SUB-0:36810.3 VIRTUAL-SKIN-SPEAKER-SUB-1:36177.1 charging_therm:43235 disp0_therm:35026 flash_therm:35169 north_therm:38932 quiet_therm:40332 rfpa_therm:42535 soc_therm:42865 usb_pwr_therm:35575 
+03-31 13:24:34.519  1982  2016 I pixel-thermal: VIRTUAL-SKIN-CPU-HIGH:36.4616 raw data: VIRTUAL-SKIN:36461.6 VIRTUAL-SKIN-CPU-HIGH:36461.6 
+03-31 13:24:34.519  1982  2016 I pixel-thermal: VIRTUAL-SKIN-SOC:36.4616 raw data: VIRTUAL-SKIN:36461.6 VIRTUAL-SKIN-SOC:36461.6 
+03-31 13:24:34.520  1982  2016 I pixel-thermal: VIRTUAL-SKIN-CPU-ODPM:36.4616 raw data: VIRTUAL-SKIN:36461.6 VIRTUAL-SKIN-CPU-ODPM:36461.6 
+03-31 13:24:34.520  1982  2016 I pixel-thermal: flash_therm:35.169 raw data: flash_therm:35169 
+03-31 13:24:34.520  1982  2016 I pixel-thermal: rfpa_therm:42.535 raw data: rfpa_therm:42535 
+03-31 13:24:34.520  1982  2016 I pixel-thermal: quiet_therm:40.332 raw data: quiet_therm:40332 
+03-31 13:24:34.521  1982  2016 I pixel-thermal: usb_pwr_therm:35.575 raw data: usb_pwr_therm:35575 
+03-31 13:24:34.521  1982  2016 I pixel-thermal: VIRTUAL-SKIN-CHARGE-WIRED:36.9616 raw data: NO_WLC:1 VIRTUAL-SKIN-CHARGE:36961.6 VIRTUAL-SKIN-CHARGE-WIRED:36961.6 VIRTUAL-SKIN-EQ:36461.6 WLC_CHECK:1 thb_hda:54 
+03-31 13:24:34.521  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 2 -> 1 d_lux:425.21 w_lux: 383.57 C:12.62 G:4.50
+03-31 13:24:34.521  1982  2016 I pixel-thermal: VIRTUAL-SKIN-CHARGE-WIRED power_budget=3710 err=1.0384 s_power=2493 time_elapsed_ms=7049 p=315.673 i=1173.35 d=0 dt_per_min=0.114306 compensation=0 budget transient=0 control target=2 excluded power budget=182.225 (PARTIAL_SYSTEM_POWER: 1518.54 mW, cdev_weight: 0.120000)
+03-31 13:24:34.521  1982  2016 I pixel-thermal: VIRTUAL-SKIN-PREDICTION-MODEL: model_input: [38932.00 35169.00 42865.00 42535.00 43235.00 35026.00 35575.00 40332.00 36461.60 ]
+03-31 13:24:34.522  1982  2016 I native  : I0000 00:00:1774981474.521886    2016 thermal_tflite_wrapper.cc:261] ThermalTfliteInvoke
+03-31 13:24:34.524  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 1 -> 2 d_lux:424.22 w_lux: 388.47 C:12.68 G:4.50
+03-31 13:24:34.527  1982  2016 I pixel-thermal: VIRTUAL-SKIN-PREDICTION-MODEL: model_output: [36582.3 36580.7 36571.9 36566.2 36575 36577.1 36581.7 36590.3 36604.7 36612.8 ]
+03-31 13:24:34.527  1982  2016 I pixel-thermal: VIRTUAL-SKIN-PREDICTION-MODEL: predicted_value: [36582.3 36580.7 36571.9 36566.2 36575 36577.1 36581.7 36590.3 36604.7 36612.8 ]
+03-31 13:24:34.528  1982  2016 I pixel-thermal: STATS-UPDATOR:0 raw data: EXTREME-CONDITION-POWER-MONITOR-44C:0 EXTREME-CONDITION-POWER-MONITOR-45C:0 EXTREME-CONDITION-POWER-MONITOR-46C:0 EXTREME_WORKLOAD_ODPM:1518.54 STATS-UPDATOR:0 VIRTUAL-SKIN:36461.6 VIRTUAL-SKIN-44C:0 VIRTUAL-SKIN-45C:0 VIRTUAL-SKIN-46C:0 VIRTUAL-SKIN-PREDICTION-MODEL:36582.3 VT-FORECAST-30SEC-BACK:36998.5 VT-FORECAST-60SEC-BACK:36797.9 VT-FORECAST-ERROR-30SEC:536.902 VT-FORECAST-ERROR-60SEC:336.266 VT-FORECAST-ERROR-NOW:120.668 VT-FORECAST-NOW:36582.3 charging_therm:43235 disp0_therm:35026 flash_therm:35169 north_therm:38932 quiet_therm:40332 rfpa_therm:42535 soc_therm:42865 usb_pwr_therm:35575 
+03-31 13:24:34.528  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 2 -> 1 d_lux:425.91 w_lux: 383.78 C:12.62 G:4.51
+03-31 13:24:34.528  1982  2016 I pixel-thermal: VIRTUAL-USB-THROTTLING:0 raw data: USB-MINUS-CHARGING:-7660 VIRTUAL-USB-THROTTLING:0 usb_pwr_therm:35575 
+03-31 13:24:34.528  1982  2016 I pixel-thermal: VIRTUAL-SKIN-CHARGE-PERSIST:36.9616 raw data: VIRTUAL-SKIN-CHARGE:36961.6 VIRTUAL-SKIN-CHARGE-PERSIST:36961.6 
+03-31 13:24:34.528  1982  2016 I pixel-thermal: EARLY-WARNING-SENSOR:0 raw data: EARLY-EMERGENCY-WARNING-SENSOR:0 EARLY-SHUTDOWN-WARNING-SENSOR:0 EARLY-WARNING-SENSOR:0 VIRTUAL-SKIN-PREDICTION-MODEL:36582.3 VT-FORECAST-30SEC:36575.6 VT-FORECAST-60SEC:36609.4 
+03-31 13:24:34.532  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 1 -> 2 d_lux:423.12 w_lux: 387.38 C:12.71 G:4.49
+03-31 13:24:34.620  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 2 -> 1 d_lux:425.57 w_lux: 382.47 C:12.61 G:4.50
+03-31 13:24:34.623  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 1 -> 2 d_lux:424.27 w_lux: 388.97 C:12.69 G:4.50
+03-31 13:24:34.674 31408 31414 W System  : A resource failed to call close. 
+03-31 13:24:34.675 31408 31414 W System  : A resource failed to call close. 
+03-31 13:24:34.687  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 2 -> 1 d_lux:425.75 w_lux: 383.17 C:12.58 G:4.50
+03-31 13:24:34.690  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 1 -> 2 d_lux:423.74 w_lux: 390.37 C:12.69 G:4.50
+03-31 13:24:34.699  1685  1685 D AOC     : A3:MSG: controller.cc, 933: SysMem: ipc: C-F1-Ar, cmd ID: 0x00c8, tag: 0xcf, rc: 0
+03-31 13:24:34.700  1685  1685 D AOC     : A3:MSG: controller.cc, 933: SysMem: ipc: C-F1-Ar, cmd ID: 0x00c8, tag: 0xd0, rc: 0
+03-31 13:24:34.819  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 2 -> 1 d_lux:423.47 w_lux: 382.27 C:12.55 G:4.48
+03-31 13:24:34.824  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 1 -> 2 d_lux:421.51 w_lux: 389.67 C:12.76 G:4.50
+03-31 13:24:34.851  1685  1685 D AOC     : CHRE: DRAM vote count begins
+03-31 13:24:34.851  1685  1685 D AOC     : CHRE: DRAM vote count ends: 0 ms
+03-31 13:24:34.851  1685  1685 D AOC     : CHRE: DRAM vote count begins
+03-31 13:24:34.851  1685  1685 D AOC     : CHRE: DRAM vote count ends: 0 ms
+03-31 13:24:34.852  1685  1685 D AOC     : CHRE: DRAM vote count begins
+03-31 13:24:34.852  1685  1685 D AOC     : CHRE: DRAM vote count ends: 0 ms
+03-31 13:24:34.852  1685  1685 D AOC     : CHRE: DRAM vote count begins
+03-31 13:24:34.852  1379  1434 I CHRE    : @ 965679.942: [vice_ambient_volume] SendMessageToAmbientVolume, message_type: 33283 to instance_id: 0x3
+03-31 13:24:34.853  1379  1434 I CHRE    : @ 965679.942: nappId=25 tried to cancel expired/invalid timer 151338
+03-31 13:24:34.853  1379  1434 I CHRE    : @ 965679.943: [vice_ambient_volume] SendMessageToAmbientVolume, message_type: 33282 to instance_id: 0x3
+03-31 13:24:34.853  1685  1685 D AOC     : F1:MSG: controller.cc, 275: AudioInCtrl: cmd ID: 0x00f5, tag: 0x47 [cntr = 133156]
+03-31 13:24:34.853  1685  1685 D AOC     : F1:MSG: controller_audio_input.cc, 4445: Got chre audio stop cmd
+03-31 13:24:34.853  1685  1685 D AOC     : F1:TRC: hotword_input_processor.cc, 1014: Receive cmd: 0x84 (132)
+03-31 13:24:34.854  1685  1685 D AOC     : F1:TRC: hotword_input_processor.cc, 1510: Finished cmd: 0x84 (132)
+03-31 13:24:34.854  1685  1685 D AOC     : F1:MSG: audio_capture_pdm.cc, 448: Reconfig seamless
+03-31 13:24:34.854  1685  1685 D AOC     : F1:Stream 1: mask 0x5, rings {1, 0}, pipe 0x1, sr 16000, il {0,2,0,0}, en 1, mc 0, ni 1, fpo 0, ru 1, hq 0
+03-31 13:24:34.854  1685  1685 D AOC     : F1:MSG: controller.cc, 933: AudioInCtrl: ipc: C-Ch-AI, cmd ID: 0x00f5, tag: 0x47, rc: 0
+03-31 13:24:34.854  1685  1685 D AOC     : CHRE: DRAM vote count ends: 0 ms
+03-31 13:24:34.854  1685  1685 D AOC     : CHRE: DRAM vote count begins
+03-31 13:24:34.854  1685  1685 D AOC     : CHRE: DRAM vote count ends: 0 ms
+03-31 13:24:34.854  1685  1685 D AOC     : CHRE: DRAM vote count begins
+03-31 13:24:34.854  1685  1685 D AOC     : CHRE: DRAM vote count ends: 0 ms
+03-31 13:24:34.854  1685  1685 D AOC     : CHRE: DRAM vote count begins
+03-31 13:24:34.854  1685  1685 D AOC     : CHRE: DRAM vote count ends: 0 ms
+03-31 13:24:34.855  1379  1434 E CHRE    : @ 965679.944: [AV] Client 3 is not found.
+03-31 13:24:34.855  1379  1434 I CHRE    : @ 965679.944: [AV] disabling detection
+03-31 13:24:34.855  1379  1434 D CHRE    : @ 965679.945: request audio send: 0
+03-31 13:24:34.855  1379  1434 I CHRE    : @ 965679.945: [vice_ambient_volume] Received ACK from Ambient Volume for disable request
+03-31 13:24:34.921  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 2 -> 1 d_lux:426.10 w_lux: 382.67 C:12.53 G:4.50
+03-31 13:24:34.924  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 1 -> 2 d_lux:425.53 w_lux: 390.67 C:12.74 G:4.51
+03-31 13:24:34.979  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 2 -> 1 d_lux:422.05 w_lux: 381.77 C:12.53 G:4.47
+03-31 13:24:34.982  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 1 -> 2 d_lux:424.76 w_lux: 391.27 C:12.77 G:4.52
+03-31 13:24:35.021  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 2 -> 1 d_lux:421.54 w_lux: 381.47 C:12.52 G:4.47
+03-31 13:24:35.024  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 1 -> 2 d_lux:425.23 w_lux: 390.67 C:12.76 G:4.51
+03-31 13:24:35.025 23209 32423 I WM-WorkerWrapper: Worker result SUCCESS for Work [ id=2d59e956-119f-4cf4-be3c-f4e088c52694, tags={ com.google.android.apps.messaging.shared.datamodel.workqueue.WorkQueueWorkerShim,icing_index_rebuild_single_work_handler- } ]
+03-31 13:24:35.028  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 2 -> 1 d_lux:423.40 w_lux: 381.37 C:12.55 G:4.49
+03-31 13:24:35.032  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 1 -> 2 d_lux:427.55 w_lux: 390.27 C:12.80 G:4.54
+03-31 13:24:35.035 23209 32423 I WM-WorkerWrapper: Setting status to enqueued for 7ece97e0-565f-4d72-a267-f8947e99161f
+03-31 13:24:35.041 23209 23209 D WM-Processor: sxl 2d59e956-119f-4cf4-be3c-f4e088c52694 executed; reschedule = false
+03-31 13:24:35.041 23209 23209 D WM-GreedyScheduler: Stopping tracking for WorkGenerationalId(workSpecId=2d59e956-119f-4cf4-be3c-f4e088c52694, generation=0)
+03-31 13:24:35.062 23209 32423 D WM-GreedyScheduler: Cancelling work ID 2d59e956-119f-4cf4-be3c-f4e088c52694
+03-31 13:24:35.089 23209 32423 D WM-GreedyScheduler: Ignoring {WorkSpec: 61b740fe-a307-4028-bcb7-fe9775bcc920}. Requires device idle.
+03-31 13:24:35.090 23209 32423 D WM-GreedyScheduler: Ignoring {WorkSpec: e27ea9bb-9fac-4394-8a82-a5c90daf4366}. Requires device idle.
+03-31 13:24:35.090 23209 32423 D WM-GreedyScheduler: Ignoring {WorkSpec: 3d9c5755-8e9a-4a5a-b4b0-0e85f5842319}. Requires device idle.
+03-31 13:24:35.090 23209 32423 D WM-GreedyScheduler: Ignoring {WorkSpec: af30f26a-95dc-4657-b051-92292a35af3f}. Requires device idle.
+03-31 13:24:35.091 23209 32423 D WM-GreedyScheduler: Ignoring {WorkSpec: f0d51df1-3cf9-43cf-a0d8-3e4330ce29fa}. Requires device idle.
+03-31 13:24:35.091 23209 32423 D WM-GreedyScheduler: Ignoring {WorkSpec: 9d9fc1bb-4f7e-46d9-852b-23a26f6e1301}. Requires device idle.
+03-31 13:24:35.091 23209 32423 D WM-GreedyScheduler: Ignoring {WorkSpec: a2355e43-be8d-4844-ab10-04071d85678b}. Requires device idle.
+03-31 13:24:35.092 23209 32423 D WM-GreedyScheduler: Ignoring {WorkSpec: 4d6f5b5d-1e3a-4ec8-bf0a-5e5e19cd3766}. Requires device idle.
+03-31 13:24:35.092 23209 32423 D WM-GreedyScheduler: Ignoring {WorkSpec: a359a366-165a-47c4-a54f-3d4cc551a294}. Requires device idle.
+03-31 13:24:35.092 23209 32423 D WM-GreedyScheduler: Ignoring {WorkSpec: 0728484e-8275-4d4f-8904-cc8790250e75}. Requires ContentUri triggers.
+03-31 13:24:35.093 23209 32423 D WM-GreedyScheduler: Ignoring {WorkSpec: e7aba2c2-8492-4680-bac7-8682837a69c6}. Requires ContentUri triggers.
+03-31 13:24:35.093 23209 32423 D WM-GreedyScheduler: Starting tracking for 7ece97e0-565f-4d72-a267-f8947e99161f,5919c476-81c1-4697-aa53-50c655f5e803
+03-31 13:24:35.102 23209 31309 D WM-BrdcstRcvrCnstrntTrc: tce: unregistering receiver
+03-31 13:24:35.104  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 2 -> 1 d_lux:422.30 w_lux: 381.17 C:12.49 G:4.47
+03-31 13:24:35.108  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 1 -> 2 d_lux:427.64 w_lux: 390.77 C:12.80 G:4.54
+03-31 13:24:35.128 23209 32423 D WM-ConstraintTracker: tce: initial state = true
+03-31 13:24:35.128 23209 32423 D WM-BrdcstRcvrCnstrntTrc: tce: registering receiver
+03-31 13:24:35.131 23209 32423 D WM-GreedyScheduler: Constraints met: Scheduling work ID WorkGenerationalId(workSpecId=7ece97e0-565f-4d72-a267-f8947e99161f, generation=0)
+03-31 13:24:35.136 23209 32423 D WM-Processor: sxl: processing WorkGenerationalId(workSpecId=7ece97e0-565f-4d72-a267-f8947e99161f, generation=0)
+03-31 13:24:35.137  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 2 -> 1 d_lux:422.38 w_lux: 381.17 C:12.52 G:4.47
+03-31 13:24:35.141  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 1 -> 2 d_lux:426.44 w_lux: 390.97 C:12.80 G:4.53
+03-31 13:24:35.164 23209 32423 D MddListenableWorkerFactory: createWorker for class: com.google.android.apps.messaging.shared.datamodel.workqueue.WorkQueueWorkerShim
+03-31 13:24:35.200 23209 23209 D WM-WorkerWrapper: Starting work for com.google.android.apps.messaging.shared.datamodel.workqueue.WorkQueueWorkerShim
+03-31 13:24:35.211 23209 23231 I BugleSearch: Icing index rebuild kt runs on a table. [CONTEXT table_type=1 window_start=38780 window_end=38800 ]
+03-31 13:24:35.213  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 2 -> 1 d_lux:421.28 w_lux: 380.47 C:12.49 G:4.46
+03-31 13:24:35.216  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 1 -> 2 d_lux:423.92 w_lux: 392.47 C:12.84 G:4.51
+03-31 13:24:35.222  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 2 -> 1 d_lux:421.11 w_lux: 380.97 C:12.51 G:4.47
+03-31 13:24:35.225  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 1 -> 2 d_lux:427.62 w_lux: 392.67 C:12.81 G:4.54
+03-31 13:24:35.227 23209 23231 I BugleSearch: start to update index. [CONTEXT table_type=1 class_name="OnDeviceIndexerApiImpl" ]
+03-31 13:24:35.451  1685  1685 D AOC     : CHRE: DRAM vote count begins
+03-31 13:24:35.451  1685  1685 D AOC     : CHRE: DRAM vote count ends: 0 ms
+03-31 13:24:35.451  1685  1685 D AOC     : CHRE: DRAM vote count begins
+03-31 13:24:35.451  1685  1685 D AOC     : CHRE: DRAM vote count ends: 0 ms
+03-31 13:24:35.470  1379  1434 D CHRE.HAL: Received a nanoapp message from 0x476f6f676c00100b endpoint 0x52: Type 0x401 size 1718 
+03-31 13:24:35.472  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 2 -> 1 d_lux:419.80 w_lux: 380.07 C:12.46 G:4.45
+03-31 13:24:35.473  1379  1434 I CHRE    : @ 965680.537: [AR] send to host, reason=4, sampleSize=112, transitionSize=0, lastAccelTime = 965656207, lastAudioTime = 0 
+03-31 13:24:35.473  1379  1434 I CHRE    : @ 965680.538: [NanoMinion] sent MSG Type 0x72, Version 0, 1710 bytes, MessageId 245
+03-31 13:24:35.473  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 1 -> 2 d_lux:428.41 w_lux: 393.77 C:12.83 G:4.54
+03-31 13:24:35.507  1685  1685 D AOC     : CHRE: DRAM vote count begins
+03-31 13:24:35.507  1685  1685 D AOC     : CHRE: DRAM vote count ends: 0 ms
+03-31 13:24:35.507  1685  1685 D AOC     : CHRE: DRAM vote count begins
+03-31 13:24:35.507  1685  1685 D AOC     : CHRE: DRAM vote count ends: 0 ms
+03-31 13:24:35.513  1379  1434 D CHRE    : @ 965680.594: Parsed nanoapp message from host: app ID 0x476f6f676c00100d endpoint 0x56 msgType 3 payload size 14
+03-31 13:24:35.513  1379  1434 I CHRE    : @ 965680.595: [NanoMinion] received MSG Type 0x3, Version 1, 10 bytes
+03-31 13:24:35.553  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 2 -> 1 d_lux:419.80 w_lux: 379.07 C:12.42 G:4.44
+03-31 13:24:35.558  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 1 -> 2 d_lux:426.40 w_lux: 392.87 C:12.86 G:4.53
+03-31 13:24:35.570  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 2 -> 1 d_lux:422.75 w_lux: 378.67 C:12.44 G:4.46
+03-31 13:24:35.574  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 1 -> 2 d_lux:428.23 w_lux: 393.07 C:12.85 G:4.55
+03-31 13:24:35.637  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 2 -> 1 d_lux:419.98 w_lux: 378.87 C:12.45 G:4.45
+03-31 13:24:35.641  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 1 -> 2 d_lux:426.07 w_lux: 392.97 C:12.88 G:4.54
+03-31 13:24:35.645  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 2 -> 1 d_lux:419.98 w_lux: 380.17 C:12.46 G:4.45
+03-31 13:24:35.649  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 1 -> 2 d_lux:426.49 w_lux: 393.17 C:12.89 G:4.54
+03-31 13:24:35.670  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 2 -> 1 d_lux:420.15 w_lux: 379.97 C:12.46 G:4.45
+03-31 13:24:35.674  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 1 -> 2 d_lux:426.92 w_lux: 392.87 C:12.88 G:4.54
+03-31 13:24:35.754  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 2 -> 1 d_lux:419.53 w_lux: 380.37 C:12.42 G:4.45
+03-31 13:24:35.758  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 1 -> 2 d_lux:430.17 w_lux: 392.67 C:12.82 G:4.55
+03-31 13:24:35.780  1967  1967 V RebootReadinessManager: Reboot blocked by device interactivity
+03-31 13:24:35.804  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 2 -> 1 d_lux:418.77 w_lux: 380.17 C:12.46 G:4.45
+03-31 13:24:35.808  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 1 -> 2 d_lux:427.61 w_lux: 393.17 C:12.90 G:4.55
+03-31 13:24:35.812  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 2 -> 1 d_lux:420.06 w_lux: 380.77 C:12.47 G:4.45
+03-31 13:24:35.816  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 1 -> 2 d_lux:425.89 w_lux: 394.87 C:12.91 G:4.53
+03-31 13:24:35.839 23209 32423 I WM-WorkerWrapper: Worker result SUCCESS for Work [ id=7ece97e0-565f-4d72-a267-f8947e99161f, tags={ com.google.android.apps.messaging.shared.datamodel.workqueue.WorkQueueWorkerShim,icing_index_rebuild_single_work_handler- } ]
+03-31 13:24:35.844 23209 32423 I WM-WorkerWrapper: Setting status to enqueued for 32001003-b02d-4677-83f5-b502e92489c3
+03-31 13:24:35.850 23209 23209 D WM-Processor: sxl 7ece97e0-565f-4d72-a267-f8947e99161f executed; reschedule = false
+03-31 13:24:35.853 23209 23209 D WM-GreedyScheduler: Stopping tracking for WorkGenerationalId(workSpecId=7ece97e0-565f-4d72-a267-f8947e99161f, generation=0)
+03-31 13:24:35.878 23209 31309 D WM-GreedyScheduler: Cancelling work ID 7ece97e0-565f-4d72-a267-f8947e99161f
+03-31 13:24:35.906 23209 31309 D WM-GreedyScheduler: Ignoring {WorkSpec: 61b740fe-a307-4028-bcb7-fe9775bcc920}. Requires device idle.
+03-31 13:24:35.907 23209 31309 D WM-GreedyScheduler: Ignoring {WorkSpec: e27ea9bb-9fac-4394-8a82-a5c90daf4366}. Requires device idle.
+03-31 13:24:35.907 23209 31309 D WM-GreedyScheduler: Ignoring {WorkSpec: 3d9c5755-8e9a-4a5a-b4b0-0e85f5842319}. Requires device idle.
+03-31 13:24:35.908 23209 31309 D WM-GreedyScheduler: Ignoring {WorkSpec: af30f26a-95dc-4657-b051-92292a35af3f}. Requires device idle.
+03-31 13:24:35.908 23209 31309 D WM-GreedyScheduler: Ignoring {WorkSpec: f0d51df1-3cf9-43cf-a0d8-3e4330ce29fa}. Requires device idle.
+03-31 13:24:35.908 23209 31309 D WM-GreedyScheduler: Ignoring {WorkSpec: 9d9fc1bb-4f7e-46d9-852b-23a26f6e1301}. Requires device idle.
+03-31 13:24:35.909 23209 31309 D WM-GreedyScheduler: Ignoring {WorkSpec: a2355e43-be8d-4844-ab10-04071d85678b}. Requires device idle.
+03-31 13:24:35.909 23209 31309 D WM-GreedyScheduler: Ignoring {WorkSpec: 4d6f5b5d-1e3a-4ec8-bf0a-5e5e19cd3766}. Requires device idle.
+03-31 13:24:35.909 23209 31309 D WM-GreedyScheduler: Ignoring {WorkSpec: a359a366-165a-47c4-a54f-3d4cc551a294}. Requires device idle.
+03-31 13:24:35.909 23209 31309 D WM-GreedyScheduler: Ignoring {WorkSpec: 0728484e-8275-4d4f-8904-cc8790250e75}. Requires ContentUri triggers.
+03-31 13:24:35.909 23209 31309 D WM-GreedyScheduler: Ignoring {WorkSpec: e7aba2c2-8492-4680-bac7-8682837a69c6}. Requires ContentUri triggers.
+03-31 13:24:35.909 23209 31309 D WM-GreedyScheduler: Starting tracking for 32001003-b02d-4677-83f5-b502e92489c3,5919c476-81c1-4697-aa53-50c655f5e803
+03-31 13:24:35.913 23209 32423 D WM-BrdcstRcvrCnstrntTrc: tce: unregistering receiver
+03-31 13:24:35.921 23209 31309 D WM-ConstraintTracker: tce: initial state = true
+03-31 13:24:35.922 23209 31309 D WM-BrdcstRcvrCnstrntTrc: tce: registering receiver
+03-31 13:24:35.925 23209 31309 D WM-GreedyScheduler: Constraints met: Scheduling work ID WorkGenerationalId(workSpecId=32001003-b02d-4677-83f5-b502e92489c3, generation=0)
+03-31 13:24:35.929 23209 31309 D WM-Processor: sxl: processing WorkGenerationalId(workSpecId=32001003-b02d-4677-83f5-b502e92489c3, generation=0)
+03-31 13:24:35.932 23209 31309 D MddListenableWorkerFactory: createWorker for class: com.google.android.apps.messaging.shared.datamodel.workqueue.WorkQueueWorkerShim
+03-31 13:24:35.938 23209 23209 D WM-WorkerWrapper: Starting work for com.google.android.apps.messaging.shared.datamodel.workqueue.WorkQueueWorkerShim
+03-31 13:24:35.948  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 2 -> 1 d_lux:419.66 w_lux: 379.97 C:12.45 G:4.44
+03-31 13:24:35.950  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 1 -> 2 d_lux:427.90 w_lux: 392.67 C:12.88 G:4.54
+03-31 13:24:35.950 23209 23246 I BugleSearch: Icing index rebuild kt runs on a table. [CONTEXT table_type=1 window_start=38800 window_end=38820 ]
+03-31 13:24:35.962 23209 23647 I BugleSearch: start to update index. [CONTEXT table_type=1 class_name="OnDeviceIndexerApiImpl" ]
+03-31 13:24:35.990  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 2 -> 1 d_lux:419.68 w_lux: 380.17 C:12.44 G:4.44
+03-31 13:24:35.992  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 1 -> 2 d_lux:427.50 w_lux: 394.77 C:12.90 G:4.55
+03-31 13:24:36.012  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 2 -> 1 d_lux:418.88 w_lux: 380.17 C:12.43 G:4.44
+03-31 13:24:36.016  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 1 -> 2 d_lux:427.54 w_lux: 392.87 C:12.88 G:4.54
+03-31 13:24:36.088  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 2 -> 1 d_lux:419.01 w_lux: 379.97 C:12.45 G:4.44
+03-31 13:24:36.092  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 1 -> 2 d_lux:428.35 w_lux: 391.87 C:12.90 G:4.55
+03-31 13:24:36.106  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 2 -> 1 d_lux:417.98 w_lux: 379.67 C:12.43 G:4.44
+03-31 13:24:36.108  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 1 -> 2 d_lux:429.86 w_lux: 393.07 C:12.90 G:4.56
+03-31 13:24:36.187  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 2 -> 1 d_lux:418.63 w_lux: 378.77 C:12.42 G:4.43
+03-31 13:24:36.191  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 1 -> 2 d_lux:430.42 w_lux: 392.27 C:12.89 G:4.57
+03-31 13:24:36.217 23209 23298 I BugleSearch: AppSearch indexing call is done. [CONTEXT item_id="39031" table_type=1 operation="1" outcome="Success" ]
+03-31 13:24:36.219 23209 23298 I BugleSearch: AppSearch indexing call is done. [CONTEXT item_id="39034" table_type=1 operation="1" outcome="Success" ]
+03-31 13:24:36.222  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 2 -> 1 d_lux:419.54 w_lux: 379.17 C:12.42 G:4.44
+03-31 13:24:36.230  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 1 -> 2 d_lux:425.86 w_lux: 391.68 C:12.91 G:4.54
+03-31 13:24:36.386  1681  1681 W TracingMuxer: type=1400 audit(0.0:313524): avc:  denied  { write } for  name="traced_producer" dev="tmpfs" ino=1430 scontext=u:r:gxp_logging:s0 tcontext=u:object_r:traced_producer_socket:s0 tclass=sock_file permissive=0
+03-31 13:24:36.429  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 2 -> 1 d_lux:419.24 w_lux: 380.17 C:12.46 G:4.45
+03-31 13:24:36.433  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 1 -> 2 d_lux:428.80 w_lux: 393.57 C:12.89 G:4.56
+03-31 13:24:36.529  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 2 -> 1 d_lux:419.07 w_lux: 380.47 C:12.45 G:4.44
+03-31 13:24:36.534  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 1 -> 2 d_lux:427.03 w_lux: 390.77 C:12.88 G:4.54
+03-31 13:24:36.655  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 2 -> 1 d_lux:421.03 w_lux: 380.97 C:12.50 G:4.47
+03-31 13:24:36.660  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 1 -> 2 d_lux:426.78 w_lux: 391.87 C:12.87 G:4.54
+03-31 13:24:36.699  1685  1685 D AOC     : A3:MSG: controller.cc, 933: SysMem: ipc: C-F1-Ar, cmd ID: 0x00c8, tag: 0xd1, rc: 0
+03-31 13:24:36.699  1685  1685 D AOC     : A3:MSG: controller.cc, 933: SysMem: ipc: C-F1-Ar, cmd ID: 0x00c8, tag: 0xd2, rc: 0
+03-31 13:24:36.781  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 2 -> 1 d_lux:421.45 w_lux: 382.07 C:12.50 G:4.46
+03-31 13:24:36.785  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 1 -> 2 d_lux:428.22 w_lux: 389.97 C:12.86 G:4.55
+03-31 13:24:36.913  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 2 -> 1 d_lux:422.55 w_lux: 382.37 C:12.51 G:4.47
+03-31 13:24:36.917  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 1 -> 2 d_lux:427.21 w_lux: 391.37 C:12.88 G:4.55
+03-31 13:24:37.003 23209 31309 I WM-WorkerWrapper: Worker result SUCCESS for Work [ id=32001003-b02d-4677-83f5-b502e92489c3, tags={ com.google.android.apps.messaging.shared.datamodel.workqueue.WorkQueueWorkerShim,icing_index_rebuild_single_work_handler- } ]
+03-31 13:24:37.011 23209 31309 I WM-WorkerWrapper: Setting status to enqueued for a5fb6109-3048-449b-9332-6fd2e82d08c6
+03-31 13:24:37.017 23209 23209 D WM-Processor: sxl 32001003-b02d-4677-83f5-b502e92489c3 executed; reschedule = false
+03-31 13:24:37.017 23209 23209 D WM-GreedyScheduler: Stopping tracking for WorkGenerationalId(workSpecId=32001003-b02d-4677-83f5-b502e92489c3, generation=0)
+03-31 13:24:37.039 23209 31309 D WM-GreedyScheduler: Cancelling work ID 32001003-b02d-4677-83f5-b502e92489c3
+03-31 13:24:37.068 23209 31309 D WM-GreedyScheduler: Ignoring {WorkSpec: 61b740fe-a307-4028-bcb7-fe9775bcc920}. Requires device idle.
+03-31 13:24:37.068 23209 31309 D WM-GreedyScheduler: Ignoring {WorkSpec: e27ea9bb-9fac-4394-8a82-a5c90daf4366}. Requires device idle.
+03-31 13:24:37.068 23209 31309 D WM-GreedyScheduler: Ignoring {WorkSpec: 3d9c5755-8e9a-4a5a-b4b0-0e85f5842319}. Requires device idle.
+03-31 13:24:37.069 23209 31309 D WM-GreedyScheduler: Ignoring {WorkSpec: af30f26a-95dc-4657-b051-92292a35af3f}. Requires device idle.
+03-31 13:24:37.069 23209 31309 D WM-GreedyScheduler: Ignoring {WorkSpec: f0d51df1-3cf9-43cf-a0d8-3e4330ce29fa}. Requires device idle.
+03-31 13:24:37.069 23209 31309 D WM-GreedyScheduler: Ignoring {WorkSpec: 9d9fc1bb-4f7e-46d9-852b-23a26f6e1301}. Requires device idle.
+03-31 13:24:37.069 23209 31309 D WM-GreedyScheduler: Ignoring {WorkSpec: a2355e43-be8d-4844-ab10-04071d85678b}. Requires device idle.
+03-31 13:24:37.070 23209 31309 D WM-GreedyScheduler: Ignoring {WorkSpec: 4d6f5b5d-1e3a-4ec8-bf0a-5e5e19cd3766}. Requires device idle.
+03-31 13:24:37.070 23209 31309 D WM-GreedyScheduler: Ignoring {WorkSpec: a359a366-165a-47c4-a54f-3d4cc551a294}. Requires device idle.
+03-31 13:24:37.070 23209 31309 D WM-GreedyScheduler: Ignoring {WorkSpec: 0728484e-8275-4d4f-8904-cc8790250e75}. Requires ContentUri triggers.
+03-31 13:24:37.070 23209 31309 D WM-GreedyScheduler: Ignoring {WorkSpec: e7aba2c2-8492-4680-bac7-8682837a69c6}. Requires ContentUri triggers.
+03-31 13:24:37.070 23209 31309 D WM-GreedyScheduler: Starting tracking for a5fb6109-3048-449b-9332-6fd2e82d08c6,5919c476-81c1-4697-aa53-50c655f5e803
+03-31 13:24:37.073 23209 32423 D WM-BrdcstRcvrCnstrntTrc: tce: unregistering receiver
+03-31 13:24:37.091 23209 31309 D WM-ConstraintTracker: tce: initial state = true
+03-31 13:24:37.091 23209 31309 D WM-BrdcstRcvrCnstrntTrc: tce: registering receiver
+03-31 13:24:37.095 23209 31309 D WM-GreedyScheduler: Constraints met: Scheduling work ID WorkGenerationalId(workSpecId=a5fb6109-3048-449b-9332-6fd2e82d08c6, generation=0)
+03-31 13:24:37.098 23209 31309 D WM-Processor: sxl: processing WorkGenerationalId(workSpecId=a5fb6109-3048-449b-9332-6fd2e82d08c6, generation=0)
+03-31 13:24:37.102 23209 31309 D MddListenableWorkerFactory: createWorker for class: com.google.android.apps.messaging.shared.datamodel.workqueue.WorkQueueWorkerShim
+03-31 13:24:37.108 23209 23209 D WM-WorkerWrapper: Starting work for com.google.android.apps.messaging.shared.datamodel.workqueue.WorkQueueWorkerShim
+03-31 13:24:37.126 23209 23244 I BugleSearch: Icing index rebuild kt runs on a table. [CONTEXT table_type=1 window_start=38820 window_end=38840 ]
+03-31 13:24:37.139 23209 23244 I BugleSearch: start to update index. [CONTEXT table_type=1 class_name="OnDeviceIndexerApiImpl" ]
+03-31 13:24:37.548  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 2 -> 1 d_lux:425.70 w_lux: 386.47 C:12.62 G:4.51
+03-31 13:24:37.552  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 1 -> 2 d_lux:428.29 w_lux: 385.87 C:12.73 G:4.53
+03-31 13:24:37.699  1685  1685 D AOC     : A3:MSG: controller.cc, 933: SysMem: ipc: C-F1-Ar, cmd ID: 0x00c8, tag: 0xd3, rc: 0
+03-31 13:24:37.700  1685  1685 D AOC     : A3:MSG: controller.cc, 933: SysMem: ipc: C-F1-Ar, cmd ID: 0x00c8, tag: 0xd4, rc: 0
+03-31 13:24:37.759  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 2 -> 1 d_lux:427.65 w_lux: 386.37 C:12.65 G:4.52
+03-31 13:24:37.764  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 1 -> 2 d_lux:419.22 w_lux: 386.97 C:12.66 G:4.47
+03-31 13:24:37.791 23209 31272 I WM-WorkerWrapper: Worker result SUCCESS for Work [ id=a5fb6109-3048-449b-9332-6fd2e82d08c6, tags={ com.google.android.apps.messaging.shared.datamodel.workqueue.WorkQueueWorkerShim,icing_index_rebuild_single_work_handler- } ]
+03-31 13:24:37.794 23209 31272 I WM-WorkerWrapper: Setting status to enqueued for 8ef74f82-30fc-4feb-aa80-824c70408ec9
+03-31 13:24:37.797  1967  2968 D ActivityManager: freezing 16115 com.android.keychain
+03-31 13:24:37.806  1967  2968 D ActivityManager: freezing 15539 com.android.DeviceAsWebcam
+03-31 13:24:37.811 23209 23209 D WM-Processor: sxl a5fb6109-3048-449b-9332-6fd2e82d08c6 executed; reschedule = false
+03-31 13:24:37.812 23209 23209 D WM-GreedyScheduler: Stopping tracking for WorkGenerationalId(workSpecId=a5fb6109-3048-449b-9332-6fd2e82d08c6, generation=0)
+03-31 13:24:37.835 23209 31272 D WM-GreedyScheduler: Cancelling work ID a5fb6109-3048-449b-9332-6fd2e82d08c6
+03-31 13:24:37.863 23209 31272 D WM-GreedyScheduler: Ignoring {WorkSpec: 61b740fe-a307-4028-bcb7-fe9775bcc920}. Requires device idle.
+03-31 13:24:37.863 23209 31272 D WM-GreedyScheduler: Ignoring {WorkSpec: e27ea9bb-9fac-4394-8a82-a5c90daf4366}. Requires device idle.
+03-31 13:24:37.863 23209 31272 D WM-GreedyScheduler: Ignoring {WorkSpec: 3d9c5755-8e9a-4a5a-b4b0-0e85f5842319}. Requires device idle.
+03-31 13:24:37.864 23209 31272 D WM-GreedyScheduler: Ignoring {WorkSpec: af30f26a-95dc-4657-b051-92292a35af3f}. Requires device idle.
+03-31 13:24:37.864 23209 31272 D WM-GreedyScheduler: Ignoring {WorkSpec: f0d51df1-3cf9-43cf-a0d8-3e4330ce29fa}. Requires device idle.
+03-31 13:24:37.864 23209 31272 D WM-GreedyScheduler: Ignoring {WorkSpec: 9d9fc1bb-4f7e-46d9-852b-23a26f6e1301}. Requires device idle.
+03-31 13:24:37.865 23209 31272 D WM-GreedyScheduler: Ignoring {WorkSpec: a2355e43-be8d-4844-ab10-04071d85678b}. Requires device idle.
+03-31 13:24:37.865 23209 31272 D WM-GreedyScheduler: Ignoring {WorkSpec: 4d6f5b5d-1e3a-4ec8-bf0a-5e5e19cd3766}. Requires device idle.
+03-31 13:24:37.865 23209 31272 D WM-GreedyScheduler: Ignoring {WorkSpec: a359a366-165a-47c4-a54f-3d4cc551a294}. Requires device idle.
+03-31 13:24:37.866 23209 31272 D WM-GreedyScheduler: Ignoring {WorkSpec: 0728484e-8275-4d4f-8904-cc8790250e75}. Requires ContentUri triggers.
+03-31 13:24:37.866 23209 31272 D WM-GreedyScheduler: Ignoring {WorkSpec: e7aba2c2-8492-4680-bac7-8682837a69c6}. Requires ContentUri triggers.
+03-31 13:24:37.867 23209 31272 D WM-GreedyScheduler: Starting tracking for 5919c476-81c1-4697-aa53-50c655f5e803,8ef74f82-30fc-4feb-aa80-824c70408ec9
+03-31 13:24:37.870 23209 32423 D WM-BrdcstRcvrCnstrntTrc: tce: unregistering receiver
+03-31 13:24:37.885 23209 31272 D WM-ConstraintTracker: tce: initial state = true
+03-31 13:24:37.886 23209 31272 D WM-BrdcstRcvrCnstrntTrc: tce: registering receiver
+03-31 13:24:37.892 23209 31272 D WM-GreedyScheduler: Constraints met: Scheduling work ID WorkGenerationalId(workSpecId=8ef74f82-30fc-4feb-aa80-824c70408ec9, generation=0)
+03-31 13:24:37.897 23209 31272 D WM-Processor: sxl: processing WorkGenerationalId(workSpecId=8ef74f82-30fc-4feb-aa80-824c70408ec9, generation=0)
+03-31 13:24:37.902 23209 31272 D MddListenableWorkerFactory: createWorker for class: com.google.android.apps.messaging.shared.datamodel.workqueue.WorkQueueWorkerShim
+03-31 13:24:37.909 23209 23209 D WM-WorkerWrapper: Starting work for com.google.android.apps.messaging.shared.datamodel.workqueue.WorkQueueWorkerShim
+03-31 13:24:37.924 23209 23647 I BugleSearch: Icing index rebuild kt runs on a table. [CONTEXT table_type=1 window_start=38840 window_end=38860 ]
+03-31 13:24:37.935 23209 23647 I BugleSearch: start to update index. [CONTEXT table_type=1 class_name="OnDeviceIndexerApiImpl" ]
+03-31 13:24:37.960  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 2 -> 1 d_lux:426.57 w_lux: 384.57 C:12.62 G:4.51
+03-31 13:24:37.964  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 1 -> 2 d_lux:423.45 w_lux: 389.07 C:12.70 G:4.50
+03-31 13:24:37.968  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 2 -> 1 d_lux:426.35 w_lux: 384.17 C:12.63 G:4.51
+03-31 13:24:37.972  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 1 -> 2 d_lux:424.99 w_lux: 389.27 C:12.70 G:4.51
+03-31 13:24:37.994  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 2 -> 1 d_lux:425.98 w_lux: 384.07 C:12.62 G:4.51
+03-31 13:24:37.998  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 1 -> 2 d_lux:421.76 w_lux: 388.97 C:12.73 G:4.49
+03-31 13:24:38.001  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 2 -> 1 d_lux:426.17 w_lux: 383.87 C:12.65 G:4.52
+03-31 13:24:38.005  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 1 -> 2 d_lux:419.29 w_lux: 389.17 C:12.72 G:4.47
+03-31 13:24:38.035  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 2 -> 1 d_lux:424.87 w_lux: 384.07 C:12.60 G:4.50
+03-31 13:24:38.042  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 1 -> 2 d_lux:424.05 w_lux: 389.67 C:12.73 G:4.51
+03-31 13:24:38.125 23209 23306 I BugleSearch: AppSearch indexing call is done. [CONTEXT item_id="39113" table_type=1 operation="1" outcome="Success" ]
+03-31 13:24:38.237  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 2 -> 1 d_lux:425.46 w_lux: 383.07 C:12.57 G:4.49
+03-31 13:24:38.239  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 1 -> 2 d_lux:428.36 w_lux: 389.87 C:12.73 G:4.53
+03-31 13:24:38.564 23209 31272 I WM-WorkerWrapper: Worker result SUCCESS for Work [ id=8ef74f82-30fc-4feb-aa80-824c70408ec9, tags={ com.google.android.apps.messaging.shared.datamodel.workqueue.WorkQueueWorkerShim,icing_index_rebuild_single_work_handler- } ]
+03-31 13:24:38.569  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 2 -> 1 d_lux:422.32 w_lux: 380.67 C:12.52 G:4.47
+03-31 13:24:38.572 23209 31272 I WM-WorkerWrapper: Setting status to enqueued for 64b83349-fbb2-4b6c-b5c6-265f3288e1c4
+03-31 13:24:38.573  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 1 -> 2 d_lux:428.28 w_lux: 391.77 C:12.76 G:4.54
+03-31 13:24:38.580 23209 23209 D WM-Processor: sxl 8ef74f82-30fc-4feb-aa80-824c70408ec9 executed; reschedule = false
+03-31 13:24:38.581 23209 23209 D WM-GreedyScheduler: Stopping tracking for WorkGenerationalId(workSpecId=8ef74f82-30fc-4feb-aa80-824c70408ec9, generation=0)
+03-31 13:24:38.608 23209 31272 D WM-GreedyScheduler: Cancelling work ID 8ef74f82-30fc-4feb-aa80-824c70408ec9
+03-31 13:24:38.620  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 2 -> 1 d_lux:421.17 w_lux: 380.97 C:12.53 G:4.47
+03-31 13:24:38.623  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 1 -> 2 d_lux:426.85 w_lux: 389.97 C:12.81 G:4.53
+03-31 13:24:38.636 23209 31272 D WM-GreedyScheduler: Ignoring {WorkSpec: 61b740fe-a307-4028-bcb7-fe9775bcc920}. Requires device idle.
+03-31 13:24:38.637 23209 31272 D WM-GreedyScheduler: Ignoring {WorkSpec: e27ea9bb-9fac-4394-8a82-a5c90daf4366}. Requires device idle.
+03-31 13:24:38.637 23209 31272 D WM-GreedyScheduler: Ignoring {WorkSpec: 3d9c5755-8e9a-4a5a-b4b0-0e85f5842319}. Requires device idle.
+03-31 13:24:38.637 23209 31272 D WM-GreedyScheduler: Ignoring {WorkSpec: af30f26a-95dc-4657-b051-92292a35af3f}. Requires device idle.
+03-31 13:24:38.637 23209 31272 D WM-GreedyScheduler: Ignoring {WorkSpec: f0d51df1-3cf9-43cf-a0d8-3e4330ce29fa}. Requires device idle.
+03-31 13:24:38.637 23209 31272 D WM-GreedyScheduler: Ignoring {WorkSpec: 9d9fc1bb-4f7e-46d9-852b-23a26f6e1301}. Requires device idle.
+03-31 13:24:38.637 23209 31272 D WM-GreedyScheduler: Ignoring {WorkSpec: a2355e43-be8d-4844-ab10-04071d85678b}. Requires device idle.
+03-31 13:24:38.637 23209 31272 D WM-GreedyScheduler: Ignoring {WorkSpec: 4d6f5b5d-1e3a-4ec8-bf0a-5e5e19cd3766}. Requires device idle.
+03-31 13:24:38.637 23209 31272 D WM-GreedyScheduler: Ignoring {WorkSpec: a359a366-165a-47c4-a54f-3d4cc551a294}. Requires device idle.
+03-31 13:24:38.637 23209 31272 D WM-GreedyScheduler: Ignoring {WorkSpec: 0728484e-8275-4d4f-8904-cc8790250e75}. Requires ContentUri triggers.
+03-31 13:24:38.637 23209 31272 D WM-GreedyScheduler: Ignoring {WorkSpec: e7aba2c2-8492-4680-bac7-8682837a69c6}. Requires ContentUri triggers.
+03-31 13:24:38.638 23209 31272 D WM-GreedyScheduler: Starting tracking for 5919c476-81c1-4697-aa53-50c655f5e803,64b83349-fbb2-4b6c-b5c6-265f3288e1c4
+03-31 13:24:38.641 23209 32423 D WM-BrdcstRcvrCnstrntTrc: tce: unregistering receiver
+03-31 13:24:38.677 23209 31272 D WM-ConstraintTracker: tce: initial state = true
+03-31 13:24:38.678 23209 31272 D WM-BrdcstRcvrCnstrntTrc: tce: registering receiver
+03-31 13:24:38.681 23209 31272 D WM-GreedyScheduler: Constraints met: Scheduling work ID WorkGenerationalId(workSpecId=64b83349-fbb2-4b6c-b5c6-265f3288e1c4, generation=0)
+03-31 13:24:38.685 23209 31272 D WM-Processor: sxl: processing WorkGenerationalId(workSpecId=64b83349-fbb2-4b6c-b5c6-265f3288e1c4, generation=0)
+03-31 13:24:38.688 23209 31272 D MddListenableWorkerFactory: createWorker for class: com.google.android.apps.messaging.shared.datamodel.workqueue.WorkQueueWorkerShim
+03-31 13:24:38.700 23209 23209 D WM-WorkerWrapper: Starting work for com.google.android.apps.messaging.shared.datamodel.workqueue.WorkQueueWorkerShim
+03-31 13:24:38.705  1685  1685 D AOC     : A3:MSG: controller.cc, 933: SysMem: ipc: C-F1-Ar, cmd ID: 0x00c8, tag: 0xd5, rc: 0
+03-31 13:24:38.705  1685  1685 D AOC     : A3:MSG: controller.cc, 933: SysMem: ipc: C-F1-Ar, cmd ID: 0x00c8, tag: 0xd6, rc: 0
+03-31 13:24:38.712 23209 23244 I BugleSearch: Icing index rebuild kt runs on a table. [CONTEXT table_type=1 window_start=38860 window_end=38880 ]
+03-31 13:24:38.720  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 2 -> 1 d_lux:421.77 w_lux: 380.17 C:12.49 G:4.46
+03-31 13:24:38.723  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 1 -> 2 d_lux:425.08 w_lux: 392.47 C:12.82 G:4.52
+03-31 13:24:38.730 23209 23244 I BugleSearch: start to update index. [CONTEXT table_type=1 class_name="OnDeviceIndexerApiImpl" ]
+03-31 13:24:38.753  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 2 -> 1 d_lux:422.28 w_lux: 380.37 C:12.50 G:4.47
+03-31 13:24:38.757  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 1 -> 2 d_lux:427.12 w_lux: 391.27 C:12.83 G:4.54
+03-31 13:24:38.836  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 2 -> 1 d_lux:420.67 w_lux: 380.47 C:12.47 G:4.45
+03-31 13:24:38.843  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 1 -> 2 d_lux:424.78 w_lux: 391.47 C:12.86 G:4.53
+03-31 13:24:38.853  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 2 -> 1 d_lux:420.80 w_lux: 380.07 C:12.45 G:4.45
+03-31 13:24:38.857  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 1 -> 2 d_lux:427.85 w_lux: 392.67 C:12.79 G:4.53
+03-31 13:24:38.904  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 2 -> 1 d_lux:420.81 w_lux: 381.27 C:12.47 G:4.46
+03-31 13:24:38.907  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 1 -> 2 d_lux:431.62 w_lux: 393.27 C:12.84 G:4.57
+03-31 13:24:39.015 23209 32423 I WM-WorkerWrapper: Worker result SUCCESS for Work [ id=64b83349-fbb2-4b6c-b5c6-265f3288e1c4, tags={ com.google.android.apps.messaging.shared.datamodel.workqueue.WorkQueueWorkerShim,icing_index_rebuild_single_work_handler- } ]
+03-31 13:24:39.079  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 2 -> 1 d_lux:420.10 w_lux: 379.97 C:12.45 G:4.45
+03-31 13:24:39.082  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 1 -> 2 d_lux:428.41 w_lux: 391.68 C:12.87 G:4.55
+03-31 13:24:39.178  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 2 -> 1 d_lux:420.69 w_lux: 379.97 C:12.45 G:4.45
+03-31 13:24:39.182  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 1 -> 2 d_lux:426.96 w_lux: 393.17 C:12.88 G:4.54
+03-31 13:24:39.187  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 2 -> 1 d_lux:418.75 w_lux: 379.88 C:12.42 G:4.43
+03-31 13:24:39.190  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 1 -> 2 d_lux:426.59 w_lux: 392.57 C:12.88 G:4.53
+03-31 13:24:39.228  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 2 -> 1 d_lux:420.28 w_lux: 380.77 C:12.46 G:4.45
+03-31 13:24:39.232  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 1 -> 2 d_lux:431.21 w_lux: 392.47 C:12.89 G:4.57
+03-31 13:24:39.261  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 2 -> 1 d_lux:421.25 w_lux: 379.07 C:12.45 G:4.46
+03-31 13:24:39.265  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 1 -> 2 d_lux:428.45 w_lux: 393.17 C:12.91 G:4.56
+03-31 13:24:39.320  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 2 -> 1 d_lux:419.71 w_lux: 380.87 C:12.47 G:4.45
+03-31 13:24:39.331  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 1 -> 2 d_lux:430.59 w_lux: 394.57 C:12.86 G:4.56
+03-31 13:24:39.361  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 2 -> 1 d_lux:420.12 w_lux: 379.77 C:12.44 G:4.45
+03-31 13:24:39.366  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 1 -> 2 d_lux:430.72 w_lux: 393.17 C:12.89 G:4.57
+03-31 13:24:39.412  3576  3900 D TemperatureStateSource: sequence=80286 actualDelay=10002
+03-31 13:24:39.417  3576  3900 D TemperatureStateSource: Reading temperature: sequence=80287
+03-31 13:24:39.417 23209 31309 D WM-GreedyScheduler: Ignoring {WorkSpec: 61b740fe-a307-4028-bcb7-fe9775bcc920}. Requires device idle.
+03-31 13:24:39.417 23209 31309 D WM-GreedyScheduler: Ignoring {WorkSpec: e27ea9bb-9fac-4394-8a82-a5c90daf4366}. Requires device idle.
+03-31 13:24:39.417 23209 31309 D WM-GreedyScheduler: Ignoring {WorkSpec: 3d9c5755-8e9a-4a5a-b4b0-0e85f5842319}. Requires device idle.
+03-31 13:24:39.417 23209 31309 D WM-GreedyScheduler: Ignoring {WorkSpec: af30f26a-95dc-4657-b051-92292a35af3f}. Requires device idle.
+03-31 13:24:39.417 23209 31309 D WM-GreedyScheduler: Ignoring {WorkSpec: f0d51df1-3cf9-43cf-a0d8-3e4330ce29fa}. Requires device idle.
+03-31 13:24:39.417 23209 31309 D WM-GreedyScheduler: Ignoring {WorkSpec: 9d9fc1bb-4f7e-46d9-852b-23a26f6e1301}. Requires device idle.
+03-31 13:24:39.418 23209 31309 D WM-GreedyScheduler: Ignoring {WorkSpec: a2355e43-be8d-4844-ab10-04071d85678b}. Requires device idle.
+03-31 13:24:39.418 23209 31309 D WM-GreedyScheduler: Ignoring {WorkSpec: 4d6f5b5d-1e3a-4ec8-bf0a-5e5e19cd3766}. Requires device idle.
+03-31 13:24:39.418 23209 31309 D WM-GreedyScheduler: Ignoring {WorkSpec: a359a366-165a-47c4-a54f-3d4cc551a294}. Requires device idle.
+03-31 13:24:39.418 23209 31309 D WM-GreedyScheduler: Ignoring {WorkSpec: 0728484e-8275-4d4f-8904-cc8790250e75}. Requires ContentUri triggers.
+03-31 13:24:39.418 23209 31309 D WM-GreedyScheduler: Ignoring {WorkSpec: e7aba2c2-8492-4680-bac7-8682837a69c6}. Requires ContentUri triggers.
+03-31 13:24:39.418 23209 31309 D WM-GreedyScheduler: Starting tracking for 5919c476-81c1-4697-aa53-50c655f5e803,239fe339-6e98-4507-b23e-0fa9dc9373f3
+03-31 13:24:39.424 23209 23209 D WM-Processor: sxl 64b83349-fbb2-4b6c-b5c6-265f3288e1c4 executed; reschedule = false
+03-31 13:24:39.424 23209 23209 D WM-GreedyScheduler: Stopping tracking for WorkGenerationalId(workSpecId=64b83349-fbb2-4b6c-b5c6-265f3288e1c4, generation=0)
+03-31 13:24:39.428 23209 31272 D WM-GreedyScheduler: Cancelling work ID 64b83349-fbb2-4b6c-b5c6-265f3288e1c4
+03-31 13:24:39.428  1982  1982 I pixel-thermal: VIRTUAL-SKIN:36.4148 raw data: VIRTUAL-SKIN:36414.8 VIRTUAL-SKIN-EQ:36414.8 VIRTUAL-SKIN-LEGACY:37741.9 VIRTUAL-SKIN-LEGACY-MODEL-DIFF:1397.2 VIRTUAL-SKIN-LEGACY-SHUTDOWN:0 VIRTUAL-SKIN-MODEL:36344.7 VIRTUAL-SKIN-MODEL-CLAMPED:36344.7 VIRTUAL-SKIN-MODEL-LEGACY-DIFF:-1397.2 VIRTUAL-SKIN-MODEL-UPDATED:36414.8 VIRTUAL-SKIN-MODEL-UPPER-CLAMPED:36344.7 VIRTUAL-SKIN-SUB-0:37593.4 VIRTUAL-SKIN-SUB-1:37435.3 VIRTUAL-SKIN-SUB-2:37462.5 VIRTUAL-SKIN-SUB-3:37741.9 VIRTUAL-SKIN-SUB-4:37445.4 VIRTUAL-SKIN-SUB-5:37610.2 VIRTUAL-SKIN-SUB-6:37622.6 VIRTUAL-SKIN-SUB-7:36972.2 VT_LEGACY_WEIGHT:0 VT_MODEL_WEIGHT:1 charging_therm:42952 disp0_therm:34939 flash_therm:35168 north_therm:38918 quiet_therm:40196 rfpa_therm:42343 soc_therm:42573 usb_pwr_therm:35542 
+03-31 13:24:39.429  3576  3900 D TemperatureStateSource: getDeviceTemperatures: sequence=80287 deviceTemperatureType=3 temperatureSource=0 temperatures=[36.414833]
+03-31 13:24:39.429  3576  3900 D BusinessScope: Enqueuing the block
+03-31 13:24:39.430  3576  3900 D TemperatureStateSource: sequence=80287 waitTime=10000
+03-31 13:24:39.430  3576  3900 D BusinessScope: Start running the #191226 block
+03-31 13:24:39.431  1982  1982 I pixel-thermal: VIRTUAL-SKIN:36.4148 raw data: VIRTUAL-SKIN:36414.8 
+03-31 13:24:39.432  3576  3900 I TemperatureStateSource: temperature was set
+03-31 13:24:39.433  3576  3900 D BusinessScope: Enqueuing the block
+03-31 13:24:39.433  3576  3900 D ImpulseStateSource: Notify clients: 95592
+03-31 13:24:39.433  3576  3900 D BusinessScope: Finish running the #191226 block
+03-31 13:24:39.433  3576  3900 D BusinessScope: Start running the #191227 block
+03-31 13:24:39.434  3576  3900 D BusinessScope: Finish running the #191227 block
+03-31 13:24:39.441 23209 31272 D WM-GreedyScheduler: Ignoring {WorkSpec: 61b740fe-a307-4028-bcb7-fe9775bcc920}. Requires device idle.
+03-31 13:24:39.441 23209 31272 D WM-GreedyScheduler: Ignoring {WorkSpec: e27ea9bb-9fac-4394-8a82-a5c90daf4366}. Requires device idle.
+03-31 13:24:39.441 23209 31272 D WM-GreedyScheduler: Ignoring {WorkSpec: 3d9c5755-8e9a-4a5a-b4b0-0e85f5842319}. Requires device idle.
+03-31 13:24:39.441 23209 31272 D WM-GreedyScheduler: Ignoring {WorkSpec: af30f26a-95dc-4657-b051-92292a35af3f}. Requires device idle.
+03-31 13:24:39.441 23209 31272 D WM-GreedyScheduler: Ignoring {WorkSpec: f0d51df1-3cf9-43cf-a0d8-3e4330ce29fa}. Requires device idle.
+03-31 13:24:39.441 23209 31272 D WM-GreedyScheduler: Ignoring {WorkSpec: 9d9fc1bb-4f7e-46d9-852b-23a26f6e1301}. Requires device idle.
+03-31 13:24:39.441 23209 31272 D WM-GreedyScheduler: Ignoring {WorkSpec: a2355e43-be8d-4844-ab10-04071d85678b}. Requires device idle.
+03-31 13:24:39.441 23209 31272 D WM-GreedyScheduler: Ignoring {WorkSpec: 4d6f5b5d-1e3a-4ec8-bf0a-5e5e19cd3766}. Requires device idle.
+03-31 13:24:39.441 23209 31272 D WM-GreedyScheduler: Ignoring {WorkSpec: a359a366-165a-47c4-a54f-3d4cc551a294}. Requires device idle.
+03-31 13:24:39.441 23209 31272 D WM-GreedyScheduler: Ignoring {WorkSpec: 0728484e-8275-4d4f-8904-cc8790250e75}. Requires ContentUri triggers.
+03-31 13:24:39.441 23209 31272 D WM-GreedyScheduler: Ignoring {WorkSpec: e7aba2c2-8492-4680-bac7-8682837a69c6}. Requires ContentUri triggers.
+03-31 13:24:39.442 23209 31272 D WM-GreedyScheduler: Starting tracking for 5919c476-81c1-4697-aa53-50c655f5e803,239fe339-6e98-4507-b23e-0fa9dc9373f3
+03-31 13:24:39.446 23209 31309 D WM-BrdcstRcvrCnstrntTrc: tce: unregistering receiver
+03-31 13:24:39.461  7678  1273 W Turbo.DeviceHealthLeversManagerImpl: applyLeversWithMaintenanceWindow: ignore the same request
+03-31 13:24:39.471  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 2 -> 1 d_lux:420.65 w_lux: 380.37 C:12.47 G:4.46
+03-31 13:24:39.474  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 1 -> 2 d_lux:427.98 w_lux: 393.07 C:12.86 G:4.54
+03-31 13:24:39.498 23209 31309 D WM-ConstraintTracker: tce: initial state = true
+03-31 13:24:39.498 23209 31309 D WM-BrdcstRcvrCnstrntTrc: tce: registering receiver
+03-31 13:24:39.502 23209 31272 D WM-GreedyScheduler: Constraints met: Scheduling work ID WorkGenerationalId(workSpecId=239fe339-6e98-4507-b23e-0fa9dc9373f3, generation=0)
+03-31 13:24:39.506 23209 31272 D WM-Processor: sxl: processing WorkGenerationalId(workSpecId=239fe339-6e98-4507-b23e-0fa9dc9373f3, generation=0)
+03-31 13:24:39.509 23209 31272 D MddListenableWorkerFactory: createWorker for class: com.google.android.apps.messaging.shared.datamodel.workqueue.WorkQueueWorkerShim
+03-31 13:24:39.511  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 2 -> 1 d_lux:419.21 w_lux: 379.27 C:12.45 G:4.45
+03-31 13:24:39.516  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 1 -> 2 d_lux:430.08 w_lux: 394.47 C:12.89 G:4.57
+03-31 13:24:39.519 23209 23209 D WM-WorkerWrapper: Starting work for com.google.android.apps.messaging.shared.datamodel.workqueue.WorkQueueWorkerShim
+03-31 13:24:39.545 23209 23234 I BugleSearch: Icing index rebuild kt runs on a table. [CONTEXT table_type=1 window_start=38880 window_end=38900 ]
+03-31 13:24:39.546  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 2 -> 1 d_lux:420.00 w_lux: 378.57 C:12.45 G:4.45
+03-31 13:24:39.551  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 1 -> 2 d_lux:429.01 w_lux: 392.87 C:12.87 G:4.54
+03-31 13:24:39.596  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 2 -> 1 d_lux:419.35 w_lux: 379.97 C:12.46 G:4.45
+03-31 13:24:39.600  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 1 -> 2 d_lux:431.66 w_lux: 393.07 C:12.86 G:4.57
+03-31 13:24:39.603  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 2 -> 1 d_lux:421.06 w_lux: 380.07 C:12.45 G:4.45
+03-31 13:24:39.604 23209 23234 I BugleSearch: start to update index. [CONTEXT table_type=1 class_name="OnDeviceIndexerApiImpl" ]
+03-31 13:24:39.611  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 1 -> 2 d_lux:427.37 w_lux: 394.07 C:12.88 G:4.54
+03-31 13:24:39.653  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 2 -> 1 d_lux:419.02 w_lux: 379.37 C:12.43 G:4.44
+03-31 13:24:39.657  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 1 -> 2 d_lux:427.19 w_lux: 392.57 C:12.88 G:4.54
+03-31 13:24:39.687  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 2 -> 1 d_lux:421.92 w_lux: 381.47 C:12.45 G:4.46
+03-31 13:24:39.691  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 1 -> 2 d_lux:430.48 w_lux: 394.77 C:12.91 G:4.57
+03-31 13:24:39.700  1685  1685 D AOC     : A3:MSG: controller.cc, 933: SysMem: ipc: C-F1-Ar, cmd ID: 0x00c8, tag: 0xd7, rc: 0
+03-31 13:24:39.701  1685  1685 D AOC     : A3:MSG: controller.cc, 933: SysMem: ipc: C-F1-Ar, cmd ID: 0x00c8, tag: 0xd8, rc: 0
+03-31 13:24:39.701  1685  1685 D AOC     : A3:MSG: controller.cc, 933: SysMem: ipc: C-F1-Ar, cmd ID: 0x00c8, tag: 0xd9, rc: 0
+03-31 13:24:39.707  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 2 -> 1 d_lux:420.22 w_lux: 379.57 C:12.45 G:4.45
+03-31 13:24:39.709  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 1 -> 2 d_lux:428.76 w_lux: 394.17 C:12.88 G:4.55
+03-31 13:24:39.771  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 2 -> 1 d_lux:419.96 w_lux: 381.37 C:12.47 G:4.45
+03-31 13:24:39.775  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 1 -> 2 d_lux:428.77 w_lux: 392.87 C:12.87 G:4.55
+03-31 13:24:39.780 23209 23298 I BugleSearch: Icing indexing call is done. [CONTEXT item_id="content://com.google.android.apps.messaging/messages/39171" table_type=1 operation="1" outcome="Success" ]
+03-31 13:24:39.870  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 2 -> 1 d_lux:421.17 w_lux: 380.87 C:12.49 G:4.46
+03-31 13:24:39.874  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 1 -> 2 d_lux:431.06 w_lux: 392.27 C:12.85 G:4.56
+03-31 13:24:40.095  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 2 -> 1 d_lux:422.06 w_lux: 381.67 C:12.46 G:4.46
+03-31 13:24:40.103  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 1 -> 2 d_lux:428.21 w_lux: 392.57 C:12.84 G:4.54
+03-31 13:24:40.112  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 2 -> 1 d_lux:420.83 w_lux: 381.67 C:12.49 G:4.46
+03-31 13:24:40.116  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 1 -> 2 d_lux:427.23 w_lux: 390.67 C:12.87 G:4.54
+03-31 13:24:40.187 23209 31272 I WM-WorkerWrapper: Worker result SUCCESS for Work [ id=239fe339-6e98-4507-b23e-0fa9dc9373f3, tags={ com.google.android.apps.messaging.shared.datamodel.workqueue.WorkQueueWorkerShim,icing_index_rebuild_single_work_handler- } ]
+03-31 13:24:40.215 23209 31272 I WM-WorkerWrapper: Setting status to enqueued for 6294647c-b0de-463a-91ff-0321a40a6399
+03-31 13:24:40.229 23209 23209 D WM-Processor: sxl 239fe339-6e98-4507-b23e-0fa9dc9373f3 executed; reschedule = false
+03-31 13:24:40.229 23209 23209 D WM-GreedyScheduler: Stopping tracking for WorkGenerationalId(workSpecId=239fe339-6e98-4507-b23e-0fa9dc9373f3, generation=0)
+03-31 13:24:40.235 23209 31272 D WM-GreedyScheduler: Cancelling work ID 239fe339-6e98-4507-b23e-0fa9dc9373f3
+03-31 13:24:40.248 23209 31272 D WM-GreedyScheduler: Ignoring {WorkSpec: 61b740fe-a307-4028-bcb7-fe9775bcc920}. Requires device idle.
+03-31 13:24:40.249 23209 31272 D WM-GreedyScheduler: Ignoring {WorkSpec: e27ea9bb-9fac-4394-8a82-a5c90daf4366}. Requires device idle.
+03-31 13:24:40.249 23209 31272 D WM-GreedyScheduler: Ignoring {WorkSpec: 3d9c5755-8e9a-4a5a-b4b0-0e85f5842319}. Requires device idle.
+03-31 13:24:40.249 23209 31272 D WM-GreedyScheduler: Ignoring {WorkSpec: af30f26a-95dc-4657-b051-92292a35af3f}. Requires device idle.
+03-31 13:24:40.249 23209 31272 D WM-GreedyScheduler: Ignoring {WorkSpec: f0d51df1-3cf9-43cf-a0d8-3e4330ce29fa}. Requires device idle.
+03-31 13:24:40.249 23209 31272 D WM-GreedyScheduler: Ignoring {WorkSpec: 9d9fc1bb-4f7e-46d9-852b-23a26f6e1301}. Requires device idle.
+03-31 13:24:40.249 23209 31272 D WM-GreedyScheduler: Ignoring {WorkSpec: a2355e43-be8d-4844-ab10-04071d85678b}. Requires device idle.
+03-31 13:24:40.249 23209 31272 D WM-GreedyScheduler: Ignoring {WorkSpec: 4d6f5b5d-1e3a-4ec8-bf0a-5e5e19cd3766}. Requires device idle.
+03-31 13:24:40.249 23209 31272 D WM-GreedyScheduler: Ignoring {WorkSpec: a359a366-165a-47c4-a54f-3d4cc551a294}. Requires device idle.
+03-31 13:24:40.249 23209 31272 D WM-GreedyScheduler: Ignoring {WorkSpec: 0728484e-8275-4d4f-8904-cc8790250e75}. Requires ContentUri triggers.
+03-31 13:24:40.249 23209 31272 D WM-GreedyScheduler: Ignoring {WorkSpec: e7aba2c2-8492-4680-bac7-8682837a69c6}. Requires ContentUri triggers.
+03-31 13:24:40.249 23209 31272 D WM-GreedyScheduler: Starting tracking for 6294647c-b0de-463a-91ff-0321a40a6399,5919c476-81c1-4697-aa53-50c655f5e803
+03-31 13:24:40.250  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 2 -> 1 d_lux:432.68 w_lux: 390.37 C:12.80 G:4.57
+03-31 13:24:40.251 23209 32423 D WM-BrdcstRcvrCnstrntTrc: tce: unregistering receiver
+03-31 13:24:40.254  1685  1685 D AOC     : A3:MSG: tmd3743_device.cc, 997: USF: TMD3743: C/G switch 1 -> 2 d_lux:417.70 w_lux: 383.37 C:12.53 G:4.44
+03-31 13:24:40.256 23209 31272 D WM-ConstraintTracker: tce: initial state = true
+03-31 13:24:40.256 23209 31272 D WM-BrdcstRcvrCnstrntTrc: tce: registering receiver
+03-31 13:24:40.259 23209 31272 D WM-GreedyScheduler: Constraints met: Scheduling work ID WorkGenerationalId(workSpecId=6294647c-b0de-463a-91ff-0321a40a6399, generation=0)
+03-31 13:24:40.261 23209 31272 D WM-Processor: sxl: processing WorkGenerationalId(workSpecId=6294647c-b0de-463a-91ff-0321a40a6399, generation=0)
+03-31 13:24:40.263 23209 31272 D MddListenableWorkerFactory: createWorker for class: com.google.android.apps.messaging.shared.datamodel.workqueue.WorkQueueWorkerShim
+03-31 13:24:40.268 23209 23209 D WM-WorkerWrapper: Starting work for com.google.android.apps.messaging.shared.datamodel.workqueue.WorkQueueWorkerShim
+03-31 13:24:40.270  1378  1378 W TracingMuxer: type=1400 audit(0.0:313525): avc:  denied  { write } for  name="traced_producer" dev="tmpfs" ino=1430 scontext=u:r:hal_camera_default:s0 tcontext=u:object_r:traced_producer_socket:s0 tclass=sock_file permissive=0
+03-31 13:24:40.273 23209 23231 I BugleSearch: Icing index rebuild kt runs on a table. [CONTEXT table_type=1 window_start=38900 window_end=38920 ]
+03-31 13:24:40.279 23209 23231 I BugleSearch: start to update index. [CONTEXT table_type=1 class_name="OnDeviceIndexerApiImpl" ]

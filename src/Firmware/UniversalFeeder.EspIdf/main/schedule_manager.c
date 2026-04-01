@@ -17,7 +17,7 @@ static const char *TAG = "ScheduleManager";
 typedef struct {
     int hour;
     int minute;
-    double amount_grams;
+    int duration_ms;
     bool enabled;
     int last_executed_date; // YYYYMMDD
 } schedule_entry_t;
@@ -84,7 +84,7 @@ static esp_err_t parse_and_replace_entries(const char *json)
     cJSON *item = NULL;
     cJSON_ArrayForEach(item, arr) {
         cJSON *time_item = cJSON_GetObjectItemCaseSensitive(item, "time");
-        cJSON *amount_item = cJSON_GetObjectItemCaseSensitive(item, "amount");
+        cJSON *duration_item = cJSON_GetObjectItemCaseSensitive(item, "duration_ms");
         cJSON *enabled_item = cJSON_GetObjectItemCaseSensitive(item, "enabled");
 
         if (!cJSON_IsString(time_item) || time_item->valuestring == NULL) {
@@ -96,12 +96,12 @@ static esp_err_t parse_and_replace_entries(const char *json)
             continue;
         }
 
-        double amount = cJSON_IsNumber(amount_item) ? amount_item->valuedouble : 0.0;
+        int duration_ms = cJSON_IsNumber(duration_item) ? duration_item->valueint : 5000;
         bool enabled = cJSON_IsBool(enabled_item) ? cJSON_IsTrue(enabled_item) : true;
 
         new_entries[idx].hour = hour;
         new_entries[idx].minute = minute;
-        new_entries[idx].amount_grams = amount;
+        new_entries[idx].duration_ms = duration_ms;
         new_entries[idx].enabled = enabled;
         new_entries[idx].last_executed_date = 0;
         idx++;
@@ -126,6 +126,34 @@ static esp_err_t parse_and_replace_entries(const char *json)
     cJSON_Delete(root);
     ESP_LOGI(TAG, "Loaded %d schedule entries", (int)final_count);
     return ESP_OK;
+}
+
+char *schedule_manager_get_json(void)
+{
+    if (s_mutex == NULL) {
+        return NULL;
+    }
+    char *result = NULL;
+    if (xSemaphoreTake(s_mutex, portMAX_DELAY) == pdTRUE) {
+        cJSON *arr = cJSON_CreateArray();
+        if (arr != NULL) {
+            for (size_t i = 0; i < s_entry_count; ++i) {
+                schedule_entry_t *e = &s_entries[i];
+                cJSON *item = cJSON_CreateObject();
+                if (item == NULL) continue;
+                char time_str[6];
+                snprintf(time_str, sizeof(time_str), "%02d:%02d", e->hour, e->minute);
+                cJSON_AddStringToObject(item, "time", time_str);
+                cJSON_AddNumberToObject(item, "duration_ms", e->duration_ms);
+                cJSON_AddBoolToObject(item, "enabled", e->enabled);
+                cJSON_AddItemToArray(arr, item);
+            }
+            result = cJSON_PrintUnformatted(arr);
+            cJSON_Delete(arr);
+        }
+        xSemaphoreGive(s_mutex);
+    }
+    return result;
 }
 
 esp_err_t schedule_manager_apply_schedule_json(const char *json)
@@ -159,11 +187,7 @@ static void schedule_task(void *arg)
                 schedule_entry_t *e = &s_entries[i];
                 if (!e->enabled) continue;
                 if (e->hour == now_hour && e->minute == now_min && e->last_executed_date != today) {
-                    // compute duration
-                    int duration_ms = (int)((e->amount_grams / FEEDER_GRAMS_PER_SECOND) * 1000.0);
-                    if (duration_ms <= 0) {
-                        duration_ms = FEEDER_DEFAULT_DURATION_MS;
-                    }
+                    int duration_ms = e->duration_ms > 0 ? e->duration_ms : FEEDER_DEFAULT_DURATION_MS;
                     esp_err_t res = feeding_sequence_start(duration_ms);
                     if (res == ESP_OK) {
                         e->last_executed_date = today;

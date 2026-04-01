@@ -11,6 +11,7 @@
 #include "feeding_sequence.h"
 #include "schedule_manager.h"
 #include "app_config.h"
+#include "log_store.h"
 
 static const char *TAG = "MqttService";
 
@@ -52,6 +53,45 @@ static void handle_command(const char *payload, size_t payload_len)
         esp_err_t err = feeding_sequence_play_chime(level, CHIME_DURATION_MS);
         if (err != ESP_OK) {
             ESP_LOGW(TAG, "Chime command was rejected: %s", esp_err_to_name(err));
+        }
+    } else if (strcmp(action->valuestring, "get_schedule") == 0) {
+        char *sched_json = schedule_manager_get_json();
+        if (sched_json != NULL) {
+            // Wrap in {"action":"schedule_list","schedule":[...]}
+            char *response = malloc(strlen(sched_json) + 64);
+            if (response != NULL) {
+                snprintf(response, strlen(sched_json) + 64,
+                         "{\"action\":\"schedule_list\",\"schedule\":%s}", sched_json);
+                esp_mqtt_client_publish(s_client, s_schedule_topic, response, 0, 1, 0);
+                free(response);
+            }
+            free(sched_json);
+        } else {
+            esp_mqtt_client_publish(s_client, s_schedule_topic,
+                                    "{\"action\":\"schedule_list\",\"schedule\":[]}", 0, 1, 0);
+        }
+    } else if (strcmp(action->valuestring, "request_logs") == 0) {
+        // App requested stored logs; publish each stored entry to log topic
+        char *buf = malloc(16384);
+        if (buf != NULL) {
+            esp_err_t r = log_store_get_all_json(buf, 16384);
+            if (r == ESP_OK && buf[0] != '\0') {
+                cJSON *arr = cJSON_Parse(buf);
+                if (arr != NULL && cJSON_IsArray(arr)) {
+                    cJSON *item = NULL;
+                    cJSON_ArrayForEach(item, arr) {
+                        char *entry = cJSON_PrintUnformatted(item);
+                        if (entry != NULL) {
+                            if (s_client != NULL) {
+                                esp_mqtt_client_publish(s_client, s_log_topic, entry, 0, 1, 0);
+                            }
+                            free(entry);
+                        }
+                    }
+                    cJSON_Delete(arr);
+                }
+            }
+            free(buf);
         }
     } else {
         ESP_LOGW(TAG, "Ignoring unknown MQTT action '%s'", action->valuestring);
@@ -147,6 +187,8 @@ static void mqtt_event_handler(void *handler_args, esp_event_base_t base, int32_
 
 esp_err_t mqtt_service_init(void)
 {
+    // initialize log store
+    log_store_init();
     return ESP_OK;
 }
 
@@ -194,6 +236,9 @@ esp_err_t mqtt_service_publish_log(const char *device_id, const char *log_json)
     if (s_client == NULL || device_id == NULL || log_json == NULL) {
         return ESP_ERR_INVALID_STATE;
     }
+    // Persist the log locally first
+    log_store_append_json(log_json);
+
     // Use precomputed s_log_topic
     int msg_id = esp_mqtt_client_publish(s_client, s_log_topic, log_json, 0, 1, 0);
     if (msg_id < 0) {

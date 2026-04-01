@@ -6,8 +6,10 @@
 #include "esp_log.h"
 #include "esp_netif.h"
 #include "esp_wifi.h"
+#include "esp_sntp.h"
 #include "lwip/ip4_addr.h"
 #include "wifi_manager.h"
+#include "time_store.h"
 #include "app_config.h"
 
 static const char *TAG = "WifiManager";
@@ -61,6 +63,18 @@ static void wifi_event_handler(void *arg, esp_event_base_t event_base, int32_t e
         snprintf(ip_address, sizeof(ip_address), IPSTR, IP2STR(&event->ip_info.ip));
         s_retry_count = 0;
         ESP_LOGI(TAG, "Wi-Fi connected, IP address: %s", ip_address);
+
+        // Start NTP sync so the schedule manager has correct wall-clock time
+        if (sntp_get_sync_status() == SNTP_SYNC_STATUS_RESET) {
+            esp_sntp_setoperatingmode(SNTP_OPMODE_POLL);
+            esp_sntp_setservername(0, "pool.ntp.org");
+            esp_sntp_init();
+            ESP_LOGI(TAG, "SNTP sync started");
+        }
+        // Once Wi-Fi is up, start persisting time every 5 min so reboots
+        // restore an accurate clock even before NTP responds.
+        time_store_start_periodic_save();
+
         notify_ip(ip_address);
     }
 }

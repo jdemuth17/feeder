@@ -27,6 +27,8 @@ namespace UniversalFeeder.Shared
         public const string ActionChime = "chime";
         public const string ActionSetSchedule = "set_schedule";
         public const string ActionAckSchedule = "ack_schedule";
+        public const string ActionGetSchedule = "get_schedule";
+        public const string ActionScheduleList = "schedule_list";
         public const string ActionLog = "log";
 
         public static string GetCommandTopic(string uniqueId) => $"{TopicRoot}/{uniqueId}/{CommandSuffix}";

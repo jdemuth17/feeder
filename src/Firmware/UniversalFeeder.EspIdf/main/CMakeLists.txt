@@ -6,12 +6,14 @@ idf_component_register(
         "device_identity.c"
         "fallback_scheduler.c"
         "feeding_sequence.c"
-            "schedule_store.c"
-            "schedule_manager.c"
+        "log_store.c"
+        "schedule_store.c"
+        "schedule_manager.c"
         "motor_control.c"
         "mqtt_service.c"
         "provisioning_store.c"
+        "time_store.c"
         "wifi_manager.c"
     INCLUDE_DIRS "include"
-    REQUIRES bt driver esp_event esp_netif esp_wifi json mqtt nvs_flash
+    REQUIRES bt driver esp_event esp_netif esp_wifi json lwip mqtt nvs_flash
 )
