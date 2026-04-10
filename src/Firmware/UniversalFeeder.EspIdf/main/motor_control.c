@@ -47,9 +47,9 @@ void motor_control_rotate(int duration_ms)
     TickType_t deadline = xTaskGetTickCount() + pdMS_TO_TICKS(duration_ms);
     while (xTaskGetTickCount() < deadline) {
         gpio_set_level(FEEDER_MOTOR_STEP_PIN, 1);
-        vTaskDelay(pdMS_TO_TICKS(1));
+        vTaskDelay(pdMS_TO_TICKS(10));
         gpio_set_level(FEEDER_MOTOR_STEP_PIN, 0);
-        vTaskDelay(pdMS_TO_TICKS(1));
+        vTaskDelay(pdMS_TO_TICKS(10));
     }
 
     gpio_set_level(FEEDER_MOTOR_ENABLE_PIN, 1);
