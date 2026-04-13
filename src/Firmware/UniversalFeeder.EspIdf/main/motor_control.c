@@ -16,9 +16,8 @@ esp_err_t motor_control_init(void)
     }
 
     gpio_config_t output_config = {
-        .pin_bit_mask = (1ULL << FEEDER_MOTOR_STEP_PIN) |
-                        (1ULL << FEEDER_MOTOR_DIR_PIN) |
-                        (1ULL << FEEDER_MOTOR_ENABLE_PIN),
+        .pin_bit_mask = (1ULL << FEEDER_MOTOR_FORWARD_PIN) |
+                        (1ULL << FEEDER_MOTOR_REVERSE_PIN),
         .mode = GPIO_MODE_OUTPUT,
         .pull_up_en = GPIO_PULLUP_DISABLE,
         .pull_down_en = GPIO_PULLDOWN_DISABLE,
@@ -26,9 +25,8 @@ esp_err_t motor_control_init(void)
     };
 
     ESP_ERROR_CHECK(gpio_config(&output_config));
-    ESP_ERROR_CHECK(gpio_set_level(FEEDER_MOTOR_ENABLE_PIN, 1));
-    ESP_ERROR_CHECK(gpio_set_level(FEEDER_MOTOR_DIR_PIN, 1));
-    ESP_ERROR_CHECK(gpio_set_level(FEEDER_MOTOR_STEP_PIN, 0));
+    ESP_ERROR_CHECK(gpio_set_level(FEEDER_MOTOR_FORWARD_PIN, 0));
+    ESP_ERROR_CHECK(gpio_set_level(FEEDER_MOTOR_REVERSE_PIN, 0));
 
     s_initialized = true;
     return ESP_OK;
@@ -41,16 +39,8 @@ void motor_control_rotate(int duration_ms)
     }
 
     ESP_LOGI(TAG, "Rotating motor for %d ms", duration_ms);
-    gpio_set_level(FEEDER_MOTOR_ENABLE_PIN, 0);
-    gpio_set_level(FEEDER_MOTOR_DIR_PIN, 1);
-
-    TickType_t deadline = xTaskGetTickCount() + pdMS_TO_TICKS(duration_ms);
-    while (xTaskGetTickCount() < deadline) {
-        gpio_set_level(FEEDER_MOTOR_STEP_PIN, 1);
-        vTaskDelay(pdMS_TO_TICKS(10));
-        gpio_set_level(FEEDER_MOTOR_STEP_PIN, 0);
-        vTaskDelay(pdMS_TO_TICKS(10));
-    }
-
-    gpio_set_level(FEEDER_MOTOR_ENABLE_PIN, 1);
+    gpio_set_level(FEEDER_MOTOR_REVERSE_PIN, 0);
+    gpio_set_level(FEEDER_MOTOR_FORWARD_PIN, 1);
+    vTaskDelay(pdMS_TO_TICKS(duration_ms));
+    gpio_set_level(FEEDER_MOTOR_FORWARD_PIN, 0);
 }
