@@ -21,6 +21,7 @@ static char s_topic[64] = {0};
 static char s_log_topic[64] = {0};
 static char s_schedule_topic[64] = {0};
 static char s_device_id_local[FEEDER_DEVICE_ID_MAX_LEN] = {0};
+static TickType_t s_connected_at_tick = 0;
 
 static void handle_command(const char *payload, size_t payload_len)
 {
@@ -38,6 +39,13 @@ static void handle_command(const char *payload, size_t payload_len)
     }
 
     if (strcmp(action->valuestring, "feed") == 0) {
+        TickType_t elapsed = xTaskGetTickCount() - s_connected_at_tick;
+        if (elapsed < pdMS_TO_TICKS(MQTT_POST_CONNECT_COOLDOWN_MS)) {
+            ESP_LOGW(TAG, "Ignoring stale feed command received %lu ms after connect",
+                     (unsigned long)(elapsed * portTICK_PERIOD_MS));
+            cJSON_Delete(root);
+            return;
+        }
         cJSON *duration = cJSON_GetObjectItemCaseSensitive(root, "ms");
         int duration_ms = cJSON_IsNumber(duration) ? duration->valueint : FEEDER_DEFAULT_DURATION_MS;
         esp_err_t err = feeding_sequence_start(duration_ms);
@@ -71,13 +79,15 @@ static void handle_command(const char *payload, size_t payload_len)
                                     "{\"action\":\"schedule_list\",\"schedule\":[]}", 0, 1, 0);
         }
     } else if (strcmp(action->valuestring, "request_logs") == 0) {
-        // App requested stored logs; publish each stored entry to log topic
+        ESP_LOGI(TAG, "Received request_logs command; publishing stored entries");
         char *buf = malloc(16384);
         if (buf != NULL) {
             esp_err_t r = log_store_get_all_json(buf, 16384);
             if (r == ESP_OK && buf[0] != '\0') {
                 cJSON *arr = cJSON_Parse(buf);
                 if (arr != NULL && cJSON_IsArray(arr)) {
+                    int count = cJSON_GetArraySize(arr);
+                    ESP_LOGI(TAG, "Publishing %d stored log entries", count);
                     cJSON *item = NULL;
                     cJSON_ArrayForEach(item, arr) {
                         char *entry = cJSON_PrintUnformatted(item);
@@ -90,9 +100,14 @@ static void handle_command(const char *payload, size_t payload_len)
                     }
                     cJSON_Delete(arr);
                 }
+            } else {
+                ESP_LOGI(TAG, "No stored logs to publish");
             }
             free(buf);
         }
+    } else if (strcmp(action->valuestring, "clear_logs") == 0) {
+        ESP_LOGI(TAG, "Clearing stored log entries");
+        log_store_clear();
     } else {
         ESP_LOGW(TAG, "Ignoring unknown MQTT action '%s'", action->valuestring);
     }
@@ -151,6 +166,7 @@ static void mqtt_event_handler(void *handler_args, esp_event_base_t base, int32_
     switch ((esp_mqtt_event_id_t)event_id) {
     case MQTT_EVENT_CONNECTED:
         ESP_LOGI(TAG, "Connected to broker; subscribing to %s and %s", s_topic, s_schedule_topic);
+        s_connected_at_tick = xTaskGetTickCount();
         fallback_scheduler_notify_mqtt_connected();
         esp_mqtt_client_subscribe(event->client, s_topic, 1);
         esp_mqtt_client_subscribe(event->client, s_schedule_topic, 1);
@@ -218,6 +234,7 @@ esp_err_t mqtt_service_start(const char *device_id)
         .credentials.username = MQTT_USERNAME,
         .credentials.authentication.password = MQTT_PASSWORD,
         .session.keepalive = 30,
+        .session.disable_clean_session = false,
         .network.disable_auto_reconnect = false,
     };
 

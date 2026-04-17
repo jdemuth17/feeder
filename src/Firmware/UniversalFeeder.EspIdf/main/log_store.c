@@ -95,6 +95,23 @@ esp_err_t log_store_append_json(const char *json)
     return err;
 }
 
+esp_err_t log_store_clear(void)
+{
+    nvs_handle_t handle;
+    esp_err_t err = nvs_open(NAMESPACE_NAME, NVS_READWRITE, &handle);
+    if (err != ESP_OK) {
+        return err;
+    }
+    err = nvs_erase_key(handle, KEY_LOGS);
+    if (err == ESP_OK || err == ESP_ERR_NVS_NOT_FOUND) {
+        nvs_commit(handle);
+        ESP_LOGI(TAG, "Log store cleared");
+        err = ESP_OK;
+    }
+    nvs_close(handle);
+    return err;
+}
+
 esp_err_t log_store_get_all_json(char *out_buf, size_t buf_len)
 {
     if (out_buf == NULL || buf_len == 0) {

@@ -1,4 +1,5 @@
 #include <stdbool.h>
+#include <stdlib.h>
 #include <string.h>
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
@@ -66,10 +67,13 @@ static void wifi_event_handler(void *arg, esp_event_base_t event_base, int32_t e
 
         // Start NTP sync so the schedule manager has correct wall-clock time
         if (sntp_get_sync_status() == SNTP_SYNC_STATUS_RESET) {
+            // Set timezone before SNTP so localtime_r returns local time
+            setenv("TZ", FEEDER_POSIX_TZ, 1);
+            tzset();
             esp_sntp_setoperatingmode(SNTP_OPMODE_POLL);
             esp_sntp_setservername(0, "pool.ntp.org");
             esp_sntp_init();
-            ESP_LOGI(TAG, "SNTP sync started");
+            ESP_LOGI(TAG, "SNTP sync started (TZ=%s)", FEEDER_POSIX_TZ);
         }
         // Once Wi-Fi is up, start persisting time every 5 min so reboots
         // restore an accurate clock even before NTP responds.

@@ -185,8 +185,11 @@ static void schedule_task(void *arg)
         if (s_mutex != NULL && xSemaphoreTake(s_mutex, portMAX_DELAY) == pdTRUE) {
             for (size_t i = 0; i < s_entry_count; ++i) {
                 schedule_entry_t *e = &s_entries[i];
+                ESP_LOGD(TAG, "Schedule[%d]: %02d:%02d enabled=%d | now=%02d:%02d date=%d last_exec=%d",
+                         (int)i, e->hour, e->minute, e->enabled, now_hour, now_min, today, e->last_executed_date);
                 if (!e->enabled) continue;
                 if (e->hour == now_hour && e->minute == now_min && e->last_executed_date != today) {
+                    ESP_LOGI(TAG, "Firing scheduled feed [%d] at %02d:%02d", (int)i, e->hour, e->minute);
                     int duration_ms = e->duration_ms > 0 ? e->duration_ms : FEEDER_DEFAULT_DURATION_MS;
                     esp_err_t res = feeding_sequence_start(duration_ms);
                     if (res == ESP_OK) {
@@ -198,6 +201,13 @@ static void schedule_task(void *arg)
                 }
             }
             xSemaphoreGive(s_mutex);
+        }
+
+        // Log current time every 60 checks (~15 min) for debugging
+        static int check_count = 0;
+        if (++check_count >= 60) {
+            ESP_LOGI(TAG, "Schedule tick: local time %02d:%02d, %d entries loaded", now_hour, now_min, (int)s_entry_count);
+            check_count = 0;
         }
 
         // sleep until next minute boundary
