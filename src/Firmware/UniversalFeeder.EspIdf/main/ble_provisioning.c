@@ -105,6 +105,20 @@ static void log_conn_desc(const char *prefix, const struct ble_gap_conn_desc *de
 
 static esp_err_t maybe_commit_credentials(void)
 {
+    // If either field arrived without the other in RAM (e.g. a prior connection
+    // was lost), recover partial values from NVS so the commit can succeed.
+    if (s_pending_credentials.ssid[0] == '\0' || s_pending_credentials.password[0] == '\0') {
+        feeder_wifi_credentials_t persisted = {0};
+        if (provisioning_store_load_pending(&persisted) == ESP_OK) {
+            if (s_pending_credentials.ssid[0] == '\0' && persisted.ssid[0] != '\0') {
+                strncpy(s_pending_credentials.ssid, persisted.ssid, sizeof(s_pending_credentials.ssid) - 1);
+            }
+            if (s_pending_credentials.password[0] == '\0' && persisted.password[0] != '\0') {
+                strncpy(s_pending_credentials.password, persisted.password, sizeof(s_pending_credentials.password) - 1);
+            }
+        }
+    }
+
     if (s_pending_credentials.ssid[0] == '\0' || s_pending_credentials.password[0] == '\0') {
         return ESP_OK;
     }
@@ -114,6 +128,9 @@ static esp_err_t maybe_commit_credentials(void)
     if (err != ESP_OK) {
         return err;
     }
+
+    // Commit succeeded — clear the partial NVS copy so we don't re-apply later.
+    provisioning_store_clear_pending();
 
     if (s_credentials_cb != NULL) {
         s_credentials_cb(&s_pending_credentials);
@@ -141,6 +158,10 @@ static int ssid_access_cb(uint16_t conn_handle, uint16_t attr_handle, struct ble
     s_pending_credentials.ssid[copy_len] = '\0';
     ESP_LOGI(TAG, "Received SSID over BLE: %s", s_pending_credentials.ssid);
 
+    // Persist immediately so a dropped connection before the password write
+    // doesn't discard what the user already typed.
+    provisioning_store_save_pending_ssid(s_pending_credentials.ssid);
+
     esp_err_t err = maybe_commit_credentials();
     return err == ESP_OK ? 0 : BLE_ATT_ERR_UNLIKELY;
 }
@@ -163,6 +184,8 @@ static int password_access_cb(uint16_t conn_handle, uint16_t attr_handle, struct
 
     s_pending_credentials.password[copy_len] = '\0';
     ESP_LOGI(TAG, "Received Wi-Fi password over BLE (%u bytes)", (unsigned)copy_len);
+
+    provisioning_store_save_pending_password(s_pending_credentials.password);
 
     esp_err_t err = maybe_commit_credentials();
     return err == ESP_OK ? 0 : BLE_ATT_ERR_UNLIKELY;

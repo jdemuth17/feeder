@@ -1,4 +1,5 @@
 using System.Collections.ObjectModel;
+using System.Threading;
 using System.Windows.Input;
 using Plugin.BLE.Abstractions.Contracts;
 using UniversalFeeder.Mobile.Models;
@@ -16,6 +17,7 @@ namespace UniversalFeeder.Mobile.ViewModels
         private string? _password;
         private string? _status;
         private bool _isBusy;
+        private CancellationTokenSource? _provisionCts;
 
         public ObservableCollection<DiscoveredFeeder> Devices { get; } = new();
 
@@ -52,11 +54,14 @@ namespace UniversalFeeder.Mobile.ViewModels
         public bool IsBusy
         {
             get => _isBusy;
-            set { _isBusy = value; OnPropertyChanged(); }
+            set { _isBusy = value; OnPropertyChanged(); OnPropertyChanged(nameof(CanCancel)); }
         }
+
+        public bool CanCancel => _isBusy && _provisionCts is { IsCancellationRequested: false };
 
         public ICommand ScanCommand { get; }
         public ICommand ProvisionCommand { get; }
+        public ICommand CancelProvisionCommand { get; }
 
         public ProvisioningViewModel(BleService bleService, FeederStorageService storageService)
         {
@@ -64,6 +69,11 @@ namespace UniversalFeeder.Mobile.ViewModels
             _storageService = storageService;
             ScanCommand = new Command(async () => await ScanAsync());
             ProvisionCommand = new Command(async () => await ProvisionAsync());
+            CancelProvisionCommand = new Command(() =>
+            {
+                _provisionCts?.Cancel();
+                Status = "Cancelling…";
+            });
         }
 
         private async Task ScanAsync()
@@ -130,12 +140,23 @@ namespace UniversalFeeder.Mobile.ViewModels
                 return;
             }
 
+            _provisionCts?.Dispose();
+            _provisionCts = new CancellationTokenSource();
+            var ct = _provisionCts.Token;
+
             IsBusy = true;
-            Status = "Provisioning via BLE...";
+            Status = "Starting provisioning…";
+
+            var progress = new Progress<string>(msg => MainThread.BeginInvokeOnMainThread(() => Status = msg));
 
             try
             {
-                string? result = await _bleService.ProvisionDeviceAsync(SelectedDevice.Device, Ssid, Password ?? string.Empty);
+                string? result = await _bleService.ProvisionDeviceAsync(
+                    SelectedDevice.Device,
+                    Ssid,
+                    Password ?? string.Empty,
+                    progress,
+                    ct);
 
                 if (string.IsNullOrEmpty(result))
                 {
@@ -159,8 +180,12 @@ namespace UniversalFeeder.Mobile.ViewModels
                 _storageService.AddFeeder(feeder);
 
                 Status = string.IsNullOrWhiteSpace(ip) || ip == "0.0.0.0"
-                    ? $"Provisioning reached {feeder.Nickname} (ID: {deviceId}) and the feeder was saved, but the app did not receive a final IP before BLE disconnected. Check Home for the saved feeder and refresh after Wi-Fi finishes connecting."
-                    : $"Setup complete! {feeder.Nickname} (ID: {deviceId}, IP: {ip}) saved. Go to Home tab to control it.";
+                    ? $"Saved {feeder.Nickname}, but no IP yet. Open Home after the feeder joins Wi-Fi."
+                    : $"Setup complete! {feeder.Nickname} is at {ip}. Open Home to control it.";
+            }
+            catch (OperationCanceledException)
+            {
+                Status = "Provisioning cancelled.";
             }
             catch (Exception ex)
             {
@@ -169,6 +194,9 @@ namespace UniversalFeeder.Mobile.ViewModels
             finally
             {
                 IsBusy = false;
+                _provisionCts?.Dispose();
+                _provisionCts = null;
+                OnPropertyChanged(nameof(CanCancel));
             }
         }
     }

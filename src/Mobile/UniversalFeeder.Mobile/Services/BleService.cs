@@ -244,9 +244,25 @@ namespace UniversalFeeder.Mobile.Services
 
         public async Task<string?> ProvisionDeviceAsync(IDevice device, string ssid, string password)
         {
+            return await ProvisionDeviceAsync(device, ssid, password, progress: null, ct: CancellationToken.None);
+        }
+
+        public async Task<string?> ProvisionDeviceAsync(
+            IDevice device,
+            string ssid,
+            string password,
+            IProgress<string>? progress,
+            CancellationToken ct)
+        {
+            void Report(string message)
+            {
+                LogBle(message);
+                progress?.Report(message);
+            }
+
             try
             {
-                LogBle($"BLE provisioning start: id={device.Id} name={GetDisplayName(device)} state={device.State}");
+                Report($"Connecting to feeder over Bluetooth…");
                 await EnsureBlePermissionsAsync();
 
                 if (_adapter.IsScanning)
@@ -263,28 +279,25 @@ namespace UniversalFeeder.Mobile.Services
                 }
 
 #if ANDROID
-                return await ProvisionDeviceAndroidAsync(device, ssid, password);
+                return await ProvisionDeviceAndroidAsync(device, ssid, password, Report, ct);
 #else
                 await ConnectWithRetryAsync(device);
                 LogBle($"BLE provisioning: connect finished state={device.State}");
                 await Task.Delay(250);
 
-                LogBle("BLE provisioning: discovering services");
+                Report("Looking up Wi-Fi service on feeder…");
                 var services = await device.GetServicesAsync();
-                LogBle($"BLE provisioning: discovered {services.Count} services");
                 var service = services.FirstOrDefault(s => s.Id == ServiceUuid);
 
                 if (service == null)
                     throw new InvalidOperationException("Feeder BLE service not found on device.");
 
-                LogBle("BLE provisioning: resolving characteristics");
                 var ssidChar = await service.GetCharacteristicAsync(SsidCharUuid);
                 var passChar = await service.GetCharacteristicAsync(PassCharUuid);
 
                 if (ssidChar == null || passChar == null)
                     throw new InvalidOperationException("Required BLE characteristics not found.");
 
-                // Read the feeder identity before credentials trigger a Wi-Fi reconnect.
                 var ipChar = await service.GetCharacteristicAsync(IpCharUuid);
                 var idChar = await service.GetCharacteristicAsync(IdCharUuid);
                 string? ip = null;
@@ -292,34 +305,32 @@ namespace UniversalFeeder.Mobile.Services
 
                 if (idChar != null)
                 {
-                    LogBle("BLE provisioning: reading Device ID");
                     var bytes = await idChar.ReadAsync();
                     if (bytes.data != null) deviceId = Encoding.UTF8.GetString(bytes.data);
-                    LogBle($"BLE provisioning: Device ID read returned '{deviceId}'");
                 }
 
-                LogBle("BLE provisioning: writing SSID");
+                Report("Sending Wi-Fi credentials to feeder…");
                 await ssidChar.WriteAsync(Encoding.UTF8.GetBytes(ssid));
-                LogBle("BLE provisioning: writing password");
                 await passChar.WriteAsync(Encoding.UTF8.GetBytes(password));
 
                 if (ipChar != null)
                 {
-                    for (int i = 0; i < 30; i++)
+                    const int MaxAttempts = 30;
+                    for (int i = 0; i < MaxAttempts; i++)
                     {
-                        LogBle($"BLE provisioning: reading IP attempt={i + 1}");
+                        ct.ThrowIfCancellationRequested();
+                        Report($"Waiting for feeder to join Wi-Fi… ({MaxAttempts - i}s)");
                         var bytes = await ipChar.ReadAsync();
                         if (bytes.data != null && bytes.data.Length > 0)
                         {
                             ip = Encoding.UTF8.GetString(bytes.data);
-                            LogBle($"BLE provisioning: IP read returned '{ip}'");
                             if (!string.IsNullOrEmpty(ip) && ip != "0.0.0.0") break;
                         }
-                        await Task.Delay(1000);
+                        await Task.Delay(1000, ct);
                     }
                 }
 
-                LogBle($"BLE provisioning complete: final IP='{ip ?? "<null>"}' DeviceId='{deviceId ?? "<null>"}' state={device.State}");
+                Report($"Provisioning complete (IP={ip ?? "unknown"})");
                 await TryDisconnectAsync(device);
                 return ip != null ? $"{ip}|{deviceId}" : null;
 #endif
@@ -333,7 +344,12 @@ namespace UniversalFeeder.Mobile.Services
         }
 
 #if ANDROID
-        private async Task<string?> ProvisionDeviceAndroidAsync(IDevice device, string ssid, string password)
+        private async Task<string?> ProvisionDeviceAndroidAsync(
+            IDevice device,
+            string ssid,
+            string password,
+            Action<string> report,
+            CancellationToken ct)
         {
             if (device.NativeDevice is not BluetoothDevice nativeDevice)
             {
@@ -347,16 +363,17 @@ namespace UniversalFeeder.Mobile.Services
             using var connectLogger = new AndroidBleConnectLogger(connectDevice.Address ?? string.Empty);
             using var session = new AndroidBleProvisioningSession(connectDevice);
 
+            report("Connecting to feeder over Bluetooth…");
             await session.ConnectAsync();
             LogBle("BLE provisioning: native connect finished");
 
+            report("Looking up Wi-Fi service on feeder…");
             await DiscoverServicesWithRetryAsync(session);
             LogBle("BLE provisioning: native services discovered");
 
             string? deviceId = null;
             try
             {
-                LogBle("BLE provisioning: native Device ID read");
                 var deviceIdValue = await session.ReadCharacteristicAsync(ServiceUuid, IdCharUuid);
                 if (deviceIdValue.Length > 0)
                 {
@@ -370,17 +387,17 @@ namespace UniversalFeeder.Mobile.Services
                 LogBle($"BLE provisioning: native Device ID read failed: {ex.Message}");
             }
 
+            report("Sending Wi-Fi credentials to feeder…");
             await session.WriteCharacteristicAsync(ServiceUuid, SsidCharUuid, Encoding.UTF8.GetBytes(ssid));
-            LogBle("BLE provisioning: native SSID write complete");
-
             await session.WriteCharacteristicAsync(ServiceUuid, PassCharUuid, Encoding.UTF8.GetBytes(password));
-            LogBle("BLE provisioning: native password write complete");
 
             string? ip = null;
 
-            for (int attempt = 1; attempt <= 30; attempt++)
+            const int MaxAttempts = 30;
+            for (int attempt = 1; attempt <= MaxAttempts; attempt++)
             {
-                LogBle($"BLE provisioning: native IP read attempt={attempt}");
+                ct.ThrowIfCancellationRequested();
+                report($"Waiting for feeder to join Wi-Fi… ({MaxAttempts - attempt + 1}s)");
                 byte[] value;
                 try
                 {
@@ -394,7 +411,7 @@ namespace UniversalFeeder.Mobile.Services
 
                 if (value.Length == 0)
                 {
-                    await Task.Delay(1000);
+                    await Task.Delay(1000, ct);
                     continue;
                 }
 
@@ -405,7 +422,7 @@ namespace UniversalFeeder.Mobile.Services
                     return $"{ip}|{deviceId}";
                 }
 
-                await Task.Delay(1000);
+                await Task.Delay(1000, ct);
             }
 
             return !string.IsNullOrWhiteSpace(deviceId) ? $"{ip ?? string.Empty}|{deviceId}" : null;

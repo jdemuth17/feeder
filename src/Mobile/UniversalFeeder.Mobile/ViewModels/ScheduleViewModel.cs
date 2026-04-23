@@ -59,9 +59,31 @@ namespace UniversalFeeder.Mobile.ViewModels
             }
         }
 
+        public bool AddEntry(TimeSpan time, double durationSeconds, bool enabled, out string? error)
+        {
+            error = null;
+            if (time.TotalMinutes < 0 || time.TotalHours >= 24)
+            {
+                error = "Time must be between 00:00 and 23:59.";
+                return false;
+            }
+            if (durationSeconds <= 0 || durationSeconds > 60)
+            {
+                error = "Duration must be between 1 and 60 seconds.";
+                return false;
+            }
+            if (Entries.Any(e => e.Time == time))
+            {
+                error = "A schedule entry for that time already exists.";
+                return false;
+            }
+            Entries.Add(new FeedingScheduleEntry { Time = time, DurationSeconds = durationSeconds, Enabled = enabled });
+            return true;
+        }
+
         public void AddEntry(TimeSpan time, double durationSeconds, bool enabled)
         {
-            Entries.Add(new FeedingScheduleEntry { Time = time, DurationSeconds = durationSeconds, Enabled = enabled });
+            AddEntry(time, durationSeconds, enabled, out _);
         }
 
         private async Task SaveAsync()
@@ -71,12 +93,26 @@ namespace UniversalFeeder.Mobile.ViewModels
             var payload = Entries.Select(e => new { time = e.Time.ToString(@"hh\:mm"), duration_ms = (int)(e.DurationSeconds * 1000), enabled = e.Enabled }).ToArray();
             try
             {
-                await _mqttService.SendScheduleAsync(_feederId, payload);
+                var ok = await _mqttService.SendScheduleAsync(_feederId, payload);
+                if (!ok)
+                {
+                    await ShowErrorAsync("Could not send schedule. Check that the feeder is online.");
+                    return;
+                }
                 await Shell.Current.GoToAsync("..", animate: false);
             }
-            catch
+            catch (Exception ex)
             {
-                // ignore for now
+                await ShowErrorAsync($"Failed to save schedule: {ex.Message}");
+            }
+        }
+
+        private static async Task ShowErrorAsync(string message)
+        {
+            var page = Application.Current?.Windows.FirstOrDefault()?.Page;
+            if (page != null)
+            {
+                await page.DisplayAlertAsync("Schedule error", message, "OK");
             }
         }
     }

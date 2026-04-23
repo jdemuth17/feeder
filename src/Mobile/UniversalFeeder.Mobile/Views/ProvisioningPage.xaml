@@ -40,6 +40,11 @@
                     CornerRadius="8" HeightRequest="50" FontSize="18"
                     IsEnabled="{Binding IsBusy, Converter={StaticResource InvertBoolConverter}}" />
 
+            <Button Text="Cancel" Command="{Binding CancelProvisionCommand}"
+                    BackgroundColor="#B71C1C" TextColor="White"
+                    CornerRadius="8" HeightRequest="44" FontSize="15"
+                    IsVisible="{Binding CanCancel}" />
+
             <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" />
             <Label Text="{Binding Status}" HorizontalOptions="Center" TextColor="Gray" />
 

@@ -4,9 +4,11 @@
 #include "freertos/task.h"
 #include "esp_err.h"
 #include "esp_log.h"
+#include "esp_system.h"
 #include "nvs_flash.h"
 #include "app_config.h"
 #include "ble_provisioning.h"
+#include "buzzer_control.h"
 #include "device_identity.h"
 #include "fallback_scheduler.h"
 #include "feeding_sequence.h"
@@ -74,11 +76,16 @@ void app_main(void)
 
     ret = ble_provisioning_start(&credentials, ip_address, g_device_id, on_credentials_received);
     if (ret != ESP_OK) {
-        ESP_LOGE(TAG, "BLE provisioning startup failed: %s", esp_err_to_name(ret));
-        return;
+        ESP_LOGE(TAG, "BLE provisioning startup failed: %s; restarting in 3s", esp_err_to_name(ret));
+        vTaskDelay(pdMS_TO_TICKS(3000));
+        esp_restart();
     }
 
     ESP_LOGI(TAG, "Firmware initialization complete");
+
+    // Quick audible boot confirmation so users can tell the device powered up
+    // and finished initialization without needing to open the app.
+    buzzer_control_play(CHIME_DEFAULT_VOLUME, 120);
 
     while (1) {
         vTaskDelay(pdMS_TO_TICKS(10000));

@@ -9,6 +9,8 @@ static const char *NAMESPACE_NAME = "feeder";
 static const char *KEY_SSID = "wifi_ssid";
 static const char *KEY_PASSWORD = "wifi_pass";
 static const char *KEY_IP_ADDRESS = "wifi_ip";
+static const char *KEY_PENDING_SSID = "pend_ssid";
+static const char *KEY_PENDING_PASSWORD = "pend_pass";
 
 static esp_err_t open_store(nvs_open_mode_t mode, nvs_handle_t *handle)
 {
@@ -105,6 +107,68 @@ esp_err_t provisioning_store_clear_credentials(void)
     if (err == ESP_OK) {
         err = nvs_commit(handle);
     }
+    nvs_close(handle);
+    return err;
+}
+
+esp_err_t provisioning_store_save_pending_ssid(const char *ssid)
+{
+    if (ssid == NULL) return ESP_ERR_INVALID_ARG;
+    nvs_handle_t handle;
+    esp_err_t err = open_store(NVS_READWRITE, &handle);
+    if (err != ESP_OK) return err;
+    err = nvs_set_str(handle, KEY_PENDING_SSID, ssid);
+    if (err == ESP_OK) err = nvs_commit(handle);
+    nvs_close(handle);
+    return err;
+}
+
+esp_err_t provisioning_store_save_pending_password(const char *password)
+{
+    if (password == NULL) return ESP_ERR_INVALID_ARG;
+    nvs_handle_t handle;
+    esp_err_t err = open_store(NVS_READWRITE, &handle);
+    if (err != ESP_OK) return err;
+    err = nvs_set_str(handle, KEY_PENDING_PASSWORD, password);
+    if (err == ESP_OK) err = nvs_commit(handle);
+    nvs_close(handle);
+    return err;
+}
+
+esp_err_t provisioning_store_load_pending(feeder_wifi_credentials_t *credentials)
+{
+    if (credentials == NULL) return ESP_ERR_INVALID_ARG;
+    memset(credentials, 0, sizeof(*credentials));
+
+    nvs_handle_t handle;
+    esp_err_t err = open_store(NVS_READONLY, &handle);
+    if (err == ESP_ERR_NVS_NOT_FOUND) return ESP_OK;
+    if (err != ESP_OK) return err;
+
+    size_t ssid_len = sizeof(credentials->ssid);
+    esp_err_t ssid_err = nvs_get_str(handle, KEY_PENDING_SSID, credentials->ssid, &ssid_len);
+    size_t password_len = sizeof(credentials->password);
+    esp_err_t password_err = nvs_get_str(handle, KEY_PENDING_PASSWORD, credentials->password, &password_len);
+    nvs_close(handle);
+
+    if (ssid_err != ESP_OK && ssid_err != ESP_ERR_NVS_NOT_FOUND) return ssid_err;
+    if (password_err != ESP_OK && password_err != ESP_ERR_NVS_NOT_FOUND) return password_err;
+
+    credentials->is_configured = (credentials->ssid[0] != '\0' && credentials->password[0] != '\0');
+    return ESP_OK;
+}
+
+esp_err_t provisioning_store_clear_pending(void)
+{
+    nvs_handle_t handle;
+    esp_err_t err = open_store(NVS_READWRITE, &handle);
+    if (err == ESP_ERR_NVS_NOT_FOUND) return ESP_OK;
+    if (err != ESP_OK) return err;
+    esp_err_t e1 = nvs_erase_key(handle, KEY_PENDING_SSID);
+    esp_err_t e2 = nvs_erase_key(handle, KEY_PENDING_PASSWORD);
+    if (e1 != ESP_OK && e1 != ESP_ERR_NVS_NOT_FOUND) err = e1;
+    if (e2 != ESP_OK && e2 != ESP_ERR_NVS_NOT_FOUND) err = e2;
+    if (err == ESP_OK) err = nvs_commit(handle);
     nvs_close(handle);
     return err;
 }

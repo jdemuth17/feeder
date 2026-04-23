@@ -23,11 +23,15 @@ public partial class SchedulePage : ContentPage
         }
     }
 
-    private void OnAddClicked(object sender, EventArgs e)
+    private async void OnAddClicked(object sender, EventArgs e)
     {
         var ts = timePicker.Time ?? TimeSpan.Zero;
         if (!double.TryParse(amountEntry.Text, out var secs)) secs = 5.0;
-        _viewModel.AddEntry(ts, secs, enabledSwitch.IsToggled);
+        if (!_viewModel.AddEntry(ts, secs, enabledSwitch.IsToggled, out var error) && error != null)
+        {
+            await DisplayAlertAsync("Invalid entry", error, "OK");
+            return;
+        }
         amountEntry.Text = string.Empty;
     }
 }

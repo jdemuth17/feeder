@@ -3,6 +3,7 @@
 #include <string.h>
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
+#include "freertos/timers.h"
 #include "esp_event.h"
 #include "esp_log.h"
 #include "esp_netif.h"
@@ -21,6 +22,26 @@ static bool s_should_reconnect;
 static int s_retry_count;
 static feeder_wifi_credentials_t s_credentials;
 static wifi_manager_ip_callback_t s_ip_callback;
+static TimerHandle_t s_retry_timer;
+
+static int retry_backoff_ms(int attempt)
+{
+    // Exponential backoff capped at 30s: 500ms, 1s, 2s, 4s, 8s, 16s, 30s, 30s...
+    int base_ms = 500;
+    int shift = attempt > 10 ? 10 : attempt;
+    int ms = base_ms << shift;
+    if (ms < 500) ms = 500;
+    if (ms > 30000) ms = 30000;
+    return ms;
+}
+
+static void retry_timer_cb(TimerHandle_t timer)
+{
+    (void)timer;
+    if (!s_should_reconnect) return;
+    ESP_LOGI(TAG, "Retrying Wi-Fi connect (attempt %d)", s_retry_count);
+    esp_wifi_connect();
+}
 
 static void notify_ip(const char *ip_address)
 {
@@ -45,12 +66,18 @@ static void wifi_event_handler(void *arg, esp_event_base_t event_base, int32_t e
                 break;
             }
 
-            if (s_retry_count < FEEDER_WIFI_MAX_RETRY_ATTEMPTS) {
+            {
+                int delay_ms = retry_backoff_ms(s_retry_count);
                 s_retry_count++;
-                ESP_LOGW(TAG, "Wi-Fi disconnected; retrying (%d/%d)", s_retry_count, FEEDER_WIFI_MAX_RETRY_ATTEMPTS);
-                esp_wifi_connect();
-            } else {
-                ESP_LOGE(TAG, "Wi-Fi connection failed after %d attempts", FEEDER_WIFI_MAX_RETRY_ATTEMPTS);
+                ESP_LOGW(TAG, "Wi-Fi disconnected; retrying in %d ms (attempt %d)", delay_ms, s_retry_count);
+                if (s_retry_timer == NULL) {
+                    s_retry_timer = xTimerCreate("wifi_retry", pdMS_TO_TICKS(delay_ms), pdFALSE, NULL, retry_timer_cb);
+                } else {
+                    xTimerChangePeriod(s_retry_timer, pdMS_TO_TICKS(delay_ms), 0);
+                }
+                if (s_retry_timer != NULL) {
+                    xTimerStart(s_retry_timer, 0);
+                }
             }
             break;
         default:

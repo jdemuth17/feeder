@@ -2,10 +2,12 @@ using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text.Json;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Microsoft.Maui.ApplicationModel;
 using Microsoft.Maui.Controls;
+using Microsoft.Maui.Devices;
 using UniversalFeeder.Mobile.Models;
 using UniversalFeeder.Mobile.Services;
 
@@ -30,26 +32,45 @@ namespace UniversalFeeder.Mobile.ViewModels
             get => _selectedFeeder;
             set
             {
+                if (_selectedFeeder == value) return;
                 _selectedFeeder = value;
                 OnPropertyChanged();
                 OnPropertyChanged(nameof(HasSelectedFeeder));
+
+                // Cancel any in-flight per-feeder tasks (subscribe/request/load) so
+                // switching feeders quickly doesn't overlap requests/subscriptions.
+                _selectionCts?.Cancel();
+                _selectionCts = new CancellationTokenSource();
+                var ct = _selectionCts.Token;
+
                 if (IsConnected && _selectedFeeder != null)
                 {
-                    _ = _mqttService.SubscribeToLogsAsync(_selectedFeeder.UniqueId);
-                    _ = _mqttService.RequestLogsAsync(_selectedFeeder.UniqueId);
-                    _ = LoadStoredLogsAsync();
+                    var feederId = _selectedFeeder.UniqueId;
+                    _ = _mqttService.SubscribeToLogsAsync(feederId);
+                    _ = _mqttService.RequestLogsAsync(feederId);
+                    _ = LoadStoredLogsAsync(ct);
                 }
             }
         }
 
+        private CancellationTokenSource? _selectionCts;
+
         private async Task LoadStoredLogsAsync()
+        {
+            await LoadStoredLogsAsync(CancellationToken.None);
+        }
+
+        private async Task LoadStoredLogsAsync(CancellationToken ct)
         {
             try
             {
                 if (SelectedFeeder == null) return;
-                var items = await _logRepository.GetLogsForFeederAsync(SelectedFeeder.UniqueId, 100);
+                var feederId = SelectedFeeder.UniqueId;
+                var items = await _logRepository.GetLogsForFeederAsync(feederId, 100);
+                if (ct.IsCancellationRequested) return;
                 MainThread.BeginInvokeOnMainThread(() =>
                 {
+                    if (ct.IsCancellationRequested) return;
                     Logs.Clear();
                     foreach (var l in items)
                     {
@@ -97,8 +118,16 @@ namespace UniversalFeeder.Mobile.ViewModels
         public ICommand EditScheduleCommand { get; }
         public ICommand RequestLogsCommand { get; }
         public ICommand RefreshCommand { get; }
+        public ICommand RefreshLogsCommand { get; }
         public ICommand RemoveFeederCommand { get; }
         public ICommand RenameFeederCommand { get; }
+
+        private bool _isRefreshingLogs;
+        public bool IsRefreshingLogs
+        {
+            get => _isRefreshingLogs;
+            set { _isRefreshingLogs = value; OnPropertyChanged(); }
+        }
 
         public DashboardViewModel(MqttService mqttService, FeederStorageService storageService, LogRepository logRepository)
         {
@@ -113,7 +142,8 @@ namespace UniversalFeeder.Mobile.ViewModels
             EditScheduleCommand = new Command(async () => await EditScheduleAsync());
             RequestLogsCommand = new Command(async () => await RequestLogsAsync());
             RefreshCommand = new Command(LoadFeeders);
-            RemoveFeederCommand = new Command<FeederDevice>(RemoveFeeder);
+            RefreshLogsCommand = new Command(async () => await RefreshLogsAsync());
+            RemoveFeederCommand = new Command<FeederDevice>(async f => await RemoveFeederAsync(f));
             RenameFeederCommand = new Command<FeederDevice>(async f => await RenameFeederAsync(f));
 
             _mqttService.ConnectionChanged += (s, connected) =>
@@ -256,6 +286,30 @@ namespace UniversalFeeder.Mobile.ViewModels
             }
         }
 
+        private async Task RefreshLogsAsync()
+        {
+            IsRefreshingLogs = true;
+            try
+            {
+                if (SelectedFeeder == null || !IsConnected)
+                {
+                    await LoadStoredLogsAsync();
+                    return;
+                }
+                await _mqttService.RequestLogsAsync(SelectedFeeder.UniqueId);
+                // Give the broker a moment to deliver queued logs before UI settles.
+                await Task.Delay(600);
+            }
+            catch
+            {
+                // Swallow — pull-to-refresh should never crash the page.
+            }
+            finally
+            {
+                IsRefreshingLogs = false;
+            }
+        }
+
         public void LoadFeeders()
         {
             Feeders.Clear();
@@ -315,17 +369,44 @@ namespace UniversalFeeder.Mobile.ViewModels
                 return;
             }
 
+            var page = Application.Current?.Windows.FirstOrDefault()?.Page;
+            if (page != null)
+            {
+                var confirmed = await page.DisplayAlertAsync(
+                    "Feed now?",
+                    $"Dispense food from {SelectedFeeder.Nickname} for {FeedDurationSeconds} second(s)?",
+                    "Feed",
+                    "Cancel");
+                if (!confirmed)
+                {
+                    Status = "Feed cancelled";
+                    return;
+                }
+            }
+
+            TryHaptic(HapticFeedbackType.Click);
+
             IsBusy = true;
             Status = $"Sending feed command to {SelectedFeeder.Nickname}...";
             try
             {
-                var success = await _mqttService.SendFeedCommandAsync(
-                    SelectedFeeder.UniqueId,
-                    FeedDurationSeconds * 1000);
+                var success = await PublishWithRetryAsync(
+                    ct => _mqttService.SendFeedCommandAsync(SelectedFeeder.UniqueId, FeedDurationSeconds * 1000),
+                    progress: attempt => Status = $"Sending feed (attempt {attempt}/3)...");
 
-                Status = success
-                    ? $"Feed command sent! ({FeedDurationSeconds}s)"
-                    : "Failed to send feed command";
+                if (success)
+                {
+                    TryHaptic(HapticFeedbackType.LongPress);
+                    Status = $"Feed command sent! ({FeedDurationSeconds}s)";
+                }
+                else
+                {
+                    Status = "Failed to send feed command after 3 attempts";
+                    if (page != null)
+                    {
+                        await page.DisplayAlertAsync("Feed failed", "Could not reach feeder. Check network and try again.", "OK");
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -335,6 +416,40 @@ namespace UniversalFeeder.Mobile.ViewModels
             {
                 IsBusy = false;
             }
+        }
+
+        private static void TryHaptic(HapticFeedbackType type)
+        {
+            try { HapticFeedback.Default.Perform(type); } catch { /* platform may not support */ }
+        }
+
+        private static async Task<bool> PublishWithRetryAsync(
+            Func<CancellationToken, Task<bool>> action,
+            Action<int>? progress = null,
+            int maxAttempts = 3)
+        {
+            for (int attempt = 1; attempt <= maxAttempts; attempt++)
+            {
+                progress?.Invoke(attempt);
+                try
+                {
+                    if (await action(CancellationToken.None))
+                    {
+                        return true;
+                    }
+                }
+                catch
+                {
+                    // swallow and retry; last failure surfaces as "false"
+                }
+
+                if (attempt < maxAttempts)
+                {
+                    // 500ms, 1s, 2s backoff
+                    await Task.Delay(TimeSpan.FromMilliseconds(500 * (1 << (attempt - 1))));
+                }
+            }
+            return false;
         }
 
         private async Task ChimeAsync()
@@ -351,12 +466,16 @@ namespace UniversalFeeder.Mobile.ViewModels
                 return;
             }
 
+            TryHaptic(HapticFeedbackType.Click);
+
             IsBusy = true;
             Status = $"Sending chime to {SelectedFeeder.Nickname}...";
             try
             {
-                var success = await _mqttService.SendChimeCommandAsync(SelectedFeeder.UniqueId);
-                Status = success ? "Chime sent!" : "Failed to send chime";
+                var success = await PublishWithRetryAsync(
+                    _ => _mqttService.SendChimeCommandAsync(SelectedFeeder.UniqueId),
+                    progress: attempt => Status = $"Sending chime (attempt {attempt}/3)...");
+                Status = success ? "Chime sent!" : "Failed to send chime after 3 attempts";
             }
             catch (Exception ex)
             {
@@ -368,42 +487,11 @@ namespace UniversalFeeder.Mobile.ViewModels
             }
         }
 
-        private async Task SendScheduleAsync()
+        private Task SendScheduleAsync()
         {
-            if (SelectedFeeder == null)
-            {
-                Status = "Select a feeder first";
-                return;
-            }
-
-            if (!IsConnected)
-            {
-                Status = "Connect to MQTT first";
-                return;
-            }
-
-            // Sample schedule: morning and evening
-            var schedule = new[]
-            {
-                new { time = "08:00", duration_ms = 5000, enabled = true },
-                new { time = "18:00", duration_ms = 5000, enabled = true }
-            };
-
-            IsBusy = true;
-            Status = $"Sending schedule to {SelectedFeeder.Nickname}...";
-            try
-            {
-                var success = await _mqttService.SendScheduleAsync(SelectedFeeder.UniqueId, schedule);
-                Status = success ? "Schedule sent!" : "Failed to send schedule";
-            }
-            catch (Exception ex)
-            {
-                Status = $"Schedule error: {ex.Message}";
-            }
-            finally
-            {
-                IsBusy = false;
-            }
+            // Left in place for backward compatibility — the dashboard navigates to
+            // the Schedule editor instead of sending a hardcoded sample schedule.
+            return EditScheduleAsync();
         }
 
         private void RemoveFeeder(FeederDevice? feeder)
@@ -414,6 +502,24 @@ namespace UniversalFeeder.Mobile.ViewModels
             if (SelectedFeeder == feeder)
                 SelectedFeeder = Feeders.FirstOrDefault();
             Status = $"Removed {feeder.Nickname}";
+        }
+
+        private async Task RemoveFeederAsync(FeederDevice? feeder)
+        {
+            if (feeder == null) return;
+            var page = Application.Current?.Windows.FirstOrDefault()?.Page;
+            if (page != null)
+            {
+                var confirmed = await page.DisplayAlertAsync(
+                    "Remove feeder?",
+                    $"Remove {feeder.Nickname}? You will need to re-provision it to use it again.",
+                    "Remove",
+                    "Cancel");
+                if (!confirmed) return;
+            }
+
+            RemoveFeeder(feeder);
+            TryHaptic(HapticFeedbackType.Click);
         }
 
         private async Task RenameFeederAsync(FeederDevice? feeder)

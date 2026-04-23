@@ -2,6 +2,7 @@
 #include <string.h>
 #include <stdio.h>
 #include <time.h>
+#include <sys/time.h>
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 #include "freertos/semphr.h"
@@ -174,6 +175,9 @@ esp_err_t schedule_manager_apply_schedule_json(const char *json)
 static void schedule_task(void *arg)
 {
     (void)arg;
+    // Require SNTP to provide a real wall clock before we trust time for scheduling.
+    // Otherwise a restored (possibly stale) clock could fire feeds at the wrong minute.
+    const time_t kReasonableEpoch = 1577836800LL; // 2020-01-01
     while (true) {
         time_t t = time(NULL);
         struct tm tm;
@@ -182,11 +186,13 @@ static void schedule_task(void *arg)
         int now_min = tm.tm_min;
         int today = current_ymd();
 
-        if (s_mutex != NULL && xSemaphoreTake(s_mutex, portMAX_DELAY) == pdTRUE) {
+        // Only run the actual schedule matching if we have a plausible wall clock.
+        // Without this, stale NVS time could fire feeds at the wrong moment after power loss.
+        bool clock_ok = (t > kReasonableEpoch);
+
+        if (clock_ok && s_mutex != NULL && xSemaphoreTake(s_mutex, portMAX_DELAY) == pdTRUE) {
             for (size_t i = 0; i < s_entry_count; ++i) {
                 schedule_entry_t *e = &s_entries[i];
-                ESP_LOGD(TAG, "Schedule[%d]: %02d:%02d enabled=%d | now=%02d:%02d date=%d last_exec=%d",
-                         (int)i, e->hour, e->minute, e->enabled, now_hour, now_min, today, e->last_executed_date);
                 if (!e->enabled) continue;
                 if (e->hour == now_hour && e->minute == now_min && e->last_executed_date != today) {
                     ESP_LOGI(TAG, "Firing scheduled feed [%d] at %02d:%02d", (int)i, e->hour, e->minute);
@@ -203,15 +209,21 @@ static void schedule_task(void *arg)
             xSemaphoreGive(s_mutex);
         }
 
-        // Log current time every 60 checks (~15 min) for debugging
-        static int check_count = 0;
-        if (++check_count >= 60) {
-            ESP_LOGI(TAG, "Schedule tick: local time %02d:%02d, %d entries loaded", now_hour, now_min, (int)s_entry_count);
-            check_count = 0;
+        // Periodic heartbeat log (~once per 5 min) so users can see the tick is alive.
+        static int heartbeat_count = 0;
+        if (++heartbeat_count >= 300) {
+            ESP_LOGI(TAG, "Schedule tick: local time %02d:%02d, %d entries loaded, clock_ok=%d",
+                     now_hour, now_min, (int)s_entry_count, clock_ok);
+            heartbeat_count = 0;
         }
 
-        // sleep until next minute boundary
-        vTaskDelay(pdMS_TO_TICKS(1000 * 15));
+        // Align next wakeup to the start of the next second so we don't drift
+        // across minute boundaries and miss a scheduled feed.
+        struct timeval tv;
+        gettimeofday(&tv, NULL);
+        int sleep_ms = 1000 - (int)(tv.tv_usec / 1000);
+        if (sleep_ms < 50) sleep_ms += 1000; // avoid double-ticking the same second
+        vTaskDelay(pdMS_TO_TICKS(sleep_ms));
     }
 }
 

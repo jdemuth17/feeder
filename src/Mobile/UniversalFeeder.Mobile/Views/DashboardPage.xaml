@@ -100,15 +100,18 @@
                 <Button Grid.Column="1" Text="Request Logs" Command="{Binding RequestLogsCommand}" BackgroundColor="#2196F3" TextColor="White" CornerRadius="8" HeightRequest="40" />
             </Grid>
 
-            <CollectionView ItemsSource="{Binding Logs}" HeightRequest="220" EmptyView="No logs yet.">
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <Frame Padding="8" Margin="0,4" CornerRadius="6" HasShadow="False">
-                            <Label Text="{Binding .}" LineBreakMode="TailTruncation" />
-                        </Frame>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
+            <RefreshView Command="{Binding RefreshLogsCommand}" IsRefreshing="{Binding IsRefreshingLogs}">
+                <CollectionView ItemsSource="{Binding Logs}" HeightRequest="220"
+                                EmptyView="No logs yet. Pull down to refresh.">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Frame Padding="8" Margin="0,4" CornerRadius="6" HasShadow="False">
+                                <Label Text="{Binding .}" LineBreakMode="TailTruncation" />
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </RefreshView>
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

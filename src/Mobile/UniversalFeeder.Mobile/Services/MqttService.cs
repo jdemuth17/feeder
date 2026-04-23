@@ -30,15 +30,26 @@ namespace UniversalFeeder.Mobile.Services
             _client.DisconnectedAsync += async e =>
             {
                 ConnectionChanged?.Invoke(this, false);
-                await Task.Delay(5000);
-                try
+                System.Diagnostics.Debug.WriteLine($"MQTT Disconnected: reason={e.Reason} exception={e.Exception?.Message}");
+                // Exponential backoff reconnect: 2s, 4s, 8s... capped at 30s.
+                // Keeps retrying forever so transient network loss recovers without user action.
+                int attempt = 0;
+                while (_client is { IsConnected: false })
                 {
-                    await _client.ReconnectAsync();
-                    ConnectionChanged?.Invoke(this, true);
-                }
-                catch
-                {
-                    // Will retry on next disconnect event
+                    attempt++;
+                    int delayMs = Math.Min(30_000, 2_000 * (int)Math.Pow(2, Math.Min(attempt - 1, 4)));
+                    await Task.Delay(delayMs);
+                    try
+                    {
+                        await _client.ReconnectAsync();
+                        ConnectionChanged?.Invoke(this, true);
+                        System.Diagnostics.Debug.WriteLine($"MQTT Reconnected after {attempt} attempt(s)");
+                        break;
+                    }
+                    catch (Exception ex)
+                    {
+                        System.Diagnostics.Debug.WriteLine($"MQTT Reconnect attempt {attempt} failed: {ex.Message}");
+                    }
                 }
             };
 
@@ -249,22 +260,38 @@ namespace UniversalFeeder.Mobile.Services
 
             ScheduleListReceived += handler;
 
-            // Send get_schedule request to command topic
-            var cmdTopic = MqttCommands.GetCommandTopic(feederId);
-            var payload = System.Text.Json.JsonSerializer.Serialize(new { action = MqttCommands.ActionGetSchedule });
-            var message = new MqttApplicationMessageBuilder()
-                .WithTopic(cmdTopic)
-                .WithPayload(Encoding.UTF8.GetBytes(payload))
-                .WithQualityOfServiceLevel(MqttQualityOfServiceLevel.AtLeastOnce)
-                .Build();
-            await _client.PublishAsync(message);
+            try
+            {
+                // Send get_schedule request to command topic
+                var cmdTopic = MqttCommands.GetCommandTopic(feederId);
+                var payload = System.Text.Json.JsonSerializer.Serialize(new { action = MqttCommands.ActionGetSchedule });
+                var message = new MqttApplicationMessageBuilder()
+                    .WithTopic(cmdTopic)
+                    .WithPayload(Encoding.UTF8.GetBytes(payload))
+                    .WithQualityOfServiceLevel(MqttQualityOfServiceLevel.AtLeastOnce)
+                    .Build();
+                await _client.PublishAsync(message);
 
-            var timeout = Task.Delay(timeoutMs);
-            var completed = await Task.WhenAny(tcs.Task, timeout);
+                var timeout = Task.Delay(timeoutMs);
+                var completed = await Task.WhenAny(tcs.Task, timeout);
 
-            ScheduleListReceived -= handler;
-
-            return completed == tcs.Task ? await tcs.Task : new List<Models.FeedingScheduleEntry>();
+                return completed == tcs.Task ? await tcs.Task : new List<Models.FeedingScheduleEntry>();
+            }
+            finally
+            {
+                ScheduleListReceived -= handler;
+                try
+                {
+                    if (_client is { IsConnected: true })
+                    {
+                        await _client.UnsubscribeAsync(scheduleTopic);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    System.Diagnostics.Debug.WriteLine($"MQTT Unsubscribe error: {ex.Message}");
+                }
+            }
         }
 
         public async Task<bool> SubscribeToLogsAsync(string feederId)
