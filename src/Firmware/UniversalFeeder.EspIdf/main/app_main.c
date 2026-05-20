@@ -17,6 +17,11 @@
 #include "provisioning_store.h"
 #include "wifi_manager.h"
 #include "time_store.h"
+#include "driver/gpio.h"
+
+#define BOOT_BUTTON_GPIO        GPIO_NUM_0
+#define BOOT_BUTTON_HOLD_MS     5000
+#define BOOT_BUTTON_POLL_MS     100
 
 static const char *TAG = "UniversalFeeder";
 char g_device_id[FEEDER_DEVICE_ID_MAX_LEN] = {0};
@@ -37,6 +42,43 @@ static void on_credentials_received(const feeder_wifi_credentials_t *credentials
 {
     ESP_LOGI(TAG, "Provisioning received for SSID '%s'", credentials->ssid);
     ESP_ERROR_CHECK(wifi_manager_connect(credentials));
+}
+
+// Holds the BOOT button (GPIO0) low for >= 5s to wipe Wi-Fi credentials and
+// reboot into BLE provisioning mode. Lets users recover a feeder that lost
+// the network or moved homes without needing MQTT connectivity.
+static void boot_button_task(void *arg)
+{
+    (void)arg;
+    gpio_config_t io_conf = {
+        .pin_bit_mask = (1ULL << BOOT_BUTTON_GPIO),
+        .mode = GPIO_MODE_INPUT,
+        .pull_up_en = GPIO_PULLUP_ENABLE,
+        .pull_down_en = GPIO_PULLDOWN_DISABLE,
+        .intr_type = GPIO_INTR_DISABLE,
+    };
+    gpio_config(&io_conf);
+
+    int held_ms = 0;
+    while (true) {
+        int level = gpio_get_level(BOOT_BUTTON_GPIO);
+        if (level == 0) {
+            held_ms += BOOT_BUTTON_POLL_MS;
+            if (held_ms == 1000) {
+                ESP_LOGW(TAG, "BOOT button held; hold 5s total to factory-reset Wi-Fi");
+            }
+            if (held_ms >= BOOT_BUTTON_HOLD_MS) {
+                ESP_LOGW(TAG, "BOOT button held %d ms; clearing credentials and restarting", held_ms);
+                buzzer_control_play(CHIME_DEFAULT_VOLUME, 400);
+                provisioning_store_clear_credentials();
+                vTaskDelay(pdMS_TO_TICKS(300));
+                esp_restart();
+            }
+        } else {
+            held_ms = 0;
+        }
+        vTaskDelay(pdMS_TO_TICKS(BOOT_BUTTON_POLL_MS));
+    }
 }
 
 void app_main(void)
@@ -86,6 +128,8 @@ void app_main(void)
     // Quick audible boot confirmation so users can tell the device powered up
     // and finished initialization without needing to open the app.
     buzzer_control_play(CHIME_DEFAULT_VOLUME, 120);
+
+    xTaskCreate(boot_button_task, "boot_btn", 2048, NULL, 4, NULL);
 
     while (1) {
         vTaskDelay(pdMS_TO_TICKS(10000));

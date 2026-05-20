@@ -23,16 +23,19 @@ public static class MauiProgram
 		builder.Services.AddSingleton<BleService>();
 		builder.Services.AddSingleton<FeederStorageService>();
 		builder.Services.AddSingleton<LogRepository>();
+		builder.Services.AddSingleton<FeedTypeService>();
 
 		// ViewModels
 		builder.Services.AddTransient<DashboardViewModel>();
 		builder.Services.AddTransient<ScheduleViewModel>();
 		builder.Services.AddTransient<ProvisioningViewModel>();
+		builder.Services.AddTransient<FeedTypeViewModel>();
 
 		// Pages
 		builder.Services.AddTransient<DashboardPage>();
 		builder.Services.AddTransient<SchedulePage>();
 		builder.Services.AddTransient<ProvisioningPage>();
+		builder.Services.AddTransient<FeedTypePage>();
 
 #if DEBUG
 		builder.Logging.AddDebug();

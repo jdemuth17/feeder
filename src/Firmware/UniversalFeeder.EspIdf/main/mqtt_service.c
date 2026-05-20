@@ -12,6 +12,10 @@
 #include "schedule_manager.h"
 #include "app_config.h"
 #include "log_store.h"
+#include "provisioning_store.h"
+#include "esp_system.h"
+#include "freertos/FreeRTOS.h"
+#include "freertos/task.h"
 
 static const char *TAG = "MqttService";
 
@@ -48,7 +52,13 @@ static void handle_command(const char *payload, size_t payload_len)
         }
         cJSON *duration = cJSON_GetObjectItemCaseSensitive(root, "ms");
         int duration_ms = cJSON_IsNumber(duration) ? duration->valueint : FEEDER_DEFAULT_DURATION_MS;
-        esp_err_t err = feeding_sequence_start(duration_ms);
+        cJSON *jcc = cJSON_GetObjectItemCaseSensitive(root, "chime_count");
+        cJSON *jcd = cJSON_GetObjectItemCaseSensitive(root, "chime_duration_ms");
+        cJSON *jcl = cJSON_GetObjectItemCaseSensitive(root, "chime_lead_ms");
+        int chime_count = cJSON_IsNumber(jcc) ? jcc->valueint : FEEDING_SEQUENCE_CHIME_COUNT;
+        int chime_duration_ms = cJSON_IsNumber(jcd) ? jcd->valueint : FEEDING_SEQUENCE_CHIME_DURATION_MS;
+        int chime_lead_ms = cJSON_IsNumber(jcl) ? jcl->valueint : 0;
+        esp_err_t err = feeding_sequence_start_full(duration_ms, chime_count, chime_duration_ms, chime_lead_ms);
         if (err != ESP_OK) {
             ESP_LOGW(TAG, "Feed command was rejected: %s", esp_err_to_name(err));
         } else {
@@ -58,7 +68,11 @@ static void handle_command(const char *payload, size_t payload_len)
     } else if (strcmp(action->valuestring, "chime") == 0) {
         cJSON *volume = cJSON_GetObjectItemCaseSensitive(root, "vol");
         float level = cJSON_IsNumber(volume) ? (float)volume->valuedouble : CHIME_DEFAULT_VOLUME;
-        esp_err_t err = feeding_sequence_play_chime(level, CHIME_DURATION_MS);
+        cJSON *jcc = cJSON_GetObjectItemCaseSensitive(root, "chime_count");
+        cJSON *jcd = cJSON_GetObjectItemCaseSensitive(root, "chime_duration_ms");
+        int chime_count = cJSON_IsNumber(jcc) ? jcc->valueint : 1;
+        int chime_duration_ms = cJSON_IsNumber(jcd) ? jcd->valueint : CHIME_DURATION_MS;
+        esp_err_t err = feeding_sequence_play_chime_burst(level, chime_count, chime_duration_ms);
         if (err != ESP_OK) {
             ESP_LOGW(TAG, "Chime command was rejected: %s", esp_err_to_name(err));
         }
@@ -80,6 +94,7 @@ static void handle_command(const char *payload, size_t payload_len)
         }
     } else if (strcmp(action->valuestring, "request_logs") == 0) {
         ESP_LOGI(TAG, "Received request_logs command; publishing stored entries");
+        int published = 0;
         char *buf = malloc(16384);
         if (buf != NULL) {
             esp_err_t r = log_store_get_all_json(buf, 16384);
@@ -94,6 +109,7 @@ static void handle_command(const char *payload, size_t payload_len)
                         if (entry != NULL) {
                             if (s_client != NULL) {
                                 esp_mqtt_client_publish(s_client, s_log_topic, entry, 0, 1, 0);
+                                published++;
                             }
                             free(entry);
                         }
@@ -105,6 +121,23 @@ static void handle_command(const char *payload, size_t payload_len)
             }
             free(buf);
         }
+        char done[96];
+        snprintf(done, sizeof(done),
+                 "{\"action\":\"logs_replay_complete\",\"count\":%d}", published);
+        if (s_client != NULL) {
+            esp_mqtt_client_publish(s_client, s_log_topic, done, 0, 1, 0);
+        }
+    } else if (strcmp(action->valuestring, "wifi_reconfigure") == 0) {
+        ESP_LOGW(TAG, "Received wifi_reconfigure; clearing credentials and restarting");
+        char ack[96];
+        snprintf(ack, sizeof(ack),
+                 "{\"action\":\"wifi_reconfigure_ack\",\"status\":\"restarting\"}");
+        if (s_client != NULL) {
+            esp_mqtt_client_publish(s_client, s_log_topic, ack, 0, 1, 0);
+        }
+        vTaskDelay(pdMS_TO_TICKS(300));
+        provisioning_store_clear_credentials();
+        esp_restart();
     } else if (strcmp(action->valuestring, "clear_logs") == 0) {
         ESP_LOGI(TAG, "Clearing stored log entries");
         log_store_clear();

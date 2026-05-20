@@ -132,7 +132,8 @@ namespace UniversalFeeder.Mobile.Services
             }
         }
 
-        public async Task<bool> SendFeedCommandAsync(string feederId, int durationMs = 5000)
+        public async Task<bool> SendFeedCommandAsync(string feederId, int durationMs = 5000,
+            int chimeCount = 3, int chimeDurationMs = 3000, int chimeLeadMs = 0)
         {
             if (_client is not { IsConnected: true }) return false;
 
@@ -140,7 +141,10 @@ namespace UniversalFeeder.Mobile.Services
             var payload = JsonSerializer.Serialize(new
             {
                 action = MqttCommands.ActionFeed,
-                ms = durationMs
+                ms = durationMs,
+                chime_count = chimeCount,
+                chime_duration_ms = chimeDurationMs,
+                chime_lead_ms = chimeLeadMs
             });
 
             try
@@ -161,7 +165,8 @@ namespace UniversalFeeder.Mobile.Services
             }
         }
 
-        public async Task<bool> SendChimeCommandAsync(string feederId, float volume = 1.0f)
+        public async Task<bool> SendChimeCommandAsync(string feederId, float volume = 1.0f,
+            int chimeCount = 3, int chimeDurationMs = 3000)
         {
             if (_client is not { IsConnected: true }) return false;
 
@@ -169,7 +174,9 @@ namespace UniversalFeeder.Mobile.Services
             var payload = JsonSerializer.Serialize(new
             {
                 action = MqttCommands.ActionChime,
-                vol = volume
+                vol = volume,
+                chime_count = chimeCount,
+                chime_duration_ms = chimeDurationMs
             });
 
             try
@@ -180,6 +187,30 @@ namespace UniversalFeeder.Mobile.Services
                     .WithQualityOfServiceLevel(MqttQualityOfServiceLevel.AtLeastOnce)
                     .Build();
 
+                await _client.PublishAsync(message);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"MQTT Publish Error: {ex.Message}");
+                return false;
+            }
+        }
+
+        public async Task<bool> SendWifiReconfigureAsync(string feederId)
+        {
+            if (_client is not { IsConnected: true }) return false;
+
+            var topic = MqttCommands.GetCommandTopic(feederId);
+            var payload = JsonSerializer.Serialize(new { action = MqttCommands.ActionWifiReconfigure });
+
+            try
+            {
+                var message = new MqttApplicationMessageBuilder()
+                    .WithTopic(topic)
+                    .WithPayload(Encoding.UTF8.GetBytes(payload))
+                    .WithQualityOfServiceLevel(MqttQualityOfServiceLevel.AtLeastOnce)
+                    .Build();
                 await _client.PublishAsync(message);
                 return true;
             }
@@ -248,9 +279,20 @@ namespace UniversalFeeder.Mobile.Services
                             var timeStr = item.TryGetProperty("time", out var t) ? t.GetString() ?? "00:00" : "00:00";
                             var durationMs = item.TryGetProperty("duration_ms", out var d) ? d.GetInt32() : 5000;
                             var enabled = item.TryGetProperty("enabled", out var e) ? e.GetBoolean() : true;
+                            var chimeLeadMs = item.TryGetProperty("chime_lead_ms", out var cl) ? cl.GetInt32() : 0;
+                            var chimeCount = item.TryGetProperty("chime_count", out var cc) ? cc.GetInt32() : 3;
+                            var chimeDurationMs = item.TryGetProperty("chime_duration_ms", out var cd) ? cd.GetInt32() : 3000;
                             if (!TimeSpan.TryParseExact(timeStr, @"hh\:mm", null, out var ts))
                                 ts = TimeSpan.Zero;
-                            entries.Add(new Models.FeedingScheduleEntry { Time = ts, DurationSeconds = durationMs / 1000.0, Enabled = enabled });
+                            entries.Add(new Models.FeedingScheduleEntry
+                            {
+                                Time = ts,
+                                DurationSeconds = durationMs / 1000.0,
+                                Enabled = enabled,
+                                ChimeLeadSeconds = chimeLeadMs / 1000,
+                                ChimeCount = chimeCount,
+                                ChimeDurationSeconds = chimeDurationMs / 1000.0
+                            });
                         }
                         tcs.TrySetResult(entries);
                     }
@@ -314,6 +356,10 @@ namespace UniversalFeeder.Mobile.Services
         public async Task<bool> RequestLogsAsync(string feederId, long sinceUnix = 0)
         {
             if (_client is not { IsConnected: true }) return false;
+
+            // Subscribe first so we don't miss the burst of log messages the firmware
+            // emits in response to this request.
+            await SubscribeToLogsAsync(feederId);
 
             var topic = MqttCommands.GetCommandTopic(feederId);
             object payloadObj = sinceUnix > 0 ? new { action = "request_logs", since = sinceUnix } : new { action = "request_logs" };

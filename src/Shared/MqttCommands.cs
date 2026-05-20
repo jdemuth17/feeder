@@ -11,6 +11,9 @@ namespace UniversalFeeder.Shared
         // JSON Keys
         public const string KeyAction = "action";
         public const string KeyDurationMs = "ms";
+        public const string KeyChimeLeadMs = "chime_lead_ms";
+        public const string KeyChimeCount = "chime_count";
+        public const string KeyChimeDurationMs = "chime_duration_ms";
         public const string KeyVolume = "vol";
         public const string KeySchedule = "schedule";
         public const string KeyTime = "time";
@@ -30,6 +33,9 @@ namespace UniversalFeeder.Shared
         public const string ActionGetSchedule = "get_schedule";
         public const string ActionScheduleList = "schedule_list";
         public const string ActionLog = "log";
+        public const string ActionRequestLogs = "request_logs";
+        public const string ActionWifiReconfigure = "wifi_reconfigure";
+        public const string ActionLogsReplayComplete = "logs_replay_complete";
 
         public static string GetCommandTopic(string uniqueId) => $"{TopicRoot}/{uniqueId}/{CommandSuffix}";
         public static string GetScheduleTopic(string uniqueId) => $"{TopicRoot}/{uniqueId}/{ScheduleSuffix}";

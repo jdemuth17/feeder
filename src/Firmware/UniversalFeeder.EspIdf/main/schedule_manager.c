@@ -19,6 +19,9 @@ typedef struct {
     int hour;
     int minute;
     int duration_ms;
+    int chime_lead_ms;
+    int chime_count;
+    int chime_duration_ms;
     bool enabled;
     int last_executed_date; // YYYYMMDD
 } schedule_entry_t;
@@ -86,6 +89,9 @@ static esp_err_t parse_and_replace_entries(const char *json)
     cJSON_ArrayForEach(item, arr) {
         cJSON *time_item = cJSON_GetObjectItemCaseSensitive(item, "time");
         cJSON *duration_item = cJSON_GetObjectItemCaseSensitive(item, "duration_ms");
+        cJSON *chime_lead_item = cJSON_GetObjectItemCaseSensitive(item, "chime_lead_ms");
+        cJSON *chime_count_item = cJSON_GetObjectItemCaseSensitive(item, "chime_count");
+        cJSON *chime_duration_item = cJSON_GetObjectItemCaseSensitive(item, "chime_duration_ms");
         cJSON *enabled_item = cJSON_GetObjectItemCaseSensitive(item, "enabled");
 
         if (!cJSON_IsString(time_item) || time_item->valuestring == NULL) {
@@ -98,11 +104,17 @@ static esp_err_t parse_and_replace_entries(const char *json)
         }
 
         int duration_ms = cJSON_IsNumber(duration_item) ? duration_item->valueint : 5000;
+        int chime_lead_ms = cJSON_IsNumber(chime_lead_item) ? chime_lead_item->valueint : 0;
+        int chime_count = cJSON_IsNumber(chime_count_item) ? chime_count_item->valueint : FEEDING_SEQUENCE_CHIME_COUNT;
+        int chime_duration_ms = cJSON_IsNumber(chime_duration_item) ? chime_duration_item->valueint : FEEDING_SEQUENCE_CHIME_DURATION_MS;
         bool enabled = cJSON_IsBool(enabled_item) ? cJSON_IsTrue(enabled_item) : true;
 
         new_entries[idx].hour = hour;
         new_entries[idx].minute = minute;
         new_entries[idx].duration_ms = duration_ms;
+        new_entries[idx].chime_lead_ms = chime_lead_ms;
+        new_entries[idx].chime_count = chime_count;
+        new_entries[idx].chime_duration_ms = chime_duration_ms;
         new_entries[idx].enabled = enabled;
         new_entries[idx].last_executed_date = 0;
         idx++;
@@ -146,6 +158,9 @@ char *schedule_manager_get_json(void)
                 snprintf(time_str, sizeof(time_str), "%02d:%02d", e->hour, e->minute);
                 cJSON_AddStringToObject(item, "time", time_str);
                 cJSON_AddNumberToObject(item, "duration_ms", e->duration_ms);
+                cJSON_AddNumberToObject(item, "chime_lead_ms", e->chime_lead_ms);
+                cJSON_AddNumberToObject(item, "chime_count", e->chime_count);
+                cJSON_AddNumberToObject(item, "chime_duration_ms", e->chime_duration_ms);
                 cJSON_AddBoolToObject(item, "enabled", e->enabled);
                 cJSON_AddItemToArray(arr, item);
             }
@@ -197,7 +212,10 @@ static void schedule_task(void *arg)
                 if (e->hour == now_hour && e->minute == now_min && e->last_executed_date != today) {
                     ESP_LOGI(TAG, "Firing scheduled feed [%d] at %02d:%02d", (int)i, e->hour, e->minute);
                     int duration_ms = e->duration_ms > 0 ? e->duration_ms : FEEDER_DEFAULT_DURATION_MS;
-                    esp_err_t res = feeding_sequence_start(duration_ms);
+                    esp_err_t res = feeding_sequence_start_full(duration_ms,
+                                                                e->chime_count,
+                                                                e->chime_duration_ms,
+                                                                e->chime_lead_ms);
                     if (res == ESP_OK) {
                         e->last_executed_date = today;
                         feeding_sequence_publish_log(true, "scheduled feed", false);

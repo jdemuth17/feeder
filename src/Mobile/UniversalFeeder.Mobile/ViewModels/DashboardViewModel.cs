@@ -8,6 +8,7 @@ using System.Windows.Input;
 using Microsoft.Maui.ApplicationModel;
 using Microsoft.Maui.Controls;
 using Microsoft.Maui.Devices;
+using Microsoft.Maui.Storage;
 using UniversalFeeder.Mobile.Models;
 using UniversalFeeder.Mobile.Services;
 
@@ -18,14 +19,67 @@ namespace UniversalFeeder.Mobile.ViewModels
         private readonly MqttService _mqttService;
         private readonly FeederStorageService _storageService;
         private readonly LogRepository _logRepository;
+        private readonly FeedTypeService _feedTypeService;
         private FeederDevice? _selectedFeeder;
         private string _status = "Not connected";
         private bool _isConnected;
         private bool _isBusy;
         private int _feedDurationSeconds = 5;
+        private int _chimeCount = 3;
+        private double _chimeDurationSeconds = 3.0;
+        private int _chimeLeadSeconds = 0;
         public ObservableCollection<string> Logs { get; } = new();
-
         public ObservableCollection<FeederDevice> Feeders { get; } = new();
+        public ObservableCollection<FeedType> AvailableFeedTypes { get; } = new();
+
+        // ── Feed type + cups selection for manual feed ───────────────────────
+
+        private FeedType? _selectedFeedType;
+        public FeedType? SelectedFeedType
+        {
+            get => _selectedFeedType;
+            set
+            {
+                _selectedFeedType = value;
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(HasSelectedFeedType));
+                OnPropertyChanged(nameof(ManualFeedSummary));
+            }
+        }
+        public bool HasSelectedFeedType => _selectedFeedType != null;
+
+        private int _selectedCupsIndex = 3; // default = 1 cup
+        public int SelectedCupsIndex
+        {
+            get => _selectedCupsIndex;
+            set
+            {
+                _selectedCupsIndex = Math.Clamp(value, 0, FeedTypeViewModel.CupValues.Length - 1);
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(ManualFeedSummary));
+            }
+        }
+        public double SelectedCups => FeedTypeViewModel.CupValues[_selectedCupsIndex];
+
+        public string ManualFeedSummary
+        {
+            get
+            {
+                if (_selectedFeedType != null)
+                {
+                    double secs = SelectedCups * _selectedFeedType.SecondsPerCup;
+                    return $"{FeedTypeViewModel.CupLabels[_selectedCupsIndex]} of {_selectedFeedType.Name} (≈ {secs:F1}s)";
+                }
+                return $"{_feedDurationSeconds} second(s)";
+            }
+        }
+
+        public void ReloadFeedTypes()
+        {
+            AvailableFeedTypes.Clear();
+            foreach (var ft in _feedTypeService.GetAll())
+                AvailableFeedTypes.Add(ft);
+        }
 
         public FeederDevice? SelectedFeeder
         {
@@ -111,6 +165,45 @@ namespace UniversalFeeder.Mobile.ViewModels
             set { _feedDurationSeconds = Math.Max(1, Math.Min(30, value)); OnPropertyChanged(); }
         }
 
+        public int ChimeCount
+        {
+            get => _chimeCount;
+            set
+            {
+                int clamped = Math.Clamp((int)value, 0, 5);
+                if (_chimeCount == clamped) return;
+                _chimeCount = clamped;
+                Preferences.Set("dash_chime_count", _chimeCount);
+                OnPropertyChanged();
+            }
+        }
+
+        public double ChimeDurationSeconds
+        {
+            get => _chimeDurationSeconds;
+            set
+            {
+                double clamped = Math.Clamp(value, 0.2, 5.0);
+                if (Math.Abs(_chimeDurationSeconds - clamped) < 0.01) return;
+                _chimeDurationSeconds = clamped;
+                Preferences.Set("dash_chime_duration", _chimeDurationSeconds);
+                OnPropertyChanged();
+            }
+        }
+
+        public int ChimeLeadSeconds
+        {
+            get => _chimeLeadSeconds;
+            set
+            {
+                int clamped = Math.Clamp((int)value, 0, 30);
+                if (_chimeLeadSeconds == clamped) return;
+                _chimeLeadSeconds = clamped;
+                Preferences.Set("dash_chime_lead", _chimeLeadSeconds);
+                OnPropertyChanged();
+            }
+        }
+
         public ICommand ConnectCommand { get; }
         public ICommand FeedCommand { get; }
         public ICommand ChimeCommand { get; }
@@ -121,6 +214,8 @@ namespace UniversalFeeder.Mobile.ViewModels
         public ICommand RefreshLogsCommand { get; }
         public ICommand RemoveFeederCommand { get; }
         public ICommand RenameFeederCommand { get; }
+        public ICommand EditFeedTypesCommand { get; }
+        public ICommand ReconfigureWifiCommand { get; }
 
         private bool _isRefreshingLogs;
         public bool IsRefreshingLogs
@@ -129,11 +224,12 @@ namespace UniversalFeeder.Mobile.ViewModels
             set { _isRefreshingLogs = value; OnPropertyChanged(); }
         }
 
-        public DashboardViewModel(MqttService mqttService, FeederStorageService storageService, LogRepository logRepository)
+        public DashboardViewModel(MqttService mqttService, FeederStorageService storageService, LogRepository logRepository, FeedTypeService feedTypeService)
         {
             _mqttService = mqttService;
             _storageService = storageService;
             _logRepository = logRepository;
+            _feedTypeService = feedTypeService;
 
             ConnectCommand = new Command(async () => await ConnectAsync());
             FeedCommand = new Command(async () => await FeedAsync());
@@ -145,6 +241,12 @@ namespace UniversalFeeder.Mobile.ViewModels
             RefreshLogsCommand = new Command(async () => await RefreshLogsAsync());
             RemoveFeederCommand = new Command<FeederDevice>(async f => await RemoveFeederAsync(f));
             RenameFeederCommand = new Command<FeederDevice>(async f => await RenameFeederAsync(f));
+            EditFeedTypesCommand = new Command(async () => await EditFeedTypesAsync());
+            ReconfigureWifiCommand = new Command(async () => await ReconfigureWifiAsync());
+
+            _chimeCount = Preferences.Get("dash_chime_count", 3);
+            _chimeDurationSeconds = Preferences.Get("dash_chime_duration", 3.0);
+            _chimeLeadSeconds = Preferences.Get("dash_chime_lead", 0);
 
             _mqttService.ConnectionChanged += (s, connected) =>
             {
@@ -198,6 +300,13 @@ namespace UniversalFeeder.Mobile.ViewModels
                 {
                     var ok = root.TryGetProperty("success", out var s) && s.GetBoolean();
                     return $"{timeStr} — Schedule {(ok ? "saved ✓" : "save failed ✗")}";
+                }
+
+                // Logs replay completion
+                if (root.TryGetProperty("action", out var actEl2) && actEl2.GetString() == "logs_replay_complete")
+                {
+                    var n = root.TryGetProperty("count", out var c) ? c.GetInt32() : 0;
+                    return $"{timeStr} — Log replay complete ({n} entries)";
                 }
 
                 // Feeding event
@@ -255,6 +364,13 @@ namespace UniversalFeeder.Mobile.ViewModels
             await Shell.Current.GoToAsync($"SchedulePage?feederId={encoded}");
         }
 
+        private async Task EditFeedTypesAsync()
+        {
+            var feederId = SelectedFeeder?.UniqueId ?? string.Empty;
+            var encoded = Uri.EscapeDataString(feederId);
+            await Shell.Current.GoToAsync($"FeedTypePage?feederId={encoded}");
+        }
+
         private async Task RequestLogsAsync()
         {
             if (SelectedFeeder == null)
@@ -274,11 +390,79 @@ namespace UniversalFeeder.Mobile.ViewModels
             try
             {
                 var success = await _mqttService.RequestLogsAsync(SelectedFeeder.UniqueId);
-                Status = success ? "Requested logs" : "Failed to request logs";
+                if (success)
+                {
+                    Status = "Waiting for logs...";
+                    // Firmware replays stored entries as a burst on the logs topic.
+                    // Give them a moment to land, then refresh from local DB.
+                    await Task.Delay(1500);
+                    await LoadStoredLogsAsync();
+                    Status = $"Logs refreshed ({Logs.Count})";
+                }
+                else
+                {
+                    Status = "Failed to request logs";
+                }
             }
             catch (Exception ex)
             {
                 Status = $"Request logs error: {ex.Message}";
+            }
+            finally
+            {
+                IsBusy = false;
+            }
+        }
+
+        private async Task ReconfigureWifiAsync()
+        {
+            if (SelectedFeeder == null)
+            {
+                Status = "Select a feeder first";
+                return;
+            }
+
+            var page = Application.Current?.Windows.FirstOrDefault()?.Page;
+            if (page != null)
+            {
+                var confirmed = await page.DisplayAlertAsync(
+                    "Change Wi-Fi?",
+                    $"{SelectedFeeder.Nickname} will disconnect from the network and restart in setup mode. " +
+                    "You will need to re-run the Setup flow to reconnect it.\n\n" +
+                    "If the feeder is offline, hold the BOOT button on the device for 5 seconds instead.",
+                    "Continue",
+                    "Cancel");
+                if (!confirmed) return;
+            }
+
+            if (!IsConnected)
+            {
+                if (page != null)
+                {
+                    await page.DisplayAlertAsync("Not connected", "Connect to MQTT first, or use the hardware BOOT button (hold 5s).", "OK");
+                }
+                Status = "Connect to MQTT first";
+                return;
+            }
+
+            IsBusy = true;
+            Status = $"Sending Wi-Fi reset to {SelectedFeeder.Nickname}...";
+            try
+            {
+                var success = await _mqttService.SendWifiReconfigureAsync(SelectedFeeder.UniqueId);
+                Status = success
+                    ? "Wi-Fi reset sent. Feeder will restart in setup mode."
+                    : "Failed to send Wi-Fi reset";
+                if (success && page != null)
+                {
+                    await page.DisplayAlertAsync("Reset sent",
+                        "The feeder will restart in BLE setup mode shortly. Open the Setup tab to reconnect it.",
+                        "OK");
+                }
+            }
+            catch (Exception ex)
+            {
+                Status = $"Wi-Fi reset error: {ex.Message}";
             }
             finally
             {
@@ -369,12 +553,27 @@ namespace UniversalFeeder.Mobile.ViewModels
                 return;
             }
 
+            // Compute duration from feed type + cups, or fall back to raw slider
+            int durationMs;
+            string summary;
+            if (_selectedFeedType != null)
+            {
+                double secs = SelectedCups * _selectedFeedType.SecondsPerCup;
+                durationMs = Math.Max(1, (int)(secs * 1000));
+                summary = ManualFeedSummary;
+            }
+            else
+            {
+                durationMs = FeedDurationSeconds * 1000;
+                summary = $"{FeedDurationSeconds} second(s)";
+            }
+
             var page = Application.Current?.Windows.FirstOrDefault()?.Page;
             if (page != null)
             {
                 var confirmed = await page.DisplayAlertAsync(
                     "Feed now?",
-                    $"Dispense food from {SelectedFeeder.Nickname} for {FeedDurationSeconds} second(s)?",
+                    $"Dispense {summary} from {SelectedFeeder.Nickname}?",
                     "Feed",
                     "Cancel");
                 if (!confirmed)
@@ -391,13 +590,16 @@ namespace UniversalFeeder.Mobile.ViewModels
             try
             {
                 var success = await PublishWithRetryAsync(
-                    ct => _mqttService.SendFeedCommandAsync(SelectedFeeder.UniqueId, FeedDurationSeconds * 1000),
+                    ct => _mqttService.SendFeedCommandAsync(SelectedFeeder.UniqueId, durationMs,
+                                                            _chimeCount,
+                                                            (int)(_chimeDurationSeconds * 1000),
+                                                            _chimeLeadSeconds * 1000),
                     progress: attempt => Status = $"Sending feed (attempt {attempt}/3)...");
 
                 if (success)
                 {
                     TryHaptic(HapticFeedbackType.LongPress);
-                    Status = $"Feed command sent! ({FeedDurationSeconds}s)";
+                    Status = $"Feed command sent! ({summary})";
                 }
                 else
                 {
@@ -473,7 +675,9 @@ namespace UniversalFeeder.Mobile.ViewModels
             try
             {
                 var success = await PublishWithRetryAsync(
-                    _ => _mqttService.SendChimeCommandAsync(SelectedFeeder.UniqueId),
+                    _ => _mqttService.SendChimeCommandAsync(SelectedFeeder.UniqueId, 1.0f,
+                                                            _chimeCount,
+                                                            (int)(_chimeDurationSeconds * 1000)),
                     progress: attempt => Status = $"Sending chime (attempt {attempt}/3)...");
                 Status = success ? "Chime sent!" : "Failed to send chime after 3 attempts";
             }
