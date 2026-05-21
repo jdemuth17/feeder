@@ -29,25 +29,39 @@
             <!-- Feeder List -->
             <Label Text="Feeders" FontSize="20" FontAttributes="Bold" />
 
-            <CollectionView ItemsSource="{Binding Feeders}" 
-                            SelectedItem="{Binding SelectedFeeder}" 
-                            SelectionMode="Single"
-                            EmptyView="No feeders registered. Go to Setup tab to add one.">
-                <CollectionView.ItemTemplate>
+            <VerticalStackLayout BindableLayout.ItemsSource="{Binding Feeders}" Spacing="0">
+                <BindableLayout.EmptyView>
+                    <Label Text="No feeders registered. Go to Setup tab to add one."
+                           TextColor="Gray" Margin="0,8" />
+                </BindableLayout.EmptyView>
+                <BindableLayout.ItemTemplate>
                     <DataTemplate x:DataType="models:FeederDevice">
-                        <Frame Padding="12" Margin="0,4" CornerRadius="8" HasShadow="True">
+                        <Frame Padding="12" Margin="0,4" CornerRadius="8" HasShadow="True"
+                               BorderColor="#666" BackgroundColor="#2A2A2A">
+                            <Frame.Triggers>
+                                <DataTrigger TargetType="Frame" Binding="{Binding IsSelected}" Value="True">
+                                    <Setter Property="BorderColor" Value="#2196F3" />
+                                    <Setter Property="BackgroundColor" Value="#1565C0" />
+                                </DataTrigger>
+                            </Frame.Triggers>
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.SelectFeederCommand}"
+                                    CommandParameter="{Binding .}" />
+                            </Frame.GestureRecognizers>
                             <Grid ColumnDefinitions="*,Auto,Auto" RowDefinitions="Auto,Auto">
-                                <Label Text="{Binding Nickname}" FontAttributes="Bold" FontSize="16" />
-                                <Label Grid.Row="1" Text="{Binding UniqueId, StringFormat='ID: {0}'}" 
-                                       FontSize="12" TextColor="Gray" />
+                                <Label Text="{Binding Nickname}" FontAttributes="Bold" FontSize="16"
+                                       TextColor="White" />
+                                <Label Grid.Row="1" Text="{Binding UniqueId, StringFormat='ID: {0}'}"
+                                       FontSize="12" TextColor="#BBBBBB" />
                                 <Button Grid.Column="1" Grid.RowSpan="2"
-                                        Text="✏" TextColor="#2196F3"
+                                        Text="✏" TextColor="#64B5F6"
                                         BackgroundColor="Transparent"
                                         Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.RenameFeederCommand}"
                                         CommandParameter="{Binding .}"
                                         WidthRequest="40" HeightRequest="40" />
                                 <Button Grid.Column="2" Grid.RowSpan="2"
-                                        Text="✕" TextColor="Red"
+                                        Text="✕" TextColor="#FF5252"
                                         BackgroundColor="Transparent"
                                         Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.RemoveFeederCommand}"
                                         CommandParameter="{Binding .}"
@@ -55,8 +69,8 @@
                             </Grid>
                         </Frame>
                     </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
+                </BindableLayout.ItemTemplate>
+            </VerticalStackLayout>
 
             <!-- Controls (only visible when a feeder is selected) -->
             <VerticalStackLayout Spacing="12" IsVisible="{Binding HasSelectedFeeder}">

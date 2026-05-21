@@ -87,7 +87,9 @@ namespace UniversalFeeder.Mobile.ViewModels
             set
             {
                 if (_selectedFeeder == value) return;
+                if (_selectedFeeder != null) _selectedFeeder.IsSelected = false;
                 _selectedFeeder = value;
+                if (_selectedFeeder != null) _selectedFeeder.IsSelected = true;
                 OnPropertyChanged();
                 OnPropertyChanged(nameof(HasSelectedFeeder));
 
@@ -216,6 +218,7 @@ namespace UniversalFeeder.Mobile.ViewModels
         public ICommand RenameFeederCommand { get; }
         public ICommand EditFeedTypesCommand { get; }
         public ICommand ReconfigureWifiCommand { get; }
+        public ICommand SelectFeederCommand { get; }
 
         private bool _isRefreshingLogs;
         public bool IsRefreshingLogs
@@ -243,6 +246,7 @@ namespace UniversalFeeder.Mobile.ViewModels
             RenameFeederCommand = new Command<FeederDevice>(async f => await RenameFeederAsync(f));
             EditFeedTypesCommand = new Command(async () => await EditFeedTypesAsync());
             ReconfigureWifiCommand = new Command(async () => await ReconfigureWifiAsync());
+            SelectFeederCommand = new Command<FeederDevice>(f => { if (f != null) SelectedFeeder = f; });
 
             _chimeCount = Preferences.Get("dash_chime_count", 3);
             _chimeDurationSeconds = Preferences.Get("dash_chime_duration", 3.0);
@@ -496,16 +500,25 @@ namespace UniversalFeeder.Mobile.ViewModels
 
         public void LoadFeeders()
         {
+            var previousId = SelectedFeeder?.UniqueId;
             Feeders.Clear();
             foreach (var f in _storageService.GetFeeders())
             {
                 Feeders.Add(f);
             }
 
-            if (Feeders.Count > 0 && SelectedFeeder == null)
+            if (Feeders.Count == 0)
             {
-                SelectedFeeder = Feeders[0];
+                SelectedFeeder = null;
+                return;
             }
+
+            // Preserve previous selection across reloads (otherwise selection
+            // resets to the first feeder on every OnAppearing / storage change).
+            var restore = previousId != null
+                ? Feeders.FirstOrDefault(f => f.UniqueId == previousId)
+                : null;
+            SelectedFeeder = restore ?? Feeders[0];
         }
 
         private async Task ConnectAsync()
