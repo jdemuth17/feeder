@@ -7,6 +7,7 @@ public partial class AppShell : Shell
 		InitializeComponent();
 
 			Routing.RegisterRoute("SchedulePage", typeof(Views.SchedulePage));
-			Routing.RegisterRoute("FeedTypePage", typeof(Views.FeedTypePage));
+		Routing.RegisterRoute("FeedTypePage", typeof(Views.FeedTypePage));
+		Routing.RegisterRoute("LogsPage", typeof(Views.LogsPage));
 	}
 }

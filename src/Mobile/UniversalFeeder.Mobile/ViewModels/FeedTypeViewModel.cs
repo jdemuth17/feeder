@@ -46,7 +46,7 @@ namespace UniversalFeeder.Mobile.ViewModels
         public double CalibrationSeconds
         {
             get => _calibrationSeconds;
-            set { _calibrationSeconds = Math.Clamp(value, 1, 60); OnPropertyChanged(); }
+            set { _calibrationSeconds = Math.Clamp(value, 1, 300); OnPropertyChanged(); }
         }
 
         private int _measuredCupsIndex = 3; // default = 1 cup

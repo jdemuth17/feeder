@@ -43,6 +43,14 @@
 		<AndroidFastDeploy>false</AndroidFastDeploy>
 	</PropertyGroup>
 
+	<PropertyGroup Condition="'$(Configuration)'=='Release'">
+		<AndroidKeyStore>true</AndroidKeyStore>
+		<AndroidSigningKeyStore>universalfeeder.keystore</AndroidSigningKeyStore>
+		<AndroidSigningKeyAlias>universalfeeder</AndroidSigningKeyAlias>
+		<AndroidSigningKeyPass>FeederApp2024!</AndroidSigningKeyPass>
+		<AndroidSigningStorePass>FeederApp2024!</AndroidSigningStorePass>
+	</PropertyGroup>
+
 	<ItemGroup>
 		<!-- App Icon -->
 		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />

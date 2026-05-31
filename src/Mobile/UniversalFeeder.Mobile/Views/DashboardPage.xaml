@@ -91,7 +91,7 @@
                 <!-- Raw seconds section (visible when no feed type) -->
                 <VerticalStackLayout x:Name="dashRawSection">
                     <Label Text="{Binding FeedDurationSeconds, StringFormat='Feed Duration: {0} seconds'}" />
-                    <Slider Minimum="1" Maximum="30" 
+                    <Slider Minimum="1" Maximum="300" 
                             Value="{Binding FeedDurationSeconds}" />
                 </VerticalStackLayout>
 
@@ -141,24 +141,11 @@
             <!-- Status -->
             <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" />
             <Label Text="{Binding Status}" HorizontalOptions="Center" TextColor="Gray" FontSize="14" />
-            <BoxView HeightRequest="1" Color="LightGray" />
-            <Grid ColumnDefinitions="*,Auto" ColumnSpacing="8" VerticalOptions="Center">
-                <Label Text="Logs" FontSize="18" FontAttributes="Bold" />
-                <Button Grid.Column="1" Text="Request Logs" Command="{Binding RequestLogsCommand}" BackgroundColor="#2196F3" TextColor="White" CornerRadius="8" HeightRequest="40" />
-            </Grid>
 
-            <RefreshView Command="{Binding RefreshLogsCommand}" IsRefreshing="{Binding IsRefreshingLogs}">
-                <CollectionView ItemsSource="{Binding Logs}" HeightRequest="220"
-                                EmptyView="No logs yet. Pull down to refresh.">
-                    <CollectionView.ItemTemplate>
-                        <DataTemplate>
-                            <Frame Padding="8" Margin="0,4" CornerRadius="6" HasShadow="False">
-                                <Label Text="{Binding .}" LineBreakMode="TailTruncation" />
-                            </Frame>
-                        </DataTemplate>
-                    </CollectionView.ItemTemplate>
-                </CollectionView>
-            </RefreshView>
+            <Button Text="📋 View Logs" Command="{Binding ViewLogsCommand}"
+                    IsVisible="{Binding HasSelectedFeeder}"
+                    BackgroundColor="#607D8B" TextColor="White" CornerRadius="8" HeightRequest="44" />
+
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

@@ -91,9 +91,9 @@ namespace UniversalFeeder.Mobile.ViewModels
                 error = "Time must be between 00:00 and 23:59.";
                 return false;
             }
-            if (durationSeconds <= 0 || durationSeconds > 60)
+            if (durationSeconds <= 0 || durationSeconds > 300)
             {
-                error = "Computed duration must be between 1 and 60 seconds.";
+                error = "Computed duration must be between 1 and 300 seconds.";
                 return false;
             }
             if (Entries.Any(e => e.Time == time))

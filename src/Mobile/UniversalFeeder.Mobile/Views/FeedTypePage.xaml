@@ -57,7 +57,7 @@
             <Entry Text="{Binding NewName}" Placeholder="e.g. Pellet Feed" />
 
             <Label Text="{Binding CalibrationSeconds, StringFormat='Run motor for: {0:F0} seconds'}" />
-            <Slider Minimum="1" Maximum="60" Value="{Binding CalibrationSeconds}" />
+            <Slider Minimum="1" Maximum="300" Value="{Binding CalibrationSeconds}" />
 
             <Button Text="▶ Run Motor Now" Command="{Binding RunCalibrationCommand}"
                     IsEnabled="{Binding IsBusy, Converter={StaticResource InvertBoolConverter}}"

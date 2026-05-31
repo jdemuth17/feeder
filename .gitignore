@@ -11,3 +11,7 @@
 .vscode/
 .DS_Store
 *.nfproj.user
+
+# Android signing
+*.keystore
+keystore.properties

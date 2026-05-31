@@ -12,6 +12,11 @@
         Route="DashboardPage" />
 
     <ShellContent
+        Title="Schedules"
+        ContentTemplate="{DataTemplate views:SchedulePage}"
+        Route="SchedulePage" />
+
+    <ShellContent
         Title="Setup"
         ContentTemplate="{DataTemplate views:ProvisioningPage}"
         Route="ProvisioningPage" />

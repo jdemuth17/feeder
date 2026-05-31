@@ -28,7 +28,6 @@ namespace UniversalFeeder.Mobile.ViewModels
         private int _chimeCount = 3;
         private double _chimeDurationSeconds = 3.0;
         private int _chimeLeadSeconds = 0;
-        public ObservableCollection<string> Logs { get; } = new();
         public ObservableCollection<FeederDevice> Feeders { get; } = new();
         public ObservableCollection<FeedType> AvailableFeedTypes { get; } = new();
 
@@ -103,39 +102,11 @@ namespace UniversalFeeder.Mobile.ViewModels
                 {
                     var feederId = _selectedFeeder.UniqueId;
                     _ = _mqttService.SubscribeToLogsAsync(feederId);
-                    _ = _mqttService.RequestLogsAsync(feederId);
-                    _ = LoadStoredLogsAsync(ct);
                 }
             }
         }
 
         private CancellationTokenSource? _selectionCts;
-
-        private async Task LoadStoredLogsAsync()
-        {
-            await LoadStoredLogsAsync(CancellationToken.None);
-        }
-
-        private async Task LoadStoredLogsAsync(CancellationToken ct)
-        {
-            try
-            {
-                if (SelectedFeeder == null) return;
-                var feederId = SelectedFeeder.UniqueId;
-                var items = await _logRepository.GetLogsForFeederAsync(feederId, 100);
-                if (ct.IsCancellationRequested) return;
-                MainThread.BeginInvokeOnMainThread(() =>
-                {
-                    if (ct.IsCancellationRequested) return;
-                    Logs.Clear();
-                    foreach (var l in items)
-                    {
-                        Logs.Add($"{l.TimestampUtc:yyyy-MM-dd HH:mm:ss} {l.Status ?? l.RawJson}");
-                    }
-                });
-            }
-            catch { }
-        }
 
         public bool HasSelectedFeeder => _selectedFeeder != null;
 
@@ -164,7 +135,7 @@ namespace UniversalFeeder.Mobile.ViewModels
         public int FeedDurationSeconds
         {
             get => _feedDurationSeconds;
-            set { _feedDurationSeconds = Math.Max(1, Math.Min(30, value)); OnPropertyChanged(); }
+            set { _feedDurationSeconds = Math.Max(1, Math.Min(300, value)); OnPropertyChanged(); }
         }
 
         public int ChimeCount
@@ -211,21 +182,13 @@ namespace UniversalFeeder.Mobile.ViewModels
         public ICommand ChimeCommand { get; }
         public ICommand SendScheduleCommand { get; }
         public ICommand EditScheduleCommand { get; }
-        public ICommand RequestLogsCommand { get; }
         public ICommand RefreshCommand { get; }
-        public ICommand RefreshLogsCommand { get; }
+        public ICommand ViewLogsCommand { get; }
         public ICommand RemoveFeederCommand { get; }
         public ICommand RenameFeederCommand { get; }
         public ICommand EditFeedTypesCommand { get; }
         public ICommand ReconfigureWifiCommand { get; }
         public ICommand SelectFeederCommand { get; }
-
-        private bool _isRefreshingLogs;
-        public bool IsRefreshingLogs
-        {
-            get => _isRefreshingLogs;
-            set { _isRefreshingLogs = value; OnPropertyChanged(); }
-        }
 
         public DashboardViewModel(MqttService mqttService, FeederStorageService storageService, LogRepository logRepository, FeedTypeService feedTypeService)
         {
@@ -239,9 +202,8 @@ namespace UniversalFeeder.Mobile.ViewModels
             ChimeCommand = new Command(async () => await ChimeAsync());
             SendScheduleCommand = new Command(async () => await SendScheduleAsync());
             EditScheduleCommand = new Command(async () => await EditScheduleAsync());
-            RequestLogsCommand = new Command(async () => await RequestLogsAsync());
+            ViewLogsCommand = new Command(async () => await ViewLogsAsync());
             RefreshCommand = new Command(LoadFeeders);
-            RefreshLogsCommand = new Command(async () => await RefreshLogsAsync());
             RemoveFeederCommand = new Command<FeederDevice>(async f => await RemoveFeederAsync(f));
             RenameFeederCommand = new Command<FeederDevice>(async f => await RenameFeederAsync(f));
             EditFeedTypesCommand = new Command(async () => await EditFeedTypesAsync());
@@ -276,54 +238,21 @@ namespace UniversalFeeder.Mobile.ViewModels
             _mqttService.LogMessageReceived += (s, tuple) =>
             {
                 var (feederId, payload) = tuple;
-                MainThread.BeginInvokeOnMainThread(() =>
-                {
-                    if (SelectedFeeder == null || SelectedFeeder.UniqueId == feederId)
-                    {
-                        Logs.Insert(0, FormatLogEntry(DateTime.Now, payload));
-                    }
-                });
-
                 // Persist log asynchronously
                 _ = SaveLogAsync(feederId, payload);
             };
         }
 
-        private static string FormatLogEntry(DateTime localTime, string? payload)
+        private async Task ViewLogsAsync()
         {
-            var timeStr = localTime.ToString("MMM d, h:mm tt");
-            if (string.IsNullOrWhiteSpace(payload))
-                return $"{timeStr} — Event";
-            try
+            if (SelectedFeeder == null)
             {
-                using var doc = JsonDocument.Parse(payload);
-                var root = doc.RootElement;
-
-                // Schedule ack
-                if (root.TryGetProperty("action", out var actionEl) && actionEl.GetString() == "ack_schedule")
-                {
-                    var ok = root.TryGetProperty("success", out var s) && s.GetBoolean();
-                    return $"{timeStr} — Schedule {(ok ? "saved ✓" : "save failed ✗")}";
-                }
-
-                // Logs replay completion
-                if (root.TryGetProperty("action", out var actEl2) && actEl2.GetString() == "logs_replay_complete")
-                {
-                    var n = root.TryGetProperty("count", out var c) ? c.GetInt32() : 0;
-                    return $"{timeStr} — Log replay complete ({n} entries)";
-                }
-
-                // Feeding event
-                bool success = root.TryGetProperty("success", out var sv) && sv.GetBoolean();
-                bool manual = root.TryGetProperty("manual", out var mv) && mv.GetBoolean();
-                string kind = manual ? "Manual feed" : "Scheduled feed";
-                return $"{timeStr} — {kind} {(success ? "✓" : "✗")}";
+                Status = "Select a feeder first";
+                return;
             }
-            catch
-            {
-                // Not JSON — show as-is but strip year from leading timestamp if present
-                return $"{timeStr} — {payload}";
-            }
+            var encoded = Uri.EscapeDataString(SelectedFeeder.UniqueId);
+            var nameEncoded = Uri.EscapeDataString(SelectedFeeder.Nickname ?? SelectedFeeder.UniqueId);
+            await Shell.Current.GoToAsync($"LogsPage?feederId={encoded}&feederName={nameEncoded}");
         }
 
         private async Task SaveLogAsync(string feederId, string payload)
@@ -373,49 +302,6 @@ namespace UniversalFeeder.Mobile.ViewModels
             var feederId = SelectedFeeder?.UniqueId ?? string.Empty;
             var encoded = Uri.EscapeDataString(feederId);
             await Shell.Current.GoToAsync($"FeedTypePage?feederId={encoded}");
-        }
-
-        private async Task RequestLogsAsync()
-        {
-            if (SelectedFeeder == null)
-            {
-                Status = "Select a feeder first";
-                return;
-            }
-
-            if (!IsConnected)
-            {
-                Status = "Connect to MQTT first";
-                return;
-            }
-
-            IsBusy = true;
-            Status = $"Requesting logs from {SelectedFeeder.Nickname}...";
-            try
-            {
-                var success = await _mqttService.RequestLogsAsync(SelectedFeeder.UniqueId);
-                if (success)
-                {
-                    Status = "Waiting for logs...";
-                    // Firmware replays stored entries as a burst on the logs topic.
-                    // Give them a moment to land, then refresh from local DB.
-                    await Task.Delay(1500);
-                    await LoadStoredLogsAsync();
-                    Status = $"Logs refreshed ({Logs.Count})";
-                }
-                else
-                {
-                    Status = "Failed to request logs";
-                }
-            }
-            catch (Exception ex)
-            {
-                Status = $"Request logs error: {ex.Message}";
-            }
-            finally
-            {
-                IsBusy = false;
-            }
         }
 
         private async Task ReconfigureWifiAsync()
@@ -471,30 +357,6 @@ namespace UniversalFeeder.Mobile.ViewModels
             finally
             {
                 IsBusy = false;
-            }
-        }
-
-        private async Task RefreshLogsAsync()
-        {
-            IsRefreshingLogs = true;
-            try
-            {
-                if (SelectedFeeder == null || !IsConnected)
-                {
-                    await LoadStoredLogsAsync();
-                    return;
-                }
-                await _mqttService.RequestLogsAsync(SelectedFeeder.UniqueId);
-                // Give the broker a moment to deliver queued logs before UI settles.
-                await Task.Delay(600);
-            }
-            catch
-            {
-                // Swallow — pull-to-refresh should never crash the page.
-            }
-            finally
-            {
-                IsRefreshingLogs = false;
             }
         }
 
